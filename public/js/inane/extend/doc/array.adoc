@@ -1,0 +1,48 @@
+= Array
+:firstname: Philip
+:middlename: Michael
+:lastname: Raab
+:author: Philip Michael Raab
+:authorinitials: PMR
+:email: <philip@cathedral.co.za>
+:revnumber: 0.1.0
+:revdate: 2025-06-08
+:description: Inane Extend is a collection of Object extensions for JavaScript.
+:keywords: inane, javascript, extend, extensions, prototype, object, array, string, function
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:table-stripes: even
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:sectanchors:
+// :sectlinks:
+:toc: auto
+// :toc-title: Document Sections
+// :table-frame: none
+// :table-grid: all
+// :table-stripes: all
+:chapter-number: 0
+
+.Methods added to the Array prototype.
+* unique
+* searchObject
+* groupByProperty
+* sortByProperty
+
+== unique
+
+Removes all duplicates from an array.
+
+== searchObject
+
+Search items for key ?and value and returns matches.
+
+== groupByProperty
+
+Returns object grouped by property.
+
+== sortByProperty
+
+Sort array of objects by a property of theirs.

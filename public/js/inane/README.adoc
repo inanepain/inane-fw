@@ -1,0 +1,23 @@
+= Inane JavaScript Library
+:author: Philip Michael Raab
+:email: <peep@cathedral.co.za>
+:revnumber: 0.1.0
+:revdate: 2025-03-03
+:experimental:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:toc: auto
+
+This document isn't really a typical README, but more of a collections of notes, hint and tips as well as points of interest and to remember.
+
+== What some files are for
+
+=== playground/test.mjs
+
+This is a simple example script to demo LogLevel and how it is inherited by children.
+
+=== backbone\examples.class.js
+
+A template class to handle RESTful API calls using Backbone.
+

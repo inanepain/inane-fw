@@ -1,4 +1,4 @@
-= Skeleton/Inane-FW
+= README: Skeleton/Inane-FW
 :author: Philip Michael Raab
 :email: <philip@cathedral.co.za>
 :homepage: http://blackbetty.local:3000/skeleton/inane-fw
@@ -10,10 +10,10 @@
 :copyright: Unlicense
 :experimental:
 :hide-uri-scheme:
+:sectanchors:
 :table-stripes: even
 :icons: font
 :source-highlighter: highlight.js
-:sectnums: |,all|
 :toclevels: 5
 :toc: left
 :idprefix: topic-
@@ -22,30 +22,118 @@
 :pkg-name: inane-fw
 :pkg-id: {pkg-vendor}/{pkg-name}
 
+== image:./icon.png[title={pkg-id},25] {pkg-id}
+
 {description}
 
-The aim of this site is to further the inanepain libraries and create a standard application template/skeleton that supports console and web.
+:sectnums:
 
-== What is where
+<<<
 
-=== config
+:leveloffset: +1
 
-=== filesrv
+= Introduction
 
-=== lib
+The aim of this site is to further the inanepain libraries and create a standard application template/skeleton that supports console and web. A big part of this is to standardise the directory structure.
 
-=== public
+== Directory Structure
 
-=== src
+Currently, everything is in one big mixing bowl, which is not a problem for the code, but not so easy to follow as a human.
 
-==== doc
+:leveloffset!:
 
-=== source
+<<<
 
-==== image
+:leveloffset: +1
 
-==== lib
+= Install
 
-==== style
+.composer
+[source,shell]
+====
+composer require {pkg-id}
+====
 
-=== vendor
+:leveloffset!:
+
+<<<
+
+:leveloffset: +1
+
+= Quick Start
+
+:leveloffset!:
+
+<<<
+
+:leveloffset: +1
+
+= Structure
+
+The basic contents for the directories.
+
+== config
+
+Configuration files, generally of a global nature, i.e. files that effect the whole site / all modules.
+
+== data
+
+Commonly used to store any sqlite databases or files to create / update any databases.
+
+== filesrv
+
+Files for client downloading.
+
+== lib
+
+The inanepain library files.
+
+== public
+
+Web server root.
+
+== src
+
+Sites main source code.
+
+== source
+
+Code for additional components.
+
+=== source/doc
+
+Asciidoc files that build the README and CHANGELOG.
+
+=== source/image
+
+Custom images for the site.
+
+=== source/lib
+
+Inanepain development area for new features or just something you are not sure of as yet and might scrap.
+
+=== source/style
+
+Stylesheet source files.
+
+== vendor
+
+Composer libraries.
+
+:leveloffset!:
+
+<<<
+
+:leveloffset: +1
+
+= Configuration
+
+:leveloffset!:
+
+<<<
+
+:leveloffset: +1
+
+= Examples
+
+:leveloffset!:

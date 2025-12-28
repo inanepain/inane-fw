@@ -1,0 +1,6 @@
+Inane-FW:
+	Configuration & Setup:
+		Composer:
+			Libraries still outstanding
+			- openswoole/core
+			- openswoole/ide-helper
