@@ -1,0 +1,60 @@
+= HTML
+:firstname: Philip
+:middlename: Michael
+:lastname: Raab
+:author: Philip Michael Raab
+:authorinitials: PMR
+:email: <philip@cathedral.co.za>
+:revnumber: 0.1.0
+:revdate: 2025-06-08
+:description: Inane Extend is a collection of Object extensions for JavaScript.
+:keywords: inane, javascript, extend, extensions, prototype, object, array, string, function
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:table-stripes: even
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:sectanchors:
+// :sectlinks:
+:toc: auto
+// :toc-title: Document Sections
+// :table-frame: none
+// :table-grid: all
+// :table-stripes: all
+:chapter-number: 0
+
+.Methods added to the HTML prototype.
+* Collections
+** toArray
+* Items
+** iqs
+** iqsa
+** iq
+
+== Collections
+
+=== toArray
+
+Converts the collection to an array.
+
+== Items
+
+=== iqs
+
+A Modified querySelector.
+
+=== iqsa
+
+A Modified querySelectorAll.
+
+=== iq
+
+Unified Query method.
+
+Using either call, apply or bind to set this to an HTMLElement will restrict the query to it's children.
+
+.Prefixing the selector string with:
+* *@* uses `querySelector` (return first element if multipule matches).
+* *@@* uses `querySelectorAll` but if only one match a single item is returned.

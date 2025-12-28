@@ -1,0 +1,6 @@
+const VERSION=`0.5.1`;const defaults={offset:0,duration:1000,fail_gracefully:!1};export default class ScrollTo{#options={selector:null,el:null,config:{}}
+constructor(el,{offset=0,duration=1000,fail_gracefully=!1}={}){Object.assign(this.#options.config,defaults,arguments[1]);if(typeof el==`string`){this.#options.selector=el;this.#options.el=document.querySelector(el)}else if(el instanceof HTMLElement){this.#options.selector=null;this.#options.el=el}
+if(this.#options.el==null&&this.#options.config.fail_gracefully==!1)throw `Parameter is not a valid HTMLElement or selector string!`;this.animateScrolling=ScrollTo.animateScrolling.bind(this);this.scrollTo=ScrollTo.element.bind(this,this.#options.el)}
+static get VERSION(){return VERSION}
+static animateScrolling(endingY,duration){let startingY=window.pageYOffset,diff=endingY-startingY,start;window.requestAnimationFrame(function step(timestamp){if(!start)start=timestamp;const time=timestamp-start,percent=Math.min(time/duration,1);window.scrollTo(0,startingY+diff*percent);if(time<duration)window.requestAnimationFrame(step);})}
+static element(el,offset,duration){const opts=ScrollTo===this?defaults:this.#options.config;const targetPosition=el.offsetTop-(offset??opts.offset);this.animateScrolling(targetPosition,duration??opts.duration)}}

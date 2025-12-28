@@ -1,0 +1,164 @@
+@CHARSET "UTF-8";
+
+.jsl-fading-circle {
+	width: 100%;
+	background: white;
+	height: 850px;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	z-index: 100;
+	transition: opacity 2s;
+}
+
+.jsl-fading-circle .jsl-circle {
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	left: 25%;
+	top: 20%;
+	transition: opacity 2s;
+}
+
+.jsl-fading-circle .jsl-circle:before {
+	content: '';
+	display: block;
+	margin: 0 auto;
+	width: 15%;
+	height: 15%;
+	background-color: #333;
+	border-radius: 100%;
+	-webkit-animation: jsl-circleFadeDelay 1.2s infinite ease-in-out both;
+	animation: jsl-circleFadeDelay 1.2s infinite ease-in-out both;
+}
+
+.jsl-fading-circle .jsl-circle2 {
+	-webkit-transform: rotate(30deg);
+	-ms-transform: rotate(30deg);
+	transform: rotate(30deg);
+}
+
+.jsl-fading-circle .jsl-circle3 {
+	-webkit-transform: rotate(60deg);
+	-ms-transform: rotate(60deg);
+	transform: rotate(60deg);
+}
+
+.jsl-fading-circle .jsl-circle4 {
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.jsl-fading-circle .jsl-circle5 {
+	-webkit-transform: rotate(120deg);
+	-ms-transform: rotate(120deg);
+	transform: rotate(120deg);
+}
+
+.jsl-fading-circle .jsl-circle6 {
+	-webkit-transform: rotate(150deg);
+	-ms-transform: rotate(150deg);
+	transform: rotate(150deg);
+}
+
+.jsl-fading-circle .jsl-circle7 {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.jsl-fading-circle .jsl-circle8 {
+	-webkit-transform: rotate(210deg);
+	-ms-transform: rotate(210deg);
+	transform: rotate(210deg);
+}
+
+.jsl-fading-circle .jsl-circle9 {
+	-webkit-transform: rotate(240deg);
+	-ms-transform: rotate(240deg);
+	transform: rotate(240deg);
+}
+
+.jsl-fading-circle .jsl-circle10 {
+	-webkit-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+
+.jsl-fading-circle .jsl-circle11 {
+	-webkit-transform: rotate(300deg);
+	-ms-transform: rotate(300deg);
+	transform: rotate(300deg);
+}
+
+.jsl-fading-circle .jsl-circle12 {
+	-webkit-transform: rotate(330deg);
+	-ms-transform: rotate(330deg);
+	transform: rotate(330deg);
+}
+
+.jsl-fading-circle .jsl-circle2:before {
+	-webkit-animation-delay: -1.1s;
+	animation-delay: -1.1s;
+}
+
+.jsl-fading-circle .jsl-circle3:before {
+	-webkit-animation-delay: -1s;
+	animation-delay: -1s;
+}
+
+.jsl-fading-circle .jsl-circle4:before {
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
+}
+
+.jsl-fading-circle .jsl-circle5:before {
+	-webkit-animation-delay: -0.8s;
+	animation-delay: -0.8s;
+}
+
+.jsl-fading-circle .jsl-circle6:before {
+	-webkit-animation-delay: -0.7s;
+	animation-delay: -0.7s;
+}
+
+.jsl-fading-circle .jsl-circle7:before {
+	-webkit-animation-delay: -0.6s;
+	animation-delay: -0.6s;
+}
+
+.jsl-fading-circle .jsl-circle8:before {
+	-webkit-animation-delay: -0.5s;
+	animation-delay: -0.5s;
+}
+
+.jsl-fading-circle .jsl-circle9:before {
+	-webkit-animation-delay: -0.4s;
+	animation-delay: -0.4s;
+}
+
+.jsl-fading-circle .jsl-circle10:before {
+	-webkit-animation-delay: -0.3s;
+	animation-delay: -0.3s;
+}
+
+.jsl-fading-circle .jsl-circle11:before {
+	-webkit-animation-delay: -0.2s;
+	animation-delay: -0.2s;
+}
+
+.jsl-fading-circle .jsl-circle12:before {
+	-webkit-animation-delay: -0.1s;
+	animation-delay: -0.1s;
+}
+
+@-webkit-keyframes jsl-circleFadeDelay {
+	0%, 39%, 100% { opacity: 0; }
+	40% { opacity: 1; }
+}
+	
+@keyframes jsl-circleFadeDelay {
+	0%, 39%, 100% { opacity: 0; }
+	40% { opacity: 1; } 
+}

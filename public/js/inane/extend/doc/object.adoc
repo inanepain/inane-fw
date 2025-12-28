@@ -1,0 +1,91 @@
+= Object
+:firstname: Philip
+:middlename: Michael
+:lastname: Raab
+:author: Philip Michael Raab
+:authorinitials: PMR
+:email: <philip@cathedral.co.za>
+:revnumber: 1.9.0
+:revdate: 2025-06-08
+:description: Inane Extend is a collection of Object extensions for JavaScript.
+:keywords: inane, javascript, extend, extensions, prototype, object, array, string, function
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+// :table-stripes: even
+// :icons: font
+// :source-highlighter: highlight.js
+// :sectnums: |,all|
+// :sectanchors:
+// :toc: auto
+// :sectlinks:
+// :toc-title: Document Sections
+// :table-frame: none
+// :table-grid: all
+// :table-stripes: all
+:chapter-number: 0
+
+.Methods added to the Object prototype.
+* watch
+* unwatch
+* keys
+* values
+* jsonString
+* pick
+* readPath
+* sorted
+* propertyRename
+* renameProperty
+* groupByProperty
+
+== watch
+
+Watches a property for changes. +
+The callback is called with the property name, old value and new value.
+
+== unwatch
+
+Removes a watch on a property.
+
+== keys
+
+Returns an array of the object's own enumerable property names.
+
+== values
+
+Returns an array of the object's own enumerable property values.
+
+== jsonString
+
+Returns a JSON string representation of the object.
+
+== pick
+
+Returns a new object with only the specified properties.
+
+== readPath
+
+Reads a property value from a dot-separated path. +
+If the path does not exist, it returns undefined.
+
+== sorted
+
+Gets a sorted copy of the object's own enumerable property names. +
+The sorting is done by the property names.
+
+== propertyRename
+
+Renames a property in the object. +
+The method takes the old property name and the new property name as arguments. +
+If the old property does not exist, it does nothing. +
+If the new property already exists, nothing is done unless `force` is set to *true*.
+
+== renameProperty
+
+See <<propertyRename,propertyRename>>.
+
+== groupByProperty
+
+Returns an object where the keys are the unique values of the specified property, and the values are arrays of objects that have that property value. +
+The method takes the property name as an argument. +
+If the property does not exist, it returns an empty object.

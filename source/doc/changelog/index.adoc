@@ -1,0 +1,27 @@
+= CHANGELOG Skeleton/Inane-FW
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:homepage: http://blackbetty.local:3000/skeleton/inane-fw
+:description: Web or console application framework using the inanepain libraries.
+:keywords: inane, project, framework
+:revnumber: 0.1.0
+:revdate: 2025-12-28
+:revremark: initial
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:sectanchors:
+:table-stripes: even
+:icons: font
+:source-highlighter: highlight.js
+:toclevels: 5
+:toc: left
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: skeleton
+:pkg-name: inane-fw
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+== History image:./icon.png[title={pkg-id},25] {pkg-id}
+
+include::./release/0.0.0.adoc[leveloffset=+1]

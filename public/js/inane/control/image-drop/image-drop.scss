@@ -1,0 +1,42 @@
+
+
+.image-drop {
+    width: fit-content;
+    margin: auto;
+
+    &.image-drop-zone,
+    &-zone {
+      border: 2px dashed #ccc;
+      border-radius: 20px;
+      padding: 20px;
+      transition: background-color 1s ease-out;
+      cursor: pointer;
+  
+      &.highlight {
+        border-color: purple;
+        background-color: lavender;
+      }
+    }
+  
+    &-file {
+        position: absolute;
+      visibility: hidden;
+      width: 0px;
+      height: 0px;
+    }
+  
+    &-image {
+      margin: auto;
+      display: block;
+      pointer-events: none;
+      min-width: 30px;
+      max-width: 200px;
+
+      &.image-drop-zone {
+        border-radius: 5px;
+        padding: 5px;
+        pointer-events: all;
+      }
+    }
+  }
+  
