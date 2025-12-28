@@ -18,13 +18,13 @@ Files for client downloading.
 
 The inanepain library files.
 
+== module
+
+Sites main source code.
+
 == public
 
 Web server root.
-
-== src
-
-Sites main source code.
 
 == source
 
