@@ -4,3 +4,9 @@ Inane-FW:
 			Libraries still outstanding
 			- openswoole/core
 			- openswoole/ide-helper
+	Step 1: Index (Application):
+		Get the main application loop running
+		Web:
+			Web applications & routing
+		Console:
+			Console commands & routing
