@@ -1,0 +1,57 @@
+[submodule "lib/inanepain/auth"]
+	path = lib/inanepain/auth
+	url = http://blackbetty.local:3000/inanepain/auth.git
+[submodule "lib/inanepain/cache"]
+	path = lib/inanepain/cache
+	url = http://blackbetty.local:3000/inanepain/cache.git
+[submodule "lib/inanepain/cli"]
+	path = lib/inanepain/cli
+	url = http://blackbetty.local:3000/inanepain/cli.git
+[submodule "lib/inanepain/config"]
+	path = lib/inanepain/config
+	url = http://blackbetty.local:3000/inanepain/config.git
+[submodule "lib/inanepain/console"]
+	path = lib/inanepain/console
+	url = http://blackbetty.local:3000/inanepain/console.git
+[submodule "lib/inanepain/crypt"]
+	path = lib/inanepain/crypt
+	url = http://blackbetty.local:3000/inanepain/crypt.git
+[submodule "lib/inanepain/datetime"]
+	path = lib/inanepain/datetime
+	url = http://blackbetty.local:3000/inanepain/datetime.git
+[submodule "lib/inanepain/db"]
+	path = lib/inanepain/db
+	url = http://blackbetty.local:3000/inanepain/db.git
+[submodule "lib/inanepain/dumper"]
+	path = lib/inanepain/dumper
+	url = http://blackbetty.local:3000/inanepain/dumper.git
+[submodule "lib/inanepain/event"]
+	path = lib/inanepain/event
+	url = http://blackbetty.local:3000/inanepain/event.git
+[submodule "lib/inanepain/file"]
+	path = lib/inanepain/file
+	url = http://blackbetty.local:3000/inanepain/file.git
+[submodule "lib/inanepain/http"]
+	path = lib/inanepain/http
+	url = http://blackbetty.local:3000/inanepain/http.git
+[submodule "lib/inanepain/id-forge"]
+	path = lib/inanepain/id-forge
+	url = http://blackbetty.local:3000/inanepain/id-forge.git
+[submodule "lib/inanepain/quickrank"]
+	path = lib/inanepain/quickrank
+	url = http://blackbetty.local:3000/inanepain/quickrank.git
+[submodule "lib/inanepain/redis"]
+	path = lib/inanepain/redis
+	url = http://blackbetty.local:3000/inanepain/redis.git
+[submodule "lib/inanepain/routing"]
+	path = lib/inanepain/routing
+	url = http://blackbetty.local:3000/inanepain/routing.git
+[submodule "lib/inanepain/session"]
+	path = lib/inanepain/session
+	url = http://blackbetty.local:3000/inanepain/session.git
+[submodule "lib/inanepain/stdlib"]
+	path = lib/inanepain/stdlib
+	url = http://blackbetty.local:3000/inanepain/stdlib.git
+[submodule "lib/inanepain/view"]
+	path = lib/inanepain/view
+	url = http://blackbetty.local:3000/inanepain/view.git
