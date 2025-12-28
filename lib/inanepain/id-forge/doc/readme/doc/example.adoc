@@ -1,0 +1,141 @@
+= Example
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:toc: auto
+:sectanchors:
+
+.Some examples
+[source,php]
+----
+use Inane\IdForge\Config\EncoderConfig;
+use Inane\IdForge\Config\SnowflakeConfig;
+use Inane\IdForge\Encoder\AbstractEncoder;
+use Inane\IdForge\EncoderFactory;
+use Inane\IdForge\Generator\AbstractIdGenerator;
+use Inane\IdForge\IdGeneratorFactory;
+
+// Example usage
+try {
+	// Create encoders via factory
+	$base32 = EncoderFactory::createBase32();
+	$base58 = EncoderFactory::createBase58();
+	$base64 = EncoderFactory::createBase64();
+
+	// Create ID generators via factory
+	$nanoid = IdGeneratorFactory::createNanoid();
+	$snowflake = IdGeneratorFactory::createSnowflake(1, 1);
+	$uuid = IdGeneratorFactory::createUUID();
+	$ulid = IdGeneratorFactory::createULID();
+
+	// Base32
+	$base32Encoded = $base32->encode('Hello');
+	echo "Base32 Encoded: $base32Encoded\n";
+	echo 'Base32 Decoded: ' . $base32->decode($base32Encoded) . "\n";
+	echo PHP_EOL;
+
+	// Base58
+	$base58Encoded = $base58->encode('Hello');
+	echo "Base58 Encoded: $base58Encoded\n";
+	echo 'Base58 Decoded: ' . $base58->decode($base58Encoded) . "\n";
+	echo PHP_EOL;
+
+	// Base64
+	$base64Encoded = $base64->urlEncode('Hello');
+	echo "Base64 URL Encoded: $base64Encoded\n";
+	echo 'Base64 URL Decoded: ' . $base64->urlDecode($base64Encoded) . "\n";
+	echo PHP_EOL;
+
+	// Nanoid
+	echo 'Nanoid: ' . $nanoid->generate() . "\n";
+	echo PHP_EOL;
+
+	// Snowflake ID
+	$snowflakeId = $snowflake->generate();
+	echo "Snowflake ID: $snowflakeId\n";
+	echo 'Snowflake ID (Base58): ' . $snowflake->toEncoded($base58) . "\n";
+	echo PHP_EOL;
+
+	// UUID
+	$uuidValue = $uuid->generate();
+	echo "UUID: $uuidValue\n";
+	$uuidBase64 = $uuid->toBase64($uuidValue, $base64);
+	echo "UUID Base64: $uuidBase64\n";
+	echo 'UUID from Base64: ' . $uuid->fromBase64($uuidBase64, $base64) . "\n";
+	echo PHP_EOL;
+
+	// ULID
+	$ulidValue = $ulid->generate();
+	echo "ULID: $ulidValue\n";
+	echo 'ULID Timestamp: ' . $ulid->decodeTimestamp($ulidValue) . "\n";
+	echo 'ULID Base32: ' . $ulid->toEncoded($base32) . "\n";
+	echo PHP_EOL;
+
+	// ULID
+	$ulidValue = $ulid->generate(1761168799791);
+	echo "ULID 2: $ulidValue\n";
+	echo 'ULID 2 Timestamp: ' . $ulid->decodeTimestamp($ulidValue) . "\n";
+	echo 'ULID 2 Base32: ' . $ulid->toEncoded($base32) . "\n";
+} catch (Exception $e) {
+	echo 'Error: ' . $e->getMessage() . "\n";
+}
+
+// Add a New Encoder:
+class Base16Encoder extends AbstractEncoder {
+	public function __construct() {
+		parent::__construct(new EncoderConfig('0123456789ABCDEF'));
+	}
+
+	public function encode(string $data): string {
+		return strtoupper(bin2hex($data));
+	}
+
+	public function decode(string $data): string {
+		return hex2bin($data);
+	}
+}
+
+class Encoder2Factory {
+	public static function createBase16(): Base16Encoder {
+		return new Base16Encoder();
+	}
+}
+
+$base16 = Encoder2Factory::createBase16()->encode('Hello');
+$text = Encoder2Factory::createBase16()->decode($base16);
+$line("Base16:encoded: $base16");
+$line("Base16:decoded: $text");
+// EncoderFactory::createBase16 = fn() => new Base16Encoder();
+
+
+// Add a New ID Generator:
+class CustomIdGenerator extends AbstractIdGenerator {
+	public function generate(): string {
+		$timestamp = $this->getTimestamp();
+		$random = $this->getRandomBytes(8);
+		return bin2hex($timestamp . $random);
+	}
+}
+
+class IdGenerator2Factory {
+	public static function createCustomId(): CustomIdGenerator {
+		return new CustomIdGenerator();
+	}
+}
+
+$customId = IdGenerator2Factory::createCustomId()->generate();
+$line("CustomID: $customId");
+
+// IdGeneratorFactory::createCustomId = fn() => new CustomIdGenerator();
+
+// Customize Snowflake Configuration:
+$customConfig = new SnowflakeConfig(1640995200000, 4, 4, 10); // Custom epoch, fewer bits
+$snowflake = IdGeneratorFactory::createSnowflake(1, 1, $customConfig);
+
+// Custom Alphabet for Nanoid:
+$nanoid = IdGeneratorFactory::createNanoid('0123456789abcdef', 12); // Hex-only, shorter length
+----

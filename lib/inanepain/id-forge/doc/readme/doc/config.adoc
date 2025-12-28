@@ -1,0 +1,78 @@
+= Configuration
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:toc: auto
+:sectanchors:
+
+This module documents the small configuration objects that accompany encoders and generators.
+
+== EncoderConfig
+
+Namespace: `Inane\IdForge\Config\EncoderConfig`
+
+Holds the alphabet used by encoders and caches its length.
+
+.Fields
+
+- `alphabet: string` — characters used by the encoding
+- `alphabetLength: int` — cached length of the alphabet
+
+.API
+
+- `__construct(string $alphabet)` — set the alphabet and precompute its length
+- `getAlphabet(): string`
+- `getAlphabetLength(): int`
+
+.Usage
+[source,php]
+----
+use Inane\IdForge\Config\EncoderConfig;
+use Inane\IdForge\Encoder\Base32Encoder;
+
+$config  = new EncoderConfig('ABCDEFGHIJKLMNOPQRSTUVWXYZ234567');
+$encoder = new Base32Encoder($config);
+----
+
+== SnowflakeConfig
+
+Namespace: `Inane\IdForge\Config\SnowflakeConfig`
+
+Controls the epoch and bit allocations for Snowflake-like IDs.
+
+.Fields
+
+- `epoch: int` — custom epoch in milliseconds (default: 1609459200000, 2021-01-01)
+- `workerIdBits: int` — bits for worker/node id (default: 5)
+- `datacenterIdBits: int` — bits for datacenter id (default: 5)
+- `sequenceBits: int` — bits for per-millisecond sequence (default: 12)
+
+.API
+
+- `__construct(int $epoch = 1609459200000, int $workerIdBits = 5, int $datacenterIdBits = 5, int $sequenceBits = 12)`
+- Getters:
+  - `getEpoch(): int`
+  - `getWorkerIdBits(): int`
+  - `getDatacenterIdBits(): int`
+  - `getSequenceBits(): int`
+
+.Usage
+[source,php]
+----
+use Inane\IdForge\Generator\SnowflakeIdGenerator;
+use Inane\IdForge\Config\SnowflakeConfig;
+
+$config = new SnowflakeConfig(epoch: 1700000000000, workerIdBits: 6, datacenterIdBits: 4, sequenceBits: 12);
+$gen    = new SnowflakeIdGenerator(workerId: 3, datacenterId: 1, config: $config);
+$id     = $gen->generate();
+----
+
+== See also
+
+- xref:encoders.adoc[Encoders]
+- xref:generators.adoc[Generators]
+- xref:factories.adoc[Factories]

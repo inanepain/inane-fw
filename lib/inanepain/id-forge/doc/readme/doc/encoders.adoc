@@ -1,0 +1,106 @@
+= Encoders
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:toc: auto
+:sectanchors:
+
+This module provides reversible string encoders that share a simple contract, `EncoderInterface`. Implementations cover Base32, Base58, and Base64 (including a URL-safe variant).
+
+== Contracts and base classes
+
+=== `Inane\IdForge\Interface\EncoderInterface`
+
+Contract for reversible string encoders:
+
+- `encode(string $data): string` — converts binary-safe input to an encoded string
+- `decode(string $data): string` — converts an encoded string back to the original binary data
+
+Implementations must be deterministic and satisfy `decode(encode($x)) === $x` for valid input. Invalid input should raise `Inane\Stdlib\Exception\InvalidArgumentException` (or a domain-specific exception).
+
+=== `Inane\IdForge\Encoder\AbstractEncoder`
+
+A small base class that stores an `EncoderConfig` and exposes helpers:
+
+- `getAlphabet(): string`
+- `getAlphabetLength(): int`
+
+Concrete encoders (Base32/58/64) extend this class.
+
+== Implementations
+
+=== Base32
+
+Namespace: `Inane\IdForge\Encoder\Base32Encoder`
+
+- Alphabet: configurable (RFC 4648 by default when using `EncoderFactory::createBase32()`)
+- Padding: not applied; trailing zero bits are used to complete the last 5-bit group
+- Errors: throws `InvalidArgumentException` if a character is not in the alphabet during `decode()`
+
+.Usage
+[source,php]
+----
+use Inane\IdForge\EncoderFactory;
+
+$base32 = EncoderFactory::createBase32();
+$enc = $base32->encode("\x00\xFFHello");
+$bin = $base32->decode($enc);
+----
+
+=== Base58
+
+Namespace: `Inane\IdForge\Encoder\Base58Encoder`
+
+- Alphabet: configurable (Bitcoin alphabet via `EncoderFactory::createBase58()`)
+- Preserves leading zero bytes as leading first-alphabet characters
+- Errors: throws `InvalidArgumentException` for unknown characters during `decode()`
+
+.Usage
+[source,php]
+----
+use Inane\IdForge\EncoderFactory;
+
+$base58 = EncoderFactory::createBase58();
+$enc = $base58->encode("\0\0payload");
+$bin = $base58->decode($enc);
+----
+
+=== Base64
+
+Namespace: `Inane\IdForge\Encoder\Base64Encoder`
+
+- Standard Base64 via `encode()`/`decode()`
+- URL-safe helpers: `urlEncode()` replaces `+`/`/` with `-`/`_` and strips padding; `urlDecode()` restores and decodes
+- Errors: `decode()` and `urlDecode()` throw `InvalidArgumentException` for invalid Base64 input
+
+.Usage (URL-safe)
+[source,php]
+----
+use Inane\IdForge\EncoderFactory;
+
+$base64 = EncoderFactory::createBase64();
+$token  = $base64->urlEncode(random_bytes(16));
+$bytes  = $base64->urlDecode($token);
+----
+
+== Configuration
+
+Encoders accept `Inane\IdForge\Config\EncoderConfig` which holds:
+
+- `alphabet: string`
+- `alphabetLength: int` (precomputed)
+
+Use `EncoderFactory` for sensible defaults or construct encoders manually with a custom alphabet.
+
+== Exceptions
+
+- `Inane\Stdlib\Exception\InvalidArgumentException` — invalid input during `decode()`
+
+== See also
+
+- xref:config.adoc[Configuration]
+- xref:factories.adoc[Factories]

@@ -1,0 +1,127 @@
+################################################
+#### Development Mode
+################################################
+SetEnv DEVELOPMENT 1
+
+SetEnv DEBUG_HIDE_DEPRECATION 1
+SetEnv DEBUG_HIDE_NOTICE 1
+SetEnv DEBUG_HIDE_WARNING 0
+
+SetEnv DUMPER_SILENCE_CLASS 0
+SetEnv DUMPER_SILENCE_METHOD 0
+#**********************************************
+
+RewriteEngine On
+#### Javascript: minified versions (v2)
+# Now with support for gzip compressed css/js files.
+#**********************************************
+## PRIORITY IS SET BY ORDER
+# Current order checks for
+# - REQUESTED   => CHECK
+# - normal file => min file
+# - min file    => gz file
+# if the CHECK file found it is served.
+#  only if CHECK not found is REQUEST used. so REQUEST need not exists.
+#**********************************************
+Options +MultiViews
+RemoveType .gz
+AddEncoding gzip .gz
+AddType application/javascript mjs.gz
+AddType application/javascript js.gz
+AddType text/css css.gz
+#**********************************************
+
+# if a min version is available then load it
+RewriteCond %{DOCUMENT_ROOT}/$1.min.$2 -f
+RewriteRule ^([^.]+)\.(css|js|mjs)$ /$1.min.$2 [L,NC]
+#**********************************************
+
+# if a gz version is available then load it
+RewriteCond "%{REQUEST_FILENAME}\.gz" -s
+RewriteRule "^(.*)\.js" "$1\.js\.gz" [QSA]
+
+RewriteCond "%{REQUEST_FILENAME}\.gz" -s
+RewriteRule "^(.*)\.mjs" "$1\.mjs\.gz" [QSA]
+
+RewriteCond "%{REQUEST_FILENAME}\.gz" -s
+RewriteRule "^(.*)\.css" "$1\.css\.gz" [QSA]
+#**********************************************
+
+# The following rule tells Apache that if the requested filename
+# exists, simply serve it.
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [L]
+# The following rewrites all other queries to index.php. The
+# condition ensures that if you are using Apache aliases to do
+# mass virtual hosting or installed the project in a subdirectory,
+# the base path will be prepended to allow proper resolution of
+# the index.php file; it will work in non-aliased environments
+# as well, providing a safe, one-size fits all solution.
+RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+RewriteRule ^(.*) - [E=BASE:%1]
+RewriteRule ^(.*)$ %{ENV:BASE}/index.php [L]
+
+<Limit GET HEAD POST PUT DELETE OPTIONS>
+	# Deprecated apache 2.2 syntax:
+	# Order Allow,Deny
+	# Allow from all
+	# Apache > 2.4 requires:
+	Require all granted
+</Limit>
+
+<IfModule mod_headers.c>
+    # Header set Expires 0
+    # Header set Pragma "no-cache"
+    # Header set Cache-Control "no-cache, no-store, must-revalidate"
+
+    # Enable cross domain access control
+	# Header add Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Origin "*, https://yts.mx"
+    # Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+    # Header set Access-Control-Allow-Methods "GET,PUT,POST,DELETE"
+    # Header add Access-Control-Allow-Methods "GET,PUT,POST,DELETE,OPTIONS"
+    # Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+    <Files index.php>
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+    </Files>
+
+    <filesMatch "\.(html|htm|js|css|php)$">
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+    </filesMatch>
+</IfModule>
+
+#### EXPERIMENTAL
+################################################
+# EXPERIMENTAL: no cache for css/js
+# <FilesMatch "\.(js|css)$">
+# SetOutputFilter DEFLATE
+# Header set Expires "Thu, 15 Apr 2010 20:00:00 GMT"
+# </FilesMatch>
+
+# php_value error_reporting 24565
+
+# SetEnv EARLY_VAR 1
+# Define EARLY_VAR 1
+SetEnvIf Host ^ EARLY_VAR=1
+
+# <If "env('CONFIG_VERSION') == '2'">
+<If "%{ENV:CONFIG_VERSION} == '2'">
+   SetEnv TEST_VAR  v2
+</If>
+<Else>
+    SetEnv TEST_VAR  notV2
+</Else>
+
+<If "env('EARLY_VAR') == '5'">
+   SetEnv TEST_VAR2 v2
+</If>
+<Else>
+   SetEnv TEST_VAR2 notV2
+</Else>
