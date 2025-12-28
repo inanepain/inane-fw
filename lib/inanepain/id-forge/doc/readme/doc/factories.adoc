@@ -1,0 +1,64 @@
+= Factories
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:toc: auto
+:sectanchors:
+
+Factory helpers provide convenient, opinionated constructors for common encoders and generators.
+
+== EncoderFactory
+
+Namespace: `Inane\IdForge\EncoderFactory`
+
+Creates encoder instances with sensible default alphabets.
+
+.API
+
+- `createBase32(): Base32Encoder` — RFC 4648 alphabet `A-Z2-7`
+- `createBase58(): Base58Encoder` — Bitcoin alphabet (no `0`, `O`, `I`, `l`)
+- `createBase64(): Base64Encoder` — Standard Base64 alphabet
+
+.Usage
+[source,php]
+----
+use Inane\IdForge\EncoderFactory;
+
+$base32 = EncoderFactory::createBase32();
+$base58 = EncoderFactory::createBase58();
+$base64 = EncoderFactory::createBase64();
+----
+
+== IdGeneratorFactory
+
+Namespace: `Inane\IdForge\IdGeneratorFactory`
+
+Creates generator instances with defaults and safe validation where applicable.
+
+.API
+
+- `createNanoid(string $alphabet = '0-9a-zA-Z', int $size = 21): NanoidGenerator`
+- `createSnowflake(int $workerId = 0, int $datacenterId = 0, ?SnowflakeConfig $config = null): SnowflakeIdGenerator`
+- `createUUID(): UUIDGenerator`
+- `createULID(?EncoderConfig $config = null): ULIDGenerator`
+
+.Usage
+[source,php]
+----
+use Inane\IdForge\IdGeneratorFactory;
+
+$uuid   = IdGeneratorFactory::createUUID()->generate();
+$ulid   = IdGeneratorFactory::createULID()->generate();
+$nanoid = IdGeneratorFactory::createNanoid()->generate();
+$snow   = IdGeneratorFactory::createSnowflake(workerId: 1, datacenterId: 2)->generate();
+----
+
+== See also
+
+- xref:encoders.adoc[Encoders]
+- xref:generators.adoc[Generators]
+- xref:config.adoc[Configuration]

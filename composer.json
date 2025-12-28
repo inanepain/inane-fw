@@ -1,0 +1,80 @@
+{
+    "name": "skeleton/inane-fw",
+    "description": "Web or console application framework using the inanepain libraries.",
+    "type": "project",
+    "license": "Unlicense",
+    "homepage": "http://blackbetty.local:3000/skeleton/inane-fw",
+    "readme": "README.adoc",
+    "authors": [
+        {
+            "name": "Philip Michael Raab",
+            "email": "philip@cathedral.co.za"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Knot\\": "src/",
+            "Inane\\Auth\\": "lib/inanepain/auth/src/",
+            "Inane\\Cache\\": "lib/inanepain/cache/src/",
+            "Inane\\Cli\\": "lib/inanepain/cli/src/",
+            "Inane\\Config\\": "lib/inanepain/config/src/",
+            "Inane\\Console\\": "lib/inanepain/console/src/",
+            "Inane\\Crypt\\": "lib/inanepain/crypt/src/",
+            "Inane\\Datetime\\": "lib/inanepain/datetime/src/",
+            "Inane\\Db\\": "lib/inanepain/db/src/",
+            "Inane\\Dumper\\": "lib/inanepain/dumper/src/",
+            "Inane\\Event\\": "lib/inanepain/event/src/",
+            "Inane\\File\\": "lib/inanepain/file/src/",
+            "Inane\\Http\\": "lib/inanepain/http/src/",
+            "Inane\\IdForge\\": "lib/inanepain/id-forge/src/",
+            "Inane\\QR\\": "lib/inanepain/quickrank/src/",
+            "Inane\\Redis\\": "lib/inanepain/redis/src/",
+            "Inane\\Routing\\": "lib/inanepain/routing/src/",
+            "Inane\\Session\\": "lib/inanepain/session/src/",
+            "Inane\\Stdlib\\": "lib/inanepain/stdlib/src/",
+            "Inane\\View\\": "lib/inanepain/view/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Inane\\Datetime\\": "source/lib/datetime/src/",
+            "Inane\\Lotto\\": "source/lib/lotto/src/",
+            "Inane\\Rebecca\\": "source/lib/rebecca/src/",
+            "Inane\\Services\\": "source/lib/services/src/",
+            "Inane\\Stdlib\\": "source/lib/stdlib/src/",
+            "Inane\\View\\": "source/lib/view/src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true,
+        "discard-changes": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">= 8.5",
+        "psr/cache": ">= 3",
+        "psr/simple-cache": ">= 3",
+        "psr/container": "*",
+        "psr/http-message": "*",
+        "psr/http-server-handler": "*",
+        "psr/http-client": "*",
+        "psr/http-factory": "*",
+        "psr/event-dispatcher": "^1.0",
+        "matthiasmullie/minify": "dev-master",
+        "openswoole/core": "dev-master",
+        "openswoole/ide-helper": "dev-master",
+        "ext-simplexml": "*",
+        "ext-pdo": "*",
+        "ext-gmp": "*",
+        "ext-ctype": "*",
+        "ext-redis": "*"
+    },
+    "require-dev": {},
+    "scripts": {
+        "inane": [
+            "echo Skeleton Inane Framework"
+        ]
+    }
+}
