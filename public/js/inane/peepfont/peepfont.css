@@ -1,0 +1,48 @@
+@charset "UTF-8";
+@import "peep-font-base.css";
+
+/* Version: 0.4.0 */
+/*
+0.3.7: icon-cathedral,icon-cathedral-solid,icon-fingerprint,icon-mac-command,icon-mac-command-solid,icon-mac-option,icon-mac-option-solid,icon-anubis,icon-anubis-solid,icon-spinner,icon-ss-aquarius,icon-ss-aries,icon-ss-cancer,icon-ss-capricorn,icon-ss-gemini,icon-ss-leo,icon-ss-libra,icon-ss-pisces,icon-ss-sagittarius,icon-ss-scorpio,icon-ss-taurus,icon-ss-virgo,icon-logo-inane,icon-logo-neocathedral,icon-fb-button,icon-fb-header,icon-fb-date,icon-fb-checkbox,icon-fb-paragraph,icon-fb-number,icon-fb-checkbox-group,icon-fb-radio-group,icon-fb-copy,icon-fb-rich-text,icon-fb-select,icon-fb-textarea,icon-fb-text,icon-fb-pencil,icon-fb-file,icon-fb-hidden,icon-fb-cancel,icon-fb-autocomplete,icon-fb-list,icon-a-add,icon-a-close,icon-a-subtract,icon-c-grip,icon-a-add-column,icon-anchor,icon-compass,icon-download,icon-eye,icon-foot,icon-trash,icon-link,icon-heart,icon-page-copy,icon-font
+0.3.8: icon-exclamation,icon-question,icon-information-circle,icon-information,icon-question-circle,icon-zoom-in,icon-zoom-out,icon-text-document,icon-ban-denied,icon-check-circled,icon-hand-down,icon-hand-up,icon-cloud-upload,icon-folder-open,icon-upload,icon-exclamation-alert
+0.3.9: icon-recycle,icon-refresh
+0.3.10: icon-mixer,icon-settings
+0.3.12: a-clipboard
+0.3.100: calendar, thumbnails, bell, bell-slash, bookmark-o, bookmark, bug, back-system, clock, globe, picture, pin-map, sync, setting-gear, apple, campfire, yang-ying, money, infinity
+0.3.101: briefcase
+0.4.0: LOTS
+*/
+
+.peep-spin {
+    position: relative;
+    -webkit-animation: peep-spin 2s infinite linear;
+    animation: peep-spin 2s infinite linear;
+}
+
+.peep-spin-absolute {
+    position: absolute;
+    -webkit-animation: peep-spin 2s infinite linear;
+    animation: peep-spin 2s infinite linear;
+}
+
+@-webkit-keyframes peep-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes peep-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}

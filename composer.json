@@ -63,8 +63,6 @@
         "psr/http-factory": "*",
         "psr/event-dispatcher": "^1.0",
         "matthiasmullie/minify": "dev-master",
-        "openswoole/core": "dev-master",
-        "openswoole/ide-helper": "dev-master",
         "ext-simplexml": "*",
         "ext-pdo": "*",
         "ext-gmp": "*",

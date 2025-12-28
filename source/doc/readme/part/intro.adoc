@@ -1,0 +1,7 @@
+= Introduction
+
+The aim of this site is to further the inanepain libraries and create a standard application template/skeleton that supports console and web. A big part of this is to standardise the directory structure.
+
+== Directory Structure
+
+Currently, everything is in one big mixing bowl, which is not a problem for the code, but not so easy to follow as a human.

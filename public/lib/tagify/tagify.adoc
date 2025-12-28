@@ -1,0 +1,14 @@
+= Libray: Tagify
+:hide-uri-scheme:
+
+Transforms an input field or a textarea into a Tags component, in an easy, customizable way, with great performance and small code footprint, exploded with features.
+
+Home page: https://github.com/yairEO/tagify[*github*^,role=green]
+
+== Usage
+
+[source,html]
+----
+<link rel="stylesheet" href="/js/lib/tagify/4.33.2/tagify.css">
+<script src="/js/lib/tagify/4.33.2/tagify.js"></script>
+----
