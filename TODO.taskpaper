@@ -10,3 +10,7 @@ Inane-FW:
 			Web applications & routing
 		Console:
 			Console commands & routing
+	brew update:
+		- review progress indicator
+		- hide (not marked for review on update)
+		- open homepage
