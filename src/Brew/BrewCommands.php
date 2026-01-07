@@ -24,8 +24,6 @@ declare(strict_types = 1);
 
 namespace Knot\Brew;
 
-use Knot\Db\Entity\Formula;
-use Knot\Db\Table\FormulasTable;
 use Inane\Cache\RemoteFileCache;
 use Inane\Cli\Cli;
 use Inane\Cli\Pencil;
@@ -35,14 +33,13 @@ use Inane\Console\Command\Argument;
 use Inane\Console\Command\Command;
 use Inane\Console\Command\Option;
 use Inane\Datetime\Unit\Hours;
-use Inane\Db\Sql\Where;
-use Inane\Db\Sql\WhereClause;
 use Inane\File\File;
 use Inane\Stdlib\Exception\JsonException;
 use Inane\Stdlib\Json;
 use Inane\Stdlib\Options;
+use Knot\Db\Entity\Formula;
+use Knot\Db\Table\FormulasTable;
 use Psr\SimpleCache\InvalidArgumentException;
-
 use function array_filter;
 use function count;
 use function exec;
@@ -158,10 +155,10 @@ class BrewCommands {
 
         $formulasTable = new FormulasTable();
         $total = count($formulasTable->fetchAll());
-        $installed = count($formulasTable->search(['installed' => 1]));
-        $hidden = count($formulasTable->search(['tags'  => '%hide%']));
-        $review = count($formulasTable->search(['reviewed' => 0]));
-        $flagged = count($formulasTable->search(['flag' => 1]));
+        $installed = count($formulasTable->find(['installed', 1]));
+        $hidden = count($formulasTable->find(['column' => 'tags', 'value' => '%hide%', 'type' => 'like']));
+        $review = count($formulasTable->find(['reviewed', 0]));
+        $flagged = count($formulasTable->find(['flag', 1]));
 
         $table = new TextTable();
         $table->addHeader(['Total', 'Installed', 'Flagged', 'Hidden', 'Review']);
@@ -334,26 +331,26 @@ class BrewCommands {
     ): int {
         Cli::line('Show brew formulas:');
 
-        $where = new Where();
+        $where = [];
         if ($installed) {
-            $where->addWhere('installed', 1);
+            $where[] = ['installed', 1];
             Cli::line(' - Installed:');
         }
         if ($flag) {
-            $where->addWhere('flag', 1);
+            $where[] = ['flag', 1];
             Cli::line(' - Flagged:');
         }
         if ($review) {
-            $where->addWhere('reviewed', 0);
+            $where[] = ['reviewed', 0];
             Cli::line(' - For review:');
         }
         if (!empty($tag)) {
-            $where->addWhere('tags', '%' . $tag . '%', 'like');
+            $where->addWhere(['column' => 'tags', 'value' => '%' . $tag . '%', 'type' => 'like']);
             Cli::line(' - Tag: ' . $tag);
         }
 
         $formulasTable = new FormulasTable();
-        $formulas = $formulasTable->search($where);
+        $formulas = $formulasTable->find($where);
 
         Cli::line('Total formulas: ' . (string)count($formulas));
         foreach($formulas as $formula) {
