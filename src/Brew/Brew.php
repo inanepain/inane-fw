@@ -23,13 +23,10 @@
 
 namespace Knot\Brew;
 
-use Inane\Db\Sql\Where;
-use Inane\Db\Sql\WhereClause;
 use Inane\Stdlib\Options;
 use Knot\Db\Table\FormulasTable;
 use function array_filter;
 use function explode;
-use function preg_match;
 
 class Brew {
     //#region Properties
@@ -47,7 +44,7 @@ class Brew {
     public function getTagged(): Options {
         $key = 'tagged';
         if (!$this->cache->has($key)) {
-            $formulas = $this->formulasTable->search(new Where([new WhereClause('tags', '', '<>')]));
+            $formulas = $this->formulasTable->find(['tags', '', '<>']);
             $this->cache->set($key, $formulas);
         }
 
@@ -57,7 +54,7 @@ class Brew {
     public function getReview(): Options {
         $key = 'review';
         if (!$this->cache->has($key)) {
-            $formulas = $this->formulasTable->search(['reviewed' => 0]);
+            $formulas = $this->formulasTable->find(['reviewed', 0]);
             $this->cache->set($key, $formulas);
         }
 

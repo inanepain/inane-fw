@@ -24,15 +24,16 @@ declare(strict_types=1);
 
 namespace Knot\Db\Table;
 
-use Knot\Db\Entity\Formula;
 use Inane\Db\Sql\Where;
 use Inane\Db\Table\AbstractTable;
+use Knot\Db\Entity\Formula;
 
 /**
  * FormulasTable
  *
  * @method false|Formula fetch(string $id)
  * @method Formula[] fetchAll()
+ * @method Formula[] find(array $conditions)
  * @method Formula[] search(array|Where|string $query)
  * @method Formula insert(Formula $entity)
  * @method Formula update(Formula $entity)
