@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Inane\Cli\Cli;
 use Inane\Config\Config;
 use Inane\Dumper\Dumper;
@@ -57,6 +59,7 @@ Dumper::$additionalTypes[] = Type::Todo;
 
 (function (OptionsInterface $config): bool|int {
     if (Cli::isCli()) {
+        \Knot\Application::init($config)->run();
         return 0;
     } else {
         return true;
