@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * Config: autoload
+ *
+ * Global console configuration.
+ *
+ * Setup the console for the application.
+ */
+
+declare(strict_types=1);
+
+return [
+	'console' => [
+		'dumper' => [
+			'buffer' => false,
+			'runkit7' => false,
+		],
+		'config' => [
+		],
+	],
+];
