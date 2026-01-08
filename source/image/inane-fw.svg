@@ -1,0 +1,84 @@
+<svg
+  width="1024"
+  height="1024"
+  viewBox="0 0 1024 1024"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6B21A8"/>
+      <stop offset="100%" stop-color="#3B0764"/>
+    </linearGradient>
+
+    <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E9D5FF"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </radialGradient>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- App icon background -->
+  <rect
+    x="64"
+    y="64"
+    rx="180"
+    ry="180"
+    width="896"
+    height="896"
+    fill="url(#bgGradient)"
+  />
+
+  <!-- Skull -->
+  <circle cx="512" cy="360" r="140" fill="#F5F3FF"/>
+  <rect x="412" y="430" width="200" height="160" rx="80" fill="#F5F3FF"/>
+
+  <!-- Eyes -->
+  <circle cx="460" cy="350" r="36" fill="#2E1065"/>
+  <circle cx="564" cy="350" r="36" fill="#2E1065"/>
+
+  <circle cx="460" cy="350" r="16" fill="url(#eyeGlow)" filter="url(#softGlow)"/>
+  <circle cx="564" cy="350" r="16" fill="url(#eyeGlow)" filter="url(#softGlow)"/>
+
+  <!-- Nose -->
+  <path
+    d="M512 390
+       C498 412 498 430 512 438
+       C526 430 526 412 512 390 Z"
+    fill="#2E1065"
+  />
+
+  <!-- Mouth -->
+  <rect x="460" y="430" width="104" height="36" rx="18" fill="#2E1065"/>
+
+  <!-- Ribcage -->
+  <g stroke="#E9D5FF" stroke-width="12" stroke-linecap="round">
+    <line x1="440" y1="520" x2="584" y2="520"/>
+    <line x1="432" y1="560" x2="592" y2="560"/>
+    <line x1="448" y1="600" x2="576" y2="600"/>
+  </g>
+
+  <!-- Code symbol -->
+  <g
+    stroke="#C084FC"
+    stroke-width="16"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#softGlow)"
+  >
+    <polyline points="470,560 440,590 470,620"/>
+    <polyline points="554,560 584,590 554,620"/>
+  </g>
+
+  <!-- Arms -->
+  <g stroke="#E9D5FF" stroke-width="18" stroke-linecap="round">
+    <line x1="420" y1="540" x2="360" y2="620"/>
+    <line x1="604" y1="540" x2="664" y2="620"/>
+  </g>
+</svg>
