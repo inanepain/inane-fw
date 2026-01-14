@@ -24,9 +24,12 @@
 namespace Knot\Brew;
 
 use Inane\Stdlib\Options;
+use Knot\Db\Entity\Formula;
 use Knot\Db\Table\FormulasTable;
 use function array_filter;
+use function array_key_exists;
 use function explode;
+use function ksort;
 
 class Brew {
     //#region Properties
@@ -82,5 +85,27 @@ class Brew {
         }
 
         return $this->tags;
+    }
+
+    /**
+     * Retrieves the specified package from the formulas table.
+     *
+     * @param string $package The name of the package to retrieve.
+     *
+     * @return Formula|false The Formula object if found, or false if not found.
+     */
+    public function getPackage(string $package): Formula|false {
+        return $this->formulasTable->fetch($package);
+    }
+
+    /**
+     * Retrieves a list of packages from the formulas table based on the provided package names.
+     *
+     * @param string ...$package The names of the packages to retrieve.
+     *
+     * @return Formula[] An array of matching packages retrieved from the formulas table.
+     */
+    public function getPackages(string ...$package): array {
+        return $this->formulasTable->find([['type' => 'in', 'column' => 'name', 'values' => $package]]);
     }
 }
