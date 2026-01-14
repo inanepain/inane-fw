@@ -25,3 +25,4 @@
 == History image:./icon.png[title={pkg-id},25] {pkg-id}
 
 include::./release/0.0.0.adoc[leveloffset=+1]
+include::./release/0.1.0.adoc[leveloffset=+1]

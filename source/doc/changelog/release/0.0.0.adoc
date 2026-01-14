@@ -1,7 +1,7 @@
-= 0.1.0-dev (2025 Xxx xx)
-:revnumber: 0.1.0-dev
-:revdate: 2025-XX-XX
+= 0.2.0-dev (2026 Xxx xx)
+:revnumber: 0.2.0-dev
+:revdate: 2026-XX-XX
 :revremark: -dev
 :version-label: Unconfirmed
 
-* initial release
+* Gitea commands
