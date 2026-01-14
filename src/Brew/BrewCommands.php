@@ -41,10 +41,14 @@ use Knot\Db\Entity\Formula;
 use Knot\Db\Table\FormulasTable;
 use Psr\SimpleCache\InvalidArgumentException;
 use function array_filter;
+use function array_unique;
+use function asort;
 use function count;
 use function exec;
 use function explode;
+use function implode;
 use function sort;
+use function str_contains;
 
 /**
  * The BrewCommands class provides functionality for interacting with and managing
@@ -135,7 +139,8 @@ class BrewCommands {
         $state = '';
         $tags = '';
         if ($extended) {
-            if ($formula->state === 'new') $state = $this->purple->format('*');
+            if ($formula->state === 'new') $state .= $this->purple->format('*');
+            if ($formula->installed) $state .= $this->blue->format('(i)');
             $tags = $formula->tags === ''? '' : $this->purple->format(" [$formula->tags]");
         }
 
@@ -150,7 +155,7 @@ class BrewCommands {
      * @return int Exit code of the command execution, where 0 indicates success.
      */
     #[Command('brew:stats', 'Show stats for formulas')]
-    public function formulaStats(): int {
+    public function statsCommand(): int {
         Cli::line('Brew formula stats');
 
         $formulasTable = new FormulasTable();
@@ -181,7 +186,7 @@ class BrewCommands {
      * @throws InvalidArgumentException
      */
     #[Command('brew:update', 'Update local homebrew formula database', ['hbu'])]
-    public function updateHomebrewDatabase(): int {
+    public function updateDbCommand(): int {
         $formulasTable = new FormulasTable();
         $formulas = $formulasTable->fetchAll();
         Cli::line('Total formulas: ' . count($formulas));
@@ -273,7 +278,7 @@ class BrewCommands {
      * @return int Returns 0 upon successful execution of the method.
      */
     #[Command('brew:sync', 'Sync installed status for packages', ['hbs'])]
-    public function updateInstalledStatus(): int {
+    public function syncInstalledCommand(): int {
         Cli::line('Brew formulas installed: updating...');
 
         $cmd = 'brew list --formulae -1';
@@ -313,12 +318,15 @@ class BrewCommands {
      * @return int Returns 0 upon successful execution of the filter process.
      */
     #[Command('brew:filter', 'Filter formulas', ['hbf'])]
-    public function filterFormulas(
+    public function filterCommand(
         #[Argument('Tag filter', required: false)]
         string $tag = '',
 
         #[Option('installed', 'i', 'Installed', valueless: true)]
         bool   $installed = false,
+
+        #[Option('uninstalled', 'u', 'Not currently installed', valueless: true)]
+        bool   $uninstalled = false,
 
         #[Option('reviewed', 'r', 'For review', valueless: true)]
         bool   $review = false,
@@ -332,6 +340,10 @@ class BrewCommands {
         Cli::line('Show brew formulas:');
 
         $where = [];
+        if ($uninstalled) {
+            $where[] = ['installed', 0];
+            Cli::line(' - Uninstalled:');
+        }
         if ($installed) {
             $where[] = ['installed', 1];
             Cli::line(' - Installed:');
@@ -369,7 +381,7 @@ class BrewCommands {
      * @return int Returns 0 upon successfully completing or exiting the review process.
      */
     #[Command('brew:review', 'Review new/updated formulas', ['hbr'])]
-    public function reviewFormulas(): int {
+    public function reviewCommand(): int {
         $formulas = $this->brew->getReview();
 
         $total = $formulas->count();
@@ -429,12 +441,15 @@ class BrewCommands {
     }
 
     /**
-     * Lists all tags currently in use along with their count and details.
+     * Lists all tags currently in use, optionally sorting them by their usage count, and displays
+     * the information in a table format including tag count and usage statistics.
      *
-     * @return int Returns 0 on successful completion of the command.
+     * @param bool $usage Whether to sort the tags by their usage count. Defaults to false.
+     *
+     * @return int Returns 0 upon successful execution of the tag listing process.
      */
     #[Command('brew:tags', 'List all tags in use', ['bht'])]
-    public function listTags(
+    public function tagsCommand(
         #[Option('usage', 'u', 'Sort by usage count', valueless: true)]
         bool $usage = false,
     ): int {
@@ -452,6 +467,68 @@ class BrewCommands {
             $table->addRow([(string)($current++), $tag, (string)$count]);
 
         Cli::line($table->render());
+
+        return 0;
+    }
+
+    /**
+     * Modifies properties or retrieves information about specified brew packages.
+     * Supports multiple actions including installation, uninstallation, flagging,
+     * unflagging, hiding, unhiding, or displaying detailed package information.
+     *
+     * @param string $action      The action to perform on the packages.
+     *                            Supported actions are: install, uninstall, flag, unflag, hide, unhide, info.
+     *                            Defaults to 'info'.
+     * @param string ...$packages A list of package names to apply the action to.
+     *
+     * @return int Returns 0 upon successful execution of the specified action on the given packages.
+     */
+    #[Command('brew:attrib', 'Modify package properties', ['bha'])]
+    public function attribCommand(
+        #[Argument('Actions: install, uninstall, flag, unflag, hide, unhide, info', required: true, default: 'info')]
+        string $action = 'info',
+
+        #[Argument('List of packages', required: true)]
+        string ...$packages,
+    ): int {
+        $formulas = $this->brew->getPackages(...$packages);
+        foreach($formulas as $formula) {
+            Cli::line('Brew package: ' . $formula->name);
+
+            if ($action === 'install') {
+                $formula->installed = true;
+                Cli::line($this->blue . "\tInstalled." . $this->reset);
+            } elseif ($action === 'uninstall') {
+                $formula->installed = false;
+                Cli::line($this->blue . "\tUninstalled." . $this->reset);
+            } elseif ($action === 'flag') {
+                $formula->flag = true;
+                Cli::line($this->blue . "\tFlagged." . $this->reset);
+            } elseif ($action === 'unflag') {
+                $formula->flag = false;
+                Cli::line($this->blue . "\tUnflagged." . $this->reset);
+            } elseif ($action === 'hide') {
+                if (!str_contains($formula->tags, 'hide')) {
+                    $tags = explode(',', $formula->tags);
+                    $tags[] = 'hide';
+                    sort($tags);
+                    $formula->tags = implode(',', array_unique($tags));
+                    Cli::line($this->blue . "\tHidden." . $this->reset);
+                }
+            } elseif ($action === 'unhide') {
+                if (str_contains($formula->tags, 'hide')) {
+                    $tags = explode(',', $formula->tags);
+                    $tags = array_diff($tags, ['hide']);
+                    sort($tags);
+                    $formula->tags = implode(',', array_unique($tags));
+                    Cli::line($this->blue . "\tUnhidden." . $this->reset);
+                }
+            } else {
+                $this->printFormula($formula, true);
+            }
+
+            $formula->save();
+        }
 
         return 0;
     }
