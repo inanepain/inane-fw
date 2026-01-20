@@ -25,28 +25,24 @@ declare(strict_types = 1);
 namespace Knot\Brew;
 
 use Inane\Cache\RemoteFileCache;
-use Inane\Datetime\Unit\Hours;
-use Inane\File\File;
-use Knot\Db\Entity\Formula;
-use Knot\Db\Table\FormulasTable;
-use Psr\SimpleCache\InvalidArgumentException;
 use Inane\Cli\{
-    Progress\Bar,
     Cli,
     Pencil,
-    TextTable
-};
+    Progress\Bar,
+    TextTable};
 use Inane\Console\Command\{
     Argument,
     Command,
-    Option
-};
+    Option};
+use Inane\Datetime\Unit\Hours;
+use Inane\File\File;
 use Inane\Stdlib\{
     Exception\JsonException,
     Json,
-    Options
-};
-
+    Options};
+use Knot\Db\Entity\Formula;
+use Knot\Db\Table\FormulasTable;
+use Psr\SimpleCache\InvalidArgumentException;
 use function array_diff;
 use function array_filter;
 use function array_unique;
@@ -437,7 +433,7 @@ class BrewCommands {
             Cli::line(' - For review:');   // Outputs a line of text to the CLI.
         }
         if (!empty($tag)) {   // Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value
-            $where->addWhere(['column' => 'tags', 'value' => '%' . $tag . '%', 'type' => 'like']);
+            $where[] = ['column' => 'tags', 'value' => '%' . $tag . '%', 'type' => 'like'];
             Cli::line(' - Tag: ' . $tag);   // Outputs a line of text to the CLI.
         }
 
