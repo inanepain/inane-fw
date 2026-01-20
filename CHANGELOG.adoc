@@ -33,6 +33,9 @@
 :version-label: Unconfirmed
 
 * Gitea commands
+* Add the database to the source as a collection SQL file.
+* Brew configuration file added
+* Brew auto update
 
 :leveloffset!:
 :leveloffset: +1

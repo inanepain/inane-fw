@@ -5,30 +5,25 @@ declare(strict_types=1);
 namespace Knot;
 
 use Inane\Cli\Cli;
-use Inane\Routing\Router;
-use Inane\Stdlib\Exception\Exception;
 use Inane\Config\Config;
 use Inane\Config\ConfigAwareAttribute;
 use Inane\Config\ConfigAwareInterface;
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
-use Inane\File\File;
 use Inane\File\Path;
+use Inane\Routing\Router;
 use Inane\Services\ServiceManager;
 use Inane\Session\SessionManager;
+use Inane\Stdlib\Exception\Exception;
 use Inane\Stdlib\Options;
 use Inane\Stdlib\Utility\ClassUtility;
 use ReflectionObject;
-use function count;
 use function getcwd;
 use function preg_match;
-use function token_get_all;
 use const GLOB_BRACE;
 use const GLOB_NOSORT;
 use const PREG_OFFSET_CAPTURE;
-use const T_CLASS;
-use const T_NAMESPACE;
 
 class Application {
     /**
@@ -91,7 +86,22 @@ class Application {
         }
     }
 
+    protected Options $objectCache;
+
+    public function createObject(string $class): object {
+        if ($this->objectCache->has($class)) {
+            return $this->objectCache->get($class);
+        }
+
+        $object = new $class();
+        $this->bootstrapObject($object);
+        $this->objectCache->set($class, $object);
+
+        return $object;
+    }
+
     protected function initialise(): void {
+        $this->objectCache = new Options();
         $this->isConsole = Cli::isCli();
     }
 

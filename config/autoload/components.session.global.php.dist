@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Playground: develop
+ * Skeleton: Inane-FW
  *
- * Rough environment for testing, developing and playing around with PHP odds and ends.
+ * Web or console application framework using the inanepain libraries.
  *
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author Philip Michael Raab<philip@cathedral.co.za>
- * @package playground\develop
- * @category develop
+ * @package skeleton\inane-fw
+ * @category inane-fw
  *
  * @license UNLICENSE
  * @license https://unlicense.org/UNLICENSE UNLICENSE

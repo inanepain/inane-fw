@@ -37,9 +37,12 @@ use Inane\Console\Command\{
 use Inane\Datetime\Unit\Hours;
 use Inane\File\File;
 use Inane\Stdlib\{
+    Exception\Exception,
     Exception\JsonException,
+    Exception\RuntimeException,
     Json,
     Options};
+use Knot\Application;
 use Knot\Db\Entity\Formula;
 use Knot\Db\Table\FormulasTable;
 use Psr\SimpleCache\InvalidArgumentException;
@@ -68,6 +71,7 @@ use function str_contains;
  * - search: (\] )([a-z0-9-@\.]*)
  * - replace: $1**$2**
  */
+
 class BrewCommands {
     //#region Class Constants
     /**
@@ -93,13 +97,17 @@ class BrewCommands {
     //#endregion Properties    // Pencil: Output assigned a colour and style.
     #endregion Pencil
 
+    protected Options $config {
+        get => $this->brew->getConfig();
+    }
+
     /**
      * Creates a new BrewCommands instance.
      *
-     * @return void
+     * @throws Exception
      */
     public function __construct() {
-        $this->brew = new Brew();
+        $this->brew = Application::app()->createObject(Brew::class);
 
         $this->blue = new Pencil(Pencil\Colour::Blue, Pencil\Style::Italic);   // Pencil constructor
 
@@ -145,13 +153,16 @@ class BrewCommands {
     protected function printFormula(Formula $formula, bool $extended = false): void {   // Formula
         $state = '';
         $tags = '';
-        if ($extended) {                                                                       // Outputs the details of a given formula to the CLI.
-            if ($formula->state === 'new') $state .= $this->purple->format('*');               // Create a string with current format
-            if ($formula->installed) $state .= $this->blue->format('(i)');                     // Create a string with current format
-            $tags = $formula->tags === '' ? '' : $this->purple->format(" [$formula->tags]");   // Create a string with current format
+        if ($extended || $this->config->info->extended) {                                                                  // Outputs the details of a given formula to the CLI.
+            if ($formula->state === 'new') $state .= $this->purple->format('*');               // Create a string with the current format
+            if ($formula->installed) $state .= $this->blue->format('(i)');                     // Create a string with the current format
+            $tags = $formula->tags === '' ? '' : $this->purple->format(" [$formula->tags]");   // Create a string with the current format
         }
 
-        $name = $formula->flag ? $this->purple->format($formula->name) : $formula->name;   // Create a string with current format | @var string The name of the formula.
+        $name = $formula->name;
+        if ($formula->flag) {
+            $name .= $this->purple->format($this->config->ui->icon->flag);
+        }
 
         Cli::line('- ' . $state . "$name ({$formula->version}) " . $this->dim->format($formula->desc) . $tags);   // Outputs a line of text to the CLI.
     }
@@ -415,6 +426,9 @@ class BrewCommands {
     ): int {
         Cli::line('Show brew formulas:');   // Outputs a line of text to the CLI.
 
+//        Dumper::$enabled = true;
+//        dd($this->config->toArray(), 'config', ['parseDepth' => 10]);
+
         $where = [];
         if ($uninstalled) {   // Filters the Homebrew formulas based on specified criteria and displays the matching formulas.
             $where[] = ['installed', 0];
@@ -455,9 +469,21 @@ class BrewCommands {
      * updated based on the user's selections.
      *
      * @return int Returns 0 upon successfully completing or exiting the review process.
+     *
+     * @throws RuntimeException
      */
     #[Command('brew:review', 'Review new/updated formulas', ['hbr'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function reviewCommand(): int {
+        if ($this->brew->autoUpdate()) {
+            Cli::line('Brew formulas auto update: triggered...');
+            try {
+                $this->updateDbCommand();
+            } catch (JsonException|InvalidArgumentException $e) {
+                Cli::err($e->getMessage());
+                return $e->getCode();
+            }
+        }
+
         $formulas = $this->brew->getReview();
 
         $total = $formulas->count();   // count
@@ -473,13 +499,15 @@ class BrewCommands {
             'hide'     => 'Hide from future reviews, calls next',
         ];
 
+        $action = $this->config->review->action === 'hide' ? 'hide' : 'next';
+
         Cli::line('Formulas to review: ' . (string)$total);   // Outputs a line of text to the CLI.
 
         foreach($formulas as $formula) {
             $this->cyan->out('- ' . str_pad(string: (string)++$current, length: $width, pad_type: STR_PAD_LEFT) . '/' . (string)$total . ' ');   // Write to STDOUT ending on the same line.
             $this->printFormula($formula, true);                                                                                                 // Outputs the details of a given formula to the CLI.
 
-            while(($choice = Cli::menu($menu, 'next', 'Choose an option')) !== 'next') {   // Displays an array of strings as a menu where a user can enter a number to
+            while(($choice = Cli::menu($menu, $action, 'Choose an option')) !== 'next') {   // Displays an array of strings as a menu where a user can enter a number to
                 if ($choice === 'exit') {
                     $this->red->line('Review cancelled.');   // Write to STDOUT ending on a newline.
                     break 2;

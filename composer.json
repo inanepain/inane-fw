@@ -33,7 +33,11 @@
             "Inane\\Session\\": "lib/inanepain/session/src/",
             "Inane\\Stdlib\\": "lib/inanepain/stdlib/src/",
             "Inane\\View\\": "lib/inanepain/view/src/"
-        }
+        },
+        "files": [
+            "lib/inanepain/dumper/src/bootstrap.php",
+            "lib/inanepain/stdlib/src/bootstrap.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -25,6 +25,11 @@ declare(strict_types=1);
 
 namespace Knot\Brew;
 
+use Inane\Config\ConfigAwareAttribute;
+use Inane\Config\ConfigAwareTrait;
+use Inane\Datetime\Timestamp;
+use Inane\Db\Query\Clause\OrderDirection;
+use Inane\Stdlib\Array\OptionsInterface;
 use Inane\Stdlib\Exception\RuntimeException;
 use Inane\Stdlib\Options;
 use Knot\Db\Entity\Formula;
@@ -34,8 +39,45 @@ use function array_key_exists;
 use function explode;
 use function ksort;
 
+#[ConfigAwareAttribute]
 class Brew {
+    use ConfigAwareTrait;
+
     //#region Properties
+    /**
+     * Default configuration settings for the Brew class.
+     */
+    protected array $defaultConfig = [
+        'ui' => [
+            /**
+             * Flag icon to use for various statuses.
+             */
+            'icon' => [
+                'flag' => '⚑', // ⛳️📌📍⚑⚐
+            ],
+        ],
+        'info' => [
+            /**
+             * Whether to display extended information about formulae automatically.
+             */
+            'extended' => false,
+        ],
+        'review' => [
+            /**
+             * Default Action to take when reviewing formulae.
+             * 'next' - Move to the next formula.
+             * 'hide' - Hide the current formula.
+             */
+            'action' => 'next', // options: next, hide
+            /**
+             * Whether to automatically update the review status of formulae when reviewing.
+             * - update if the last update ran longer than the value in seconds ago
+             * - 0 - off
+             */
+            'autoupdate' => 0,
+        ],
+    ];
+
     private array $tags;
     protected Options $cache;
     //#endregion Properties
@@ -51,6 +93,23 @@ class Brew {
         private FormulasTable $formulasTable = new FormulasTable(),
     ) {
         $this->cache = new Options();
+    }
+
+    public function getConfig(): OptionsInterface {
+        return $this->config;
+    }
+
+    public function autoUpdate(): bool {
+        if ($this->config->review->autoupdate === 0) return false;
+
+        $qb = $this->formulasTable->queryBuilder()->select()->orderBy('updated', OrderDirection::DESC)->limit(1);//->table('formulas');
+        $stmt = $this->formulasTable::$db->getDriver()->prepare($qb->toSql());
+        $stmt->execute($qb->getBindings());
+
+        $result = $stmt->fetchAll($this->formulasTable::$db->getDriver()::FETCH_CLASS, Formula::class, [null, $this->formulasTable]);
+        $diff = new Timestamp((int)$result[0]->updated)->diff(new Timestamp());
+
+        return $diff->getSeconds() > $this->config->review->autoupdate;
     }
 
     /**
