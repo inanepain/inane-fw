@@ -4,45 +4,53 @@
 
 set shell := ["zsh", "-cu"]
 set positional-arguments
-
-project := "skeleton\\inane-fw"
+set dotenv-load
 
 # list recipes
 _default:
-    @echo "{{project}}:"
+    @echo "$PROJECT:"
     @just --list --list-heading ''
 
+# start
+_start task='':
+    @echo "{{GREEN}}start{{NORMAL}}: {{task}}"
+
+# done
+_done task='':
+    @echo "{{GREEN}}done{{NORMAL}} {{task}}"
+
 # Style Sheets
-css:
+css: (_start "Stylesheet") && (_done "Stylesheet")
 	#!/usr/bin/env zsh
-	echo "{{project}}: Building style sheets..."
+	echo "{{MAGENTA}}$PROJECT{{NORMAL}}: Building stylesheets..."
 	sass --no-source-map -s compressed ./source/style/styles.scss ./public/css/styles.css
-	echo "{{project}}: Style sheets done."
+	echo "{{MAGENTA}}$PROJECT{{NORMAL}}: Stylesheets {{BOLD + RED + UNDERLINE}}built{{NORMAL}}"
 
 # compile asciidoc files
+[group: 'doc']
 build:
 	#!/usr/bin/env zsh
-	echo "{{project}}: Building documentation..."
-	just build-readme
+	echo "project: {{MAGENTA}}$PROJECT{{NORMAL}} => Building documentation..."
 	just build-changelog
-	echo "{{project}}: documentation done."
+	just build-readme
+	echo "{{MAGENTA}}$PROJECT{{NORMAL}}: documentation {{BOLD + RED + UNDERLINE}}built{{NORMAL}}"
 
-# compile README asciidoc file
-build-readme:
-	#!/usr/bin/env zsh
-	echo "{{project}}: Building README.adoc..."
-	rm -f README.adoc
-	asciidoctor-reducer -o README.adoc source/part/readme/index.adoc
-	asciidoctor -b docbook README.adoc
-	rm -f README.xml
-	echo "{{project}}: README.adoc done."
+# Build changelog
+[group: 'doc']
+build-changelog: && (compile "changelog")
 
-# compile CHANGELOG asciidoc file
-build-changelog:
+# Build readme
+[group: 'doc']
+build-readme: && (compile "readme")
+
+# compile final asciidoc file: changelog, readme
+[group: 'doc']
+[arg('target', pattern='changelog|readme', help="Build final document from source docs.")]
+compile target="changelog": (_start target) && (_done target)
 	#!/usr/bin/env zsh
-	echo "{{project}}: Building CHANGELOG.adoc..."
-	rm -f CHANGELOG.adoc
-	asciidoctor-reducer -o CHANGELOG.adoc source/part/changelog/index.adoc
-	asciidoctor -b docbook CHANGELOG.adoc
-	rm -f CHANGELOG.xml
-	echo "{{project}}: CHANGELOG.adoc done."
+	echo "\tBuilding {{CYAN}}{{uppercase(target)}}{{NORMAL}}.adoc..."
+	rm -f {{uppercase(target)}}.adoc
+	asciidoctor-reducer -o {{uppercase(target)}}.adoc source/doc/{{target}}/index.adoc
+	asciidoctor -b docbook {{uppercase(target)}}.adoc
+	rm -f {{uppercase(target)}}.xml
+	echo "\t{{uppercase(target)}}.adoc {{RED}}done.{{NORMAL}}"
