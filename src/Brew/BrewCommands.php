@@ -35,6 +35,7 @@ use Inane\Console\Command\{
     Command,
     Option};
 use Inane\Datetime\Unit\Hours;
+use Inane\Datetime\Unit\Seconds;
 use Inane\File\File;
 use Inane\Stdlib\{
     Exception\Exception,
@@ -54,8 +55,10 @@ use function count;
 use function exec;
 use function explode;
 use function implode;
+use function round;
 use function sort;
 use function str_contains;
+use function str_replace;
 
 /**
  * The BrewCommands class provides functionality for interacting with and managing
@@ -85,22 +88,24 @@ class BrewCommands {
      * Defines the length of the message.
      */
     protected int $messageLength = 10;
-    #region Pencil
-    protected Pencil $blue;     // Pencil: Output assigned a colour and style.
-    protected Pencil $cyan;     // Pencil: Output assigned a colour and style.
-    protected Pencil $green;    // Pencil: Output assigned a colour and style.
-    protected Pencil $purple;   // Pencil: Output assigned a colour and style.
-    protected Pencil $red;      // Pencil: Output assigned a colour and style.
-    protected Pencil $yellow;   // Pencil: Output assigned a colour and style.
-    protected Pencil $dim;      // Pencil: Output assigned a colour and style.
-    protected Pencil $reset;
-    //#endregion Properties    // Pencil: Output assigned a colour and style.
-    #endregion Pencil
 
+    /**
+     * @var Options // Shortcut to Brew configuration options.
+     */
     protected Options $config {
         get => $this->brew->getConfig();
     }
+    #region Pencil
+    protected Pencil $desc;
+    protected Pencil $action;
+    protected Pencil $counter;
+    protected Pencil $alert;
+    protected Pencil $tag;
+    protected Pencil $icon;
+    //#endregion Properties    // Pencil: Output assigned a colour and style.
+    #endregion Pencil
 
+    #region Instantiation
     /**
      * Creates a new BrewCommands instance.
      *
@@ -109,18 +114,33 @@ class BrewCommands {
     public function __construct() {
         $this->brew = Application::app()->createObject(Brew::class);
 
-        $this->blue = new Pencil(Pencil\Colour::Blue, Pencil\Style::Italic);   // Pencil constructor
-
-        $this->cyan = new Pencil(Pencil\Colour::Cyan);                           // Pencil constructor
-        $this->green = new Pencil(Pencil\Colour::Green);                         // Pencil constructor
-        $this->purple = new Pencil(Pencil\Colour::Purple);                       // Pencil constructor
-        $this->red = new Pencil(Pencil\Colour::Red);                             // Pencil constructor
-        $this->yellow = new Pencil(Pencil\Colour::Yellow, Pencil\Style::Bold);   // Pencil constructor
-
-        $this->dim = new Pencil(Pencil\Colour::Blue, Pencil\Style::Dim);   // Pencil constructor
-
-        $this->reset = new Pencil(Pencil\Colour::Default);   // Pencil constructor
+        $this->desc = static::pancilFactory($this->config->ui->text->desc);
+        $this->action = static::pancilFactory($this->config->ui->text->action);
+        $this->counter = static::pancilFactory($this->config->ui->text->counter);
+        $this->alert = static::pancilFactory($this->config->ui->text->alert);
+        $this->tag = static::pancilFactory($this->config->ui->text->tag);
+        $this->icon = static::pancilFactory($this->config->ui->text->icon);
     }
+
+    protected static function pancilFactory(string $config): Pencil {
+        $properties = explode(' ', str_replace('blink', 'SlowBlink', $config));
+
+        $args = [];
+
+        foreach ($properties as $property) {
+            if ($colour = Pencil\Colour::tryFromName($property, true)) {
+                $args['colour'] = $colour;
+            } elseif ($style = Pencil\Style::tryFromName($property, true)) {
+                $args['style'] = $style;
+            }
+        }
+
+        if (!empty($args))
+            return new Pencil(...$args);
+
+        return new Pencil();
+    }
+    #endregion Instantiation
 
     #region Display Formatting
 
@@ -154,21 +174,21 @@ class BrewCommands {
         $state = '';
         $tags = '';
         if ($extended || $this->config->info->extended) {                                                                  // Outputs the details of a given formula to the CLI.
-            if ($formula->state === 'new') $state .= $this->purple->format('*');               // Create a string with the current format
-            if ($formula->installed) $state .= $this->blue->format('(i)');                     // Create a string with the current format
-            $tags = $formula->tags === '' ? '' : $this->purple->format(" [$formula->tags]");   // Create a string with the current format
+            if ($formula->state === 'new') $state .= $this->icon->format($this->config->ui->icon->new);               // Create a string with the current format             // Create a string with the current format
+            if ($formula->installed) $state .= $this->action->format('(i)');                     // Create a string with the current format
+            $tags = $formula->tags === '' ? '' : $this->tag->format(" [$formula->tags]");   // Create a string with the current format
         }
 
         $name = $formula->name;
         if ($formula->flag) {
-            $name .= $this->purple->format($this->config->ui->icon->flag);
+            $name .= $this->icon->format($this->config->ui->icon->flag);
         }
 
-        Cli::line('- ' . $state . "$name ({$formula->version}) " . $this->dim->format($formula->desc) . $tags);   // Outputs a line of text to the CLI.
+        Cli::line('- ' . $state . "$name ({$formula->version}) " . $this->desc->format($formula->desc) . $tags);   // Outputs a line of text to the CLI.
     }
     #endregion Display Formatting
 
-    #region Formula Commands
+    #region Commands
     /**
      * Modifies properties or retrieves information about specified brew packages.
      * Supports multiple actions including installation, uninstallation, flagging,
@@ -195,23 +215,23 @@ class BrewCommands {
 
             if ($action === 'install') {                                  // Modifies properties or retrieves information about specified brew packages.
                 $formula->installed = true;                               // @var bool If the formula is installed.
-                Cli::line($this->blue . "\tInstalled." . $this->reset);   // Outputs a line of text to the CLI.
+                $this->action->line("\tInstalled.");
             } elseif ($action === 'uninstall') {                            // Modifies properties or retrieves information about specified brew packages.
                 $formula->installed = false;                                // @var bool If the formula is installed.
-                Cli::line($this->blue . "\tUninstalled." . $this->reset);   // Outputs a line of text to the CLI.
+                $this->action->line("\tUninstalled.");
             } elseif ($action === 'flag') {   // Modifies properties or retrieves information about specified brew packages.
                 $formula->flag = true;
-                Cli::line($this->blue . "\tFlagged." . $this->reset);   // Outputs a line of text to the CLI.
+                $this->action->line("\tFlagged.");
             } elseif ($action === 'unflag') {   // Modifies properties or retrieves information about specified brew packages.
                 $formula->flag = false;
-                Cli::line($this->blue . "\tUnflagged." . $this->reset);   // Outputs a line of text to the CLI.
+                $this->action->line("\tUnflagged.");
             } elseif ($action === 'hide') {   // Modifies properties or retrieves information about specified brew packages.
                 if (!str_contains($formula->tags, 'hide')) {   // Checks if $needle is found in $haystack and returns a boolean value
                     $tags = explode(',', $formula->tags);      // Split a string by a string
                     $tags[] = 'hide';
                     sort($tags);                                           // Sort an array
                     $formula->tags = implode(',', array_unique($tags));    // Join array elements with a string
-                    Cli::line($this->blue . "\tHidden." . $this->reset);   // Outputs a line of text to the CLI.
+                    $this->action->line("\tHidden.");
                 }
             } elseif ($action === 'unhide') {   // Modifies properties or retrieves information about specified brew packages.
                 if (str_contains($formula->tags, 'hide')) {                  // Checks if $needle is found in $haystack and returns a boolean value
@@ -219,7 +239,7 @@ class BrewCommands {
                     $tags = array_diff($tags, ['hide']);                     // Computes the difference of arrays
                     sort($tags);                                             // Sort an array
                     $formula->tags = implode(',', array_unique($tags));      // Join array elements with a string
-                    Cli::line($this->blue . "\tUnhidden." . $this->reset);   // Outputs a line of text to the CLI.
+                    $this->action->line("\tUnhidden.");
                 }
             } else {
                 $this->printFormula($formula, true);   // Outputs the details of a given formula to the CLI.
@@ -474,8 +494,11 @@ class BrewCommands {
      */
     #[Command('brew:review', 'Review new/updated formulas', ['hbr'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function reviewCommand(): int {
-        if ($this->brew->autoUpdate()) {
-            Cli::line('Brew formulas auto update: triggered...');
+        if ($seconds = $this->brew->autoUpdate()) {
+            $age = (string)round(Seconds::seconds($seconds)->minutes->hours->unit);
+            $age .= (int)$age > 0 ? 'hrs' : 'hr';
+            Cli::line("Brew Formula cache age {$age}, Auto-updating...");
+
             try {
                 $this->updateDbCommand();
             } catch (JsonException|InvalidArgumentException $e) {
@@ -489,6 +512,7 @@ class BrewCommands {
         $total = $formulas->count();   // count
         $current = 0;
         $width = strlen((string)$total);   // Get string length
+        $action = $this->config->review->action === 'hide' ? 'hide' : 'next';
 
         $menu = [
             'exit'     => 'End review',
@@ -499,31 +523,29 @@ class BrewCommands {
             'hide'     => 'Hide from future reviews, calls next',
         ];
 
-        $action = $this->config->review->action === 'hide' ? 'hide' : 'next';
-
         Cli::line('Formulas to review: ' . (string)$total);   // Outputs a line of text to the CLI.
 
         foreach($formulas as $formula) {
-            $this->cyan->out('- ' . str_pad(string: (string)++$current, length: $width, pad_type: STR_PAD_LEFT) . '/' . (string)$total . ' ');   // Write to STDOUT ending on the same line.
+            $this->counter->out('- ' . str_pad(string: (string)++$current, length: $width, pad_type: STR_PAD_LEFT) . '/' . (string)$total . ' ');   // Write to STDOUT ending on the same line.
             $this->printFormula($formula, true);                                                                                                 // Outputs the details of a given formula to the CLI.
 
             while(($choice = Cli::menu($menu, $action, 'Choose an option')) !== 'next') {   // Displays an array of strings as a menu where a user can enter a number to
                 if ($choice === 'exit') {
-                    $this->red->line('Review cancelled.');   // Write to STDOUT ending on a newline.
+                    $this->alert->line('Review cancelled.');   // Write to STDOUT ending on a newline.
                     break 2;
                 }
 
                 if ($choice === 'install') {
-                    Cli::line($this->blue . "\tInstalled." . $this->reset);   // Outputs a line of text to the CLI.
+                    $this->action->line("\tInstalled.");
                     $formula->installed = true;
                 } elseif ($choice === 'homepage') {
-                    Cli::line($this->blue . "\tOpening homepage: {$formula->homepage}" . $this->reset);   // Outputs a line of text to the CLI.
+                    $this->action->line("\tOpening homepage: {$formula->homepage}.");
                     shell_exec("open {$formula->homepage}");                                              // Execute command via shell and return the complete output as a string
                 } elseif ($choice === 'flag') {
-                    Cli::line($this->blue . "\tFlagged as an item to investigate further." . $this->reset);   // Outputs a line of text to the CLI.
+                    $this->action->line("\tFlagged as an item to investigate further.");
                     $formula->flag = true;
                 } elseif ($choice === 'hide') {
-                    Cli::line($this->blue . "\tHiding from future reviews." . $this->reset);   // Outputs a line of text to the CLI.
+                    $this->action->line("\tHiding from future reviews.");
 
                     $tags = explode(',', $formula->tags);   // Split a string by a string
                     $tags[] = 'hide';
@@ -551,6 +573,8 @@ class BrewCommands {
      * @param bool $usage Whether to sort the tags by their usage count. Defaults to false.
      *
      * @return int Returns 0 upon successful execution of the tag listing process.
+     *
+     * @throws RuntimeException
      */
     #[Command('brew:tags', 'List all tags in use', ['bht'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function tagsCommand(
@@ -574,5 +598,5 @@ class BrewCommands {
 
         return 0;
     }
-    #endregion Formula Commands
+    #endregion Commands
 }

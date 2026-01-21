@@ -4,7 +4,11 @@
 :revremark: -dev
 :version-label: Unconfirmed
 
-* Gitea commands
+* Gitea commands.
 * Add the database to the source as a collection SQL file.
-* Brew configuration file added
-* Brew auto update
+* Brew auto update.
+* Brew configuration file added.
+** Text Colours
+** Icons
+** Auto-update period
+* Added more code comments.

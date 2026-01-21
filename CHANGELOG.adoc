@@ -24,6 +24,15 @@
 
 == History image:./icon.png[title={pkg-id},25] {pkg-id}
 
+== TODO
+
+More of a wish or brain fart list than an actual TODO list. Either way it is a place to jot down any thoughts or ideas so that they don't get lost in the ether. If anything comes of them is unknown, but at least they'll be seen.
+
+* brew
+** configuration: colours
+
+<<<
+
 :leveloffset: +1
 
 = 0.2.0-dev (2026 Xxx xx)
@@ -32,10 +41,14 @@
 :revremark: -dev
 :version-label: Unconfirmed
 
-* Gitea commands
+* Gitea commands.
 * Add the database to the source as a collection SQL file.
-* Brew configuration file added
-* Brew auto update
+* Brew auto update.
+* Brew configuration file added.
+** Text Colours
+** Icons
+** Auto-update period
+* Added more code comments.
 
 :leveloffset!:
 :leveloffset: +1

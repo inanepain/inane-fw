@@ -31,6 +31,39 @@ return [
                  */
                 'icon' => [
                     'flag' => '⚑', // ⛳️📌📍⚑⚐
+                    'new' => '✷', // ✷✦✜
+                ],
+                /**
+                 * Text colour options.
+                 *
+                 * colours: black, red, green, blue, yellow, purple, cyan, white
+                 * styles: dim, bold, italic, underline, blink
+                 */
+                'text' => [
+                    /**
+                     * Action taken.
+                     */
+                    'action' => 'blue',
+                    /**
+                     * Package description.
+                     */
+                    'desc' => 'blue',
+                    /**
+                     * Progress counter.
+                     */
+                    'counter' => 'cyan',
+                    /**
+                     * Tag text.
+                     */
+                    'tag' => 'purple',
+                    /**
+                     * New indicator colour.
+                     */
+                    'icon' => 'purple',
+                    /**
+                     * Alert message.
+                     */
+                    'alert' => 'red',
                 ],
             ],
             'info' => [
@@ -45,13 +78,13 @@ return [
                  * 'next' - Move to the next formula.
                  * 'hide' - Hide the current formula.
                  */
-                'action' => 'next', // options: next, hide
+                'action' => 'hide', // options: next, hide
                 /**
                  * Whether to automatically update the review status of formulae when reviewing.
                  * - update if the last update ran longer than the value in seconds ago
                  * - 0 - off
                  */
-                'autoupdate' => 60,
+                'autoupdate' => \Inane\Datetime\Unit\Hours::hours(1)->seconds->seconds,
             ],
         ],
     ],
