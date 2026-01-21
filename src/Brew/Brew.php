@@ -54,6 +54,39 @@ class Brew {
              */
             'icon' => [
                 'flag' => '⚑', // ⛳️📌📍⚑⚐
+                'new' => '✷', // ✷✦✜
+            ],
+            /**
+             * Text colour options.
+             *
+             * colours: black, red, green, blue, yellow, magenta, cyan, white
+             * styles: dim, bold, italic, underline, blink
+             */
+            'text' => [
+                /**
+                 * Action taken.
+                 */
+                'action' => 'blue',
+                /**
+                 * Package description.
+                 */
+                'desc' => 'blue',
+                /**
+                 * Progress counter.
+                 */
+                'counter' => 'cyan',
+                /**
+                 * Tag text.
+                 */
+                'tag' => 'purple',
+                /**
+                 * New indicator colour.
+                 */
+                'icon' => 'purple',
+                /**
+                 * Alert message.
+                 */
+                'alert' => 'red',
             ],
         ],
         'info' => [
@@ -82,6 +115,7 @@ class Brew {
     protected Options $cache;
     //#endregion Properties
 
+    #region Instantiation
     /**
      * Constructor for the Brew class.
      *
@@ -94,12 +128,26 @@ class Brew {
     ) {
         $this->cache = new Options();
     }
+    #endregion Instantiation
 
+    #region Configuration
+    /**
+     * Retrieve the configuration options.
+     *
+     * @return OptionsInterface The configuration options.
+     */
     public function getConfig(): OptionsInterface {
         return $this->config;
     }
+    #endregion Configuration
 
-    public function autoUpdate(): bool {
+    #region Auto Update
+    /**
+     * Checks if an automatic update is required based on the last update time.
+     *
+     * @return bool|int Returns seconds since the last update if an update is needed, false otherwise.
+     */
+    public function autoUpdate(): bool|int {
         if ($this->config->review->autoupdate === 0) return false;
 
         $qb = $this->formulasTable->queryBuilder()->select()->orderBy('updated', OrderDirection::DESC)->limit(1);//->table('formulas');
@@ -109,9 +157,11 @@ class Brew {
         $result = $stmt->fetchAll($this->formulasTable::$db->getDriver()::FETCH_CLASS, Formula::class, [null, $this->formulasTable]);
         $diff = new Timestamp((int)$result[0]->updated)->diff(new Timestamp());
 
-        return $diff->getSeconds() > $this->config->review->autoupdate;
+        return $diff->getSeconds() > $this->config->review->autoupdate ? $diff->getSeconds() : false;
     }
+    #endregion Auto Update
 
+    #region Data Retrieval
     /**
      * Retrieves formulas that have tags associated with them.
      *
@@ -195,4 +245,5 @@ class Brew {
     public function getPackages(string ...$package): array {
         return $this->formulasTable->find([['type' => 'in', 'column' => 'name', 'values' => $package]]);
     }
+    #endregion Data Retrieval
 }

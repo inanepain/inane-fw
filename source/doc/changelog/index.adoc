@@ -24,5 +24,14 @@
 
 == History image:./icon.png[title={pkg-id},25] {pkg-id}
 
+== TODO
+
+More of a wish or brain fart list than an actual TODO list. Either way it is a place to jot down any thoughts or ideas so that they don't get lost in the ether. If anything comes of them is unknown, but at least they'll be seen.
+
+* brew
+** configuration: colours
+
+<<<
+
 include::./release/0.0.0.adoc[leveloffset=+1]
 include::./release/0.1.0.adoc[leveloffset=+1]
