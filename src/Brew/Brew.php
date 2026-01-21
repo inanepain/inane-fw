@@ -21,7 +21,7 @@
  *
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Knot\Brew;
 
@@ -38,39 +38,48 @@ use function array_filter;
 use function array_key_exists;
 use function explode;
 use function ksort;
+use function passthru;
 
 #[ConfigAwareAttribute]
 class Brew {
     use ConfigAwareTrait;
 
+    protected Options $listeners;
+
     //#region Properties
+    private array $tags;
     /**
      * Default configuration settings for the Brew class.
      */
     protected array $defaultConfig = [
-        'ui' => [
+        'ui'     => [
             /**
              * Flag icon to use for various statuses.
              */
             'icon' => [
                 'flag' => '⚑', // ⛳️📌📍⚑⚐
-                'new' => '✷', // ✷✦✜
+                'new'  => '✷', // ✷✦✜
+                'url'  => '☍', // ☍⎈
             ],
             /**
              * Text colour options.
              *
-             * colours: black, red, green, blue, yellow, magenta, cyan, white
+             * colours: black, red, green, blue, yellow, purple, cyan, white
              * styles: dim, bold, italic, underline, blink
              */
             'text' => [
                 /**
                  * Action taken.
                  */
-                'action' => 'blue',
+                'action'  => 'blue',
                 /**
                  * Package description.
                  */
-                'desc' => 'blue',
+                'desc'    => 'blue',
+                /**
+                 * Webpage url.
+                 */
+                'url'     => 'underline green',
                 /**
                  * Progress counter.
                  */
@@ -78,22 +87,22 @@ class Brew {
                 /**
                  * Tag text.
                  */
-                'tag' => 'purple',
+                'tag'     => 'purple',
                 /**
                  * New indicator colour.
                  */
-                'icon' => 'purple',
+                'icon'    => 'purple',
                 /**
                  * Alert message.
                  */
-                'alert' => 'red',
+                'alert'   => 'red',
             ],
         ],
-        'info' => [
+        'info'   => [
             /**
              * Whether to display extended information about formulae automatically.
              */
-            'extended' => false,
+            'extended' => true,
         ],
         'review' => [
             /**
@@ -101,18 +110,27 @@ class Brew {
              * 'next' - Move to the next formula.
              * 'hide' - Hide the current formula.
              */
-            'action' => 'next', // options: next, hide
+            'action'     => 'hide', // options: next, hide
             /**
              * Whether to automatically update the review status of formulae when reviewing.
              * - update if the last update ran longer than the value in seconds ago
              * - 0 - off
              */
-            'autoupdate' => 0,
+            'autoupdate' => 3600,
         ],
+        /**
+         * Whether to perform a dry run without actually installing or updating formulae.
+         */
+        'dry-run' => false,
     ];
-
-    private array $tags;
     protected Options $cache;
+
+    /**
+     * Whether to perform a dry run without actually installing or updating formulae.
+     */
+    public bool $dryRun {
+        get => $this->config->dryRun;
+    }
     //#endregion Properties
 
     #region Instantiation
@@ -127,8 +145,34 @@ class Brew {
         private FormulasTable $formulasTable = new FormulasTable(),
     ) {
         $this->cache = new Options();
+        $this->listeners = new Options();
+        Formula::$brew = $this;
     }
     #endregion Instantiation
+
+    #region Events
+    public function on(string $event, callable $listener): void {
+        if (!$this->listeners->has($event)) {
+            $this->listeners->$event = [];
+        }
+
+        $this->listeners->$event[] = $listener;
+    }
+
+    protected function trigger(string $event, mixed $value): void {
+        if (!$this->listeners->has($event)) {
+            $this->listeners->$event = [];
+        }
+
+        foreach ($this->listeners->$event as $listener) {
+            $listener($value);
+        }
+    }
+
+    public function getListeners(): array {
+        return $this->listeners->toArray();
+    }
+    #endregion Events
 
     #region Configuration
     /**
@@ -150,8 +194,14 @@ class Brew {
     public function autoUpdate(): bool|int {
         if ($this->config->review->autoupdate === 0) return false;
 
-        $qb = $this->formulasTable->queryBuilder()->select()->orderBy('updated', OrderDirection::DESC)->limit(1);//->table('formulas');
-        $stmt = $this->formulasTable::$db->getDriver()->prepare($qb->toSql());
+        $qb = $this->formulasTable->queryBuilder()
+            ->select()
+            ->orderBy('updated', OrderDirection::DESC)
+            ->limit(1)
+        ;//->table('formulas');
+        $stmt = $this->formulasTable::$db->getDriver()
+            ->prepare($qb->toSql())
+        ;
         $stmt->execute($qb->getBindings());
 
         $result = $stmt->fetchAll($this->formulasTable::$db->getDriver()::FETCH_CLASS, Formula::class, [null, $this->formulasTable]);
@@ -182,7 +232,7 @@ class Brew {
     /**
      * Retrieves formulas that are pending review.
      *
-     * @return Options Returns an Options object containing the reviewed formulas.
+     * @return Formula[] Returns an Options object containing the reviewed formulas.
      *
      * @throws RuntimeException
      */
@@ -246,4 +296,27 @@ class Brew {
         return $this->formulasTable->find([['type' => 'in', 'column' => 'name', 'values' => $package]]);
     }
     #endregion Data Retrieval
+
+    #region Brew Actions
+    protected function notifyDryRun(): void {
+        if ($this->dryRun) {
+            $this->trigger('alert', 'DRY-RUN: no changes made to files or data.');
+        }
+    }
+    public function installAction(Formula $formula): bool {
+        $this->notifyDryRun();
+        $dr = $this->dryRun ? '-n ' : '';
+        passthru('brew install ' . $dr . $formula->name, $resultCode);
+
+        return $resultCode === 0 && !$this->dryRun;
+    }
+
+    public function uninstallAction(Formula $formula): bool {
+        $this->notifyDryRun();
+        $dr = $this->dryRun ? '-n ' : '';
+        passthru('brew uninstall ' . $dr . $formula->name, $resultCode);
+
+        return $resultCode === 0 && !$this->dryRun;
+    }
+    #endregion Brew Actions
 }

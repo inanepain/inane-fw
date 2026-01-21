@@ -27,11 +27,12 @@ namespace Knot\Db\Table;
 use Inane\Db\Sql\Where;
 use Inane\Db\Table\AbstractTable;
 use Knot\Db\Entity\Formula;
+use const false;
 
 /**
  * FormulasTable
  *
- * @method false|Formula fetch(string $id)
+ * @method false|Formula fetch(string $id): \false|AbstractEntity
  * @method Formula[] fetchAll()
  * @method Formula[] find(array $conditions)
  * @method Formula[] search(array|Where|string $query)

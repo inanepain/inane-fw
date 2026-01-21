@@ -102,6 +102,7 @@ class BrewCommands {
     protected Pencil $alert;
     protected Pencil $tag;
     protected Pencil $icon;
+    protected Pencil $url;
     //#endregion Properties    // Pencil: Output assigned a colour and style.
     #endregion Pencil
 
@@ -120,6 +121,9 @@ class BrewCommands {
         $this->alert = static::pancilFactory($this->config->ui->text->alert);
         $this->tag = static::pancilFactory($this->config->ui->text->tag);
         $this->icon = static::pancilFactory($this->config->ui->text->icon);
+        $this->url = static::pancilFactory($this->config->ui->text->url);
+
+        $this->brew->on('alert', $this->alert->line(...));
     }
 
     protected static function pancilFactory(string $config): Pencil {
@@ -173,10 +177,12 @@ class BrewCommands {
     protected function printFormula(Formula $formula, bool $extended = false): void {   // Formula
         $state = '';
         $tags = '';
+        $url = '';
         if ($extended || $this->config->info->extended) {                                                                  // Outputs the details of a given formula to the CLI.
             if ($formula->state === 'new') $state .= $this->icon->format($this->config->ui->icon->new);               // Create a string with the current format             // Create a string with the current format
             if ($formula->installed) $state .= $this->action->format('(i)');                     // Create a string with the current format
             $tags = $formula->tags === '' ? '' : $this->tag->format(" [$formula->tags]");   // Create a string with the current format
+            $url = $this->url->format(" <$formula->homepage>");
         }
 
         $name = $formula->name;
@@ -184,7 +190,7 @@ class BrewCommands {
             $name .= $this->icon->format($this->config->ui->icon->flag);
         }
 
-        Cli::line('- ' . $state . "$name ({$formula->version}) " . $this->desc->format($formula->desc) . $tags);   // Outputs a line of text to the CLI.
+        Cli::line('- ' . $state . "$name ({$formula->version}) " . $this->desc->format($formula->desc). $url . $tags);   // Outputs a line of text to the CLI.
     }
     #endregion Display Formatting
 
@@ -214,10 +220,10 @@ class BrewCommands {
             Cli::line('Brew package: ' . $formula->name);   // Outputs a line of text to the CLI.
 
             if ($action === 'install') {                                  // Modifies properties or retrieves information about specified brew packages.
-                $formula->installed = true;                               // @var bool If the formula is installed.
+                $formula->install(); // @var bool If the formula is installed.
                 $this->action->line("\tInstalled.");
             } elseif ($action === 'uninstall') {                            // Modifies properties or retrieves information about specified brew packages.
-                $formula->installed = false;                                // @var bool If the formula is installed.
+                $formula->uninstall();                                // @var bool If the formula is installed.
                 $this->action->line("\tUninstalled.");
             } elseif ($action === 'flag') {   // Modifies properties or retrieves information about specified brew packages.
                 $formula->flag = true;
@@ -537,7 +543,7 @@ class BrewCommands {
 
                 if ($choice === 'install') {
                     $this->action->line("\tInstalled.");
-                    $formula->installed = true;
+                    $formula->install();
                 } elseif ($choice === 'homepage') {
                     $this->action->line("\tOpening homepage: {$formula->homepage}.");
                     shell_exec("open {$formula->homepage}");                                              // Execute command via shell and return the complete output as a string
