@@ -24,14 +24,17 @@ declare(strict_types=1);
 
 namespace Knot\Db\Entity;
 
+use Inane\Db\Entity\{
+    AbstractEntity};
+use Knot\Brew\Brew;
 use Knot\Db\Table\FormulasTable;
-use Inane\Db\Entity\{AbstractEntity};
 use const null;
 
 /**
  * Formula
  */
 class Formula extends AbstractEntity {
+    public static Brew $brew;
     protected string $dataTableClass = FormulasTable::class;
 
     /**
@@ -138,4 +141,20 @@ class Formula extends AbstractEntity {
     }
     #endregion columns
 
+    #region Actions
+    public function install(): self {
+        if (static::$brew->installAction($this)) {
+            $this->installed = true;
+        }
+
+        return $this;
+    }
+
+    public function uninstall(): self {
+        if (static::$brew->uninstallAction($this)) {
+            $this->installed = false;
+        }
+        return $this;
+    }
+    #endregion Actions
 }

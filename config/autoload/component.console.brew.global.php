@@ -32,6 +32,7 @@ return [
                 'icon' => [
                     'flag' => '⚑', // ⛳️📌📍⚑⚐
                     'new' => '✷', // ✷✦✜
+                    'url' => '☍', // ☍⎈
                 ],
                 /**
                  * Text colour options.
@@ -48,6 +49,10 @@ return [
                      * Package description.
                      */
                     'desc' => 'blue',
+                    /**
+                     * Webpage url.
+                     */
+                    'url' => 'underline green',
                     /**
                      * Progress counter.
                      */
@@ -86,6 +91,10 @@ return [
                  */
                 'autoupdate' => \Inane\Datetime\Unit\Hours::hours(1)->seconds->seconds,
             ],
+            /**
+             * Whether to perform a dry run without actually installing or updating formulae.
+             */
+            'dry-run' => false,
         ],
     ],
 ];
