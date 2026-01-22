@@ -7,6 +7,7 @@ CREATE TABLE users (
 	username     TEXT(15)               NOT NULL
 		CONSTRAINT uniq_usernmae
 			UNIQUE,
+	password TEXT(50) DEFAULT "chAng3M!" NOT NULL,
 	online       INT      DEFAULT 0     NOT NULL,
 	name         TEXT(20)               NOT NULL,
 	email        TEXT(20)               NOT NULL,
