@@ -222,7 +222,7 @@ class Brew {
     public function getTagged(): Options {
         $key = 'tagged';
         if (!$this->cache->has($key)) {
-            $formulas = $this->formulasTable->find(['tags', '', '<>']);
+            $formulas = $this->formulasTable->find(['tags', '<>', '']);
             $this->cache->set($key, $formulas);
         }
 

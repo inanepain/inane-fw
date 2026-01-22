@@ -54,10 +54,12 @@ if (APP_DEBUG || Cli::isCli()) {
 ini_set('error_reporting', (string)$error_reporting);
 #endregion DEBUG HTACCESS FLAGS
 
-Dumper::$showRunkit7SupportMessage = false;
-Dumper::$additionalTypes[] = Type::Todo;
-
 (function (OptionsInterface $config): bool|int {
+    Dumper::$enabled = $config->dumper->enabled;
+    Dumper::$bufferOutput = $config->dumper->bufferOutput;
+
+    Dumper::$showRunkit7SupportMessage = false;
+    Dumper::$additionalTypes[] = Type::Todo;
     if (Cli::isCli()) {
         \Knot\Application::init($config)->run();
         return 0;
