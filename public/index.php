@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 use Inane\Cli\Cli;
-use Inane\Config\Config;
 use Inane\Dumper\Dumper;
 use Inane\Dumper\Type;
-use Inane\Stdlib\Array\OptionsInterface;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -32,7 +30,7 @@ define('DUMPER_SILENCE_CLASS', (bool)getenv('DUMPER_SILENCE_CLASS'));
 define('DUMPER_SILENCE_METHOD', (bool)getenv('DUMPER_SILENCE_METHOD'));
 
 $debug_options['DUMPER'] = [
-    'DUMPER_SILENCE_CLASS' => DUMPER_SILENCE_CLASS,
+    'DUMPER_SILENCE_CLASS'  => DUMPER_SILENCE_CLASS,
     'DUMPER_SILENCE_METHOD' => DUMPER_SILENCE_METHOD,
 ];
 
@@ -46,24 +44,20 @@ if (APP_DEBUG || Cli::isCli()) {
 
     $debug_options['HIDE'] = [
         'E_DEPRECATION' => $debug_hide_deprecation,
-        'E_NOTICE' => $debug_hide_notice,
-        'E_WARNING' => $debug_hide_warning,
+        'E_NOTICE'      => $debug_hide_notice,
+        'E_WARNING'     => $debug_hide_warning,
     ];
 }
 
 ini_set('error_reporting', (string)$error_reporting);
 #endregion DEBUG HTACCESS FLAGS
 
-(function (OptionsInterface $config): bool|int {
-    Dumper::$enabled = $config->dumper->enabled;
-    Dumper::$bufferOutput = $config->dumper->bufferOutput;
-
+(static function(\Knot\Application $app): bool|int {
     Dumper::$showRunkit7SupportMessage = false;
     Dumper::$additionalTypes[] = Type::Todo;
     if (Cli::isCli()) {
-        \Knot\Application::init($config)->run();
-        return 0;
-    } else {
-        return true;
+        return $app->run();
     }
-})(Config::fromConfigFile());
+
+    return true;
+})(\Knot\Application::app());

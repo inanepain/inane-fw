@@ -1,23 +1,24 @@
 <?php
 
 /**
- * Playground: develop
+ * inane-fw
  *
- * Rough environment for testing, developing and playing around with PHP odds and ends.
+ * Inane Framework
  *
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
- * @author   Philip Michael Raab<philip@cathedral.co.za>
- * @package  playground\develop
- * @category develop
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\PROJECT
+ * @category PROJECT
  *
  * @license  UNLICENSE
  * @license  https://unlicense.org/UNLICENSE UNLICENSE
  *
  * _version_ $version
+ *
  */
 
 declare(strict_types = 1);

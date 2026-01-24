@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Inane: PROJECT
+ * inane-fw
  *
- * PROJECT_DESCRIPTION
+ * Inane Framework
  *
  * $Id$
  * $Date$

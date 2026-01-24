@@ -8,7 +8,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author Philip Michael Raab<philip@cathedral.co.za>
  * @package inanepain\services
@@ -24,13 +24,21 @@ declare(strict_types=1);
 
 namespace Inane\Services;
 
-use Inane\Config\ConfigAwareInterface;
+use Inane\Config\ConfigAwareAttribute;
 use Inane\Config\ConfigAwareTrait;
 use Inane\Stdlib\Array\OptionsInterface;
 use Inane\Stdlib\Exception\Exception;
 use Inane\Stdlib\Options;
 
-class ServiceManager implements ConfigAwareInterface {
+/**
+ * The ServiceManager class is responsible for managing and providing access to services.
+ * It allows for the registration of services along with their respective factory functions and
+ * supports caching to optimize service retrieval.
+ *
+ * @version 0.1.0
+ */
+#[ConfigAwareAttribute(true)]
+class ServiceManager {
     use ConfigAwareTrait;
 
     //#region Properties

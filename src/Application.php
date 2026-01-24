@@ -1,5 +1,26 @@
 <?php
 
+/**
+ * inane-fw
+ *
+ * Inane Framework
+ *
+ * $Id$
+ * $Date$
+ *
+ * PHP version 8.5
+ *
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\PROJECT
+ * @category PROJECT
+ *
+ * @license  UNLICENSE
+ * @license  https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
+ *
+ */
+
 declare(strict_types=1);
 
 namespace Knot;
@@ -15,7 +36,6 @@ use Inane\File\Path;
 use Inane\Routing\Router;
 use Inane\Services\ServiceManager;
 use Inane\Session\SessionManager;
-use Inane\Stdlib\Exception\Exception;
 use Inane\Stdlib\Options;
 use Inane\Stdlib\Utility\ClassUtility;
 use ReflectionObject;
@@ -33,31 +53,19 @@ class Application {
      */
     private static Application $instance;
     private ConsoleRouter|Router $router;
-    protected(set) ServiceManager $services;
+    protected(set) ServiceManager $serviceManager;
 
     protected Path $base;
 
     private(set) bool $isConsole = PHP_SAPI === 'cli';
 
     /**
-     * Initialise the application.
-     *
-     * @return Application
-     */
-    public static function init(Config $config): Application {
-        if (!isset(self::$instance)) self::$instance = new static($config);
-
-        return self::$instance;
-    }
-
-    /**
      * Gets the instance of the application
      *
      * @return Application
-     * @throws Exception
      */
     public static function app(): Application {
-        if (!isset(self::$instance)) throw new Exception('Application not initialised');
+        if (!isset(self::$instance)) self::$instance = new static(Config::fromConfigFile());
 
         return self::$instance;
     }
@@ -81,7 +89,12 @@ class Application {
 
         foreach($reflection->getAttributes() as $classAttribute) {
             if ($classAttribute->getName() === ConfigAwareAttribute::class) {
-                $object->setConfig($this->config->getConfig($object::class));
+                $attribute = $classAttribute->newInstance();
+                if ($attribute->globalConfig) {
+                    $object->setConfig($this->config);
+                } else {
+                    $object->setConfig($this->config->getConfig($object::class));
+                }
             }
         }
     }
@@ -113,13 +126,14 @@ class Application {
      * @return void
      */
     protected function bootstrap(): void {
-        \Inane\Dumper\Dumper::$enabled = $this->config->dumper->enabled;
+        \Inane\Dumper\Dumper::$enabled = $this?->config?->dumper?->enabled ?? false;
+        \Inane\Dumper\Dumper::$bufferOutput = $this->isConsole ? false : ($this?->config?->dumper?->bufferOutput ?? true);
 
         $this->base = new Path(getcwd());
 
-        $this->services = ServiceManager::createServiceManager($this->config->services);
-        $this->bootstrapObject($this->services);
-        AbstractTable::$db = $this->services->get(Adapter::class);
+        $this->serviceManager = ServiceManager::createServiceManager($this->config->services);
+        $this->bootstrapObject($this->serviceManager);
+        AbstractTable::$db = $this->serviceManager->get(Adapter::class);
 
         $this->configureSession();
         $this->configureRouter();
@@ -226,13 +240,11 @@ class Application {
     /**
      * Runs the application
      *
-     * @return never
+     * @return bool|int Return status
      *
      * @throws \Exception
      */
-    public function run(): never {
-        $code = $this->router->run();
-
-        exit($code);
+    public function run(): bool|int {
+        return $this->router->run();
     }
 }
