@@ -52,11 +52,22 @@ class Application {
      * @var Application The instance of the application
      */
     private static Application $instance;
+
+    /**
+     * @var ConsoleRouter|Router   ConsoleRouter | Router
+     */
     private ConsoleRouter|Router $router;
+    /**
+     * @var ServiceManager  The ServiceManager class is responsible for managing and providing access to services.
+     */
     protected(set) ServiceManager $serviceManager;
-
+    /**
+     * @var Path  The Path class represents a file system path and provides methods for manipulating and working with paths.
+     */
     protected Path $base;
-
+    /**
+     * @var bool Returns true if the application is running in console mode, false otherwise.
+     */
     private(set) bool $isConsole = PHP_SAPI === 'cli';
 
     /**
@@ -82,6 +93,13 @@ class Application {
         $this->bootstrap();
     }
 
+    /**
+     * Bootstraps an object by injecting configuration based on its attributes or implemented interfaces.
+     *
+     * @param object $object The object to be bootstrapped.
+     *
+     * @return void
+     */
     protected function bootstrapObject(object $object): void {
         if ($object instanceof ConfigAwareInterface) $object->setConfig($this->config);
 

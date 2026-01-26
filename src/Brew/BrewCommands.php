@@ -183,7 +183,7 @@ class BrewCommands {
             if ($formula->state === 'new') $state .= $this->icon->format($this->config->ui->icon->new);               // Create a string with the current format             // Create a string with the current format
             if ($formula->installed) $state .= $this->action->format('(i)');                     // Create a string with the current format
             $tags = $formula->tags === '' ? '' : $this->tag->format(" [$formula->tags]");   // Create a string with the current format
-            $url = $this->url->format(" <$formula->homepage>");
+            $url = ' <' . $this->url->format("$formula->homepage") . '>';
         }
 
         $name = $formula->name;
