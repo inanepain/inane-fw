@@ -53,6 +53,16 @@ ini_set('error_reporting', (string)$error_reporting);
 #endregion DEBUG HTACCESS FLAGS
 
 (static function(\Knot\Application $app): bool|int {
+    // FIX: boo
+    // FIXME: boo
+    // BUG: bug
+    // DEBUG: example debug
+    // [ ]: something not done.
+    // [x]: this has been completed!
+    // TODO: PhpRenderer example
+    // HACK: fixed with spit and snot
+    // NOTE: boo
+
     Dumper::$showRunkit7SupportMessage = false;
     Dumper::$additionalTypes[] = Type::Todo;
     if (Cli::isCli()) {
