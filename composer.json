@@ -66,12 +66,7 @@
         "psr/http-client": "*",
         "psr/http-factory": "*",
         "psr/event-dispatcher": "^1.0",
-        "matthiasmullie/minify": "dev-master",
-        "ext-simplexml": "*",
-        "ext-pdo": "*",
-        "ext-gmp": "*",
-        "ext-ctype": "*",
-        "ext-redis": "*"
+        "matthiasmullie/minify": "dev-master"
     },
     "require-dev": {},
     "scripts": {
