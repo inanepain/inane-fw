@@ -22,12 +22,12 @@
 
 declare(strict_types=1);
 
-namespace Inane\Lotto;
+namespace Knot\Lotto\Lottery;
 
 use Stringable;
-
 use function array_key_exists;
 use function str_replace;
+
 /**
  * Draw
  *

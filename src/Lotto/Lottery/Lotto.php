@@ -22,27 +22,28 @@
 
 declare(strict_types=1);
 
-namespace Inane\Lotto;
+namespace Knot\Lotto\Lottery;
 
+use Inane\Config\ConfigAwareTrait;
 use Inane\Datetime\Timestamp;
-use Stringable;
 use Inane\Stdlib\{
     Array\OptionsInterface,
     Exception\InvalidArgumentException,
     Exception\RuntimeException,
-    Options
-};
+    Options};
 use Inane\Stdlib\String\NumberFormatterTrait;
 use NumberFormatter;
-
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
+use Stringable;
 use function array_map;
 use function array_unshift;
 use function count;
 use function implode;
 use function is_array;
 use function is_string;
-
 use const null;
+use const PHP_EOL;
 
 /**
  * Lotto
@@ -54,6 +55,7 @@ use const null;
  * @version 0.1.0
  */
 class Lotto implements Stringable {
+    use ConfigAwareTrait;
     use NumberFormatterTrait;
 
     #region Constants
@@ -77,6 +79,14 @@ class Lotto implements Stringable {
      */
     public const int EXPIRED = 2;
     #endregion Constants
+
+    protected array $defaultConfig = [
+        'display' => [
+            'active' => true,
+            'expired' => true,
+        ],
+        'tickets' => [],
+    ];
 
     protected static NumberFormatter $numberFormatter;
 
@@ -115,11 +125,8 @@ class Lotto implements Stringable {
      *
      * @return static An instance of the class loaded with the provided data.
      */
-    public static function fromArray(array|OptionsInterface $data): static {
-        $static = new static();
-        $static->addTickets($data);
-
-        return $static;
+    public static function fromArray(array|OptionsInterface $config = []): static {
+        return new static($config);
     }
 
     /**
@@ -129,8 +136,33 @@ class Lotto implements Stringable {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct(array|OptionsInterface $config = []) {
+        $this->setConfig($config);
+        $this->initialise();
+    }
+
+    /**
+     * Initialize the ticket options and configuration settings.
+     *
+     * This method sets up the ticket options and checks for pre-configured
+     * ticket data in the provided configuration. If ticket data is present
+     * in the configuration, it will be added to the initialized options.
+     *
+     * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    protected function initialise(): void {
         $this->tickets = new Options();
+
+        if ($this->config->has('tickets') && $this->config->tickets->count() > 0) {
+            $this->addTickets($this->config->get('tickets'));
+        }
+
+        $this->display = 0;
+        $this->display |= $this->config->display->active ? self::ACTIVE : 0;
+        $this->display |= $this->config->display->expired ? self::EXPIRED : 0;
     }
 
     /**
@@ -163,7 +195,11 @@ class Lotto implements Stringable {
      * @return self This instance, for chaining.
      */
     public function addTickets(array|OptionsInterface $tickets): self {
-        array_map([$this, 'addTicket'], $tickets->toArray());
+        if (!is_array($tickets)) {
+            $tickets = $tickets->toArray();
+        }
+
+        array_map([$this, 'addTicket'], $tickets);
         return $this;
     }
 
