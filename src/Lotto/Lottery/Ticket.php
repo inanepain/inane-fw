@@ -22,30 +22,28 @@
 
 declare(strict_types=1);
 
-namespace Inane\Lotto;
+namespace Knot\Lotto\Lottery;
 
 use DateTime;
-use ReflectionMethod;
-use Stringable;
 use Inane\Stdlib\{
     Array\OptionsInterface,
     Exception\DateMalformedStringException,
     Exception\ReflectionException,
-    Options
-};
-
+    Options};
+use ReflectionMethod;
+use Stringable;
 use function array_combine;
 use function array_map;
 use function array_sum;
 use function count;
 use function func_get_args;
+use function implode;
 use function in_array;
 use function str_pad;
+use function str_replace;
 use function strtolower;
-
 use const null;
 use const STR_PAD_LEFT;
-use const STR_PAD_RIGHT;
 use const true;
 
 /**
@@ -143,7 +141,13 @@ class Ticket implements Stringable {
         array $winnings = [],
     ) {
         $this->bootstrap($winnings);
-        $this->parseTicket($winnings);
+        try {
+            $this->parseTicket($winnings);
+        } catch (DateMalformedStringException $e) {   // Thrown when an invalid Date/Time string is detected.
+
+        } catch (ReflectionException $e) {
+
+        }
     }
 
     /**
@@ -191,7 +195,11 @@ class Ticket implements Stringable {
      */
     private function parseTicket(array $winnings): void {
         if (!isset($this->last)) {
-            $date = new DateTime($this->bought);
+            try {
+                $date = new DateTime($this->bought);
+            } catch (\DateMalformedStringException $e) {
+                throw new DateMalformedStringException($e->getMessage());
+            }
             $weekDays = array_map('strtolower', $this->type->days());
             $drawn = $count = 0;
 
@@ -202,7 +210,7 @@ class Ticket implements Stringable {
                     if (!isset($this->first)) $this->first = $date->format('Y-m-d');
                     $pending = $date->getTimestamp() < $this::$expireTime;
 
-                    $this->createDraw($count + 1, $date->format('Y-m-d'), $dayName, $count == 0 ? 'start' : ($count + 1 == $this->draws ? 'last' : 'midst'), $pending ? (count($winnings) > $count ? $winnings[$count] : 0) : -1);
+                    $this->createDraw($count + 1, $date->format('Y-m-d'), $dayName, $count === 0 ? 'start' : ($count + 1 === $this->draws ? 'last' : 'midst'), $pending ? (count($winnings) > $count ? $winnings[$count] : 0) : -1);
 
                     $count++;
                     if ($pending) $drawn = $count;
@@ -212,7 +220,11 @@ class Ticket implements Stringable {
                     }
                 }
 
-                $date->modify('+1 day');
+                try {
+                    $date->modify('+1 day');
+                } catch (\DateMalformedStringException $e) {
+                    throw new DateMalformedStringException($e->getMessage());
+                }
             }
 
             $this->drawn = $drawn;
@@ -239,7 +251,7 @@ class Ticket implements Stringable {
         $profit = str_replace(['R 0'], ['R  '], $fmt->format($this->profit));
         // $total = $fmt->format($this->total);
         // $profit = $fmt->format($this->profit);
-        
+
         $s = $this->type->name;
         $s .= ' (' . implode(', ', $this->type->days()) . ')';
         $s .= static::padLine(static::formatNumber($this->draws) . (isset($this->lines) ? '[' . static::formatNumber($this->lines) . ']' : ''));

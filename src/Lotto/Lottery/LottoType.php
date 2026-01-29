@@ -22,7 +22,7 @@
 
 declare(strict_types=1);
 
-namespace Inane\Lotto;
+namespace Knot\Lotto\Lottery;
 
 use Inane\Stdlib\Enum\CoreEnumInterface;
 use Inane\Stdlib\Enum\CoreEnumTrait;

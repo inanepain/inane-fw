@@ -42,7 +42,6 @@
     "autoload-dev": {
         "psr-4": {
             "Inane\\Datetime\\": "source/lib/datetime/src/",
-            "Inane\\Lotto\\": "source/lib/lotto/src/",
             "Inane\\Rebecca\\": "source/lib/rebecca/src/",
             "Inane\\Services\\": "source/lib/services/src/",
             "Inane\\Stdlib\\": "source/lib/stdlib/src/",
@@ -66,7 +65,8 @@
         "psr/http-client": "*",
         "psr/http-factory": "*",
         "psr/event-dispatcher": "^1.0",
-        "matthiasmullie/minify": "dev-master"
+        "matthiasmullie/minify": "dev-master",
+        "ext-intl": "*"
     },
     "require-dev": {},
     "scripts": {
