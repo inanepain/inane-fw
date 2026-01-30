@@ -42,6 +42,19 @@ use const false;
  */
 class FormulasTable extends AbstractTable {
     protected string $table = 'formulas';
+    protected array $columns = [
+        'name' => '',
+        'desc' => '',
+        'version' => '',
+        'homepage' => '',
+        'installed' => 0,
+        'reviewed' => 0,
+        'state' => 'update',
+        'tags' => '',
+        'flag' => 0,
+        'updated' => null,
+        'modified' => null,
+    ];
     protected(set) string $primaryId = 'name';
     protected bool $autoIncrement = false;
     protected string $entityClass = Formula::class;
