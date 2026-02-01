@@ -12,3 +12,5 @@
 ** Icons
 ** Auto-update period
 * Added more code comments.
+* Added minify console commands.
+

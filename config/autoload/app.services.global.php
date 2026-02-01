@@ -22,12 +22,11 @@
 
 declare(strict_types=1);
 
-use Dev\Db\Table\DivinationsTable;
-use Dev\Db\Table\FortunesTable;
-use Inane\Datetime\Unit\Seconds;
+//use Inane\Datetime\Unit\Seconds;
 use Inane\Db\Adapter\Adapter;
 use Inane\IdForge\Generator\ULIDGenerator;
 use Inane\IdForge\IdGeneratorFactory;
+use Inane\Services\ServiceManager;
 
 /**
  * ServiceManager configuration.
@@ -36,25 +35,25 @@ use Inane\IdForge\IdGeneratorFactory;
  */
 return [
 	'services' => [
-		Redis::class => function (\Inane\Services\ServiceManager $sm) {
-			$redis = new Redis();
-			$redis->connect(...$sm->getConfig()->redis->connection);
-
-			if ($redis->serverName() === false && $sm->getConfig()->redis->auth) $redis->auth($sm->getConfig()->redis->auth->values()->toArray());
-
-			if ($sm->getConfig()->redis->db) $redis->select($sm->getConfig()->redis->db);
-
-			$redis->lPush('last-login', time());
-			$redis->ltrim('last-login', 0, 4);
-
-			$redis->psetex('session', Seconds::seconds(10)->milliseconds, random_bytes(8));
-
-			return $redis;
-		},
-        Adapter::class => function (\Inane\Services\ServiceManager $sm) {
+//		Redis::class => function (ServiceManager $sm) {
+//			$redis = new Redis();
+//			$redis->connect(...$sm->getConfig()->redis->connection);
+//
+//			if ($redis->serverName() === false && $sm->getConfig()->redis->auth) $redis->auth($sm->getConfig()->redis->auth->values()->toArray());
+//
+//			if ($sm->getConfig()->redis->db) $redis->select($sm->getConfig()->redis->db);
+//
+//			$redis->lPush('last-login', time());
+//			$redis->ltrim('last-login', 0, 4);
+//
+//			$redis->psetex('session', Seconds::seconds(10)->milliseconds, random_bytes(8));
+//
+//			return $redis;
+//		},
+        Adapter::class => function (ServiceManager $sm) {
             return new Adapter($sm->getConfig()->get('db'));
         },
-        ULIDGenerator::class => static function (\Inane\Services\ServiceManager $sm) {
+        ULIDGenerator::class => static function (ServiceManager $sm) {
             return IdGeneratorFactory::createULID();
         }
 	],

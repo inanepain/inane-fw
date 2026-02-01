@@ -38,9 +38,7 @@ return [
 		'controller' => [
 			'glob' => 'src/*/*Controller.php',
 			'glob_ignore' => '/(Abstract)/',
-			'default' => [
-				\Dev\Controller\Test::class,
-			],
+			'default' => [],
 		],
 	],
 	/**

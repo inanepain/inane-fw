@@ -5,8 +5,11 @@ declare(strict_types = 1);
 use Inane\Cli\Cli;
 use Inane\Dumper\Dumper;
 use Inane\Dumper\Type;
+use Knot\Application;
 
-require __DIR__ . '/../vendor/autoload.php';
+chdir(dirname(__DIR__));
+
+require_once 'vendor/autoload.php';
 
 #region DEBUG HTACCESS FLAGS
 // TODO: MAJOR WORK ON THIS DEBUG STUFF
@@ -52,7 +55,7 @@ if (APP_DEBUG || Cli::isCli()) {
 ini_set('error_reporting', (string)$error_reporting);
 #endregion DEBUG HTACCESS FLAGS
 
-(static function(\Knot\Application $app): bool|int {
+return (static function(Application $app): bool|int {
     // FIX: boo
     // FIXME: boo
     // BUG: bug
@@ -70,4 +73,4 @@ ini_set('error_reporting', (string)$error_reporting);
     }
 
     return true;
-})(\Knot\Application::app());
+})(Application::app());

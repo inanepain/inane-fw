@@ -47,11 +47,20 @@ RewriteCond "%{REQUEST_FILENAME}\.gz" -s
 RewriteRule "^(.*)\.css" "$1\.css\.gz" [QSA]
 #**********************************************
 
+# Handle PHP-FPM status - don't route through index.php
+RewriteRule ^php-fpm-status$ - [L,E=fpm-status:1]
+RewriteRule ^php-fpm-ping$ - [L,E=fpm-ping:1]
+
 # The following rule tells Apache that if the requested filename
 # exists, simply serve it.
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
+
+# Exclude PHP-FPM status from routing
+RewriteCond %{REQUEST_URI} !^/php-fpm-status
+RewriteCond %{REQUEST_URI} !^/php-fpm-ping
+
 RewriteRule ^.*$ - [L]
 # The following rewrites all other queries to index.php. The
 # condition ensures that if you are using Apache aliases to do

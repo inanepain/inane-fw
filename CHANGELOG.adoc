@@ -49,6 +49,8 @@ More of a wish or brain fart list than an actual TODO list. Either way it is a p
 ** Icons
 ** Auto-update period
 * Added more code comments.
+* Added minify console commands.
+
 
 :leveloffset!:
 :leveloffset: +1

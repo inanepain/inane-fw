@@ -1,7 +1,7 @@
 /**
  * Extend Object
  *
- * @version 1.9.0
+ * @version 1.10.0
  * @author Philip Michael Raab<philip@cathedral.co.za>
  *
  * Public Domain.
@@ -9,10 +9,13 @@
  */
 
 /**
+ * 1.10.0 (2026 Jan 31)
+ *  * jsonString: Update - supports two params: `replacer` and `space`.
+ *
  * 1.9.0 (2025 Jun 08)
  *  * propertyRename: Update - now allows replacing existing property if `force` is true
  *  * renameProperty: Update - now allows replacing existing property if `force` is true
- * 
+ *
  * 1.8.0 (2025 May 22)
  *  +/- groupByProperty/groupBy : `groupBy` renamed to `groupByProperty` no to clash with official `Object.groupBy`
  *  + keys                      : `Object.keys` alias
@@ -27,14 +30,14 @@
  *
  * 1.5.0 (2021 Nov 10)
  *  + sorted   : Get a sorted copy of object
- *  - pick     : Update - can also take a string if only one property required
+ *  - pick     : Update - can also take a string if only one property is required
  *  - pick     : Fix - returns undefined for invalid properties
  *
  * 1.4.0 (2021 Oct 28)
- *  + readWithPath : returns property value using a string as path
+ *  + readWithPath : returns property value using a string as a path
  *
  * 1.3.0 (2020 Aug 06)
- *  + pick     : return new object with only the properties requested in array
+ *  + pick     : return a new object with only the properties requested in an array
  *
  * 1.2.0 (2020 Jul 08)
  *  - New      : watch now returns a change object with properties: property, value, previous
@@ -44,7 +47,7 @@
  *  - New      : handler now only gets call if oldVal !== newVal
  *
  * 1.0.1 (2016 Apr 08)
- *  - Fixed    : oldVal returns undefined after 1st change
+ *  - Fixed    : oldVal returns undefined after the 1st change
  */
 
 /*
@@ -60,14 +63,12 @@ if (!Object.prototype.watch) {
         configurable: false,
         writable: true,
         value: function(prop, handler) {
-            var getter,
-                setter,
-                change = {
+            var change = {
                     property: prop,
                     value: this[prop],
                     previous: undefined,
                     set update(v) {
-                        if (this.value == v) return false;
+                        if (this.value === v) return false;
                         this.previous = this.value;
                         this.value = v;
                         return true;
@@ -107,11 +108,27 @@ if (!Object.prototype.unwatch) {
 }
 
 /**
- * Returns json string of object
+ * Returns Object as JSON string, ala stringify.
+ *
+ * @method jsonString
+ *
+ * @param {function|(string|number)[]} [replacer] A function that alters the behavior of the stringification process or an array of strings and numbers that specifies properties of value to be included in the output. If replacer is an array, all elements in this array that are not strings or numbers (either primitives or wrapper objects), including Symbol values, are completely ignored. If replacer is anything other than a function or an array (e.g., null or not provided), all string-keyed properties of the object are included in the resulting JSON string.
+ * @param {string|number} [space] A string or number used to insert white space (including indentation, line break characters, etc.) into the output JSON string for readability purposes.
+ *  - If this is a number, it indicates the number of space characters to be used as indentation, clamped to 10 (that is, any number greater than 10 is treated as if it were 10). Values less than 1 indicate that no space should be used.
+ *  - If this is a string, the string (or the first 10 characters of the string, if it's longer than that) is inserted before every nested object or array.
+ *  - If space is anything other than a string or number (can be either a primitive or a wrapper object) — for example, is null or not provided — no white space is used.
+ *
+ * @return {string}
  */
 if (!Object.prototype.jsonString) {
     /**
-     * Returns Object as json string, ala stringify
+     * Returns Object as JSON string, ala stringify.
+     *
+     * @param {function|(string|number)[]} [replacer] A function that alters the behavior of the stringification process or an array of strings and numbers that specifies properties of value to be included in the output. If replacer is an array, all elements in this array that are not strings or numbers (either primitives or wrapper objects), including Symbol values, are completely ignored. If replacer is anything other than a function or an array (e.g., null or not provided), all string-keyed properties of the object are included in the resulting JSON string.
+     * @param {string|number} [space] A string or number used to insert white space (including indentation, line break characters, etc.) into the output JSON string for readability purposes.
+     *  - If this is a number, it indicates the number of space characters to be used as indentation, clamped to 10 (that is, any number greater than 10 is treated as if it were 10). Values less than 1 indicate that no space should be used.
+     *  - If this is a string, the string (or the first 10 characters of the string, if it's longer than that) is inserted before every nested object or array.
+     *  - If space is anything other than a string or number (can be either a primitive or a wrapper object) — for example, is null or not provided — no white space is used.
      *
      * @return {string}
      */
@@ -119,8 +136,8 @@ if (!Object.prototype.jsonString) {
         enumerable: false,
         configurable: false,
         writable: true,
-        value: function() {
-            return JSON.stringify(this);
+        value: function(replacer = null, space = null) {
+            return JSON.stringify(this, replacer, space);
         }
     });
 }
@@ -170,7 +187,7 @@ if (!Object.prototype.readPath) {
      * @param path string as path
      * @param delimiter path delimiter if not period (.)
      *
-     * @return {mixed} property value
+     * @return {any} property value
      */
     Object.defineProperty(Object.prototype, 'readPath', {
         enumerable: false,
@@ -192,7 +209,7 @@ if (!Object.prototype.readPath) {
 }
 
 /**
- * Get a sorted copy of object
+ * Get a sorted copy of an object.
  */
 if (!Object.prototype.sorted) {
     /**
@@ -219,7 +236,7 @@ if (!Object.prototype.propertyRename) {
     /**
      * Rename property
      *
-     * - if new_key exists nothing is done
+     * - if new_key exists, nothing is done
      *
      * @since 1.6.0
      * @since 1.9.0 updated to allow replacing existing property if `force` is true
@@ -278,7 +295,7 @@ if (!Object.prototype.renameProperty) {
     /**
      * Rename property
      *
-     * - if new_key exists nothing is done
+     * - if new_key exists, nothing is done
      *
      * @see Object.propertyRename
      *
@@ -314,7 +331,7 @@ if (!Object.prototype.groupByProperty) {
      *
      * @param {string} key - property to group by
      *
-     * @return {Object} object with values group by key
+     * @return {Object} object with a values group by key
      */
     Object.defineProperty(Object.prototype, 'groupByProperty', {
         enumerable: false,
