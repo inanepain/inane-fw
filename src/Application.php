@@ -199,7 +199,7 @@ class Application {
 
         if ($controller = $routerConfig->controller) {
             if ($glob = $controller->glob) {
-                foreach($this->base->getFiles($glob, GLOB_BRACE | GLOB_NOSORT) as $file) {
+                foreach($this->base->getFiles($glob, GLOB_BRACE | GLOB_NOSORT) ?: [] as $file) {
                     if ($ignore = $controller->glob_ignore) {
                         preg_match($ignore, $file->getFilename(), $matches, PREG_OFFSET_CAPTURE);
                         if (!empty($matches)) continue;
