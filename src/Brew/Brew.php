@@ -25,8 +25,8 @@ declare(strict_types = 1);
 
 namespace Knot\Brew;
 
-use Inane\Config\ConfigAwareAttribute;
-use Inane\Config\ConfigAwareTrait;
+use Inane\Config\ConfigAware\ConfigAwareAttribute;
+use Inane\Config\ConfigAware\ConfigAwareTrait;
 use Inane\Datetime\Timestamp;
 use Inane\Db\Query\Clause\OrderDirection;
 use Inane\Stdlib\Array\OptionsInterface;

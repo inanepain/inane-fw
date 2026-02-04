@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace Inane\Services;
 
-use Inane\Config\ConfigAwareAttribute;
-use Inane\Config\ConfigAwareTrait;
+use Inane\Config\ConfigAware\ConfigAwareAttribute;
+use Inane\Config\ConfigAware\ConfigAwareTrait;
 use Inane\Stdlib\Array\OptionsInterface;
 use Inane\Stdlib\Exception\Exception;
 use Inane\Stdlib\Options;

@@ -29,7 +29,7 @@ use Inane\Cli\Cli;
 use Inane\Cli\Pencil;
 use Inane\Cli\Pencil\Colour;
 use Inane\Cli\Pencil\Style;
-use Inane\Config\ConfigAwareTrait;
+use Inane\Config\ConfigAware\ConfigAwareTrait;
 use Inane\File\File;
 use Inane\File\Path;
 use Inane\Stdlib\Exception\RuntimeException;

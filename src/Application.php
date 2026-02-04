@@ -27,8 +27,8 @@ namespace Knot;
 
 use Inane\Cli\Cli;
 use Inane\Config\Config;
-use Inane\Config\ConfigAwareAttribute;
-use Inane\Config\ConfigAwareInterface;
+use Inane\Config\ConfigAware\ConfigAwareAttribute;
+use Inane\Config\ConfigAware\ConfigAwareInterface;
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
