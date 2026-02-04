@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace Knot\Lotto\Lottery;
 
-use Inane\Config\ConfigAwareTrait;
+use Inane\Config\ConfigAware\ConfigAwareTrait;
 use Inane\Datetime\Timestamp;
 use Inane\Stdlib\{
     Array\OptionsInterface,
