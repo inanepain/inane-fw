@@ -1,0 +1,23 @@
+= source
+
+Code for additional components.
+
+== database
+
+Stores the DDL for the project's database. Thus keeping changes tracked in git. Each schema should be in its own directory.
+
+== doc
+
+AsciiDoc files that build the project README and CHANGELOG.
+
+== image
+
+Custom images for the site.
+
+== lib
+
+Development area for new, overriding or extending libraries. It can also be a bit of a playground to experiment with various ideas.
+
+== style
+
+Stylesheet source files.

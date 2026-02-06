@@ -38,6 +38,10 @@ include::./part/install.adoc[leveloffset=+1]
 
 <<<
 
+include::./part/develop.adoc[leveloffset=+1]
+
+<<<
+
 include::./part/quick-start.adoc[leveloffset=+1]
 
 <<<
