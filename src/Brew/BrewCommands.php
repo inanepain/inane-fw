@@ -407,9 +407,11 @@ class BrewCommands {
         foreach($output ?: [] as $formula) {
             $f = $formulasTable->fetch($formula);   // FormulasTable
             if (!$f) continue;
-            $f->installed = true;   // @var bool If the formula is installed.
-            $f->save();             // Saves the current entity to the database.
-            $counter->installed++;
+            if (!$f->installed) {
+                $f->installed = true;   // @var bool If the formula is installed.
+                $f->save();             // Saves the current entity to the database.
+                $counter->installed++;
+            }
         }
 
         Cli::line('Brew formulas installed: updated.');                                        // Outputs a line of text to the CLI.
