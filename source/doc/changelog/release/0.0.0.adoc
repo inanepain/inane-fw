@@ -13,4 +13,7 @@
 ** Auto-update period
 * Added more code comments.
 * Added minify console commands.
-
+* Added *source/database* for database source sql.
+* Updated *README.adoc*:
+** more notes on structure.
+** New *Develop* section that covers getting the latest code with *submodules*.
