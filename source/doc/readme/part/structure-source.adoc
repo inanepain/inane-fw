@@ -4,7 +4,27 @@ Code for additional components.
 
 == database
 
-Stores the DDL for the project's database. Thus keeping changes tracked in git. Each schema should be in its own directory.
+Stores the DDL for the project's databases. Thus keeping changes tracked in git. Each connection should have its own directory under which schemas, tables and sundry are contained.
+
+[source,text]
+----
+├──  database/ <1>
+│   └──  inane-fw/ <2>
+│       └──  main/ <3>
+│           ├──  __mobile_app_scripts__.sql <4>
+│           ├──  departments.sql
+│           ├──  divinations.sql
+│           ├──  formulas.sql
+│           ├──  fortunes.sql
+│           ├──  sqlean_define.sql
+│           ├──  students.sql
+│           ├──  update_timestamp.sql
+│           └──  users.sql
+----
+<1> Root of database DDL files.
+<2> Connection name.
+<3> Schema.
+<4> Table, view, trigger, function, ... scripts.
 
 == doc
 

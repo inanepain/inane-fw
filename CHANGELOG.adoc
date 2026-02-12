@@ -42,7 +42,6 @@ More of a wish or brain fart list than an actual TODO list. Either way it is a p
 :version-label: Unconfirmed
 
 * Gitea commands.
-* Add the database to the source as a collection SQL file.
 * Brew auto update.
 * Brew configuration file added.
 ** Text Colours
@@ -50,10 +49,15 @@ More of a wish or brain fart list than an actual TODO list. Either way it is a p
 ** Auto-update period
 * Added more code comments.
 * Added minify console commands.
-* Added *source/database* for database source sql.
 * Updated *README.adoc*:
 ** more notes on structure.
 ** New *Develop* section that covers getting the latest code with *submodules*.
+* Database:
+** Added *source/database* for the database *DDL* files.
+** DDL structure: added the database connection as first level directory.
+** renamed to *_inane-fw.sqlite_*:
+*** keep in line with the project's name.
+*** `.sqlite` just makes more sense then `.db`.
 
 :leveloffset!:
 :leveloffset: +1
