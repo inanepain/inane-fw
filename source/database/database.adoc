@@ -1,8 +1,4 @@
-= source
-
-Code for additional components.
-
-== database
+= database
 
 Stores the DDL for the project's databases. Thus keeping changes tracked in git. Each connection should have its own directory under which schemas, tables and sundry are contained.
 
@@ -25,19 +21,3 @@ Stores the DDL for the project's databases. Thus keeping changes tracked in git.
 <2> Connection name.
 <3> Schema.
 <4> Table, view, trigger, function, ... scripts.
-
-== doc
-
-AsciiDoc files that build the project README and CHANGELOG.
-
-== image
-
-Custom images for the site.
-
-== lib
-
-Development area for new, overriding or extending libraries. It can also be a bit of a playground to experiment with various ideas.
-
-== style
-
-Stylesheet source files.

@@ -26,7 +26,7 @@ Sites main source code.
 
 Web server root.
 
-include::structure-source.adoc[leveloffset=+1]
+include::../../../source.adoc[leveloffset=+1]
 
 == vendor
 
