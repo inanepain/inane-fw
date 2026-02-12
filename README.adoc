@@ -145,7 +145,9 @@ Web server root.
 
 Code for additional components.
 
-== database
+:leveloffset: +1
+
+= database
 
 Stores the DDL for the project's databases. Thus keeping changes tracked in git. Each connection should have its own directory under which schemas, tables and sundry are contained.
 
@@ -168,6 +170,8 @@ Stores the DDL for the project's databases. Thus keeping changes tracked in git.
 <2> Connection name.
 <3> Schema.
 <4> Table, view, trigger, function, ... scripts.
+
+:leveloffset: 2
 
 == doc
 
