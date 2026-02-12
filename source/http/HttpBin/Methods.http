@@ -1,0 +1,66 @@
+/*
+Http Bin
+
+[the developer - Website](https://httpbin.org)
+*/
+
+@host=https://httpbin.org
+
+###
+# get
+# The query request & parameters.
+#
+# Test status is 200
+# Write output to method-get.json
+GET {{host}}/get HTTP/2
+Inane-Token: peep
+Accept: application/json
+
+?? status == 200
+
+>> ./method-get.json
+
+###
+# get
+# The query request & parameters.
+#
+# Test status is 200
+# Write output to method-get.json && overwrite if file exists.
+GET {{host}}/get?userId=1 HTTP/2
+Inane-Token: peep
+Accept: application/json
+
+?? status == 200
+
+>>! ./method-get-1.json
+
+###
+# post
+POST {{host}}/post
+Inane-Token: peep
+Accept: application/json
+Content-Type: application/json; charset=utf-8
+
+{
+  "id":1,
+  "title":"foo",
+  "body":"bar"
+}
+
+###
+# put
+PUT {{host}}/put
+Inane-Token: peep
+Accept: application/json
+Content-Type: application/json; charset=utf-8
+
+{"id":1,"title":"foo","body":"bar"}
+
+###
+# patch
+PATCH {{host}}/patch
+Inane-Token: peep
+Accept: application/json
+Content-Type: application/json; charset=utf-8
+
+{"id":1,"title":"foo","body":"bar"}
