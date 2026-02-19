@@ -3,7 +3,7 @@
     "description": "",
     "type": "library",
     "license": "Unlicense",
-    "homepage": "https://git.cathedral.co.za:3000/inanepain/{repository}",
+    "homepage": "https://github.com/inanepain/{repository}",
     "readme": "README.adoc",
     "authors": [
         {
@@ -14,7 +14,7 @@
     ],
     "support": {
         "email": "philip@cathedral.co.za",
-        "issues": "https://git.cathedral.co.za:3000/inanepain/{repository}/issues"
+        "issues": "https://github.com/inanepain/{repository}/issues"
     },
     "keywords": [
 		"php",
