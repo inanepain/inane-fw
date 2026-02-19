@@ -38,6 +38,9 @@ use Inane\Console\Command\{
 use Inane\Datetime\Unit\Hours;
 use Inane\Datetime\Unit\Seconds;
 use Inane\File\File;
+use Inane\Http\Client;
+use Inane\Http\NotifyProgressInterface;
+use Inane\Http\Request;
 use Inane\Stdlib\{
     Exception\Exception,
     Exception\JsonException,
@@ -75,8 +78,7 @@ use function str_replace;
  * - search: (\] )([a-z0-9-@\.]*)
  * - replace: $1**$2**
  */
-
-class BrewCommands {
+class BrewCommands implements NotifyProgressInterface {
     //#region Class Constants
     /**
      * URL endpoint for accessing the formulae API data.
@@ -89,7 +91,6 @@ class BrewCommands {
      * Defines the length of the message.
      */
     protected int $messageLength = 10;
-
     /**
      * @var Options // Shortcut to Brew configuration options.
      */
@@ -105,6 +106,8 @@ class BrewCommands {
     protected Pencil $icon;
     protected Pencil $url;
     //#endregion Properties    // Pencil: Output assigned a colour and style.
+
+    protected Bar $downloadProgressBar;
     #endregion Pencil
 
     #region Instantiation
@@ -114,7 +117,9 @@ class BrewCommands {
      * @throws Exception
      */
     public function __construct() {
-        $this->brew = Application::app()->createObject(Brew::class);
+        $this->brew = Application::app()
+            ->createObject(Brew::class)
+        ;
 
         $this->desc = static::pancilFactory($this->config->ui->text->desc);
         $this->action = static::pancilFactory($this->config->ui->text->action);
@@ -132,7 +137,7 @@ class BrewCommands {
 
         $args = [];
 
-        foreach ($properties as $property) {
+        foreach($properties as $property) {
             if ($colour = Pencil\Colour::tryFromName($property, true)) {
                 $args['colour'] = $colour;
             } elseif ($style = Pencil\Style::tryFromName($property, true)) {
@@ -140,8 +145,7 @@ class BrewCommands {
             }
         }
 
-        if (!empty($args))
-            return new Pencil(...$args);
+        if (!empty($args)) return new Pencil(...$args);
 
         return new Pencil();
     }
@@ -180,9 +184,9 @@ class BrewCommands {
         $tags = '';
         $url = '';
         if ($extended || $this->config->info->extended) {                                                                  // Outputs the details of a given formula to the CLI.
-            if ($formula->state === 'new') $state .= $this->icon->format($this->config->ui->icon->new);               // Create a string with the current format             // Create a string with the current format
-            if ($formula->installed) $state .= $this->action->format('(i)');                     // Create a string with the current format
-            $tags = $formula->tags === '' ? '' : $this->tag->format(" [$formula->tags]");   // Create a string with the current format
+            if ($formula->state === 'new') $state .= $this->icon->format($this->config->ui->icon->new);                    // Create a string with the current format             // Create a string with the current format
+            if ($formula->installed) $state .= $this->action->format('(i)');                                               // Create a string with the current format
+            $tags = $formula->tags === '' ? '' : $this->tag->format(" [$formula->tags]");                                  // Create a string with the current format
             $url = ' <' . $this->url->format("$formula->homepage") . '>';
         }
 
@@ -191,7 +195,7 @@ class BrewCommands {
             $name .= $this->icon->format($this->config->ui->icon->flag);
         }
 
-        Cli::line('- ' . $state . "$name ({$formula->version}) " . $this->desc->format($formula->desc). $url . $tags);   // Outputs a line of text to the CLI.
+        Cli::line('- ' . $state . "$name ({$formula->version}) " . $this->desc->format($formula->desc) . $url . $tags);   // Outputs a line of text to the CLI.
     }
     #endregion Display Formatting
 
@@ -221,10 +225,10 @@ class BrewCommands {
             Cli::line('Brew package: ' . $formula->name);   // Outputs a line of text to the CLI.
 
             if ($action === 'install') {                                  // Modifies properties or retrieves information about specified brew packages.
-                $formula->install(); // @var bool If the formula is installed.
+                $formula->install();                                      // @var bool If the formula is installed.
                 $this->action->line("\tInstalled.");
             } elseif ($action === 'uninstall') {                            // Modifies properties or retrieves information about specified brew packages.
-                $formula->uninstall();                                // @var bool If the formula is installed.
+                $formula->uninstall();                                      // @var bool If the formula is installed.
                 $this->action->line("\tUninstalled.");
             } elseif ($action === 'flag') {   // Modifies properties or retrieves information about specified brew packages.
                 $formula->flag = true;
@@ -303,7 +307,18 @@ class BrewCommands {
         $ttl = Hours::hours(1)->seconds->unit;
         $rfc = new RemoteFileCache(defaultTTL: $ttl);   // Remote File Cache Constructor
 
-        $json = $rfc->get(self::FEED_URL);                     // Fetches a value from the cache.
+        if ($rfc->has(self::FEED_URL)) {
+            $json = $rfc->get(self::FEED_URL);                     // Fetches a value from the cache.
+        } else {
+            $request = new Request('GET', self::FEED_URL);
+            $client = new Client();
+            $client->registerProgressListener($this);
+
+            $response = $client->sendRequest($request);
+
+            $json = $response->getBody()->getContents();
+            $rfc->set(self::FEED_URL, $json);
+        }
         $feeds = Json::decode($json, ['asOptions' => true]);   // Takes a JSON encoded string and converts it into a PHP value.
 
         Cli::line('Total formulas: ' . $feeds->count());   // Outputs a line of text to the CLI.
@@ -353,7 +368,7 @@ class BrewCommands {
                 $changes['new'][] = $f;
             }
 
-            $bar->tick(1, $this->formatMessage($feed->get('name')));   // * This method augments the base definition from cli\Notify to optionally
+            $bar->tick(1, 'Current formula: ' . $this->formatMessage($feed->get('name')));   // * This method augments the base definition from cli\Notify to optionally
         }
         $bar->finish();   // * Forces the current tick count to the total ticks given at instatiation
 
@@ -455,8 +470,8 @@ class BrewCommands {
     ): int {
         Cli::line('Show brew formulas:');   // Outputs a line of text to the CLI.
 
-//        Dumper::$enabled = true;
-//        dd($this->config->toArray(), 'config', ['parseDepth' => 10]);
+        //        Dumper::$enabled = true;
+        //        dd($this->config->toArray(), 'config', ['parseDepth' => 10]);
 
         $where = [];
         if ($uninstalled) {   // Filters the Homebrew formulas based on specified criteria and displays the matching formulas.
@@ -512,6 +527,7 @@ class BrewCommands {
                 $this->updateDbCommand();
             } catch (JsonException|InvalidArgumentException $e) {
                 Cli::err($e->getMessage());
+
                 return $e->getCode();
             }
         }
@@ -536,7 +552,7 @@ class BrewCommands {
 
         foreach($formulas as $formula) {
             $this->counter->out('- ' . str_pad(string: (string)++$current, length: $width, pad_type: STR_PAD_LEFT) . '/' . (string)$total . ' ');   // Write to STDOUT ending on the same line.
-            $this->printFormula($formula, true);                                                                                                 // Outputs the details of a given formula to the CLI.
+            $this->printFormula($formula, true);                                                                                                    // Outputs the details of a given formula to the CLI.
 
             while(($choice = Cli::menu($menu, $action, 'Choose an option')) !== 'next') {   // Displays an array of strings as a menu where a user can enter a number to
                 if ($choice === 'exit') {
@@ -608,4 +624,39 @@ class BrewCommands {
         return 0;
     }
     #endregion Commands
+
+    #region Utility
+    /**
+     * Tracks and reports the progress of a download process.
+     *
+     * @param int   $download_total The total size of the download, in bytes.
+     * @param int   $downloaded     The amount of data downloaded so far, in bytes.
+     * @param float $percent        The percentage of the download completed.
+     *
+     * @return void
+     */
+    public function progress(int $download_total, int $downloaded, float $percent): void {
+        static $runningTotal = null;
+        if (!isset($this->downloadProgressBar)) {
+            $this->downloadProgressBar = new Bar('Downloading updated formulas', $download_total);   // * Instantiates a Progress Notifier.
+        }
+
+        if ($percent === 100) {
+            //            printf("\rDownloaded: %d bytes", $downloaded);
+            $increment = $downloaded - $runningTotal;
+            $this->downloadProgressBar->tick($increment);
+            $this->downloadProgressBar->finish();
+            unset($this->downloadProgressBar);
+            $runningTotal = null;
+        } else {
+            if ($runningTotal === null) {
+                $this->downloadProgressBar->display();
+            }
+            $increment = $downloaded - $runningTotal;
+            $this->downloadProgressBar->tick($increment);
+            $runningTotal = $downloaded;
+            //            printf("\rDownloading: %0.2f%% (%d / %d bytes)", $percent, $downloaded, $download_total);
+        }
+    }
+    #endregion Utility
 }
