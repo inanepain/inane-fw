@@ -1,11 +1,35 @@
 <?php
 
+/**
+ * inane-fw
+ *
+ * Inane Framework
+ *
+ * $Id$
+ * $Date$
+ *
+ * PHP version 8.5
+ *
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\PROJECT
+ * @category PROJECT
+ *
+ * @license  UNLICENSE
+ * @license  https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
+ *
+ */
+
+declare(strict_types=1);
+
 namespace Knot\Hash;
 
 use Inane\Cli\Cli;
-use Inane\Console\Command\Argument;
-use Inane\Console\Command\Command;
-use Inane\Console\Command\Option;
+use Inane\Console\Command\{
+    Argument,
+    Command,
+    Option};
 use Inane\Stdlib\Exception\ValueError;
 use Inane\Stdlib\Hash\HashUtility;
 

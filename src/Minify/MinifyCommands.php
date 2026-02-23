@@ -24,13 +24,22 @@ declare(strict_types = 1);
 
 namespace Knot\Minify;
 
-use Inane\Cli\Cli;
-use Inane\Cli\Pencil;
 use Inane\Console\Command\Command;
 use Inane\Console\Router\AbstractCommandController;
-use Inane\File\File;
-use Inane\File\Path;
 use MatthiasMullie\Minify;
+use Inane\Cli\{
+    Cli,
+    Pencil
+};
+use Inane\File\{
+    File,
+    Path
+};
+
+use function str_ends_with;
+use function str_replace;
+
+use const PHP_EOL;
 
 /**
  * Handles command-line tools for minifying JavaScript libraries.

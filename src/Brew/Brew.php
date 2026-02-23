@@ -25,15 +25,20 @@ declare(strict_types = 1);
 
 namespace Knot\Brew;
 
-use Inane\Config\ConfigAware\ConfigAwareAttribute;
-use Inane\Config\ConfigAware\ConfigAwareTrait;
 use Inane\Datetime\Timestamp;
 use Inane\Db\Query\Clause\OrderDirection;
-use Inane\Stdlib\Array\OptionsInterface;
-use Inane\Stdlib\Exception\RuntimeException;
-use Inane\Stdlib\Options;
 use Knot\Db\Entity\Formula;
 use Knot\Db\Table\FormulasTable;
+use Inane\Config\ConfigAware\{
+    ConfigAwareAttribute,
+    ConfigAwareTrait
+};
+use Inane\Stdlib\{
+    Array\OptionsInterface,
+    Exception\RuntimeException,
+    Options
+};
+
 use function array_filter;
 use function array_key_exists;
 use function explode;

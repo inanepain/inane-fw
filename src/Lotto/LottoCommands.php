@@ -24,12 +24,17 @@ declare(strict_types = 1);
 
 namespace Knot\Lotto;
 
-use Inane\Cli\Cli;
-use Inane\Cli\Pencil;
 use Inane\Console\Command\Command;
 use Inane\Stdlib\Thing\Step;
 use Knot\Application;
 use Knot\Lotto\Lottery\Lotto;
+use Inane\Cli\{
+    Cli,
+    Pencil
+};
+
+use function array_map;
+use function implode;
 use function str_repeat;
 
 class LottoCommands {

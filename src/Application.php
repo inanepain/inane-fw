@@ -26,9 +26,6 @@ declare(strict_types=1);
 namespace Knot;
 
 use Inane\Cli\Cli;
-use Inane\Config\Config;
-use Inane\Config\ConfigAware\ConfigAwareAttribute;
-use Inane\Config\ConfigAware\ConfigAwareInterface;
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
@@ -36,9 +33,16 @@ use Inane\File\Path;
 use Inane\Routing\Router;
 use Inane\ServiceManager\ServiceManager;
 use Inane\Session\SessionManager;
-use Inane\Stdlib\Options;
-use Inane\Stdlib\Utility\ClassUtility;
 use ReflectionObject;
+use Inane\Config\{
+    ConfigAware\ConfigAwareAttribute,
+    ConfigAware\ConfigAwareInterface,
+    Config
+};
+use Inane\Stdlib\{
+    Utility\ClassUtility,
+    Options
+};
 
 use function getcwd;
 use function preg_match;

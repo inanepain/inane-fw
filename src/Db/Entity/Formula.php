@@ -30,6 +30,7 @@ use Inane\Db\Entity\{
 use Knot\Brew\Brew;
 use Knot\Db\Table\FormulasTable;
 
+use const __PROPERTY__;
 use const null;
 
 /**
