@@ -26,7 +26,7 @@ declare(strict_types=1);
 use Inane\Db\Adapter\Adapter;
 use Inane\IdForge\Generator\ULIDGenerator;
 use Inane\IdForge\IdGeneratorFactory;
-use Inane\Services\ServiceManager;
+use Inane\ServiceManager\ServiceManager;
 
 /**
  * ServiceManager configuration.
