@@ -34,15 +34,18 @@ use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
 use Inane\File\Path;
 use Inane\Routing\Router;
-use Inane\Services\ServiceManager;
+use Inane\ServiceManager\ServiceManager;
 use Inane\Session\SessionManager;
 use Inane\Stdlib\Options;
 use Inane\Stdlib\Utility\ClassUtility;
 use ReflectionObject;
+
 use function getcwd;
 use function preg_match;
+
 use const GLOB_BRACE;
 use const GLOB_NOSORT;
+use const PHP_SAPI;
 use const PREG_OFFSET_CAPTURE;
 
 class Application {
