@@ -1,17 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
-/*
+/**
+ * inane-fw
  *
- * Inane: PROJECT
- *
- * PROJECT_DESCRIPTION
+ * Inane Framework
  *
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author   Philip Michael Raab <philip@cathedral.co.za>
  * @package  inanepain\PROJECT
@@ -21,20 +18,37 @@ declare(strict_types=1);
  * @license  https://unlicense.org/UNLICENSE UNLICENSE
  *
  * _version_ $version
+ *
  */
+
+declare(strict_types=1);
 
 namespace Knot\Gitea;
 
-use Inane\Cli\Cli;
-use Inane\Cli\Pencil;
-use Inane\Cli\Pencil\Colour;
-use Inane\Cli\Pencil\Style;
+use Inane\Cli\{
+    Cli,
+    Pencil,
+    Pencil\Colour,
+    Pencil\Style};
 use Inane\Config\ConfigAware\ConfigAwareTrait;
-use Inane\File\File;
-use Inane\File\Path;
-use Inane\Stdlib\Exception\RuntimeException;
-use Inane\Stdlib\Options;
+use Inane\File\{
+    File,
+    Path};
+use Inane\Stdlib\{
+    Exception\RuntimeException,
+    Options};
 use ReflectionException;
+
+use function array_combine;
+use function array_merge;
+use function array_values;
+use function basename;
+use function end;
+use function explode;
+use function shell_exec;
+use function str_replace;
+
+use const PHP_EOL;
 
 /**
  * Class GiteaPackageUploader

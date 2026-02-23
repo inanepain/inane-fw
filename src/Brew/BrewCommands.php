@@ -26,43 +26,59 @@ declare(strict_types = 1);
 namespace Knot\Brew;
 
 use Inane\Cache\RemoteFileCache;
+use Inane\File\File;
+use Knot\Application;
+use Knot\Db\Entity\Formula;
+use Knot\Db\Table\FormulasTable;
+use Psr\SimpleCache\InvalidArgumentException;
 use Inane\Cli\{
+    Progress\Bar,
     Cli,
     Pencil,
-    Progress\Bar,
-    TextTable};
+    TextTable
+};
 use Inane\Console\Command\{
     Argument,
     Command,
-    Option};
-use Inane\Datetime\Unit\Hours;
-use Inane\Datetime\Unit\Seconds;
-use Inane\File\File;
-use Inane\Http\Client;
-use Inane\Http\NotifyProgressInterface;
-use Inane\Http\Request;
+    Option
+};
+use Inane\Datetime\Unit\{
+    Hours,
+    Seconds
+};
+use Inane\Http\{
+    Client,
+    NotifyProgressInterface,
+    Request
+};
 use Inane\Stdlib\{
     Exception\Exception,
     Exception\JsonException,
     Exception\RuntimeException,
     Json,
-    Options};
-use Knot\Application;
-use Knot\Db\Entity\Formula;
-use Knot\Db\Table\FormulasTable;
-use Psr\SimpleCache\InvalidArgumentException;
+    Options
+};
+
 use function array_diff;
 use function array_filter;
 use function array_unique;
 use function asort;
 use function count;
+use function date;
 use function exec;
 use function explode;
 use function implode;
+use function in_array;
 use function round;
+use function shell_exec;
 use function sort;
 use function str_contains;
+use function str_pad;
 use function str_replace;
+use function strlen;
+use function version_compare;
+
+use const STR_PAD_LEFT;
 
 /**
  * The BrewCommands class provides functionality for interacting with and managing
@@ -356,13 +372,13 @@ class BrewCommands implements NotifyProgressInterface {
                 }
             } else {
                 $f = new Formula([   // Constructor for the AbstractEntity class.
-                    'name'     => $feed->get('name'),
-                    'version'  => $feed->get('versions')
-                        ->get('stable'),
-                    'homepage' => $feed->get('homepage'),
-                    'desc'     => $feed->get('desc'),
-                    'reviewed' => false,
-                    'state'    => 'new',
+                                     'name'     => $feed->get('name'),
+                                     'version'  => $feed->get('versions')
+                                         ->get('stable'),
+                                     'homepage' => $feed->get('homepage'),
+                                     'desc'     => $feed->get('desc'),
+                                     'reviewed' => false,
+                                     'state'    => 'new',
                 ]);
                 $f->save();   // Saves the current entity to the database.
                 $changes['new'][] = $f;
@@ -414,9 +430,9 @@ class BrewCommands implements NotifyProgressInterface {
         $formulasTable = new FormulasTable();   // * Constructor for the AbstractTable class.
 
         $counter = new Options([                                                                                   // Options
-            'total'     => count($output ?: []),
-            // Counts all elements in an array, or something in an object.
-            'installed' => 0,
+                                                                                                                   'total'     => count($output ?: []),
+                                                                                                                   // Counts all elements in an array, or something in an object.
+                                                                                                                   'installed' => 0,
         ]);
 
         foreach($output ?: [] as $formula) {
