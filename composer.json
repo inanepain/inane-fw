@@ -30,6 +30,7 @@
             "Inane\\QR\\": "lib/inanepain/quickrank/src/",
             "Inane\\Redis\\": "lib/inanepain/redis/src/",
             "Inane\\Routing\\": "lib/inanepain/routing/src/",
+            "Inane\\ServiceManager\\": "lib/inanepain/servicemanager/src/",
             "Inane\\Session\\": "lib/inanepain/session/src/",
             "Inane\\Stdlib\\": "lib/inanepain/stdlib/src/",
             "Inane\\View\\": "lib/inanepain/view/src/"
@@ -43,7 +44,6 @@
         "psr-4": {
             "Inane\\Datetime\\": "source/lib/datetime/src/",
             "Inane\\Rebecca\\": "source/lib/rebecca/src/",
-            "Inane\\Services\\": "source/lib/services/src/",
             "Inane\\Stdlib\\": "source/lib/stdlib/src/",
             "Inane\\View\\": "source/lib/view/src/"
         }
