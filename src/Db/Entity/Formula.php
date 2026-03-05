@@ -30,7 +30,11 @@ use Inane\Db\Entity\{
 use Knot\Brew\Brew;
 use Knot\Db\Table\FormulasTable;
 
-use const __PROPERTY__;
+use function array_unique;
+use function explode;
+use function implode;
+use function sort;
+
 use const null;
 
 /**
@@ -118,6 +122,17 @@ class Formula extends AbstractEntity {
     public string $tags {
         get => $this->data[__PROPERTY__];
         set => $this->data[__PROPERTY__] = $value;
+    }
+
+    public array $tagArray {
+        get => (static function(string $tags): array {
+            $a = explode(',', $tags);
+            sort($a);
+            return $a;
+        })($this->data['tags']);
+        set {
+            $this->data['tags'] = implode(',', array_filter(array_unique($value)));
+        }
     }
 
     public bool $flag {
