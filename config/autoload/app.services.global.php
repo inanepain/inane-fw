@@ -23,10 +23,15 @@
 declare(strict_types=1);
 
 //use Inane\Datetime\Unit\Seconds;
-use Inane\Db\Adapter\Adapter;
-use Inane\IdForge\Generator\ULIDGenerator;
-use Inane\IdForge\IdGeneratorFactory;
+
+use Inane\Db\Adapter\{
+    Adapter};
+use Inane\IdForge\{
+    Generator\ULIDGenerator,
+    IdGeneratorFactory};
 use Inane\ServiceManager\ServiceManager;
+use Knot\Db\Table\{
+    FormulasTable};
 
 /**
  * ServiceManager configuration.
@@ -34,27 +39,30 @@ use Inane\ServiceManager\ServiceManager;
  * Mainly the definitions for a vast majority of the services.
  */
 return [
-	'services' => [
-//		Redis::class => function (ServiceManager $sm) {
-//			$redis = new Redis();
-//			$redis->connect(...$sm->getConfig()->redis->connection);
-//
-//			if ($redis->serverName() === false && $sm->getConfig()->redis->auth) $redis->auth($sm->getConfig()->redis->auth->values()->toArray());
-//
-//			if ($sm->getConfig()->redis->db) $redis->select($sm->getConfig()->redis->db);
-//
-//			$redis->lPush('last-login', time());
-//			$redis->ltrim('last-login', 0, 4);
-//
-//			$redis->psetex('session', Seconds::seconds(10)->milliseconds, random_bytes(8));
-//
-//			return $redis;
-//		},
-        Adapter::class => function (ServiceManager $sm) {
+    'services' => [
+        //		Redis::class => function (ServiceManager $sm) {
+        //			$redis = new Redis();
+        //			$redis->connect(...$sm->getConfig()->redis->connection);
+        //
+        //			if ($redis->serverName() === false && $sm->getConfig()->redis->auth) $redis->auth($sm->getConfig()->redis->auth->values()->toArray());
+        //
+        //			if ($sm->getConfig()->redis->db) $redis->select($sm->getConfig()->redis->db);
+        //
+        //			$redis->lPush('last-login', time());
+        //			$redis->ltrim('last-login', 0, 4);
+        //
+        //			$redis->psetex('session', Seconds::seconds(10)->milliseconds, random_bytes(8));
+        //
+        //			return $redis;
+        //		},
+        Adapter::class => function (ServiceManager $sm): Adapter {
             return new Adapter($sm->getConfig()->get('db'));
         },
-        ULIDGenerator::class => static function (ServiceManager $sm) {
+        FormulasTable::class => function (ServiceManager $sm): FormulasTable {
+            return new FormulasTable();
+        },
+        ULIDGenerator::class => static function (ServiceManager $sm): ULIDGenerator {
             return IdGeneratorFactory::createULID();
         }
-	],
+    ],
 ];

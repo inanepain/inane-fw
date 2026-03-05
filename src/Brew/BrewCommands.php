@@ -26,38 +26,33 @@ declare(strict_types = 1);
 namespace Knot\Brew;
 
 use Inane\Cache\RemoteFileCache;
-use Inane\File\File;
-use Knot\Application;
-use Knot\Db\Entity\Formula;
-use Knot\Db\Table\FormulasTable;
-use Psr\SimpleCache\InvalidArgumentException;
 use Inane\Cli\{
-    Progress\Bar,
     Cli,
     Pencil,
-    TextTable
-};
+    Progress\Bar,
+    TextTable};
 use Inane\Console\Command\{
     Argument,
     Command,
-    Option
-};
+    Option};
 use Inane\Datetime\Unit\{
     Hours,
-    Seconds
-};
+    Seconds};
+use Inane\File\File;
 use Inane\Http\{
     Client,
     NotifyProgressInterface,
-    Request
-};
+    Request};
 use Inane\Stdlib\{
     Exception\Exception,
     Exception\JsonException,
     Exception\RuntimeException,
     Json,
-    Options
-};
+    Options};
+use Knot\Application;
+use Knot\Db\Entity\Formula;
+use Knot\Db\Table\FormulasTable;
+use Psr\SimpleCache\InvalidArgumentException;
 
 use function array_diff;
 use function array_filter;
@@ -355,15 +350,11 @@ class BrewCommands implements NotifyProgressInterface {
             $f = $formulasTable->fetch($feed->get('name'));   // FormulasTable
 
             if ($f) {
-                if (version_compare($feed->get('versions')
-                        ->get('stable'), $f->version) > 0) {   // Compares two "PHP-standardized" version number strings
-                    $f->version = $feed->get('versions')
-                        ->get('stable')
-                    ;                                          // @var string The version of the formula.
+                if (version_compare($feed->get('versions')->get('stable'), $f->version) > 0) {   // Compares two "PHP-standardized" version number strings
+                    $f->version = $feed->get('versions')->get('stable');                                          // @var string The version of the formula.
                     $f->state = 'update';
 
-                    $tags = explode(',', $f->tags);   // Split a string by a string
-                    if (!$f->installed && !in_array('hide', $tags)) {   // @var bool If the formula is installed. | Checks if a value exists in an array
+                    if (!$f->installed && !in_array('hide', $f->tagArray)) {   // @var bool If the formula is installed. | Checks if a value exists in an array
                         $f->reviewed = false;
                     }
 

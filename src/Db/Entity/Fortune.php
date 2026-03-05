@@ -49,7 +49,6 @@ use function substr;
 use function time;
 use function trim;
 
-use const __PROPERTY__;
 use const false;
 use const JSON_NUMERIC_CHECK;
 use const JSON_PARTIAL_OUTPUT_ON_ERROR;
