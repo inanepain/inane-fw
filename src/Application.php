@@ -26,6 +26,10 @@ declare(strict_types=1);
 namespace Knot;
 
 use Inane\Cli\Cli;
+use Inane\Config\{
+    Config,
+    ConfigAware\ConfigAwareAttribute,
+    ConfigAware\ConfigAwareInterface};
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
@@ -33,16 +37,10 @@ use Inane\File\Path;
 use Inane\Routing\Router;
 use Inane\ServiceManager\ServiceManager;
 use Inane\Session\SessionManager;
-use ReflectionObject;
-use Inane\Config\{
-    ConfigAware\ConfigAwareAttribute,
-    ConfigAware\ConfigAwareInterface,
-    Config
-};
 use Inane\Stdlib\{
-    Utility\ClassUtility,
-    Options
-};
+    Options,
+    Utility\ClassUtility};
+use ReflectionObject;
 
 use function getcwd;
 use function preg_match;
@@ -115,10 +113,11 @@ class Application {
         foreach($reflection->getAttributes() as $classAttribute) {
             if ($classAttribute->getName() === ConfigAwareAttribute::class) {
                 $attribute = $classAttribute->newInstance();
-                if ($attribute->globalConfig) {
-                    $object->setConfig($this->config);
+
+                if ($key = $attribute->getConfigKey($object::class)) {
+                    $object->setConfig($this->config->getConfig($key));
                 } else {
-                    $object->setConfig($this->config->getConfig($object::class));
+                    $object->setConfig($this->config);
                 }
             }
         }
