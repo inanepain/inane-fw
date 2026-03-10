@@ -5,11 +5,18 @@
 :version-label: Unconfirmed
 
 * Gitea commands.
-* Brew auto update.
-* Brew configuration file added.
-** Text Colours
-** Icons
-** Auto-update period
+* Brew:
+** added auto update.
+*** with interval checking.
+** added configuration:
+*** Text Colours.
+*** Icons.
+** php docblocks added/updated.
+** usability/readability updates.
+** review menu:
+*** cleaned up menu options.
+*** flag - *toggles* flagged status.
+*** *default action* takes *previous action* into account
 * Added more code comments.
 * Added minify console commands.
 * Updated *README.adoc*:
@@ -17,7 +24,7 @@
 ** New *Develop* section that covers getting the latest code with *submodules*.
 * Database:
 ** Added *source/database* for the database *DDL* files.
-** DDL structure: added the database connection as first level directory.
+** DDL structure: added the database connection as the first-level directory.
 ** renamed to *_inane-fw.sqlite_*:
 *** keep in line with the project's name.
 *** `.sqlite` just makes more sense then `.db`.

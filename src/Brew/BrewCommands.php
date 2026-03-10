@@ -310,7 +310,7 @@ class BrewCommands implements NotifyProgressInterface {
      * @throws InvalidArgumentException   // Exception interface for invalid cache arguments.
      */
     #[Command('brew:update', 'Update local homebrew formula database', ['hbu'])]   // Constructor method for initialising a console command with a name, description, and aliases.
-    public function updateDbCommand(): int {
+    public function updateLocalCommand(): int {
         $formulasTable = new FormulasTable();               // * Constructor for the AbstractTable class.
         $formulas = $formulasTable->fetchAll();             // FormulasTable
         Cli::line('Total formulas: ' . count($formulas));   // Outputs a line of text to the CLI.
@@ -531,7 +531,7 @@ class BrewCommands implements NotifyProgressInterface {
             Cli::line("Brew Formula cache age {$age}, Auto-updating...");
 
             try {
-                $this->updateDbCommand();
+                $this->updateLocalCommand();
             } catch (JsonException|InvalidArgumentException $e) {
                 Cli::err($e->getMessage());
 
@@ -539,27 +539,32 @@ class BrewCommands implements NotifyProgressInterface {
             }
         }
 
-        $formulas = $this->brew->getReview();
+        $formulas = $this->brew->getReviewQueue();
 
         $total = $formulas->count();   // count
         $current = 0;
         $width = strlen((string)$total);   // Get string length
-        $action = $this->config->review->action === 'hide' ? 'hide' : 'next';
+        $default = $action = $this->config->review->action === 'hide' ? 'hide' : 'next';
 
         $menu = [
-            'exit'     => 'End review',
-            'next'     => 'Next',
+            'exit'     => 'End review!',
+            'next'     => 'Next...',
             'homepage' => 'Open homepage',
             'install'  => 'Install',
-            'flag'     => 'Flag to investigate further',
-            'hide'     => 'Hide from future reviews, calls next',
+            'flag'     => 'Flag',
+            'hide'     => 'Hide from review...',
         ];
 
         Cli::line('Formulas to review: ' . (string)$total);   // Outputs a line of text to the CLI.
 
         foreach($formulas as $formula) {
             $this->counter->out('- ' . str_pad(string: (string)++$current, length: $width, pad_type: STR_PAD_LEFT) . '/' . (string)$total . ' ');   // Write to STDOUT ending on the same line.
-            $this->printFormula($formula, true);                                                                                                    // Outputs the details of a given formula to the CLI.
+            $this->printFormula($formula, true); // Outputs the details of a given formula to the CLI.
+
+            $menu['flag'] = match ($formula->flag) {
+                true => 'Unflag',
+                false => 'Flag',
+            };
 
             while(($choice = Cli::menu($menu, $action, 'Choose an option')) !== 'next') {   // Displays an array of strings as a menu where a user can enter a number to
                 if ($choice === 'exit') {
@@ -567,15 +572,20 @@ class BrewCommands implements NotifyProgressInterface {
                     break 2;
                 }
 
+                $action = $default;
+
                 if ($choice === 'install') {
                     $this->action->line("\tInstalled.");
                     $formula->install();
+                    $action = 'next';
                 } elseif ($choice === 'homepage') {
                     $this->action->line("\tOpening homepage: {$formula->homepage}.");
-                    shell_exec("open {$formula->homepage}");                                              // Execute command via shell and return the complete output as a string
+                    shell_exec("open {$formula->homepage}"); // Execute command via shell and return the complete output as a string
+                    $action = 'install';
                 } elseif ($choice === 'flag') {
-                    $this->action->line("\tFlagged as an item to investigate further.");
-                    $formula->flag = true;
+                    $this->action->line("\t" . $menu['flag'] . "ged formula.");
+                    $formula->flag = !$formula->flag;
+                    $action = 'install';
                 } elseif ($choice === 'hide') {
                     $this->action->line("\tHiding from future reviews.");
 
@@ -615,15 +625,14 @@ class BrewCommands implements NotifyProgressInterface {
     ): int {
         Cli::line('Brew tags:');   // Outputs a line of text to the CLI.
 
-        $tags = $this->brew->getTags();
+        $tags = $this->brew->tags;
         if ($usage) asort($tags);   // Lists all tags currently in use, optionally sorting them by their usage count, and displays | Sort an array and maintain index association
 
         $table = new TextTable();                       // TextTable Constructor
         $table->addHeader(['Count', 'Tag', 'Usage']);   // Adds a header row
 
         $current = 1;
-        Cli::line('Tagged formulas: ' . (string)$this->brew->getTagged()
-                ->count());                                                                              // Outputs a line of text to the CLI.
+        Cli::line('Tagged formulas: ' . (string)$this->brew->getTagged()->count());                                                                              // Outputs a line of text to the CLI.
         foreach($tags as $tag => $count) $table->addRow([(string)($current++), $tag, (string)$count]);   // Adds a row
 
         Cli::line($table->render());   // Outputs a line of text to the CLI.
