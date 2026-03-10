@@ -566,6 +566,8 @@ class BrewCommands implements NotifyProgressInterface {
                 false => 'Flag',
             };
 
+            $action = $default;
+
             while(($choice = Cli::menu($menu, $action, 'Choose an option')) !== 'next') {   // Displays an array of strings as a menu where a user can enter a number to
                 if ($choice === 'exit') {
                     $this->alert->line('Review cancelled.');   // Write to STDOUT ending on a newline.
