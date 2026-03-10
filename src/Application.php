@@ -29,7 +29,8 @@ use Inane\Cli\Cli;
 use Inane\Config\{
     Config,
     ConfigAware\ConfigAwareAttribute,
-    ConfigAware\ConfigAwareInterface};
+    ConfigAware\ConfigAwareInterface,
+    ConfigManager};
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
@@ -65,6 +66,8 @@ class Application {
     /**
      * @var ServiceManager  The ServiceManager class is responsible for managing and providing access to services.
      */
+
+    protected ConfigManager $configManager;
     protected(set) ServiceManager $serviceManager;
     /**
      * @var Path  The Path class represents a file system path and provides methods for manipulating and working with paths.
@@ -94,6 +97,8 @@ class Application {
      * @return void
      */
     private function __construct(protected(set) Config $config) {
+        $this->configManager = ConfigManager::instance()->setConfig($config);
+
         $this->initialise();
         $this->bootstrap();
     }
@@ -112,13 +117,7 @@ class Application {
 
         foreach($reflection->getAttributes() as $classAttribute) {
             if ($classAttribute->getName() === ConfigAwareAttribute::class) {
-                $attribute = $classAttribute->newInstance();
-
-                if ($key = $attribute->getConfigKey($object::class)) {
-                    $object->setConfig($this->config->getConfig($key));
-                } else {
-                    $object->setConfig($this->config);
-                }
+                $this->configManager->setConfigFor($object);
             }
         }
     }
