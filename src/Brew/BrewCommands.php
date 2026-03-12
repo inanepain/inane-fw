@@ -44,6 +44,7 @@ use Inane\Http\{
     NotifyProgressInterface,
     Request};
 use Inane\Stdlib\{
+    Array\OptionsInterface,
     Exception\Exception,
     Exception\JsonException,
     Exception\RuntimeException,
@@ -299,6 +300,73 @@ class BrewCommands implements NotifyProgressInterface {
     }
 
     /**
+     * Parses a list of Homebrew feed data, updates existing formulas, and adds new formulas
+     * to the database. Tracks and returns the changes in terms of updated and newly added formulas.
+     *
+     * @param OptionsInterface $feeds A collection of feed data to parse and process.
+     *
+     * @return array Returns an associative array containing two keys:
+     *               - 'updated': An array of formulas that were updated.
+     *               - 'new': An array of formulas that were newly created.
+     *
+     * @throws \Exception
+     */
+    protected function parseBrewFeed(OptionsInterface $feeds): array {
+        $formulasTable = Application::app()->serviceManager->get(FormulasTable::class);
+
+        $bar = new Bar('Formula', $feeds->count());   // * Instantiates a Progress Notifier.
+        $bar->display();                              // * Prints the progress bar to the screen with percent complete, elapsed time
+
+        $changes = [
+            'updated' => [],
+            'new'     => [],
+        ];
+
+        foreach($feeds as $feed) {
+            if ($feed->get('name') !== $feed->get('full_name')) {
+                Cli::line($feed->get('name') . "({$feed->get('full_name')})");   // Outputs a line of text to the CLI.
+            }
+
+            $f = $formulasTable->fetch($feed->get('name'));   // FormulasTable
+
+            $bar->tick(0, 'Loading formula: ' . $this->formatMessage($feed->get('name')));
+
+            if ($f) {
+                if (version_compare($feed->get('versions')->get('stable'), $f->version) > 0) {   // Compares two "PHP-standardized" version number strings
+                    $bar->tick(0, 'Updating formula: ' . $this->formatMessage($feed->get('name')));
+                    $f->version = $feed->get('versions')->get('stable');                                          // @var string The version of the formula.
+                    $f->state = 'update';
+
+                    if (!$f->installed && !in_array('hide', $f->tagArray, true)) {   // @var bool If the formula is installed. | Checks if a value exists in an array
+                        $f->reviewed = false;
+                    }
+
+                    $f->save();   // Saves the current entity to the database.
+                    $changes['updated'][] = $f;
+                }
+            } else {
+                $bar->tick(0, 'New formula: ' . $this->formatMessage($feed->get('name')));
+                $f = new Formula([   // Constructor for the AbstractEntity class.
+                                     'name'     => $feed->get('name'),
+                                     'version'  => $feed->get('versions')
+                                         ->get('stable'),
+                                     'homepage' => $feed->get('homepage'),
+                                     'desc'     => $feed->get('desc'),
+                                     'reviewed' => false,
+                                     'state'    => 'new',
+                ]);
+                $f->save();   // Saves the current entity to the database.
+                $changes['new'][] = $f;
+            }
+
+            $bar->tick(1, 'Finished formula: ' . $this->formatMessage($feed->get('name')));   // * This method augments the base definition from cli\Notify to optionally
+        }
+        $bar->finish();   // * Forces the current tick count to the total ticks given at the beginning.
+
+        return $changes;
+    }
+
+    /**
      * Updates the local database of Homebrew formulas by fetching and processing
      * the latest data from the specified feed URL. It identifies new and updated
      * formulas, updating their details in the database as needed. This method
@@ -311,7 +379,7 @@ class BrewCommands implements NotifyProgressInterface {
      */
     #[Command('brew:update', 'Update local homebrew formula database', ['hbu'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function updateLocalCommand(): int {
-        $formulasTable = new FormulasTable();               // * Constructor for the AbstractTable class.
+        $formulasTable = Application::app()->serviceManager->get(FormulasTable::class);               // * Constructor for the AbstractTable class.
         $formulas = $formulasTable->fetchAll();             // FormulasTable
         Cli::line('Total formulas: ' . count($formulas));   // Outputs a line of text to the CLI.
 
@@ -334,50 +402,7 @@ class BrewCommands implements NotifyProgressInterface {
 
         Cli::line('Total formulas: ' . $feeds->count());   // Outputs a line of text to the CLI.
 
-        $bar = new Bar('Formula', $feeds->count());   // * Instantiates a Progress Notifier.
-        $bar->display();                              // * Prints the progress bar to the screen with percent complete, elapsed time
-
-        $changes = [
-            'updated' => [],
-            'new'     => [],
-        ];
-
-        foreach($feeds as $feed) {
-            if ($feed->get('name') !== $feed->get('full_name')) {
-                Cli::line($feed->get('name') . "({$feed->get('full_name')})");   // Outputs a line of text to the CLI.
-            }
-
-            $f = $formulasTable->fetch($feed->get('name'));   // FormulasTable
-
-            if ($f) {
-                if (version_compare($feed->get('versions')->get('stable'), $f->version) > 0) {   // Compares two "PHP-standardized" version number strings
-                    $f->version = $feed->get('versions')->get('stable');                                          // @var string The version of the formula.
-                    $f->state = 'update';
-
-                    if (!$f->installed && !in_array('hide', $f->tagArray)) {   // @var bool If the formula is installed. | Checks if a value exists in an array
-                        $f->reviewed = false;
-                    }
-
-                    $f->save();   // Saves the current entity to the database.
-                    $changes['updated'][] = $f;
-                }
-            } else {
-                $f = new Formula([   // Constructor for the AbstractEntity class.
-                                     'name'     => $feed->get('name'),
-                                     'version'  => $feed->get('versions')
-                                         ->get('stable'),
-                                     'homepage' => $feed->get('homepage'),
-                                     'desc'     => $feed->get('desc'),
-                                     'reviewed' => false,
-                                     'state'    => 'new',
-                ]);
-                $f->save();   // Saves the current entity to the database.
-                $changes['new'][] = $f;
-            }
-
-            $bar->tick(1, 'Current formula: ' . $this->formatMessage($feed->get('name')));   // * This method augments the base definition from cli\Notify to optionally
-        }
-        $bar->finish();   // * Forces the current tick count to the total ticks given at instatiation
+        $changes = $this->parseBrewFeed($feeds);
 
         if (!empty($changes['updated']) || !empty($changes['new'])) {   // Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value
             $write = [];

@@ -78,10 +78,6 @@
             "@build-readme",
             "echo build: done!"
         ],
-        "build-win": [
-            "@build-changelog-win",
-            "@build-readme-win"
-        ],
         "build-changelog": [
             "echo building: changelog...",
             "rm -f CHANGELOG.adoc",
@@ -89,18 +85,22 @@
             "asciidoctor -b docbook CHANGELOG.adoc",
             "rm -f CHANGELOG.xml"
         ],
-        "build-changelog-win": [
-            "del CHANGELOG.adoc",
-            "asciidoctor-reducer -o CHANGELOG.adoc source/doc/changelog/index.adoc",
-            "asciidoctor -b docbook CHANGELOG.adoc",
-            "del CHANGELOG.xml"
-        ],
         "build-readme": [
             "echo building: readme...",
             "rm -f README.adoc",
             "asciidoctor-reducer -o README.adoc source/doc/readme/index.adoc",
             "asciidoctor -b docbook README.adoc",
             "rm -f README.xml"
+        ],
+        "build-win": [
+            "@build-changelog-win",
+            "@build-readme-win"
+        ],
+        "build-changelog-win": [
+            "del CHANGELOG.adoc",
+            "asciidoctor-reducer -o CHANGELOG.adoc source/doc/changelog/index.adoc",
+            "asciidoctor -b docbook CHANGELOG.adoc",
+            "del CHANGELOG.xml"
         ],
         "build-readme-win": [
             "del README.adoc",
