@@ -80,3 +80,7 @@
 	branch = develop
 [submodule "auth"]
 	branch = develop
+[submodule "lib/inanepain/polyfill"]
+	path = lib/inanepain/polyfill
+	url = https://github.com/inanepain/polyfill.git
+	branch = develop
