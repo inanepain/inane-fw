@@ -25,19 +25,17 @@ declare(strict_types = 1);
 
 namespace Knot\Brew;
 
-use Inane\Datetime\Timestamp;
-use Inane\Db\Query\Clause\OrderDirection;
-use Knot\Db\Entity\Formula;
-use Knot\Db\Table\FormulasTable;
 use Inane\Config\ConfigAware\{
     ConfigAwareAttribute,
-    ConfigAwareTrait
-};
+    ConfigAwareTrait};
+use Inane\Datetime\Timestamp;
+use Inane\Db\Query\Clause\OrderDirection;
 use Inane\Stdlib\{
     Array\OptionsInterface,
     Exception\RuntimeException,
-    Options
-};
+    Options};
+use Knot\Db\Entity\Formula;
+use Knot\Db\Table\FormulasTable;
 
 use function array_filter;
 use function array_key_exists;
@@ -45,16 +43,72 @@ use function explode;
 use function ksort;
 use function passthru;
 
+/**
+ * Trait ConfigAwareTrait
+ *
+ * Provides functionality for managing configuration settings
+ * within a class. This trait facilitates the storage, retrieval,
+ * and existence checks of configuration data, enabling reusable logic.
+ *
+ * Methods:
+ * - setConfig: Assigns a key-value pair or multiple configurations at once.
+ * - getConfig: Retrieves a specific configuration value or all configurations.
+ * - hasConfig: Verifies the presence of a particular configuration key.
+ * - clearConfig: Deletes specific configuration key(s) or clears all configurations.
+ */
 #[ConfigAwareAttribute]
 class Brew {
-    use ConfigAwareTrait;
+    /**
+     * Trait ConfigAwareTrait
+     *
+     * Provides functionality for managing configuration settings
+     * within a class. This trait allows the storage, retrieval,
+     * and existence checks for configuration data in a reusable way.
+     *
+     * Implementing classes can utilize this trait to handle
+     * configuration-related functionality without duplicating logic.
+     *
+     * Methods:
+     * - setConfig: Sets a specific configuration key-value pair or an array of configurations.
+     * - getConfig: Retrieves the value of a configuration key or returns all configurations.
+     * - hasConfig: Checks if a specific configuration key exists.
+     * - clearConfig: Removes a specific configuration key or clears all configurations.
+     */
+    use  ConfigAwareTrait;
 
+    /**
+     * Holds a collection of event listeners to handle specific events.
+     */
     protected Options $listeners;
 
     //#region Properties
-    private array $tags;
     /**
-     * Default configuration settings for the Brew class.
+     * A collection of tags associated with a specific item or entity.
+     */
+    public array $tags {
+        get {
+            if (!isset($this->tags)) {
+                $formulas = $this->getTagged();
+                $tags = [];
+                foreach($formulas as $formula) {
+                    $formula_tags = array_filter(explode(',', $formula->tags));
+                    foreach($formula_tags as $tag) {
+                        if (!array_key_exists($tag, $tags)) {
+                            $tags[$tag] = 0;
+                        }
+                        $tags[$tag]++;
+                    }
+                }
+                ksort($tags);
+
+                $this->tags = $tags;
+            }
+            return $this->tags;
+        }
+    }
+
+    /**
+     * Default configuration settings for the application.
      */
     protected array $defaultConfig = [
         'ui'     => [
@@ -128,6 +182,10 @@ class Brew {
          */
         'dry-run' => false,
     ];
+
+    /**
+     * Stores cache data for various operations.
+     */
     protected Options $cache;
 
     /**
@@ -147,15 +205,25 @@ class Brew {
      * @param FormulasTable $formulasTable An instance of the FormulasTable class to interact with the database.
      */
     public function __construct(
-        private FormulasTable $formulasTable = new FormulasTable(),
+        private readonly FormulasTable $formulasTable = new FormulasTable(),
     ) {
         $this->cache = new Options();
+        $this->cache->lockWriteError = false;
+
         $this->listeners = new Options();
         Formula::$brew = $this;
     }
     #endregion Instantiation
 
     #region Events
+    /**
+     * Registers an event listener for a specified event.
+     *
+     * @param string   $event    The name of the event to listen for.
+     * @param callable $listener A callable to be executed when the event is triggered.
+     *
+     * @return void
+     */
     public function on(string $event, callable $listener): void {
         if (!$this->listeners->has($event)) {
             $this->listeners->$event = [];
@@ -164,6 +232,14 @@ class Brew {
         $this->listeners->$event[] = $listener;
     }
 
+    /**
+     * Triggers an event and notifies all registered listeners for that event.
+     *
+     * @param string $event The name of the event to trigger.
+     * @param mixed  $value The value to pass to the event listeners.
+     *
+     * @return void
+     */
     protected function trigger(string $event, mixed $value): void {
         if (!$this->listeners->has($event)) {
             $this->listeners->$event = [];
@@ -174,6 +250,11 @@ class Brew {
         }
     }
 
+    /**
+     * Retrieves the list of registered listeners.
+     *
+     * @return array Returns an array of registered listeners.
+     */
     public function getListeners(): array {
         return $this->listeners->toArray();
     }
@@ -241,7 +322,7 @@ class Brew {
      *
      * @throws RuntimeException
      */
-    public function getReview(): Options {
+    public function getReviewQueue(): Options {
         $key = 'review';
         if (!$this->cache->has($key)) {
             $formulas = $this->formulasTable->find(['reviewed', 0]);
@@ -254,28 +335,13 @@ class Brew {
     /**
      * Generates a list of tags from the formulas table.
      *
-     * @return array Returns an associative array with tag names as keys and their counts as values.
+     * @deprecated $tags property instead. This method will be removed in a future release.
      *
-     * @throws RuntimeException
+     * @see tags A collection of tags associated with a specific item or entity.
+     *
+     * @return array Returns an associative array with tag names as keys and their counts as values.
      */
     public function getTags(): array {
-        if (!isset($this->tags)) {
-            $formulas = $this->getTagged();
-            $tags = [];
-            foreach($formulas as $formula) {
-                $formula_tags = array_filter(explode(',', $formula->tags));
-                foreach($formula_tags as $tag) {
-                    if (!array_key_exists($tag, $tags)) {
-                        $tags[$tag] = 0;
-                    }
-                    $tags[$tag]++;
-                }
-            }
-            ksort($tags);
-
-            $this->tags = $tags;
-        }
-
         return $this->tags;
     }
 
@@ -303,11 +369,25 @@ class Brew {
     #endregion Data Retrieval
 
     #region Brew Actions
+    /**
+     * Triggers a notification alert when operating in dry-run mode, indicating no changes have been made.
+     *
+     * @return void
+     */
     protected function notifyDryRun(): void {
         if ($this->dryRun) {
             $this->trigger('alert', 'DRY-RUN: no changes made to files or data.');
         }
     }
+
+    /**
+     * Installs the given formula using the Homebrew package manager.
+     * If operating in dry-run mode, no actual installation is performed.
+     *
+     * @param Formula $formula The formula to be installed.
+     *
+     * @return bool Returns true if the formula was successfully installed, false otherwise.
+     */
     public function installAction(Formula $formula): bool {
         $this->notifyDryRun();
         $dr = $this->dryRun ? '-n ' : '';
@@ -316,6 +396,14 @@ class Brew {
         return $resultCode === 0 && !$this->dryRun;
     }
 
+    /**
+     * Executes the uninstallation of a given formula using the Brew package manager.
+     * Supports a dry-run mode where no actual changes are made.
+     *
+     * @param Formula $formula The formula to be uninstalled.
+     *
+     * @return bool Returns true if the uninstallation was successful and not in dry-run mode, otherwise false.
+     */
     public function uninstallAction(Formula $formula): bool {
         $this->notifyDryRun();
         $dr = $this->dryRun ? '-n ' : '';

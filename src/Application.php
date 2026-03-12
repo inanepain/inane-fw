@@ -26,6 +26,11 @@ declare(strict_types=1);
 namespace Knot;
 
 use Inane\Cli\Cli;
+use Inane\Config\{
+    Config,
+    ConfigAware\ConfigAwareAttribute,
+    ConfigAware\ConfigAwareInterface,
+    ConfigManager};
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
@@ -33,16 +38,10 @@ use Inane\File\Path;
 use Inane\Routing\Router;
 use Inane\ServiceManager\ServiceManager;
 use Inane\Session\SessionManager;
-use ReflectionObject;
-use Inane\Config\{
-    ConfigAware\ConfigAwareAttribute,
-    ConfigAware\ConfigAwareInterface,
-    Config
-};
 use Inane\Stdlib\{
-    Utility\ClassUtility,
-    Options
-};
+    Options,
+    Utility\ClassUtility};
+use ReflectionObject;
 
 use function getcwd;
 use function preg_match;
@@ -67,6 +66,8 @@ class Application {
     /**
      * @var ServiceManager  The ServiceManager class is responsible for managing and providing access to services.
      */
+
+    protected ConfigManager $configManager;
     protected(set) ServiceManager $serviceManager;
     /**
      * @var Path  The Path class represents a file system path and provides methods for manipulating and working with paths.
@@ -96,6 +97,8 @@ class Application {
      * @return void
      */
     private function __construct(protected(set) Config $config) {
+        $this->configManager = ConfigManager::instance()->setConfig($config);
+
         $this->initialise();
         $this->bootstrap();
     }
@@ -114,12 +117,7 @@ class Application {
 
         foreach($reflection->getAttributes() as $classAttribute) {
             if ($classAttribute->getName() === ConfigAwareAttribute::class) {
-                $attribute = $classAttribute->newInstance();
-                if ($attribute->globalConfig) {
-                    $object->setConfig($this->config);
-                } else {
-                    $object->setConfig($this->config->getConfig($object::class));
-                }
+                $this->configManager->setConfigFor($object);
             }
         }
     }
