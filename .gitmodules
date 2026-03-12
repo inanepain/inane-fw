@@ -78,3 +78,5 @@
 	path = lib/inanepain/servicemanager
 	url = http://blackbetty.local:3000/inanepain/servicemanager.git
 	branch = develop
+[submodule "auth"]
+	branch = develop

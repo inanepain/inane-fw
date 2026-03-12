@@ -1,0 +1,15 @@
+[Host]
+https://httpbin.org/
+
+[Query]
+id=inane
+
+[Headers]
+Content-Type: application/json
+Accept: application/json
+
+[Backend]
+curl
+
+[BackendOptions]
+-sS # Makes curl suppress its progress bar in a pipe
