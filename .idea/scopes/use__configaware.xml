@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="use: configaware" pattern="file:src/Application.php||file[inane-fw]:lib/inanepain/config//*||file[inane-fw]:lib/inanepain/stdlib//*||file[inane-fw]:config//*||file[inane-fw]:lib/inanepain/servicemanager//*" />
+</component>

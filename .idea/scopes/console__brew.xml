@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="console: brew" pattern="file:config/app.config.php||file:config/autoload/component.console.brew.global.php||file[inane-fw]:src/Brew//*||file:src/Application.php||file[inane-fw]:source/doc//*" />
+</component>
