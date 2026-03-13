@@ -48,7 +48,7 @@ class HtmlView extends View {
      * @var array<string, string>
      */
     protected array $sections = [];
-    
+
     /**
      * @param string                 $template Template identifier
      * @param array<string, mixed>   $data     Initial data
@@ -57,7 +57,7 @@ class HtmlView extends View {
         parent::__construct($data);
         $this->template = $template;
     }
-    
+
     /**
      * Sets the layout to wrap the rendered content.
      *
@@ -67,7 +67,7 @@ class HtmlView extends View {
         $this->layout = $layout;
         return $this;
     }
-    
+
     /**
      * Defines a named section content to be used by a layout.
      *
@@ -77,7 +77,7 @@ class HtmlView extends View {
         $this->sections[$name] = $content;
         return $this;
     }
-    
+
     /**
      * @inheritDoc
      */
@@ -85,38 +85,38 @@ class HtmlView extends View {
         // Process nested views first
         $processedData = [];
         foreach ($this->data as $key => $value) {
-            $processedData[$key] = $value instanceof View 
-                ? $value->render() 
+            $processedData[$key] = $value instanceof View
+                ? $value->render()
                 : $value;
         }
-        
+
         // Extract data for template
         extract($processedData);
-        
+
         // Make helper functions available
         $partial = function(string $name, array $data = []) {
             return $this->renderPartial($name, $data);
         };
-        
+
         $component = function(string $name, array $data = []) {
             return $this->renderComponent($name, $data);
         };
-        
+
         // Render main template
         ob_start();
         include TemplateResolver::resolve($this->template);
         $content = ob_get_clean();
-        
+
         // Wrap in layout if specified
         if ($this->layout) {
             ob_start();
             include TemplateResolver::resolve("layouts:{$this->layout}");
             return ob_get_clean();
         }
-        
+
         return $content;
     }
-    
+
     /**
      * Renders a partial template with merged view and local data.
      */
@@ -126,7 +126,7 @@ class HtmlView extends View {
         include TemplateResolver::resolve("partials:{$name}");
         return ob_get_clean();
     }
-    
+
     /**
      * Renders a component template with local data only.
      */
