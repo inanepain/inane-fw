@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/auth" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/cache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/cli" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/config" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/console" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/crypt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/datetime" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/db" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/dumper" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/event" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/file" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/http" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/id-forge" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/polyfill" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/quickrank" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/redis" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/routing" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/servicemanager" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/session" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/stdlib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/view" vcs="Git" />
+  </component>
+</project>

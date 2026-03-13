@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="inane: stdlib" pattern="file[inane-fw]:lib/inanepain/stdlib//*" />
+</component>
