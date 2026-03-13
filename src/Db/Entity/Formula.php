@@ -30,6 +30,7 @@ use Inane\Db\Entity\{
 use Knot\Brew\Brew;
 use Knot\Db\Table\FormulasTable;
 
+use function array_filter;
 use function array_unique;
 use function explode;
 use function implode;

@@ -52,9 +52,9 @@ class User extends AbstractEntity {
      * @var int|null The id of the user.
      */
     public int|null $id {
-        get => $this->data['id'];
+        get => $this->data[__PROPERTY__];
         set(int|null $value) {
-            $this->data['id'] = $value;
+            $this->data[__PROPERTY__] = $value;
         }
     }
 
@@ -62,9 +62,9 @@ class User extends AbstractEntity {
      * @var int The id of the department.
      */
     public int $iddepartment {
-        get => $this->data['iddepartment'];
+        get => $this->data[__PROPERTY__];
         set(int $value) {
-            $this->data['iddepartment'] = $value;
+            $this->data[__PROPERTY__] = $value;
         }
     }
 
@@ -78,7 +78,7 @@ class User extends AbstractEntity {
             return $d;
         }
         set(Department $value) {
-            $this->data['iddepartment'] = $value->id;
+            $this->data[__PROPERTY__] = $value->id;
         }
     }
 
@@ -86,9 +86,9 @@ class User extends AbstractEntity {
      * @var string The username of the user.
      */
     public string $username {
-        get => $this->data['username'];
+        get => $this->data[__PROPERTY__];
         set(string $value) {
-            $this->data['username'] = $value;
+            $this->data[__PROPERTY__] = $value;
         }
     }
 
@@ -96,9 +96,9 @@ class User extends AbstractEntity {
      * @var int If the user is online.
      */
     public int $online {
-        get => $this->data['online'];
+        get => $this->data[__PROPERTY__];
         set(int|bool $value) {
-            $this->data['online'] = (int)$value;
+            $this->data[__PROPERTY__] = (int)$value;
         }
     }
 
@@ -106,9 +106,9 @@ class User extends AbstractEntity {
      * @var string The name of the user.
      */
     public string $name {
-        get => $this->data['name'];
+        get => $this->data[__PROPERTY__];
         set(string $value) {
-            $this->data['name'] = $value;
+            $this->data[__PROPERTY__] = $value;
         }
     }
 
@@ -116,9 +116,9 @@ class User extends AbstractEntity {
      * @var string The email of the user.
      */
     public string $email {
-        get => $this->data['email'];
+        get => $this->data[__PROPERTY__];
         set(string $value) {
-            $this->data['email'] = $value;
+            $this->data[__PROPERTY__] = $value;
         }
     }
 
@@ -126,9 +126,9 @@ class User extends AbstractEntity {
      * @var string The groups of the user.
      */
     public string $groups {
-        get => $this->data['groups'];
+        get => $this->data[__PROPERTY__];
         set(string $value) {
-            $this->data['groups'] = $value;
+            $this->data[__PROPERTY__] = $value;
         }
     }
 
@@ -136,9 +136,9 @@ class User extends AbstractEntity {
      * @var int The rank of the user.
      */
     public int $rank {
-        get => $this->data['rank'];
+        get => $this->data[__PROPERTY__];
         set(int $value) {
-            $this->data['rank'] = $value;
+            $this->data[__PROPERTY__] = $value;
         }
     }
 }
