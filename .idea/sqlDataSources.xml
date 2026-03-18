@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="e21b843a-7d45-48f6-89f5-98e90d7eb1a1" name="inane-fw Mapping">
+      <data-sources db="d78c7105-d9f0-4c2c-a2b7-dc7afd248c6c" ddl="23667cee-c067-4252-a71c-25fbd67cf682" />
+      <scope>
+        <node negative="1">
+          <node kind="database" negative="1" />
+          <node kind="schema" qname="main" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="23667cee-c067-4252-a71c-25fbd67cf682" />
+          <option name="name" value="inane-fw (DDL)" />
+          <option name="dbmsName" value="SQLITE" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/source/database/inane-fw" />
+            </array>
+          </option>
+          <option name="remarks" value="Inane framework (DDL)" />
+          <option name="outPath" value="$PROJECT_DIR$/source/database/inane-fw" />
+          <option name="outLayout" value="File per object by schema.groovy" />
+        </State>
+      </list>
+    </option>
+  </component>
+</project>

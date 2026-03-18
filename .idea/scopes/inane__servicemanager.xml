@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="inane: servicemanager" pattern="file[inane-fw]:lib/inanepain/servicemanager//*" />
+</component>

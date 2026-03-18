@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalDependencies">
+    <plugin id="com.github.leondevlifelog.gitea" />
+    <plugin id="com.github.xepozz.gitattributes" />
+    <plugin id="com.jetbrains.sh" />
+    <plugin id="com.paperetto.dash" />
+    <plugin id="org.asciidoctor.intellij.asciidoc" />
+    <plugin id="org.mvnsearch.plugins.justPlugin" />
+    <plugin id="ru.adelf.idea.dotenv" />
+  </component>
+</project>

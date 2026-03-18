@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/src" isTestSource="false" packagePrefix="Inane\Auth\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/src" isTestSource="false" packagePrefix="Inane\Cache\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cli/src" isTestSource="false" packagePrefix="Inane\Cli\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/src" isTestSource="false" packagePrefix="Inane\Config\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/src" isTestSource="false" packagePrefix="Inane\Console\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/src" isTestSource="false" packagePrefix="Inane\Crypt\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/src" isTestSource="false" packagePrefix="Inane\Datetime\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/db/src" isTestSource="false" packagePrefix="Inane\Db\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/dumper/src" isTestSource="false" packagePrefix="Inane\Dumper\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/event/src" isTestSource="false" packagePrefix="Inane\Event\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/file/src" isTestSource="false" packagePrefix="Inane\File\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/http/src" isTestSource="false" packagePrefix="Inane\Http\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/src" isTestSource="false" packagePrefix="Inane\IdForge\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/src" isTestSource="false" packagePrefix="Inane\QR\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/redis/src" isTestSource="false" packagePrefix="Inane\Redis\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/routing/src" isTestSource="false" packagePrefix="Inane\Routing\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/src" isTestSource="false" packagePrefix="Inane\Session\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/src" isTestSource="false" packagePrefix="Inane\Stdlib\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/view/src" isTestSource="false" packagePrefix="Inane\View\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/datetime/src" isTestSource="true" packagePrefix="Inane\Datetime\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/rebecca/src" isTestSource="true" packagePrefix="Inane\Rebecca\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/stdlib/src" isTestSource="true" packagePrefix="Inane\Stdlib\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/view/src" isTestSource="true" packagePrefix="Inane\View\" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Knot\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/redis/./src" isTestSource="false" packagePrefix="Inane\Redis\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/src" isTestSource="false" packagePrefix="Inane\ServiceManager\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/polyfill/src" isTestSource="false" packagePrefix="Inane\Polyfill\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/minify" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/path-converter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-server-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/.ai" />
+      <excludeFolder url="file://$MODULE_DIR$/.vscode" />
+      <excludeFolder url="file://$MODULE_DIR$/data/formulas/.vscode" />
+      <excludeFolder url="file://$MODULE_DIR$/source/lib/lotto" />
+      <excludeFolder url="file://$MODULE_DIR$/.bookokrat_comments" />
+      <excludeFolder url="file://$MODULE_DIR$/backlog" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
