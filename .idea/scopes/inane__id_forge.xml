@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="inane: id-forge" pattern="file[inane-fw]:lib/inanepain/id-forge//*" />
+</component>

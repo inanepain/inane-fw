@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="inane: quickrank" pattern="file[inane-fw]:lib/inanepain/quickrank//*" />
+</component>
