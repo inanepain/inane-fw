@@ -1,0 +1,15 @@
+<div class="dashboard">
+    <h2>Dashboard</h2>
+    
+    <div class="grid">
+        <?php foreach ($widgets as $widget): ?>
+            <?= $component('card', [
+                'title' => $widget['title'],
+                'content' => $widget['content'],
+                'class' => 'dashboard-widget'
+            ]) ?>
+        <?php endforeach; ?>
+    </div>
+    
+    <?= $partial('sidebar', ['items' => $sidebarItems]) ?>
+</div>

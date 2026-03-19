@@ -122,6 +122,16 @@ class HtmlView extends View {
      */
     private function renderPartial(string $name, array $data = []): string {
         extract(array_merge($this->data, $data));
+
+        // Make helper functions available
+        $partial = function(string $name, array $data = []) {
+            return $this->renderPartial($name, $data);
+        };
+
+        $component = function(string $name, array $data = []) {
+            return $this->renderComponent($name, $data);
+        };
+
         ob_start();
         include TemplateResolver::resolve("partials:{$name}");
         return ob_get_clean();
@@ -132,6 +142,16 @@ class HtmlView extends View {
      */
     private function renderComponent(string $name, array $data = []): string {
         extract($data);
+
+        // Make helper functions available
+        $partial = function(string $name, array $data = []) {
+            return $this->renderPartial($name, $data);
+        };
+
+        $component = function(string $name, array $data = []) {
+            return $this->renderComponent($name, $data);
+        };
+        
         ob_start();
         include TemplateResolver::resolve("components:{$name}");
         return ob_get_clean();
