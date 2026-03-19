@@ -24,13 +24,12 @@ declare(strict_types = 1);
 
 namespace Inane\Rebecca;
 
-use Dev\Db\Entity\User;
-use Dev\Db\Table\UsersTable;
 use Inane\Config\Config;
 use Inane\Db\Adapter\Adapter;
 use Inane\IdForge\IdGeneratorFactory;
 use Inane\Rebecca\Command\Command;
-use PDO;
+use Knot\Db\Entity\User;
+use Knot\Db\Table\UsersTable;
 
 /**
  * Rebecca class to manage individual WebSocket connections
@@ -55,9 +54,9 @@ class Client {
         $this->connectedAt = microtime(true);
     }
 
-    protected function hydrate() {
+    protected function hydrate(): void {
         UsersTable::$db = new Adapter(Config::fromConfigFile()
-            ->get('db'));
+                                          ->get('db'));
         $ut = new UsersTable();
         $result = $ut->search(['username' => $this->get('user')]);
 
@@ -69,8 +68,13 @@ class Client {
     }
 
     public function __destruct() {
-        $this->identity->online = 0;
-        $this->identity->save();
+        // $this->identity->online = 0;
+        // $this->identity->save();
+        if (isset($this->identity)) {
+            $user = $this->identity;
+            $user->online = 0;
+            $user->save();
+        }
     }
 
     public function set(string $key, $value): void {

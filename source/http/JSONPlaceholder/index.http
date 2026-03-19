@@ -1,0 +1,75 @@
+/*
+# JSON PLaceholder
+
+> [ Base URL: develop/ ]
+
+Testing requests.
+
+Resources:
+ - /posts	    100 posts
+ - /comments	500 comments
+ - /albums	    100 albums
+ - /photos	    5000 photos
+ - /todos	    200 todos
+ - /users	    10 users
+
+[the developer - Website](https://jsonplaceholder.typicode.com)
+*/
+
+@host=https://jsonplaceholder.typicode.com
+@endPoint=todos
+@id=1
+
+###
+# dynamic
+GET {{host}}/{{endPoint}}/{{id}}
+
+?? status == 200
+
+###########################
+
+###
+# posts
+GET {{host}}/posts/{{id}}
+
+?? status == 200
+
+###########################
+
+###
+# comments
+GET {{host}}/comments/{{id}}
+
+?? status == 200
+
+###########################
+
+###
+# albums
+GET {{host}}/albums/{{id}}
+
+?? status == 200
+
+###########################
+
+###
+# photos
+GET {{host}}/photos/{{id}}
+
+?? status == 200
+
+###########################
+
+###
+# todos
+GET {{host}}/todos/{{id}}
+
+?? status == 200
+
+###########################
+
+###
+# users
+GET {{host}}/users/{{id}}
+
+?? status == 200

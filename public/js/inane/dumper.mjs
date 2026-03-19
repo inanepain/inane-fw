@@ -485,7 +485,7 @@ class Dumper {
         const children = (this == Dumper || this.#children == undefined) ? Children : this.#children;
 
         if (!children.has(name)) {
-            // Any unset child options are copied from parent
+            // Any unset child options are copied from the parent
             if (this != Dumper) mergeOptions(options, this.#options);
             if (options.level && options.level.name) options.level = options.level.name;
 

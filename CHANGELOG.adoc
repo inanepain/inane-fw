@@ -24,13 +24,54 @@
 
 == History image:./icon.png[title={pkg-id},25] {pkg-id}
 
+== TODO
+
+More of a wish or brain fart list than an actual TODO list. Either way it is a place to jot down any thoughts or ideas so that they don't get lost in the ether. If anything comes of them is unknown, but at least they'll be seen.
+
+* brew
+** configuration: colours
+
+<<<
+
 :leveloffset: +1
 
-= 0.1.0-dev (2025 Xxx xx)
-:revnumber: 0.1.0-dev
-:revdate: 2025-XX-XX
+= 0.2.0-dev (2026 Xxx xx)
+:revnumber: 0.2.0-dev
+:revdate: 2026-XX-XX
 :revremark: -dev
 :version-label: Unconfirmed
+
+* Gitea commands.
+* Brew:
+** added auto update.
+*** with interval checking.
+** added configuration:
+*** Text Colours.
+*** Icons.
+** php docblocks added/updated.
+** usability/readability updates.
+** review menu:
+*** cleaned up menu options.
+*** flag - *toggles* flagged status.
+*** *default action* takes *previous action* into account
+* Added more code comments.
+* Added minify console commands.
+* Updated *README.adoc*:
+** more notes on structure.
+** New *Develop* section that covers getting the latest code with *submodules*.
+* Database:
+** Added *source/database* for the database *DDL* files.
+** DDL structure: added the database connection as the first-level directory.
+** renamed to *_inane-fw.sqlite_*:
+*** keep in line with the project's name.
+*** `.sqlite` just makes more sense then `.db`.
+
+:leveloffset!:
+:leveloffset: +1
+
+= 0.1.0 (2025 Nov 11)
+:revnumber: 0.1.0
+:revdate: 2025-11-11
 
 * initial release
 

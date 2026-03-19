@@ -32,16 +32,16 @@ use function strtolower;
 
 /**
  * AbstractUnit
- * 
+ *
  * @version 0.1.0
  */
 abstract class AbstractUnit implements UnitInterface, Stringable {
     public UnitEnum $type {
-        get => UnitEnum::{array_pop(@explode('\\', static::class))};
+        get => UnitEnum::{@array_pop(@explode('\\', static::class))};
     }
 
     public int|float $unit {
-        get => $this->{strtolower(array_pop(@explode('\\', static::class)))};
+        get => $this->{strtolower(@array_pop(@explode('\\', static::class)))};
     }
 
     public function __toString(): string {

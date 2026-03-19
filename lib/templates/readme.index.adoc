@@ -1,0 +1,32 @@
+= inanepain/xxx image:./icon.png[title=inanepain/xxx,25]
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Xxx.
+:keywords: inanepain, library, xxx
+:homepage: https://github.com/inanepain/xxx
+:revnumber: 0.1.0
+:revdate: 2026-xx-xx
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: xxx
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+== image:./icon.png[title={pkg-id},25] {pkg-id}
+
+{description}
+
+:sectnums:
+
+<<<
+
+include::./part/install.adoc[leveloffset=+1]
+
+<<<

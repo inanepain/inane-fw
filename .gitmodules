@@ -1,57 +1,86 @@
 [submodule "lib/inanepain/auth"]
 	path = lib/inanepain/auth
 	url = http://blackbetty.local:3000/inanepain/auth.git
+	branch = develop
 [submodule "lib/inanepain/cache"]
 	path = lib/inanepain/cache
 	url = http://blackbetty.local:3000/inanepain/cache.git
+	branch = develop
 [submodule "lib/inanepain/cli"]
 	path = lib/inanepain/cli
 	url = http://blackbetty.local:3000/inanepain/cli.git
+	branch = develop
 [submodule "lib/inanepain/config"]
 	path = lib/inanepain/config
 	url = http://blackbetty.local:3000/inanepain/config.git
+	branch = develop
 [submodule "lib/inanepain/console"]
 	path = lib/inanepain/console
 	url = http://blackbetty.local:3000/inanepain/console.git
+	branch = develop
 [submodule "lib/inanepain/crypt"]
 	path = lib/inanepain/crypt
 	url = http://blackbetty.local:3000/inanepain/crypt.git
+	branch = develop
 [submodule "lib/inanepain/datetime"]
 	path = lib/inanepain/datetime
 	url = http://blackbetty.local:3000/inanepain/datetime.git
+	branch = develop
 [submodule "lib/inanepain/db"]
 	path = lib/inanepain/db
 	url = http://blackbetty.local:3000/inanepain/db.git
+	branch = develop
 [submodule "lib/inanepain/dumper"]
 	path = lib/inanepain/dumper
 	url = http://blackbetty.local:3000/inanepain/dumper.git
+	branch = develop
 [submodule "lib/inanepain/event"]
 	path = lib/inanepain/event
 	url = http://blackbetty.local:3000/inanepain/event.git
+	branch = develop
 [submodule "lib/inanepain/file"]
 	path = lib/inanepain/file
 	url = http://blackbetty.local:3000/inanepain/file.git
+	branch = develop
 [submodule "lib/inanepain/http"]
 	path = lib/inanepain/http
 	url = http://blackbetty.local:3000/inanepain/http.git
+	branch = develop
 [submodule "lib/inanepain/id-forge"]
 	path = lib/inanepain/id-forge
 	url = http://blackbetty.local:3000/inanepain/id-forge.git
+	branch = develop
 [submodule "lib/inanepain/quickrank"]
 	path = lib/inanepain/quickrank
 	url = http://blackbetty.local:3000/inanepain/quickrank.git
+	branch = develop
 [submodule "lib/inanepain/redis"]
 	path = lib/inanepain/redis
 	url = http://blackbetty.local:3000/inanepain/redis.git
+	branch = develop
 [submodule "lib/inanepain/routing"]
 	path = lib/inanepain/routing
 	url = http://blackbetty.local:3000/inanepain/routing.git
+	branch = develop
 [submodule "lib/inanepain/session"]
 	path = lib/inanepain/session
 	url = http://blackbetty.local:3000/inanepain/session.git
+	branch = develop
 [submodule "lib/inanepain/stdlib"]
 	path = lib/inanepain/stdlib
 	url = http://blackbetty.local:3000/inanepain/stdlib.git
+	branch = develop
 [submodule "lib/inanepain/view"]
 	path = lib/inanepain/view
 	url = http://blackbetty.local:3000/inanepain/view.git
+	branch = develop
+[submodule "lib/inanepain/servicemanager"]
+	path = lib/inanepain/servicemanager
+	url = http://blackbetty.local:3000/inanepain/servicemanager.git
+	branch = develop
+[submodule "auth"]
+	branch = develop
+[submodule "lib/inanepain/polyfill"]
+	path = lib/inanepain/polyfill
+	url = https://github.com/inanepain/polyfill.git
+	branch = develop

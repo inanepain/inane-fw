@@ -4,7 +4,7 @@ The basic contents for the directories.
 
 == config
 
-Configuration files, generally of a global nature, i.e. files that effect the whole site / all modules.
+Configuration files, generally of a global nature, i.e. files that affect the whole site / all modules.
 
 == data
 
@@ -18,33 +18,15 @@ Files for client downloading.
 
 The inanepain library files.
 
+== module
+
+Sites main source code.
+
 == public
 
 Web server root.
 
-== src
-
-Sites main source code.
-
-== source
-
-Code for additional components.
-
-=== source/doc
-
-Asciidoc files that build the README and CHANGELOG.
-
-=== source/image
-
-Custom images for the site.
-
-=== source/lib
-
-Inanepain development area for new features or just something you are not sure of as yet and might scrap.
-
-=== source/style
-
-Stylesheet source files.
+include::../../../source.adoc[leveloffset=+1]
 
 == vendor
 
