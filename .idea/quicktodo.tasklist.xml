@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.oleksiy.quicktodo.TaskService">
+    <tasks>
+      <task id="44fd1937-ac37-4421-b58f-9430fbf37ab2" text="TODO: validate configKey @feature #feature" priority="MEDIUM" createdAt="1772847390247" lastModified="1772847390248">
+        <option name="codeLocation">
+          <codeLocation relativePath="lib/inanepain/config/src/ConfigAware/ConfigAwareAttribute.php" line="34" column="6" endLine="34" endColumn="48" />
+        </option>
+        <option name="priorityEnum" value="MEDIUM" />
+        <description>validate configKey @feature #feature</description>
+      </task>
+    </tasks>
+  </component>
+</project>

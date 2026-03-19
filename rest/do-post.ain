@@ -1,0 +1,12 @@
+[Method]
+POST
+
+[Host]
+/post
+
+[Body]
+{
+  "some": "json",  
+  "more": "jayson",
+  "name": "${USER}"
+}

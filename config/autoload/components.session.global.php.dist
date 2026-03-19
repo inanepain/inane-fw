@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Skeleton: Inane-FW
+ *
+ * Web or console application framework using the inanepain libraries.
+ *
+ * $Id$
+ * $Date$
+ *
+ * PHP version 8.5
+ *
+ * @author Philip Michael Raab<philip@cathedral.co.za>
+ * @package skeleton\inane-fw
+ * @category inane-fw
+ *
+ * @license UNLICENSE
+ * @license https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
+ */
+
+declare(strict_types=1);
+
+use Inane\Session\SessionManager;
+
+return [
+    'components' => [
+        SessionManager::class => [
+            'name'            => 'PHPSESSID',
+            'remember_me'     => false, // Persistent session (cookie_lifetime = 30 days)
+            'cookie_lifetime' => 0, // 0 = expires on browser close
+            'cookie_path'     => '/',
+            'cookie_domain'   => '',
+            'cookie_secure'   => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+            'cookie_httponly' => true,
+            'cookie_samesite' => 'Lax', // Lax | Strict | None
+            'use_strict_mode' => true,
+            'use_only_cookies' => true,
+            'gc_maxlifetime'  => 1440,
+        ],
+    ],
+];

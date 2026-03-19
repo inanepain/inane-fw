@@ -49,19 +49,19 @@ abstract class View {
      * HTTP content type this view produces (e.g. "text/html").
      */
     protected string $contentType;
-    
+
     /**
      * @param array<string, mixed> $data Initial view data
      */
     public function __construct(array $data = []) {
         $this->data = $data;
     }
-    
+
     /**
      * Render the view to its string representation.
      */
     abstract public function render(): string;
-    
+
     /**
      * Sets a single data item on the view.
      *
@@ -74,7 +74,7 @@ abstract class View {
         $this->data[$key] = $value;
         return $this;
     }
-    
+
     /**
      * Nests a child view which will be rendered when this view renders.
      *

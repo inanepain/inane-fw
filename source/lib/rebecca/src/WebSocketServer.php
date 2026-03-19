@@ -25,13 +25,24 @@ declare(strict_types = 1);
 namespace Inane\Rebecca;
 
 use Inane\Rebecca\Command\Command;
-use Inane\Stdlib\Array\OptionsInterface;
-use Inane\Stdlib\Json;
-use Inane\Stdlib\Options;
-use OpenSwoole\Http\Request;
-use OpenSwoole\WebSocket\Frame;
-use OpenSwoole\WebSocket\Server;
+use Inane\Stdlib\{
+    Array\OptionsInterface,
+    Json,
+    Options};
+use Swoole\{
+    Http\Request,
+    Http\Response,
+    WebSocket\Frame,
+    WebSocket\Server};
 use WeakReference;
+
+use function array_keys;
+
+// use OpenSwoole\{
+//     WebSocket\Frame,
+//     WebSocket\Server,
+//     Http\Request
+// };
 
 /**
  * WebSocket Server with Command Queue
@@ -54,7 +65,9 @@ abstract class WebSocketServer {
         $this->server = new Server($host, $port);
 
         $this->server->set([
-            'worker_num' => 2,
+            'worker_num'                 => 2,
+            'open_websocket_close_frame' => true,
+            'open_websocket_ping_frame'  => true,
             //                    'task_worker_num' => 2,
         ]);
 
@@ -89,7 +102,7 @@ abstract class WebSocketServer {
     private function setupEventHandlers(): void {
         $this->server->on('start', function(Server $server) {
             echo "WebSocket Server started at ws://{$server->host}:{$server->port}\n";
-            echo "Available commands: " . implode(', ', array_keys($this->commands)) . "\n";
+            echo 'Available commands: ' . implode(', ', array_keys($this->commands)) . "\n";
         });
 
         $this->server->on('open', function(Server $server, Request $request) {
@@ -106,6 +119,12 @@ abstract class WebSocketServer {
             $server->push($request->fd, Json::encode([
                 'command'            => 'welcome',
                 'message'            => 'Connected to WebSocket server',
+                'request'            => [
+                    'structure' => [
+                        'command' => 'command_name',
+                        'data'    => '(optional) argument/parameter array',
+                    ],
+                ],
                 'fd'                 => $request->fd,
                 'rank'               => $client->rank,
                 'available_commands' => array_map(function($cmd) {
@@ -119,65 +138,52 @@ abstract class WebSocketServer {
         });
 
         $this->server->on('message', function(Server $server, Frame $frame) {
+            $event = new MessageEvent($this, $frame);
+
             echo "Received from #{$frame->fd}: {$frame->data}\n";
 
-            /**
-             * @var Client|null $client
-             */
-            $client = self::$clients[$frame->fd] ?? null;
-            if (!$client) {
-                $server->push($frame->fd, Json::encode([
-                    'error' => 'Rebecca not found',
-                ]));
+            // TODO: Handle `opcode` 0x09 (Ping) frames
+            // if ($frame->opcode == 0x09) {
+            //     $frame->data = ['type'];
+            //     echo "Ping frame received: Code {$frame->opcode}\n";
 
+            //     // Reply with Pong frame
+            //     $pongFrame = new Frame;
+            //     $pongFrame->opcode = WEBSOCKET_OPCODE_PONG;
+            //     $server->push($frame->fd, $pongFrame);
+            // }
+
+            if ($err = $event->getError('client')) {
+                $server->push($frame->fd, Json::encode($err));
                 return;
             }
 
             try {
-                $packet = new Options($frame->data);
-
-                if ($packet->offsetExists('user') && !$client->has('user')) {
-                    $client->set('user', $packet->offsetGet('user'));
-                    echo 'USER: ' . $client->get('user') . ' SETs' . PHP_EOL;
-                }
-
-                $data = $packet->data;
-                if (!$packet || !$packet->offsetExists('command')) {
-                    $server->push($frame->fd, Json::encode([
-                        'error' => 'Invalid format. Expected JSON with "command" field',
-                    ]));
-
+                if ($err = $event->getError('structure')) {
+                    $server->push($frame->fd, Json::encode($err));
                     return;
                 }
 
-                $commandName = $packet->command;
-                if (!isset($this->commands[$commandName])) {
-                    $server->push($frame->fd, Json::encode([
-                        'error'              => "Unknown command: {$commandName}",
-                        'available_commands' => array_keys($this->commands),
-                    ]));
-
+                if ($err = $event->getError('command')) {
+                    $server->push($frame->fd, Json::encode($err));
                     return;
                 }
 
-                $command = $this->commands[$commandName];
-                // Check if a client has sufficient rank to execute a command
-                if (!$client->canExecuteCommand($command)) {
+                // Check if a client has high enough rank to execute a command
+                if (!$event->client->canExecuteCommand($event->command)) {
                     $server->push($frame->fd, Json::encode([
-                        'error'         => "Insufficient rank to execute command: {$commandName}",
-                        'required_rank' => $command->getRank(),
-                        'your_rank'     => $client->getRank(),
+                        'error'         => "Insufficient rank to execute command: {$event->commandName}",
+                        'required_rank' => $event->command->getRank(),
+                        'your_rank'     => $event->client->getRank(),
                     ]));
 
                     return;
                 }
 
                 // Execute the command
-                $command->execute($server, $client, $data);
+                $event->executeCommand();
             } catch (\Exception $e) {
-                $server->push($frame->fd, Json::encode([
-                    'error' => 'Error processing command: ' . $e->getMessage(),
-                ]));
+                $server->push($frame->fd, Json::encode(['error' => 'Error processing command: ' . $e->getMessage(),]));
             }
         });
 
@@ -185,21 +191,55 @@ abstract class WebSocketServer {
             echo "Rebecca #{$fd} disconnected\n";
             unset(self::$clients[$fd]);
         });
+
+        $this->server->on('request', function(Request $request, Response $response) {
+            // Receive HTTP request and get the value of 'message' from get, then push it to users
+            // Loop through all websocket connections' fds and push to all users
+
+            // $server = static::$instance->get()->server;
+
+            // $server->connections traverse all websocket connection users' fds, push to all users
+            foreach($this->server->connections as $fd) {
+                // Need to check if it is a correct websocket connection, otherwise pushing may fail
+                if ($this->server->isEstablished($fd)) {
+                    $this->server->push($fd, $request->get['message']);
+                }
+            }
+        });
     }
 
+    #region Command Management
+    public function commands(): array {
+        return array_keys($this->commands);
+    }
     /**
      * Register a command
      */
-    public function registerCommand(Command $command): void {
-        $this->commands[$command->getName()] = $command;
-        echo "Registered command: {$command->getName()} (Rank {$command->getRank()})\n";
+    public function registerCommand(Command $command, bool $replace = false): void {
+        if (!$this->hasCommand($command->getName()) || $replace) {
+            $this->commands[$command->getName()] = $command;
+            echo "Registered command: {$command->getName()} (Rank {$command->getRank()})\n";
+        }
     }
+
+    public function hasCommand(string $commandName): bool {
+        return isset($this->commands[$commandName]);
+    }
+
+    public function getCommand(string $commandName): ?Command {
+        return $this->hasCommand($commandName) ? $this->commands[$commandName] : null;
+    }
+    #endregion Command Management
 
     /**
      * Get a client by file descriptor
      */
     public function getClient(int $fd): ?Client {
         return array_find(self::$clients, static fn($client) => $client->fd === $fd);
+    }
+
+    public function getClientByFrame(Frame $frame): ?Client {
+        return self::$clients[$frame->fd] ?? null;
     }
 
     /**

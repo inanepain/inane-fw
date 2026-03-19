@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * Skeleton: Inane-FW
+ *
+ * Web or console application framework using the inanepain libraries.
+ *
+ * $Id$
+ * $Date$
+ *
+ * PHP version 8.5
+ *
+ * @author Philip Michael Raab<philip@cathedral.co.za>
+ * @package skeleton\inane-fw
+ * @category inane-fw
+ *
+ * @license UNLICENSE
+ * @license https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
+ */
+
+declare(strict_types=1);
+
+return [
+	'redis' => [
+		'connection' => [
+			'host' => '127.0.0.1',
+			'port' => 6379,
+		],
+		'auth' => [
+			'username' => 'philip',
+			'password' => 'Esoter1c!@',
+		],
+		'db' => 0,
+	],
+];

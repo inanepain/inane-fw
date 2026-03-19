@@ -2,5 +2,17 @@ Inane-FW:
 	Configuration & Setup:
 		Composer:
 			Libraries still outstanding
-			- openswoole/core
-			- openswoole/ide-helper
+			- openswoole/core @done(2026-03-06)
+			- openswoole/ide-helper @done(2026-03-06)
+	Step 1: Index (Application):
+		Get the main application loop running
+		Web:
+			Web applications & routing
+		Console:
+			Console commands & routing
+			Brew:
+				brew utility
+				review:
+					- flag/unflag (should toggle depending on state) @enhancement
+					- option to only review new formula @feature @enhancement
+					- after *install* default action should switch to *next* @feature @enhancement

@@ -1,0 +1,27 @@
+CREATE TABLE formulas (
+	name      TEXT(50)                            NOT NULL
+		PRIMARY KEY,
+	desc      TEXT(200),
+	version   TEXT(40),
+	homepage  TEXT(200),
+	installed INTEGER NOT NULL ON CONFLICT REPLACE DEFAULT 0,
+	reviewed INTEGER NOT NULL ON CONFLICT REPLACE DEFAULT 0,
+	tags TEXT(100) NOT NULL ON CONFLICT REPLACE DEFAULT "",
+	flag INTEGER NOT NULL ON CONFLICT REPLACE DEFAULT 0,
+	state TEXT(10) NOT NULL ON CONFLICT REPLACE DEFAULT "update",
+	updated INTEGER NOT NULL ON CONFLICT REPLACE DEFAULT (UNIXEPOCH()),
+	modified TEXT NOT NULL ON CONFLICT REPLACE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_flag
+	ON formulas (flag);
+
+CREATE INDEX idx_installed
+	ON formulas (installed);
+
+CREATE INDEX idx_reviewed
+	ON formulas (reviewed);
+
+CREATE INDEX idx_tags
+	ON formulas (tags);
+

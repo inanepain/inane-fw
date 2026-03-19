@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BetterCommentsSettings">
+    <option name="initialized" value="true" />
+    <option name="tags">
+      <list>
+        <CustomTag>
+          <option name="color" value="#474747" />
+          <option name="type" value="//" />
+        </CustomTag>
+        <CustomTag>
+          <option name="color" value="#3F9B0B" />
+          <option name="type" value="todo:" />
+        </CustomTag>
+        <CustomTag>
+          <option name="backgroundColor" value="#F9A4A5" />
+          <option name="bold" value="true" />
+          <option name="color" value="#FF2222" />
+          <option name="type" value="fix:" />
+        </CustomTag>
+        <CustomTag>
+          <option name="backgroundColor" value="#F9A4A5" />
+          <option name="bold" value="true" />
+          <option name="color" value="#FF2222" />
+          <option name="type" value="fixme:" />
+        </CustomTag>
+        <CustomTag>
+          <option name="bold" value="true" />
+          <option name="color" value="#FF7518" />
+          <option name="type" value="bug:" />
+        </CustomTag>
+        <CustomTag>
+          <option name="bold" value="true" />
+          <option name="color" value="#FF7518" />
+          <option name="type" value="debug:" />
+        </CustomTag>
+        <CustomTag>
+          <option name="color" value="#0099DD" />
+          <option name="type" value="[ ]:" />
+        </CustomTag>
+        <CustomTag>
+          <option name="color" value="#1864BD" />
+          <option name="hasStrikethrough" value="true" />
+          <option name="type" value="[x]:" />
+        </CustomTag>
+        <CustomTag>
+          <option name="bold" value="true" />
+          <option name="color" value="#EED202" />
+          <option name="type" value="hack:" />
+        </CustomTag>
+        <CustomTag>
+          <option name="color" value="#020035" />
+          <option name="type" value="note:" />
+        </CustomTag>
+      </list>
+    </option>
+  </component>
+</project>

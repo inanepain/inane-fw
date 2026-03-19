@@ -60,6 +60,49 @@ composer require {pkg-id}
 
 :leveloffset: +1
 
+= Develop
+
+Since this is more of a *development* project, it is most likely that you'd want to *checkout* the code rather than use *composer* to install it.
+
+== Setup
+
+To get the code with all and sundry, use git.
+
+.Clone & enter the repository
+[source,shell]
+----
+git clone ssh://philip@blackbetty.local:2222/skeleton/inane-fw.git
+cd inane-fw
+----
+
+Next up is to get all inane libraries.
+
+.Init submodules
+[source,shell]
+----
+git submodule update --init --recursive
+----
+
+This leaves one last step in the setup process, set the _submodules_ to track the *branch* "develop"
+
+.Track & fetch develop
+[source,shell]
+----
+# update the tracked branch
+for d in lib/inanepain/*; do git submodule set-branch -b develop $d; done
+
+# fetch the latest commits on the branch
+git submodule update --remote --recursive
+----
+
+That's the setup done.
+
+:leveloffset!:
+
+<<<
+
+:leveloffset: +1
+
 = Quick Start
 
 :leveloffset!:
@@ -74,7 +117,7 @@ The basic contents for the directories.
 
 == config
 
-Configuration files, generally of a global nature, i.e. files that effect the whole site / all modules.
+Configuration files, generally of a global nature, i.e. files that affect the whole site / all modules.
 
 == data
 
@@ -88,33 +131,65 @@ Files for client downloading.
 
 The inanepain library files.
 
+== module
+
+Sites main source code.
+
 == public
 
 Web server root.
 
-== src
+:leveloffset: +1
 
-Sites main source code.
-
-== source
+= source
 
 Code for additional components.
 
-=== source/doc
+:leveloffset: +1
 
-Asciidoc files that build the README and CHANGELOG.
+= database
 
-=== source/image
+Stores the DDL for the project's databases. Thus keeping changes tracked in git. Each connection should have its own directory under which schemas, tables and sundry are contained.
+
+[source,text]
+----
+├──  database/ <1>
+│   └──  inane-fw/ <2>
+│       └──  main/ <3>
+│           ├──  __mobile_app_scripts__.sql <4>
+│           ├──  departments.sql
+│           ├──  divinations.sql
+│           ├──  formulas.sql
+│           ├──  fortunes.sql
+│           ├──  sqlean_define.sql
+│           ├──  students.sql
+│           ├──  update_timestamp.sql
+│           └──  users.sql
+----
+<1> Root of database DDL files.
+<2> Connection name.
+<3> Schema.
+<4> Table, view, trigger, function, ... scripts.
+
+:leveloffset: 2
+
+== doc
+
+AsciiDoc files that build the project README and CHANGELOG.
+
+== image
 
 Custom images for the site.
 
-=== source/lib
+== lib
 
-Inanepain development area for new features or just something you are not sure of as yet and might scrap.
+Development area for new, overriding or extending libraries. It can also be a bit of a playground to experiment with various ideas.
 
-=== source/style
+== style
 
 Stylesheet source files.
+
+:leveloffset: 1
 
 == vendor
 

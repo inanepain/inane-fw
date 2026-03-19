@@ -5,7 +5,7 @@
  * Search Inane Only: (import.*inane/.*.js\?v=)(?:[0-9]*)
  * Search All: (import.*.js\?v=)(?:[0-9]*)
  * Replace: $1X
- * Where: X = new version number
+ * Clause: X = new version number
  */
 
 /*
