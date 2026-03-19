@@ -55,6 +55,57 @@ if (APP_DEBUG || Cli::isCli()) {
 ini_set('error_reporting', (string)$error_reporting);
 #endregion DEBUG HTACCESS FLAGS
 
+//$page = 1;
+//if ($page === 1) {
+//    // Simple page
+//    $view = new HtmlView('dashboard', [
+//        'title'        => 'User Dashboard',
+//        'widgets'      => [
+//            [
+//                'title'   => 'Stats',
+//                'content' => '100 users'
+//            ],
+//            [
+//                'title'   => 'Revenue',
+//                'content' => '$5,000'
+//            ]
+//        ],
+//        'sidebarItems' => [
+//            'Profile',
+//            'Settings',
+//            'Logout'
+//        ]
+//    ]);
+//
+//    $view->setLayout('main');
+//    echo $view->render();
+//} elseif ($page === 2) {
+//    // Nested views
+//    $cardView = new HtmlView('components:card', [
+//        'title'   => 'Welcome',
+//        'content' => 'Hello user!'
+//    ]);
+//
+//    $pageView = new HtmlView('home');
+//    $pageView->setLayout('main')
+//        ->nest('welcomeCard', $cardView)
+//        ->setData('title', 'Home Page')
+//    ;
+//
+//    echo $pageView->render();
+//} elseif ($page === 3) {
+//    $apiView = new JsonView([
+//        'status' => 'success',
+//        'data' => [
+//            'user' => ['id' => 1, 'name' => 'John']
+//        ]
+//    ]);
+//
+//    header('Content-Type: application/json');
+//    echo $apiView->render();
+//}
+//exit;
+
 return (static function(Application $app): bool|int {
     // FIX: boo
     // FIXME: boo

@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+php -dxdebug.start_with_request=yes "$@"

@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace Knot;
 
+use Dev\App\AppError;
 use Inane\Cli\Cli;
 use Inane\Config\{
     Config,
@@ -35,6 +36,8 @@ use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
 use Inane\File\Path;
+use Inane\Routing\Exception\InvalidRouteException;
+use Inane\Routing\RouteMatch;
 use Inane\Routing\Router;
 use Inane\ServiceManager\ServiceManager;
 use Inane\Session\SessionManager;
@@ -44,6 +47,7 @@ use Inane\Stdlib\{
 use ReflectionObject;
 
 use function getcwd;
+use function is_null;
 use function preg_match;
 
 use const GLOB_BRACE;
@@ -77,6 +81,13 @@ class Application {
      * @var bool Returns true if the application is running in console mode, false otherwise.
      */
     private(set) bool $isConsole = PHP_SAPI === 'cli';
+
+    /**
+     * The matched route
+     *
+     * @var \Inane\Routing\RouteMatch The matched route
+     */
+    public protected(set) ?RouteMatch $routeMatch;
 
     /**
      * Gets the instance of the application
@@ -188,6 +199,18 @@ class Application {
         else $this->configureRouterHTTP();
     }
 
+    /**
+     * Configures the HTTP router with the defined options and controllers.
+     *
+     * The method initializes the router with predefined configurations such as
+     * query string handling, controller glob patterns, and default controllers.
+     * It also merges additional configurations from an external source, processes
+     * controller files, and adds the resulting routes to the router.
+     *
+     * @return void
+     *
+     * @throws \Exception
+     */
     protected function configureRouterHTTP(): void {
         $routerConfig = new Options([
             'splitQuerystring' => false,
@@ -258,6 +281,21 @@ class Application {
 
         //         dd($commands, 'commands');
         $this->router->registerCommands($commands);
+    }
+
+    /**
+     * Routes the request to the controller
+     *
+     * @return void
+     *
+     * @throws \Inane\Stdlib\Exception\BadMethodCallException
+     * @throws \Inane\Stdlib\Exception\UnexpectedValueException
+     * @throws \ReflectionException
+     */
+    protected function routing(): void {
+        $this->routeMatch = $this->router->match($this->request);
+
+        if (is_null($this->routeMatch)) throw new InvalidRouteException('Request Error: Unmatched `file` or `route`!', AppError::InvalidRoute->value);
     }
 
     /**
