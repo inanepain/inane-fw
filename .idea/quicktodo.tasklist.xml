@@ -2,6 +2,13 @@
 <project version="4">
   <component name="com.oleksiy.quicktodo.TaskService">
     <tasks>
+      <task id="a34af567-f12f-405a-bde9-387f9adf35fa" text="@deprecated Use QueryBuilder instead" priority="HIGH" createdAt="1774471999022" lastModified="1774472005923">
+        <option name="codeLocation">
+          <codeLocation relativePath="lib/inanepain/db/src/Sql/SQLQueryBuilderInterface.php" line="36" column="3" endLine="36" endColumn="39" />
+        </option>
+        <option name="priorityEnum" value="HIGH" />
+        <description>Use QueryBuilder instead</description>
+      </task>
       <task id="44fd1937-ac37-4421-b58f-9430fbf37ab2" text="TODO: validate configKey @feature #feature" priority="MEDIUM" createdAt="1772847390247" lastModified="1772847390248">
         <option name="codeLocation">
           <codeLocation relativePath="lib/inanepain/config/src/ConfigAware/ConfigAwareAttribute.php" line="34" column="6" endLine="34" endColumn="48" />
@@ -10,5 +17,8 @@
         <description>validate configKey @feature #feature</description>
       </task>
     </tasks>
+    <expandedTaskIds>
+      <id value="44fd1937-ac37-4421-b58f-9430fbf37ab2" />
+    </expandedTaskIds>
   </component>
 </project>
