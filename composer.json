@@ -67,7 +67,8 @@
         "psr/http-factory": "*",
         "psr/http-message": "*",
         "psr/http-server-handler": "*",
-        "psr/simple-cache": ">= 3"
+        "psr/simple-cache": ">= 3",
+        "ext-mbstring": "*"
     },
     "scripts": {
         "inane": [
