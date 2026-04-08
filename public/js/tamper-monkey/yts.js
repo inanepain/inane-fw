@@ -1173,10 +1173,13 @@ const shortcut = ((window) => {
 //#region Query String
 ((window) => {
     const params = new URLSearchParams(window.location.search);
+    console.log(params, Dumper);
     if (params.has('dumperLevel')) {
+        console.log('params has dumperLevel');
         const dl = params.get('dumperLevel').toUpperCase();
 
         if (Dumper[dl]) {
+            console.log('VALID: params has dumperLevel');
             window.dumperLevel = Dumper[dl];
         }
     } else if (window.dumperLevel === undefined) {
@@ -1185,6 +1188,7 @@ const shortcut = ((window) => {
         const dl = window.dumperLevel.toUpperCase();
 
         if (Dumper[dl]) {
+            console.log('VALID: params has dumperLevel');
             window.dumperLevel = Dumper[dl];
         }
     }
@@ -1296,7 +1300,7 @@ const shortcut = ((window) => {
     const shortcut = window.shortcut;
     const path = window.location.pathname;
 
-    dumper.info('Register Shortcuts:');
+    dumper.debug('Register Shortcuts:');
 
     //#region Menu
     const btnBrowse = iq('.nav-links li').filter(el => el.textContent.includes('Browse Movies'))?.pop()?.iq('@a');
@@ -1367,6 +1371,187 @@ const shortcut = ((window) => {
             ScrollTo.element((iq('@footer')), 0, scrollDuration);
         }, 'Scroll down.');
     //#endregion Scrolling
+
+    //#region RemoveBlocker
+    /**
+     * showNotice(message, options)
+     *
+     * options:
+     *  - title: string (optional)
+     *  - icon: string (emoji, optional)
+     *  - timeout (ms) default: 3000
+     *  - type: 'info' | 'success' | 'warning' | 'error'
+     *  - position: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
+     */
+    const showNotice = function (message, options = {}) {
+        const {
+            title = '',
+            icon = '',
+            timeout = 3000,
+            type = 'info',
+            position = 'top-right',
+        } = options;
+
+        // Ensure container exists (singleton per position)
+        const containerId = `notice-container-${position}`;
+        let container = document.getElementById(containerId);
+
+        if (!container) {
+            container = document.createElement('div');
+            container.id = containerId;
+            container.style.position = 'fixed';
+            container.style.zIndex = '9999';
+            container.style.display = 'flex';
+            container.style.flexDirection = 'column';
+            container.style.gap = '8px';
+
+            const [vertical, horizontal] = position.split('-');
+            container.style[vertical] = '16px';
+            container.style[horizontal] = '16px';
+
+            document.body.appendChild(container);
+        }
+
+        function createNotice(message, config = {title: '', icon: ''}) {
+            const {
+                title = '',
+                icon = '',
+            } = config;
+
+            // Create notice
+            const notice = document.createElement('div');
+            notice.id = `notice-${Number.getRandom(1, 10000)}`;
+            notice.style.display = 'flex';
+            notice.style.alignItems = 'flex-start';
+            notice.style.gap = '10px';
+            notice.style.padding = '12px 14px';
+            notice.style.borderRadius = '6px';
+            notice.style.color = '#fff';
+            notice.style.fontFamily = 'system-ui, sans-serif';
+            notice.style.fontSize = '14px';
+            notice.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            notice.style.opacity = '0';
+            notice.style.transform = 'translateY(10px)';
+            notice.style.transition = 'all 200ms ease';
+            notice.style.cursor = 'pointer';
+            notice.style.maxWidth = '25vw';
+
+            // Type styling
+            const colors = {
+                info: '#2b7cff',
+                success: '#2ecc71',
+                warning: '#f39c12',
+                error: '#e74c3c',
+            };
+            notice.style.background = colors[type] || colors.info;
+
+            // Icon (optional)
+            if (icon) {
+                const iconEl = document.createElement('div');
+                iconEl.textContent = icon;
+                iconEl.style.fontSize = '18px';
+                iconEl.style.lineHeight = '1';
+                iconEl.style.marginTop = '2px';
+                iconEl.style.alignSelf = 'center';
+                iconEl.style.zoom = 3;
+                notice.appendChild(iconEl);
+            }
+
+            // Content wrapper
+            const content = document.createElement('div');
+            content.style.display = 'flex';
+            content.style.flexDirection = 'column';
+            content.style.borderLeft = '1px dashed lightgrey';
+            content.style.paddingLeft = '1rem';
+            content.style.userSelect = 'none';
+
+            // Title (optional)
+            if (title) {
+                const titleEl = document.createElement('div');
+                titleEl.textContent = title;
+                titleEl.style.fontWeight = '600';
+                titleEl.style.fontSize = '110%';
+                titleEl.style.marginBottom = '4px';
+                titleEl.style.borderBottom = '1px dashed lightgrey';
+                titleEl.style.textShadow = '3px 3px 4px darkslategrey';
+                titleEl.style.paddingBottom = '5px';
+                content.appendChild(titleEl);
+            }
+
+            // Message
+            const messageEl = document.createElement('div');
+            // messageEl.textContent = message;
+            messageEl.innerHTML = message;
+            messageEl.style.opacity = '0.95';
+            messageEl.style.borderRadius = '10px';
+            messageEl.style.padding = '1rem';
+            messageEl.style.backgroundColor = '#C0C0C050';
+            content.appendChild(messageEl);
+
+            notice.appendChild(content);
+
+            return notice;
+        }
+
+        const notice = createNotice(message, {title: title, icon: icon});
+
+        container.appendChild(notice);
+
+        // Animate in
+        requestAnimationFrame(() => {
+            notice.style.opacity = '1';
+            notice.style.transform = 'translateY(0)';
+        });
+
+        // Dismiss logic
+        const remove = (targetNotice = notice) => {
+            if (!targetNotice || targetNotice.dataset.removing === 'true') return;
+
+            targetNotice.dataset.removing = 'true';
+            targetNotice.style.opacity = '0';
+            targetNotice.style.transform = 'translateY(10px)';
+            setTimeout(() => targetNotice.remove(), 400);
+        };
+
+        const timer = setTimeout(() => remove(notice), timeout);
+        notice.dataset.timer = `${timer}`;
+
+        notice.addEventListener('click', () => {
+            clearTimeout(Number(notice.dataset.timer));
+            remove(notice);
+        });
+
+        return { remove };
+    }
+
+    dumper.debug("    Shortcut: Remove Blocker");
+    shortcut
+        .add('shift + alt + r', () => {
+            const title = 'Block: Remover';
+            let b = 0;
+
+            window.stop();
+
+            if (iq('#dontfoid')) {
+                b++;
+                iq('#dontfoid')?.remove();
+            }
+
+            if (iq('script').length > 0) {
+                b += iq('script').length;
+                iq('script').forEach(spt => spt.remove());
+            }
+
+            if (iq('iframe').length > 0) {
+                b += iq('iframe').length;
+                iq('iframe').forEach(spt => spt.remove());
+            }
+
+            if (b === 0) showNotice('No blockers found.', { title: title, type: 'warning', icon: '⚠️', timeout: 4000 });
+            else showNotice(`Possible blockers removed: <strong>${b}</strong>`, { title: title, type: 'success', icon: '❎', timeout: 6000 });
+        }, 'Remove Blocker.')
+    //#endregion RemoveBlocker
+
 
     //#region Dumper Debug
     dumper.debug('    Shortcut: Dumper => DEBUG');
