@@ -1,0 +1,22 @@
+= FeedView
+
+.Example Atom
+[source,php]
+----
+$view = new FeedView([
+    'title' => 'My Feed',
+    'link' => 'https://example.com',
+    'description' => 'Latest updates',
+    'items' => [
+        [
+            'id' => '1',
+            'title' => 'Post 1',
+            'link' => 'https://example.com/post-1',
+            'content' => '<p>Hello</p>',
+            'updated' => new \DateTimeImmutable(),
+        ],
+    ],
+], FeedView::FORMAT_ATOM);
+
+echo $view->render();
+----
