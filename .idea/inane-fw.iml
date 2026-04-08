@@ -29,6 +29,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/redis/./src" isTestSource="false" packagePrefix="Inane\Redis\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/src" isTestSource="false" packagePrefix="Inane\ServiceManager\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/polyfill/src" isTestSource="false" packagePrefix="Inane\Polyfill\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/minify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/path-converter" />
@@ -46,6 +47,7 @@
       <excludeFolder url="file://$MODULE_DIR$/source/lib/lotto" />
       <excludeFolder url="file://$MODULE_DIR$/.bookokrat_comments" />
       <excludeFolder url="file://$MODULE_DIR$/backlog" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fig/event-dispatcher-util" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

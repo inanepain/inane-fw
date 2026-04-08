@@ -26,12 +26,9 @@ declare(strict_types=1);
 
 use Inane\Db\Adapter\{
     Adapter};
-use Inane\IdForge\{
-    Generator\ULIDGenerator,
-    IdGeneratorFactory};
+use Inane\IdForge\Generator\ULIDGenerator;
+use Inane\IdForge\IdGeneratorFactory;
 use Inane\ServiceManager\ServiceManager;
-use Knot\Db\Table\{
-    FormulasTable};
 
 /**
  * ServiceManager configuration.
@@ -55,12 +52,12 @@ return [
         //
         //			return $redis;
         //		},
-        Adapter::class => function (ServiceManager $sm): Adapter {
+        Adapter::class => static function (ServiceManager $sm): Adapter {
             return new Adapter($sm->getConfig()->get('db'));
         },
-        FormulasTable::class => function (ServiceManager $sm): FormulasTable {
-            return new FormulasTable();
-        },
+//        FormulasTable::class => function (ServiceManager $sm): FormulasTable {
+//            return new FormulasTable();
+//        },
         ULIDGenerator::class => static function (ServiceManager $sm): ULIDGenerator {
             return IdGeneratorFactory::createULID();
         }
