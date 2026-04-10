@@ -59,17 +59,18 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">= 8.5",
+        "ext-mbstring": "*",
+        "fig/event-dispatcher-util": ">=1.0",
         "matthiasmullie/minify": "dev-master",
         "psr/cache": ">= 3",
         "psr/container": "*",
         "psr/event-dispatcher": ">=1.0",
-        "fig/event-dispatcher-util": ">=1.0",
         "psr/http-client": "*",
         "psr/http-factory": "*",
         "psr/http-message": "*",
         "psr/http-server-handler": "*",
-        "psr/simple-cache": ">= 3",
-        "ext-mbstring": "*"
+        "psr/log": "^3.0@dev",
+        "psr/simple-cache": ">= 3"
     },
     "scripts": {
         "inane": [
