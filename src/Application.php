@@ -21,7 +21,7 @@
  *
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Knot;
 
@@ -31,6 +31,7 @@ use Inane\Config\{
     Config,
     ConfigAware\ConfigAwareAttribute,
     ConfigAware\ConfigAwareInterface,
+    ConfigInterface,
     ConfigManager};
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
@@ -42,6 +43,7 @@ use Inane\Routing\Router;
 use Inane\ServiceManager\ServiceManager;
 use Inane\Session\SessionManager;
 use Inane\Stdlib\{
+    Array\OptionsInterface,
     Options,
     Utility\ClassUtility};
 use ReflectionObject;
@@ -57,12 +59,28 @@ use const PREG_OFFSET_CAPTURE;
 
 class Application {
     /**
+     * Private constructor method for initializing the class with configuration.
+     *
+     * @param ConfigInterface $config The application configuration.
+     *
+     * @return void
+     *
+     * @throws \Exception
+     */
+    private function __construct(ConfigInterface $config) {
+        $this->configManager = ConfigManager::instance()
+            ->setConfig($config)
+        ;
+
+        $this->bootstrap();
+        $this->initialise();
+    }
+    /**
      * The instance of the application
      *
      * @var Application The instance of the application
      */
     private static Application $instance;
-
     /**
      * @var ConsoleRouter|Router   ConsoleRouter | Router
      */
@@ -72,6 +90,9 @@ class Application {
      */
 
     protected ConfigManager $configManager;
+    public Config|OptionsInterface $config {
+        get => $this->configManager->getConfig();
+    }
     protected(set) ServiceManager $serviceManager;
     /**
      * @var Path  The Path class represents a file system path and provides methods for manipulating and working with paths.
@@ -81,7 +102,6 @@ class Application {
      * @var bool Returns true if the application is running in console mode, false otherwise.
      */
     private(set) bool $isConsole = PHP_SAPI === 'cli';
-
     /**
      * The matched route
      *
@@ -101,20 +121,6 @@ class Application {
     }
 
     /**
-     * The constructor
-     *
-     * The constructor is private to prevent creating multiple instances of the application.
-     *
-     * @return void
-     */
-    private function __construct(protected(set) Config $config) {
-        $this->configManager = ConfigManager::instance()->setConfig($config);
-
-        $this->initialise();
-        $this->bootstrap();
-    }
-
-    /**
      * Bootstraps an object by injecting configuration based on its attributes or implemented interfaces.
      *
      * @param object $object The object to be bootstrapped.
@@ -126,30 +132,11 @@ class Application {
 
         $reflection = new ReflectionObject($object);
 
-        foreach($reflection->getAttributes() as $classAttribute) {
-            if ($classAttribute->getName() === ConfigAwareAttribute::class) {
-                $this->configManager->setConfigFor($object);
-            }
+        foreach($reflection->getAttributes(ConfigAwareAttribute::class) as $classAttribute) {
+            //            if ($classAttribute->getName() === ConfigAwareAttribute::class) {
+            $this->configManager->setConfigFor($object);
+            //            }
         }
-    }
-
-    protected Options $objectCache;
-
-    public function createObject(string $class): object {
-        if ($this->objectCache->has($class)) {
-            return $this->objectCache->get($class);
-        }
-
-        $object = new $class();
-        $this->bootstrapObject($object);
-        $this->objectCache->set($class, $object);
-
-        return $object;
-    }
-
-    protected function initialise(): void {
-        $this->objectCache = new Options();
-        $this->isConsole = Cli::isCli();
     }
 
     /**
@@ -160,6 +147,10 @@ class Application {
      * @return void
      */
     protected function bootstrap(): void {
+        $this->isConsole = Cli::isCli();
+    }
+
+    protected function initialise(): void {
         \Inane\Dumper\Dumper::$enabled = $this?->config?->dumper?->enabled ?? false;
         \Inane\Dumper\Dumper::$bufferOutput = $this->isConsole ? false : ($this?->config?->dumper?->bufferOutput ?? true);
 
@@ -189,7 +180,8 @@ class Application {
             SessionManager::init([
                 'name'            => $this->config->appId,
                 'cookie_samesite' => 'Strict',
-                'remember_me'     => true,  // Enables persistence
+                'remember_me'     => true,
+                // Enables persistence
             ]);
         }
     }
@@ -250,8 +242,8 @@ class Application {
     protected function configureRouterConsole(): void {
         global $argv;
         $routerConfig = new Options([
-            'arguments' =>    $argv,
-            'commands'      => [
+            'arguments' => $argv,
+            'commands'  => [
                 'glob'        => 'src/*/*Commands.php',
                 'glob_ignore' => '/(Abstract)/',
                 'default'     => [],
@@ -295,7 +287,8 @@ class Application {
     protected function routing(): void {
         $this->routeMatch = $this->router->match($this->request);
 
-        if (is_null($this->routeMatch)) throw new InvalidRouteException('Request Error: Unmatched `file` or `route`!', AppError::InvalidRoute->value);
+        if (is_null($this->routeMatch)) throw new InvalidRouteException('Request Error: Unmatched `file` or `route`!',
+            AppError::InvalidRoute->value);
     }
 
     /**

@@ -52,7 +52,11 @@ if (APP_DEBUG || Cli::isCli()) {
     ];
 }
 
-ini_set('error_reporting', (string)$error_reporting);
+//echo "Error reporting: $error_reporting" . PHP_EOL;
+error_reporting(E_ALL);
+ini_set('error_reporting', E_ALL);
+
+//ini_set('error_reporting', (string)$error_reporting);
 #endregion DEBUG HTACCESS FLAGS
 
 //$page = 1;
@@ -106,7 +110,7 @@ ini_set('error_reporting', (string)$error_reporting);
 //}
 //exit;
 
-return (static function(Application $app): bool|int {
+$returnCode = (static function(Application $app): bool|int {
     // FIX: boo
     // FIXME: boo
     // BUG: bug
@@ -125,3 +129,6 @@ return (static function(Application $app): bool|int {
 
     return true;
 })(Application::app());
+
+echo "Return Code: $returnCode" . PHP_EOL;
+echo "Error reporting: $error_reporting" . PHP_EOL;

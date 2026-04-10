@@ -129,9 +129,7 @@ class BrewCommands implements NotifyProgressInterface {
      * @throws Exception
      */
     public function __construct() {
-        $this->brew = Application::app()
-            ->createObject(Brew::class)
-        ;
+        $this->brew = Application::app()->serviceManager->get(Brew::class);
 
         $this->desc = static::pancilFactory($this->config->ui->text->desc);
         $this->action = static::pancilFactory($this->config->ui->text->action);

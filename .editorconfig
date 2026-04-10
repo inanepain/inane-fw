@@ -1,0 +1,58 @@
+; This file is for unifying the coding style for different editors and IDEs.
+; More information at http://editorconfig.org
+
+# Top-level
+root = true
+
+# Global defaults
+[*]
+charset = utf-8
+indent_size = 4
+indent_style = space
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Markdown (preserve trailing spaces for line breaks)
+[*.md]
+trim_trailing_whitespace = false
+
+# PHP
+[*.php]
+indent_size = 4
+max_line_length = 120
+
+# JavaScript / TypeScript
+[*.{js,jsx,ts,tsx,mjs,cjs}]
+indent_size = 2
+max_line_length = 100
+
+# SCSS / CSS
+[*.{scss,css}]
+indent_size = 2
+max_line_length = 100
+
+# JSON / YAML
+[*.{json,yml,yaml}]
+indent_size = 2
+
+# HTML / XML
+[*.{html,xml}]
+indent_size = 2
+
+# Shell scripts
+[*.{sh,zsh,bash}]
+indent_size = 2
+
+# Makefiles (must use tabs)
+[Makefile]
+indent_style = tab
+
+# Windows-specific files
+[*.{bat,cmd,ps1}]
+end_of_line = crlf
+
+# Lock files (don’t touch formatting)
+[*.lock]
+insert_final_newline = false
+trim_trailing_whitespace = false

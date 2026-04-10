@@ -4,14 +4,13 @@ CREATE TABLE formulas (
 	desc      TEXT(200),
 	version   TEXT(40),
 	homepage  TEXT(200),
-	installed INTEGER NOT NULL ON CONFLICT REPLACE DEFAULT 0,
-	reviewed INTEGER NOT NULL ON CONFLICT REPLACE DEFAULT 0,
-	tags TEXT(100) NOT NULL ON CONFLICT REPLACE DEFAULT "",
-	flag INTEGER NOT NULL ON CONFLICT REPLACE DEFAULT 0,
-	state TEXT(10) NOT NULL ON CONFLICT REPLACE DEFAULT "update",
-	updated INTEGER NOT NULL ON CONFLICT REPLACE DEFAULT (UNIXEPOCH()),
-	modified TEXT NOT NULL ON CONFLICT REPLACE DEFAULT CURRENT_TIMESTAMP
-);
+	installed INTEGER   DEFAULT 0                 NOT NULL,
+	reviewed  INTEGER   DEFAULT 0                 NOT NULL,
+	tags      TEXT(100) DEFAULT ""                NOT NULL,
+	flag      INTEGER   DEFAULT 0                 NOT NULL,
+	state     TEXT(10)  DEFAULT "update"          NOT NULL,
+	updated   INTEGER   DEFAULT (UNIXEPOCH())     NOT NULL,
+	modified  TEXT      DEFAULT CURRENT_TIMESTAMP NOT NULL);
 
 CREATE INDEX idx_flag
 	ON formulas (flag);
@@ -24,4 +23,3 @@ CREATE INDEX idx_reviewed
 
 CREATE INDEX idx_tags
 	ON formulas (tags);
-
