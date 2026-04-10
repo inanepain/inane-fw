@@ -76,7 +76,7 @@
 	branch = develop
 [submodule "lib/inanepain/servicemanager"]
 	path = lib/inanepain/servicemanager
-	url = http://blackbetty.local:3000/inanepain/servicemanager.git
+	url = https://inanepain@github.com/inanepain/servicemanager.git
 	branch = develop
 [submodule "auth"]
 	branch = develop

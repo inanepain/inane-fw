@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * inane-fw
+ *
+ * Inane Framework
+ *
+ *
+ *
+ *
+ * PHP version 8.5
+ *
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\inane-fw
+ * @category inane-fw
+ *
+ * @license  UNLICENSE
+ * @license  https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_
+ *
+ */
+
+declare(strict_types = 1);
+
+require __DIR__ . '/../public/index.php';
