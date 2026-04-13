@@ -13,14 +13,14 @@ use function gmdate;
 use const JSON_UNESCAPED_SLASHES;
 use const JSON_UNESCAPED_UNICODE;
 use const PHP_EOL;
-use const STDOUT;
+use const STDERR;
 
 /**
- * Stdout Writer
+ * Stderror Writer
  *
  * @package Inane\Log\Writer
  */
-class StdoutWriter extends AbstractWriter {
+class StderrorWriter extends AbstractWriter {
     /**
      * Actually write the log entry
      *
@@ -43,6 +43,6 @@ class StdoutWriter extends AbstractWriter {
             ], ['numeric' => true, 'flags' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE]);
         }
 
-        fwrite(STDOUT, $json . PHP_EOL);
+        fwrite(STDERR, $json . PHP_EOL);
     }
 }

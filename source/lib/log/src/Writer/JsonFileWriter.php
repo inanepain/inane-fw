@@ -6,6 +6,7 @@ namespace Inane\Log\Writer;
 
 use Inane\Log\AbstractWriter;
 
+use Inane\Stdlib\Json;
 use function clearstatcache;
 use function fclose;
 use function file_exists;
@@ -15,7 +16,6 @@ use function fopen;
 use function fwrite;
 use function gmdate;
 use function is_dir;
-use function json_encode;
 use function mkdir;
 use function rename;
 use function unlink;
@@ -85,7 +85,7 @@ class JsonFileWriter extends AbstractWriter {
     }
 
     /**
-     * Write a log entry
+     * Actually write the log entry
      *
      * @param mixed  $level
      * @param string $message
@@ -93,21 +93,21 @@ class JsonFileWriter extends AbstractWriter {
      *
      * @return void
      */
-    public function write(mixed $level, string $message, array $context = []): void {
+    protected function doWrite(mixed $level, string $message, array $context = []): void {
         $file = $this->getLogFile();
 
         $this->rotateIfNeeded($file);
 
         $entry = $this->buildEntry($level, $message, $context);
 
-        $json = json_encode($entry, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        $json = Json::encode($entry, ['numeric' => true, 'flags' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE]);
 
         if ($json === false) {
-            $json = json_encode([
+            $json = Json::encode([
                 'ts'    => gmdate('c'),
                 'level' => 'ERROR',
                 'msg'   => 'Failed to encode log entry',
-            ]);
+            ], ['numeric' => true, 'flags' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE]);
         }
 
         $json .= PHP_EOL;
