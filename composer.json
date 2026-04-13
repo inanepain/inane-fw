@@ -1,117 +1,118 @@
 {
-    "name": "skeleton/inane-fw",
-    "description": "Web or console application framework using the inanepain libraries.",
-    "type": "project",
-    "license": "Unlicense",
-    "homepage": "http://blackbetty.local:3000/skeleton/inane-fw",
-    "readme": "README.adoc",
-    "authors": [
-        {
-            "name": "Philip Michael Raab",
-            "email": "philip@cathedral.co.za"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Knot\\": "src/",
-            "Inane\\Auth\\": "lib/inanepain/auth/src/",
-            "Inane\\Cache\\": "lib/inanepain/cache/src/",
-            "Inane\\Cli\\": "lib/inanepain/cli/src/",
-            "Inane\\Config\\": "lib/inanepain/config/src/",
-            "Inane\\Console\\": "lib/inanepain/console/src/",
-            "Inane\\Crypt\\": "lib/inanepain/crypt/src/",
-            "Inane\\Datetime\\": "lib/inanepain/datetime/src/",
-            "Inane\\Db\\": "lib/inanepain/db/src/",
-            "Inane\\Dumper\\": "lib/inanepain/dumper/src/",
-            "Inane\\Event\\": "lib/inanepain/event/src/",
-            "Inane\\File\\": "lib/inanepain/file/src/",
-            "Inane\\Http\\": "lib/inanepain/http/src/",
-            "Inane\\IdForge\\": "lib/inanepain/id-forge/src/",
-			"Inane\\Polyfill\\": "lib/inanepain/polyfill/src/",
-            "Inane\\QR\\": "lib/inanepain/quickrank/src/",
-            "Inane\\Redis\\": "lib/inanepain/redis/src/",
-            "Inane\\Routing\\": "lib/inanepain/routing/src/",
-            "Inane\\ServiceManager\\": "lib/inanepain/servicemanager/src/",
-            "Inane\\Session\\": "lib/inanepain/session/src/",
-            "Inane\\Stdlib\\": "lib/inanepain/stdlib/src/",
-            "Inane\\View\\": "lib/inanepain/view/src/"
-        },
-        "files": [
-            "lib/inanepain/dumper/src/bootstrap.php",
-            "lib/inanepain/stdlib/src/bootstrap.php",
-			"lib/inanepain/polyfill/src/bootstrap.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Inane\\Datetime\\": "source/lib/datetime/src/",
-            "Inane\\Rebecca\\": "source/lib/rebecca/src/",
-            "Inane\\Stdlib\\": "source/lib/stdlib/src/",
-            "Inane\\View\\": "source/lib/view/src/"
-        }
-    },
-    "config": {
-        "preferred-install": "dist",
-        "optimize-autoloader": true,
-        "discard-changes": true,
-        "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">= 8.5",
-        "ext-mbstring": "*",
-        "fig/event-dispatcher-util": ">=1.0",
-        "matthiasmullie/minify": "dev-master",
-        "psr/cache": ">= 3",
-        "psr/container": "*",
-        "psr/event-dispatcher": ">=1.0",
-        "psr/http-client": "*",
-        "psr/http-factory": "*",
-        "psr/http-message": "*",
-        "psr/http-server-handler": "*",
-        "psr/log": "^3.0@dev",
-        "psr/simple-cache": ">= 3"
-    },
-    "scripts": {
-        "inane": [
-            "echo Skeleton Inane Framework"
-        ],
-        "build": [
-            "echo \"Project: skeleton/$(basename $(pwd))\"",
-            "echo build: all...",
-            "@build-changelog",
-            "@build-readme",
-            "echo build: done!"
-        ],
-        "build-changelog": [
-            "echo building: changelog...",
-            "rm -f CHANGELOG.adoc",
-            "asciidoctor-reducer -o CHANGELOG.adoc source/doc/changelog/index.adoc",
-            "asciidoctor -b docbook CHANGELOG.adoc",
-            "rm -f CHANGELOG.xml"
-        ],
-        "build-readme": [
-            "echo building: readme...",
-            "rm -f README.adoc",
-            "asciidoctor-reducer -o README.adoc source/doc/readme/index.adoc",
-            "asciidoctor -b docbook README.adoc",
-            "rm -f README.xml"
-        ],
-        "build-win": [
-            "@build-changelog-win",
-            "@build-readme-win"
-        ],
-        "build-changelog-win": [
-            "del CHANGELOG.adoc",
-            "asciidoctor-reducer -o CHANGELOG.adoc source/doc/changelog/index.adoc",
-            "asciidoctor -b docbook CHANGELOG.adoc",
-            "del CHANGELOG.xml"
-        ],
-        "build-readme-win": [
-            "del README.adoc",
-            "asciidoctor-reducer -o README.adoc source/doc/readme/index.adoc",
-            "asciidoctor -b docbook README.adoc",
-            "del README.xml"
-        ]
+  "name": "skeleton/inane-fw",
+  "description": "Web or console application framework using the inanepain libraries.",
+  "type": "project",
+  "license": "Unlicense",
+  "homepage": "http://blackbetty.local:3000/skeleton/inane-fw",
+  "readme": "README.adoc",
+  "authors": [
+    {
+      "name": "Philip Michael Raab",
+      "email": "philip@cathedral.co.za"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Knot\\": "src/",
+      "Inane\\Auth\\": "lib/inanepain/auth/src/",
+      "Inane\\Cache\\": "lib/inanepain/cache/src/",
+      "Inane\\Cli\\": "lib/inanepain/cli/src/",
+      "Inane\\Config\\": "lib/inanepain/config/src/",
+      "Inane\\Console\\": "lib/inanepain/console/src/",
+      "Inane\\Crypt\\": "lib/inanepain/crypt/src/",
+      "Inane\\Datetime\\": "lib/inanepain/datetime/src/",
+      "Inane\\Db\\": "lib/inanepain/db/src/",
+      "Inane\\Dumper\\": "lib/inanepain/dumper/src/",
+      "Inane\\Event\\": "lib/inanepain/event/src/",
+      "Inane\\File\\": "lib/inanepain/file/src/",
+      "Inane\\Http\\": "lib/inanepain/http/src/",
+      "Inane\\IdForge\\": "lib/inanepain/id-forge/src/",
+      "Inane\\Polyfill\\": "lib/inanepain/polyfill/src/",
+      "Inane\\QR\\": "lib/inanepain/quickrank/src/",
+      "Inane\\Redis\\": "lib/inanepain/redis/src/",
+      "Inane\\Routing\\": "lib/inanepain/routing/src/",
+      "Inane\\ServiceManager\\": "lib/inanepain/servicemanager/src/",
+      "Inane\\Session\\": "lib/inanepain/session/src/",
+      "Inane\\Stdlib\\": "lib/inanepain/stdlib/src/",
+      "Inane\\View\\": "lib/inanepain/view/src/"
+    },
+    "files": [
+      "lib/inanepain/dumper/src/bootstrap.php",
+      "lib/inanepain/stdlib/src/bootstrap.php",
+      "lib/inanepain/polyfill/src/bootstrap.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Inane\\Datetime\\": "source/lib/datetime/src/",
+      "Inane\\Log\\": "source/lib/log/src/",
+      "Inane\\Rebecca\\": "source/lib/rebecca/src/",
+      "Inane\\Stdlib\\": "source/lib/stdlib/src/",
+      "Inane\\View\\": "source/lib/view/src/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "optimize-autoloader": true,
+    "discard-changes": true,
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">= 8.5",
+    "ext-mbstring": "*",
+    "fig/event-dispatcher-util": ">=1.0",
+    "matthiasmullie/minify": "dev-master",
+    "psr/cache": ">= 3",
+    "psr/container": "*",
+    "psr/event-dispatcher": ">=1.0",
+    "psr/http-client": "*",
+    "psr/http-factory": "*",
+    "psr/http-message": "*",
+    "psr/http-server-handler": "*",
+    "psr/log": "^3.0@dev",
+    "psr/simple-cache": ">= 3"
+  },
+  "scripts": {
+    "inane": [
+      "echo Skeleton Inane Framework"
+    ],
+    "build": [
+      "echo \"Project: skeleton/$(basename $(pwd))\"",
+      "echo build: all...",
+      "@build-changelog",
+      "@build-readme",
+      "echo build: done!"
+    ],
+    "build-changelog": [
+      "echo building: changelog...",
+      "rm -f CHANGELOG.adoc",
+      "asciidoctor-reducer -o CHANGELOG.adoc source/doc/changelog/index.adoc",
+      "asciidoctor -b docbook CHANGELOG.adoc",
+      "rm -f CHANGELOG.xml"
+    ],
+    "build-readme": [
+      "echo building: readme...",
+      "rm -f README.adoc",
+      "asciidoctor-reducer -o README.adoc source/doc/readme/index.adoc",
+      "asciidoctor -b docbook README.adoc",
+      "rm -f README.xml"
+    ],
+    "build-win": [
+      "@build-changelog-win",
+      "@build-readme-win"
+    ],
+    "build-changelog-win": [
+      "del CHANGELOG.adoc",
+      "asciidoctor-reducer -o CHANGELOG.adoc source/doc/changelog/index.adoc",
+      "asciidoctor -b docbook CHANGELOG.adoc",
+      "del CHANGELOG.xml"
+    ],
+    "build-readme-win": [
+      "del README.adoc",
+      "asciidoctor-reducer -o README.adoc source/doc/readme/index.adoc",
+      "asciidoctor -b docbook README.adoc",
+      "del README.xml"
+    ]
+  }
 }
