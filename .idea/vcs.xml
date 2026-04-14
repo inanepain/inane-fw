@@ -289,6 +289,7 @@
     <mapping directory="$PROJECT_DIR$/lib/inanepain/file" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/inanepain/http" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/inanepain/id-forge" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/inanepain/log" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/inanepain/polyfill" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/inanepain/quickrank" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/inanepain/redis" vcs="Git" />
