@@ -84,3 +84,7 @@
 	path = lib/inanepain/polyfill
 	url = https://github.com/inanepain/polyfill.git
 	branch = develop
+[submodule "lib/inanepain/log"]
+	path = lib/inanepain/log
+	url = http://blackbetty.local:3000/inanepain/log.git
+	branch = develop

@@ -27,6 +27,7 @@
       "Inane\\File\\": "lib/inanepain/file/src/",
       "Inane\\Http\\": "lib/inanepain/http/src/",
       "Inane\\IdForge\\": "lib/inanepain/id-forge/src/",
+      "Inane\\Log\\": "lib/inanepain/log/src/",
       "Inane\\Polyfill\\": "lib/inanepain/polyfill/src/",
       "Inane\\QR\\": "lib/inanepain/quickrank/src/",
       "Inane\\Redis\\": "lib/inanepain/redis/src/",
@@ -45,7 +46,6 @@
   "autoload-dev": {
     "psr-4": {
       "Inane\\Datetime\\": "source/lib/datetime/src/",
-      "Inane\\Log\\": "source/lib/log/src/",
       "Inane\\Rebecca\\": "source/lib/rebecca/src/",
       "Inane\\Stdlib\\": "source/lib/stdlib/src/",
       "Inane\\View\\": "source/lib/view/src/"
