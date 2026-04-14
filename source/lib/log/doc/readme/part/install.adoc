@@ -1,7 +1,0 @@
-= Install
-
-.composer
-[source,shell,subs=attributes+]
-----
-composer require {pkg-id}
-----
