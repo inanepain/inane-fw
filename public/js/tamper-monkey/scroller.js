@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scroller
-// @namespace    https://www.cathedral.co.za/tm/scroll
-// @version      2026-04-10-11-42
+// @namespace    https://www.cathedral.co.za/tm/scroller
+// @version      1776372756
 // @description  Scrolls the page.
 // @author       Philip Michael Raab<philip@cathedral.co.za>
 // @match        *://*/*
@@ -19,387 +19,19 @@
 // @run-at       document-start
 // ==/UserScript==
 
-//#region Initialise
-unsafeWindow.iq = unsafeWindow.iq || document.iq;
-unsafeWindow.iqs = unsafeWindow.iqs || document.iqs;
-unsafeWindow.iqsa = unsafeWindow.iqsa || document.iqsa;
-unsafeWindow.shortcut = unsafeWindow.shortcut || document.shortcut;
-//#endregion Initialise
+/*
+ * Scrolls the page.
+ *
+ * @date 16 April 2026 10:52:36 PM SAST
+ *
+ * Execution order: 2
+ */
 
 //#region Libraries
-((window) => {
-  if (!Array.prototype.unique) {
-    Array.prototype.unique = function () {
-      const unique = [];
-      for (let i = 0; i < this.length; i++) if (!unique.includes(this[i])) unique.push(this[i]);
-      return unique
-    }
-  }
-  if (!Array.prototype.searchObject) {
-    Array.prototype.searchObject = function (nameKey, keyValue, fuzzy = !1) {
-      return this.filter(item => {
-        if (item.hasOwnProperty(nameKey) && keyValue !== undefined) {
-          if (fuzzy && typeof item[nameKey] == 'string') return item[nameKey].toLowerCase().includes(keyValue.toLowerCase());
-          return item[nameKey] == keyValue
-        }
-      })
-    }
-  }
-  if (!Array.prototype.groupByProperty) {
-    Array.prototype.groupByProperty = function (key) {
-      return this.reduce((rv, x) => {
-        (rv[x[key]] = rv[x[key]] || []).push(x);
-        return rv
-      }, {})
-    }
-  }
-  if (!Array.prototype.sortByProperty) {
-    Array.prototype.sortByProperty = function (propName, sortNumerically = !1) {
-      if (sortNumerically == !0) {
-        this.sort(function (a, b) {
-          return a[propName] - b[propName]
-        })
-      } else {
-        this.sort(function (a, b) {
-          var nameA = `${(a[propName] ?? '')}`.toUpperCase();
-          var nameB = `${(b[propName] ?? '')}`.toUpperCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0
-        })
-      }
-    }
-  }
-  if (!Array.prototype.log) {
-    Array.prototype.log = function () {
-      console.log(JSON.stringify(this))
-    }
-  }
-  ;
-  if (!Date.prototype.getWeekNumber) {
-    Date.prototype.getWeekNumber = function () {
-      var d = new Date(+this);
-      d.setHours(0, 0, 0);
-      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-      return Math.ceil((((d - new Date(d.getFullYear(), 0, 1)) / 8.64e7) + 1) / 7)
-    }
-  }
-  if (!Date.prototype.nextYear) {
-    Date.prototype.nextYear = function () {
-      return new Date(this.getTime() + 31536000000)
-    }
-  }
-  if (!Date.prototype.nextYearGMTString) {
-    Date.prototype.nextYearGMTString = function () {
-      return this.nextYear().toGMTString()
-    }
-  }
-  if (!Date.prototype.unixZero) {
-    Date.prototype.unixZero = function () {
-      return new Date(0)
-    }
-  }
-  if (!Date.prototype.unixZeroGMTString) {
-    Date.prototype.unixZeroGMTString = function () {
-      return (new Date(0)).toGMTString()
-    }
-  }
-  if (!Date.prototype.log) {
-    Date.prototype.log = function () {
-      console.log(this.constructor.toString().split(' ')[1].replace('()', '').toLowerCase() + '(' + this.toLocaleString().length + '): ' + this.toLocaleString())
-    }
-  }
-  ;
-  for (let element of [HTMLCollection, NodeList]) {
-    if (!element.prototype.toArray) {
-      element.prototype.toArray = function () {
-        return Array.from(this)
-      }
-    }
-  }
-  for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
-    if (!element.prototype.iqs) {
-      element.prototype.iqs = function (selectors) {
-        const el = this?.querySelector ? this : window.document;
-        return el.querySelector(selectors)
-      }
-    }
-    if (!window.iqs && window.document.iqs) window.iqs = window.document.iqs;
-    if (!element.prototype.iqsa) {
-      element.prototype.iqsa = function (selectors) {
-        const el = this?.querySelectorAll ? this : window.document;
-        return Array.from(el.querySelectorAll(selectors))
-      }
-    }
-    if (!window.iqsa && window.document.iqsa) window.iqsa = window.document.iqsa;
-    if (!element.prototype.iq) {
-      element.prototype.iq = function (selectors) {
-        const dynamic = selectors.startsWith('@@');
-        if (dynamic) selectors = selectors.substring(2);
-        const cmd = selectors.startsWith('@') || selectors.split(' ').pop().charAt(0) === '#' && !selectors.includes(',') ? 'querySelector' : 'querySelectorAll';
-        if (selectors.startsWith('@')) selectors = selectors.substring(1);
-        const el = this?.[cmd] ? this : window.document;
-        result = el[cmd](selectors);
-        result = cmd == 'querySelector' ? result : Array.from(result);
-        if (dynamic) return Array.isArray(result) ? (result.length == 1 ? result.pop() : result) : result;
-        return result
-      }
-    }
-    if (!window.iq && window.document.iq) window.iq = window.document.iq
-  }
-  ;
-  if (!Number.getRandom) {
-    Number.getRandom = function (min, max) {
-      min = Math.ceil(min || 0);
-      max = Math.floor(max || min * min);
-      return Math.floor(Math.random() * (max - min + 1)) + min
-    }
-  }
-  if (!Number.prototype.log) {
-    Number.prototype.log = function () {
-      console.log(this.constructor.toString().split(' ')[1].replace('()', '').toLowerCase() + '(' + this.toString().length + '): ' + this.toString())
-    }
-  }
-  ;
-  if (!Object.prototype.watch) {
-    Object.defineProperty(Object.prototype, 'watch', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function (prop, handler) {
-        var getter, setter, change = {
-          property: prop, value: this[prop], previous: undefined, set update(v) {
-            if (this.value == v) return !1;
-            this.previous = this.value;
-            this.value = v;
-            return !0
-          }
-        }, getter = function () {
-          return change.value
-        }, setter = function (val) {
-          if (change.update = val) handler.call(this, change);
-          return val
-        };
-        if (delete this[prop]) {
-          Object.defineProperty(this, prop, {get: getter, set: setter, configurable: !0})
-        }
-      }
-    })
-  }
-  if (!Object.prototype.unwatch) {
-    Object.defineProperty(Object.prototype, 'unwatch', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function (prop) {
-        var val = this[prop];
-        delete this[prop];
-        this[prop] = val
-      }
-    })
-  }
-  if (!Object.prototype.jsonString) {
-    Object.defineProperty(Object.prototype, 'jsonString', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function () {
-        return JSON.stringify(this)
-      }
-    })
-  }
-  if (!Object.prototype.pick) {
-    Object.defineProperty(Object.prototype, 'pick', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function (propsArray) {
-        if (!propsArray) return;
-        if (!Array.isArray(propsArray) && (typeof propsArray == 'string')) propsArray = [propsArray];
-        propsArray = propsArray.unique();
-        const picked = {};
-        propsArray.forEach(prop => {
-          if (this.hasOwnProperty(prop)) picked[prop] = this[prop]
-        });
-        return picked
-      }
-    })
-  }
-  if (!Object.prototype.readPath) {
-    Object.defineProperty(Object.prototype, 'readPath', {
-      enumerable: !1, configurable: !1, writable: !0, value: function (path, delimiter = '.') {
-        if (!path) return this;
-        const eP = typeof path == 'string' ? path.split(delimiter) : path;
-        let t = Object.assign({}, this);
-        for (let i = 0; i < eP.length; i++)
-          if (t && t.hasOwnProperty(eP[i])) t = t[eP[i]]; else t = undefined;
-        return t
-      }
-    })
-  }
-  if (!Object.prototype.sorted) {
-    Object.defineProperty(Object.prototype, 'sorted', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function () {
-        return this.pick(this.keys().sort())
-      }
-    })
-  }
-  if (!Object.prototype.propertyRename) {
-    Object.defineProperty(Object.prototype, 'propertyRename', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function (old_key, new_key, force = !1) {
-        if (!old_key || !new_key) {
-          console.error('Object.propertyRename: old_key and new_key are required.');
-          return this
-        }
-        if (typeof old_key !== 'string' || typeof new_key !== 'string') {
-          console.error('Object.propertyRename: old_key and new_key must be strings.');
-          return this
-        }
-        if (old_key === new_key) {
-          console.warn('Object.propertyRename: old_key and new_key are the same, no action taken.');
-          return this
-        }
-        if (!this.hasOwnProperty(old_key)) {
-          console.warn(`Object.propertyRename: old_key "${old_key}" does not exist on this object.`);
-          return this
-        }
-        if (this.hasOwnProperty(new_key) && !force) {
-          console.warn(`Object.propertyRename: new_key "${new_key}" already exists on this object, no action taken.`);
-          return this
-        }
-        if (this.hasOwnProperty(new_key) && force) {
-          delete this[new_key]
-        }
-        Object.defineProperty(this, new_key, Object.getOwnPropertyDescriptor(this, old_key));
-        delete this[old_key];
-        return this
-      }
-    })
-  }
-  if (!Object.prototype.renameProperty) {
-    Object.defineProperty(Object.prototype, 'renameProperty', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function (old_key, new_key, force = !1) {
-        return this.propertyRename(old_key, new_key, force)
-      }
-    })
-  }
-  if (!Object.prototype.groupByProperty) {
-    Object.defineProperty(Object.prototype, 'groupByProperty', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function (key) {
-        try {
-          let target = Array.isArray(this) ? this : this.values();
-          return target.reduce((rv, x) => {
-            (rv[x[key]] = rv[x[key]] || []).push(x);
-            return rv
-          }, {})
-        } catch (error) {
-          console.error('Unable to group object.')
-        }
-      }
-    })
-  }
-  if (!Object.prototype.keys) {
-    Object.defineProperty(Object.prototype, 'keys', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function () {
-        return Object.keys(this)
-      }
-    })
-  }
-  if (!Object.prototype.values) {
-    Object.defineProperty(Object.prototype, 'values', {
-      enumerable: !1,
-      configurable: !1,
-      writable: !0,
-      value: function () {
-        return Object.values(this)
-      }
-    })
-  }
-  ;
-  if (!String.prototype.toTitleCase) {
-    String.prototype.toTitleCase = function (lowerAsWell = !1, isName = !1) {
-      let string = lowerAsWell === !0 ? this.toLowerCase() : this;
-      if (isName) return string.replace(/\b[a-z]/g, txt => {
-        return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase()
-      }); else return string.replace(/(?:^|\s)\w/g, function (match) {
-        return match.toUpperCase()
-      })
-    }
-  }
-  if (!String.prototype.replaceAll) {
-    String.prototype.replaceAll = function (find, replace) {
-      return this.split(find).join(replace)
-    }
-  }
-  if (!String.prototype.trimChars) {
-    String.prototype.trimChars = function (chars) {
-      return this.replace(new RegExp('^(' + chars + ')+|(' + chars + ')+$', 'gm'), '')
-    }
-  }
-  if (!String.prototype.trimCharsLeft) {
-    String.prototype.trimCharsLeft = function (chars) {
-      return this.replace(new RegExp('^(' + chars + ')+', 'gm'), '')
-    }
-  }
-  if (!String.prototype.trimCharsRight) {
-    String.prototype.trimCharsRight = function (chars) {
-      return this.replace(new RegExp('(' + chars + ')+$', 'gm'), '')
-    }
-  }
-  if (!String.prototype.camelCaseToHyphen) {
-    String.prototype.camelCaseToHyphen = function () {
-      let str = this;
-      str = str.replace(/[^\w\s\-]/gi, '');
-      str = str.replace(/([A-Z])/g, function ($1) {
-        return '-' + $1.toLowerCase()
-      });
-      return str.replace(/\s/g, '-').replace(/^-+/g, '')
-    }
-  }
-  if (!String.prototype.hyphenToCamelCase) {
-    String.prototype.hyphenToCamelCase = function () {
-      return this.replace(/-([a-z])/g, (m, w) => w.toUpperCase())
-    }
-  }
-  if (!String.prototype.splice) {
-    String.prototype.splice = function (start, delCount, newSubStr) {
-      return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount))
-    }
-  }
-  if (!String.prototype.parseJSON) {
-    String.prototype.parseJSON = function () {
-      try {
-        return JSON.parse(this)
-      } catch (error) {
-        return null
-      }
-    }
-  }
-  if (!String.prototype.log) {
-    String.prototype.log = function (label = !1) {
-      let args = [this.toString()];
-      if (label?.constructor?.name == 'String') args.unshift(label); else if (label === !0) args.unshift(this.constructor.name, this.length);
-      console.log(...args)
-    }
-  }
-})(unsafeWindow);
-
+//#region Libraries Shortcut
 const shortcut = ((window) => {
+  if (window.shortcut) return window.shortcut;
+
   const moduleName = 'iShortcut';
   const VERSION = '0.3.3';
   if (window.Dumper) Dumper.dump('MODULE', moduleName.concat(' v').concat(VERSION), 'LOAD');
@@ -532,9 +164,10 @@ const shortcut = ((window) => {
     },
     mod: {SHIFT: 'S', ALT: 'A', CTRL: 'C',}
   };
-  const scDb = new Map();
 
   class iShortcut {
+    #scDb = new Map();
+
     constructor() {
       document.addEventListener('keyup', (event) => {
         this.onKeyup.call(this, event);
@@ -555,20 +188,20 @@ const shortcut = ((window) => {
 
     addShortcut(shortcut, callback, description = '') {
       let code = this.parseShortcut(shortcut);
-      if (!scDb.has(code)) scDb.set(code, {
+      if (!this.#scDb.has(code)) this.#scDb.set(code, {
         code: code,
         shortcut: shortcut.split(' + ').join('+').replaceAll('+', ' + '),
         description: description,
         listeners: []
       });
-      scDb.get(code).listeners.push(callback);
+      this.#scDb.get(code).listeners.push(callback);
       return this;
     }
 
     help() {
       let shortcutDescriptions = [];
       shortcutDescriptions.push('SHORTCUT DESCRIPTIONS');
-      for (const [key, element] of scDb) {
+      for (const [key, element] of this.#scDb) {
         let parts = element.shortcut.replaceAll(' ', '').split('+');
         for (let index = 0; index < parts.length; index++) parts[index] = parts[index].length > 1 ? parts[index].toUpperCase().padEnd(6, ' ') : parts[index].toUpperCase();
         const shortcut = parts.join(' + ');
@@ -588,7 +221,7 @@ const shortcut = ((window) => {
       code += event.ctrlKey ? 'C' : '';
       code += ':';
       code += kbKeys.code[event.which];
-      if (scDb.has(code)) scDb.get(code).listeners.forEach(callback => callback(event, {
+      if (this.#scDb.has(code)) this.#scDb.get(code).listeners.forEach(callback => callback(event, {
         code: event.which,
         char: kbKeys.code[event.which]
       }));
@@ -609,8 +242,12 @@ const shortcut = ((window) => {
   window.shortcut = shortcut;
   return shortcut;
 })(unsafeWindow);
+//#endregion Libraries Shortcut
 
+//#region Libraries Dumper
 ((window) => {
+  if (window.Dumper) return window.Dumper;
+
   /**
    * Dumper
    *
@@ -682,7 +319,7 @@ const shortcut = ((window) => {
      */
     static from(level) {
       if (level instanceof LogLevel && Dumper[level.name]) return Dumper[level.name];
-      else if (typeof level == `string` && Dumper[level.toUpperCase()]) return Dumper[level.toUpperCase()];
+      else if (typeof level === `string` && Dumper[level.toUpperCase()]) return Dumper[level.toUpperCase()];
       else if (Dumper[level]) return Dumper[level];
       else if (Dumper[level?.value]) return Dumper[level?.value];
       else if (Dumper[level?.name?.toUpperCase()]) return Dumper[level?.name?.toUpperCase()];
@@ -700,7 +337,7 @@ const shortcut = ((window) => {
      */
     allows(level) {
       if ([defaults.level, level].includes(Dumper.OFF)) return false;
-      if (level == undefined) return true;
+      if (level === undefined) return true;
       return this.value - level.value <= 0;
     }
   }
@@ -1100,17 +737,17 @@ const shortcut = ((window) => {
       },
     } = defaults) {
       let options = arguments[1] ?? {};
-      const children = (this == Dumper || this.#children == undefined) ? Children : this.#children;
+      const children = (this === Dumper || this.#children === undefined) ? Children : this.#children;
 
       if (!children.has(name)) {
         // Any unset child options are copied from parent
-        if (this != Dumper) mergeOptions(options, this.#options);
+        if (this !== Dumper) mergeOptions(options, this.#options);
         if (options.level && options.level.name) options.level = options.level.name;
 
         options = copyObject(options);
         options.level = LogLevel.from(options.level);
 
-        let context = this == Dumper ? {name: []} : copyObject(this.#context);
+        let context = this === Dumper ? {name: []} : copyObject(this.#context);
         context.parent = this;
         context.name.push(name);
 
@@ -1132,7 +769,7 @@ const shortcut = ((window) => {
      */
     static children() {
       const kids = Object.create(null);
-      for (let [name, child] of (this != Dumper && this.#children || Children)) kids[name] = child; // this.log(child.name, child);
+      for (let [name, child] of (this !== Dumper && this.#children || Children)) kids[name] = child; // this.log(child.name, child);
 
       return kids;
     }
@@ -1305,22 +942,22 @@ const shortcut = ((window) => {
      * @param {boolean} [bubbled=false] should not be set manually, true if update called from parent
      */
     static setLevel(level, bubbled = false) {
-      let options = (this == Dumper || this.#options == undefined) ? defaults : this.#options;
+      let options = (this === Dumper || this.#options === undefined) ? defaults : this.#options;
 
       if (!(level instanceof LogLevel)) level = LogLevel.from(level);
 
       // If initial setLevel OR updateChain is true: update options
-      if (!bubbled || (this == Dumper || options.bubbling.listen)) options.level = level;
+      if (!bubbled || (this === Dumper || options.bubbling.listen)) options.level = level;
 
       // Global Dumper & LogLevel.OFF: We don't chain Level since Global.OFF stops all logging as is.
       // OR if the level chain set to stop bubbling
-      if ((this == Dumper && level == this.OFF) || (bubbled && options.bubbling.trigger == false)) return;
+      if ((this === Dumper && level === this.OFF) || (bubbled && options.bubbling.trigger === false)) return;
 
       // Single Instance Dumper: Has no children so we stop here to prevent a Global setLevel call.
-      if (this != Dumper && this.#children == undefined) return this;
+      if (this !== Dumper && this.#children === undefined) return this;
 
       // Update level of children
-      if (options.bubbling.trigger) for (let child of (this != Dumper && this.#children || Children).values()) child.setLevel(level, true);
+      if (options.bubbling.trigger) for (let child of (this !== Dumper && this.#children || Children).values()) child.setLevel(level, true);
       return this;
     }
 
@@ -1373,7 +1010,7 @@ const shortcut = ((window) => {
      * @param {...any} messages log messages
      */
     static trace(...messages) {
-      formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'DarkBlue'});
+      formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'DarkBlue'});
       if (this.getLevel().allows(Dumper.TRACE)) return out.trace.apply(this, messages);
     }
 
@@ -1386,7 +1023,7 @@ const shortcut = ((window) => {
      * @returns {Dumper} Dumper
      */
     static debug(...messages) {
-      formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'LightBlue'});
+      formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'LightBlue'});
       if (this.getLevel().allows(Dumper.DEBUG)) return out.debug.apply(this, messages);
     }
 
@@ -1399,7 +1036,7 @@ const shortcut = ((window) => {
      * @returns {Dumper} Dumper
      */
     static info(...messages) {
-      formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'Blue'});
+      formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'Blue'});
       if (this.getLevel().allows(Dumper.INFO)) return out.info.apply(this, messages);
     }
 
@@ -1412,7 +1049,7 @@ const shortcut = ((window) => {
      * @returns {Dumper} Dumper
      */
     static warn(...messages) {
-      formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'Orange'});
+      formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'Orange'});
       if (this.getLevel().allows(Dumper.WARN)) return out.warn.apply(this, messages);
     }
 
@@ -1425,7 +1062,7 @@ const shortcut = ((window) => {
      * @returns {Dumper} Dumper
      */
     static error(...messages) {
-      formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'DarkRed'});
+      formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'DarkRed'});
       if (this.getLevel().allows(Dumper.ERROR)) return out.error.apply(this, messages);
     }
 
@@ -1438,7 +1075,7 @@ const shortcut = ((window) => {
      * @returns {Dumper} Dumper
      */
     static log(...messages) {
-      formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'Black'});
+      formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'Black'});
       if (this.getLevel().allows()) return out.log.apply(this, messages);
     }
 
@@ -1452,11 +1089,11 @@ const shortcut = ((window) => {
      * @returns {boolean} if assertion took place or not @since 2.4.1
      */
     static assert(assertion, ...messages) {
-      formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'Crimson'});
+      formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'Crimson'});
       const new_ts = Date.now();
       const old_ts = this._last_assert || 0;
 
-      const options = this == Dumper ? defaults : this.#options;
+      const options = this === Dumper ? defaults : this.#options;
 
       // Stop here if limit not reached
       if (options.assert.limit && old_ts && new_ts - old_ts < options.assert.limit) return false;
@@ -1489,7 +1126,7 @@ const shortcut = ((window) => {
      */
     static time(label = 'default') {
       let messages = [label];
-      formatMessage(messages, (this == Dumper ? undefined : this.#context));
+      formatMessage(messages, (this === Dumper ? undefined : this.#context));
       if (this.getLevel().allows(Dumper.TIME)) return out.time.call(this, messages.join(' - '));
     }
 
@@ -1503,7 +1140,7 @@ const shortcut = ((window) => {
      */
     static timeEnd(label = 'default') {
       let messages = [label];
-      formatMessage(messages, (this == Dumper ? undefined : this.#context));
+      formatMessage(messages, (this === Dumper ? undefined : this.#context));
       if (this.getLevel().allows(Dumper.TIME)) return out.timeEnd.call(this, messages.join(' - '));
     }
 
@@ -1517,7 +1154,7 @@ const shortcut = ((window) => {
      */
     static timeLog(label = 'default') {
       let messages = [label];
-      formatMessage(messages, (this == Dumper ? undefined : this.#context));
+      formatMessage(messages, (this === Dumper ? undefined : this.#context));
       if (this.getLevel().allows(Dumper.TIME)) return out.timeLog.call(this, messages.join(' - '));
     }
 
@@ -1533,7 +1170,7 @@ const shortcut = ((window) => {
      */
     static timeStamp() {
       let messages = [Date.now()];
-      formatMessage(messages, (this == Dumper ? undefined : this.#context));
+      formatMessage(messages, (this === Dumper ? undefined : this.#context));
       if (this.getLevel().allows(Dumper.TIME)) out.log.call(this, messages.join(' - '));
 
       out.timeStamp.call(this);
@@ -1553,11 +1190,11 @@ const shortcut = ((window) => {
      * @returns {Dumper|number} Dumper or counter value
      */
     static count(label = 'default', returnCount = false) {
-      const counters = (this == Dumper ? Counters : this.#counters);
+      const counters = (this === Dumper ? Counters : this.#counters);
       if (!counters.hasOwnProperty(label)) counters[label] = 0;
       counters[label] += 1;
       let messages = [`${label}: ` + counters[label]];
-      formatMessage(messages, (this == Dumper ? undefined : this.#context));
+      formatMessage(messages, (this === Dumper ? undefined : this.#context));
       if (this.getLevel().allows(Dumper.TIME)) out.log.call(this, messages.join(' - '));
       return returnCount ? counters[label] : this;
     }
@@ -1571,7 +1208,7 @@ const shortcut = ((window) => {
      * @returns {Dumper} Dumper
      */
     static countReset(label = 'default') {
-      const counters = (this == Dumper ? Counters : this.#counters);
+      const counters = (this === Dumper ? Counters : this.#counters);
       if (counters.hasOwnProperty(label)) counters[label] = 0;
       return this;
     }
@@ -1600,7 +1237,7 @@ const shortcut = ((window) => {
 
     set optionAssertLimit(assertLimit) {
       assertLimit = assertLimit * 1;
-      this.#options.assert.limit = assertLimit.toString() == 'NaN' ? 0 : assertLimit;
+      this.#options.assert.limit = assertLimit.toString() === 'NaN' ? 0 : assertLimit;
     }
 
     /**
@@ -1643,7 +1280,7 @@ const shortcut = ((window) => {
      * @since 2.3.0
      */
     get optionBubble() {
-      return this.optionBubbleFromParent == this.optionBubbleToChildren && this.optionBubbleToChildren || null;
+      return this.optionBubbleFromParent === this.optionBubbleToChildren && this.optionBubbleToChildren || null;
     }
 
     set optionBubble(bubble) {
@@ -1697,6 +1334,7 @@ const shortcut = ((window) => {
   }
 
 })(unsafeWindow);
+//#endregion Libraries Dumper
 
 //#region Query String
 ((window) => {
@@ -1724,10 +1362,10 @@ const shortcut = ((window) => {
 //#endregion Query String
 //#endregion Libraries
 
-//#region YTS
+//#region Scroller
 ((window, dumper) => {
   'use strict';
-  dumper.info('YTS Helper');
+  dumper.info('Scroller');
 
   //#region SCROLL LIBRARY
   /**
@@ -1772,7 +1410,7 @@ const shortcut = ((window) => {
     constructor(el, {offset = 0, duration = 1000, fail_gracefully = false} = {}) {
       Object.assign(this.#options.config, this.constructor.defaults, arguments[1]);
 
-      if (typeof el == `string`) {
+      if (typeof el === `string`) {
         this.#options.selector = el;
         this.#options.el = document.querySelector(el);
       } else if (el instanceof HTMLElement) {
@@ -1780,7 +1418,7 @@ const shortcut = ((window) => {
         this.#options.el = el;
       }
 
-      if (this.#options.el == null && this.#options.config.fail_gracefully == false) throw `Parameter is not a valid HTMLElement or selector string!`;
+      if (this.#options.el === null && this.#options.config.fail_gracefully === false) throw `Parameter is not a valid HTMLElement or selector string!`;
 
       this.animateScrolling = this.constructor.animateScrolling.bind(this);
       this.scrollTo = this.constructor.element.bind(this, this.#options.el);
@@ -1805,6 +1443,8 @@ const shortcut = ((window) => {
 
         const time = timestamp - start,
           percent = Math.min(time / duration, 1);
+
+        dumper.debug('Scrolling values:', 'time:', time, 'duration:', duration, 'startingY:', startingY, 'diff:', diff, 'percent:', percent, 'position:', startingY + diff * percent);
 
         window.scrollTo(0, startingY + diff * percent);
 
@@ -1836,15 +1476,17 @@ const shortcut = ((window) => {
 
   const theStart = window.document.createElement('div');
   theStart.id = 'the-start';
-
-  const theEnd = window.document.createElement('div');
-  theEnd.id = 'the-end';
-
   window.document.body.prepend(theStart);
-  window.document.body.append(theEnd);
+
+  const theEnd = iq('@footer') || window.document.createElement('div');
+  if (theEnd.tagName !== 'FOOTER') {
+    theEnd.id = 'the-end';
+    window.document.body.append(theEnd);
+  }
+
 
   //#region Scrolling
-  const scrollDuration= () => {
+  const scrollDuration = () => {
     let h = (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 2;
     if (h < 1000) h = 1000;
     else if (h > 5000) h = 10000;
@@ -1858,12 +1500,12 @@ const shortcut = ((window) => {
     .add('shift + alt + u', () => {
       const sd = scrollDuration();
       dumper.info('Scroll duration calculated: ' + sd + 'ms');
-      ScrollTo.element((iq('@#the-start')), 0, sd);
+      ScrollTo.element(theStart, 0, sd);
     }, 'Scroll up.')
     .add('shift + alt + d', () => {
       const sd = scrollDuration();
       dumper.info('Scroll duration calculated: ' + sd + 'ms');
-      ScrollTo.element((iq('@#the-end')), 0, sd);
+      ScrollTo.element(theEnd, 0, sd);
     }, 'Scroll down.');
   //#endregion Scrolling
 
@@ -1881,5 +1523,5 @@ const shortcut = ((window) => {
 
   }, 'Dumper Toggle: DEBUG.');
   //#endregion Dumper Debug
-})(unsafeWindow, Dumper.get('YTS Helper', {level: unsafeWindow.dumperLevel}));
-//#endregion YTS
+})(unsafeWindow, Dumper.get('Scroller', {level: unsafeWindow.dumperLevel}));
+//#endregion Scroller

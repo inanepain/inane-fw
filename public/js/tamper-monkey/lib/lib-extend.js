@@ -1,0 +1,418 @@
+// ==UserScript==
+// @name         lib-extend
+// @namespace    https://www.cathedral.co.za/tm/lib/extend
+// @version      1776372756
+// @description  Extends HTML objects with useful methods.
+// @author       Philip Michael Raab<philip@cathedral.co.za>
+// @match        *://*/*
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @grant        GM.setValue
+// @grant        GM.getValue
+// @grant        GM_setClipboard
+// @grant        unsafeWindow
+// @grant        window.close
+// @grant        window.focus
+// @grant        window.onurlchange
+// @sandbox      raw
+// @run-at       document-start
+// ==/UserScript==
+
+/*
+ * Extends HTML objects with useful methods.
+ *
+ * @date 16 April 2026 10:52:36 PM SAST
+ *
+ * Execution order: 1
+ */
+
+//#region Initialise
+unsafeWindow.iq = unsafeWindow.iq || document.iq;
+unsafeWindow.iqs = unsafeWindow.iqs || document.iqs;
+unsafeWindow.iqsa = unsafeWindow.iqsa || document.iqsa;
+unsafeWindow.shortcut = unsafeWindow.shortcut || document.shortcut;
+//#endregion Initialise
+
+//#region Libraries Extensions
+((window) => {
+  //#region Libraries Object
+  if (!Object.prototype.watch) {
+    Object.defineProperty(Object.prototype, 'watch', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function (prop, handler) {
+        var getter, setter, change = {
+          property: prop, value: this[prop], previous: undefined, set update(v) {
+            if (this.value === v) return !1;
+            this.previous = this.value;
+            this.value = v;
+            return !0
+          }
+        }, getter = function () {
+          return change.value
+        }, setter = function (val) {
+          if (change.update = val) handler.call(this, change);
+          return val
+        };
+        if (delete this[prop]) {
+          Object.defineProperty(this, prop, {get: getter, set: setter, configurable: !0})
+        }
+      }
+    })
+  }
+  if (!Object.prototype.unwatch) {
+    Object.defineProperty(Object.prototype, 'unwatch', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function (prop) {
+        var val = this[prop];
+        delete this[prop];
+        this[prop] = val
+      }
+    })
+  }
+  if (!Object.prototype.jsonString) {
+    Object.defineProperty(Object.prototype, 'jsonString', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function () {
+        return JSON.stringify(this)
+      }
+    })
+  }
+  if (!Object.prototype.pick) {
+    Object.defineProperty(Object.prototype, 'pick', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function (propsArray) {
+        if (!propsArray) return;
+        if (!Array.isArray(propsArray) && (typeof propsArray === 'string')) propsArray = [propsArray];
+        propsArray = propsArray.unique();
+        const picked = {};
+        propsArray.forEach(prop => {
+          if (this.hasOwnProperty(prop)) picked[prop] = this[prop]
+        });
+        return picked
+      }
+    })
+  }
+  if (!Object.prototype.readPath) {
+    Object.defineProperty(Object.prototype, 'readPath', {
+      enumerable: !1, configurable: !1, writable: !0, value: function (path, delimiter = '.') {
+        if (!path) return this;
+        const eP = typeof path === 'string' ? path.split(delimiter) : path;
+        let t = Object.assign({}, this);
+        for (let i = 0; i < eP.length; i++)
+          if (t && t.hasOwnProperty(eP[i])) t = t[eP[i]]; else t = undefined;
+        return t
+      }
+    })
+  }
+  if (!Object.prototype.sorted) {
+    Object.defineProperty(Object.prototype, 'sorted', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function () {
+        return this.pick(this.keys().sort())
+      }
+    })
+  }
+  if (!Object.prototype.propertyRename) {
+    Object.defineProperty(Object.prototype, 'propertyRename', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function (old_key, new_key, force = !1) {
+        if (!old_key || !new_key) {
+          console.error('Object.propertyRename: old_key and new_key are required.');
+          return this
+        }
+        if (typeof old_key !== 'string' || typeof new_key !== 'string') {
+          console.error('Object.propertyRename: old_key and new_key must be strings.');
+          return this
+        }
+        if (old_key === new_key) {
+          console.warn('Object.propertyRename: old_key and new_key are the same, no action taken.');
+          return this
+        }
+        if (!this.hasOwnProperty(old_key)) {
+          console.warn(`Object.propertyRename: old_key "${old_key}" does not exist on this object.`);
+          return this
+        }
+        if (this.hasOwnProperty(new_key) && !force) {
+          console.warn(`Object.propertyRename: new_key "${new_key}" already exists on this object, no action taken.`);
+          return this
+        }
+        if (this.hasOwnProperty(new_key) && force) {
+          delete this[new_key]
+        }
+        Object.defineProperty(this, new_key, Object.getOwnPropertyDescriptor(this, old_key));
+        delete this[old_key];
+        return this
+      }
+    })
+  }
+  if (!Object.prototype.renameProperty) {
+    Object.defineProperty(Object.prototype, 'renameProperty', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function (old_key, new_key, force = !1) {
+        return this.propertyRename(old_key, new_key, force)
+      }
+    })
+  }
+  if (!Object.prototype.groupByProperty) {
+    Object.defineProperty(Object.prototype, 'groupByProperty', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function (key) {
+        try {
+          let target = Array.isArray(this) ? this : this.values();
+          return target.reduce((rv, x) => {
+            (rv[x[key]] = rv[x[key]] || []).push(x);
+            return rv
+          }, {})
+        } catch (error) {
+          console.error('Unable to group object.')
+        }
+      }
+    })
+  }
+  if (!Object.prototype.keys) {
+    Object.defineProperty(Object.prototype, 'keys', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function () {
+        return Object.keys(this)
+      }
+    })
+  }
+  if (!Object.prototype.values) {
+    Object.defineProperty(Object.prototype, 'values', {
+      enumerable: !1,
+      configurable: !1,
+      writable: !0,
+      value: function () {
+        return Object.values(this)
+      }
+    })
+  }
+  //#endregion Libraries Object
+  //#region Libraries Array
+  if (!Array.prototype.unique) {
+    Array.prototype.unique = function () {
+      const unique = [];
+      for (let i = 0; i < this.length; i++) if (!unique.includes(this[i])) unique.push(this[i]);
+      return unique
+    }
+  }
+  if (!Array.prototype.searchObject) {
+    Array.prototype.searchObject = function (nameKey, keyValue, fuzzy = !1) {
+      return this.filter(item => {
+        if (item.hasOwnProperty(nameKey) && keyValue !== undefined) {
+          if (fuzzy && typeof item[nameKey] === 'string') return item[nameKey].toLowerCase().includes(keyValue.toLowerCase());
+          return item[nameKey] === keyValue
+        }
+      })
+    }
+  }
+  if (!Array.prototype.groupByProperty) {
+    Array.prototype.groupByProperty = function (key) {
+      return this.reduce((rv, x) => {
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv
+      }, {})
+    }
+  }
+  if (!Array.prototype.sortByProperty) {
+    Array.prototype.sortByProperty = function (propName, sortNumerically = !1) {
+      if (sortNumerically === !0) {
+        this.sort(function (a, b) {
+          return a[propName] - b[propName]
+        })
+      } else {
+        this.sort(function (a, b) {
+          var nameA = `${(a[propName] ?? '')}`.toUpperCase();
+          var nameB = `${(b[propName] ?? '')}`.toUpperCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0
+        })
+      }
+    }
+  }
+  if (!Array.prototype.log) {
+    Array.prototype.log = function () {
+      console.log(JSON.stringify(this))
+    }
+  }
+  //#region Libraries Array HTML
+  for (let element of [HTMLCollection, NodeList]) {
+    if (!element.prototype.toArray) {
+      element.prototype.toArray = function () {
+        return Array.from(this)
+      }
+    }
+  }
+  //#endregion Libraries Array HTML
+  //#endregion Libraries Array
+  //#region Libraries Date
+  if (!Date.prototype.getWeekNumber) {
+    Date.prototype.getWeekNumber = function () {
+      var d = new Date(+this);
+      d.setHours(0, 0, 0);
+      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+      return Math.ceil((((d - new Date(d.getFullYear(), 0, 1)) / 8.64e7) + 1) / 7)
+    }
+  }
+  if (!Date.prototype.nextYear) {
+    Date.prototype.nextYear = function () {
+      return new Date(this.getTime() + 31536000000)
+    }
+  }
+  if (!Date.prototype.nextYearGMTString) {
+    Date.prototype.nextYearGMTString = function () {
+      return this.nextYear().toGMTString()
+    }
+  }
+  if (!Date.prototype.unixZero) {
+    Date.prototype.unixZero = function () {
+      return new Date(0)
+    }
+  }
+  if (!Date.prototype.unixZeroGMTString) {
+    Date.prototype.unixZeroGMTString = function () {
+      return (new Date(0)).toGMTString()
+    }
+  }
+  if (!Date.prototype.log) {
+    Date.prototype.log = function () {
+      console.log(this.constructor.toString().split(' ')[1].replace('()', '').toLowerCase() + '(' + this.toLocaleString().length + '): ' + this.toLocaleString())
+    }
+  }
+  //#endregion Libraries Date
+  //#region Libraries Number
+  if (!Number.getRandom) {
+    Number.getRandom = function (min, max) {
+      min = Math.ceil(min || 0);
+      max = Math.floor(max || min * min);
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+  }
+  if (!Number.prototype.log) {
+    Number.prototype.log = function () {
+      console.log(this.constructor.toString().split(' ')[1].replace('()', '').toLowerCase() + '(' + this.toString().length + '): ' + this.toString())
+    }
+  }
+  //#endregion Libraries Number
+  //#region Libraries String
+  if (!String.prototype.toTitleCase) {
+    String.prototype.toTitleCase = function (lowerAsWell = !1, isName = !1) {
+      let string = lowerAsWell === !0 ? this.toLowerCase() : this;
+      if (isName) return string.replace(/\b[a-z]/g, txt => {
+        return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase()
+      }); else return string.replace(/(?:^|\s)\w/g, function (match) {
+        return match.toUpperCase()
+      })
+    }
+  }
+  if (!String.prototype.replaceAll) {
+    String.prototype.replaceAll = function (find, replace) {
+      return this.split(find).join(replace)
+    }
+  }
+  if (!String.prototype.trimChars) {
+    String.prototype.trimChars = function (chars) {
+      return this.replace(new RegExp('^(' + chars + ')+|(' + chars + ')+$', 'gm'), '')
+    }
+  }
+  if (!String.prototype.trimCharsLeft) {
+    String.prototype.trimCharsLeft = function (chars) {
+      return this.replace(new RegExp('^(' + chars + ')+', 'gm'), '')
+    }
+  }
+  if (!String.prototype.trimCharsRight) {
+    String.prototype.trimCharsRight = function (chars) {
+      return this.replace(new RegExp('(' + chars + ')+$', 'gm'), '')
+    }
+  }
+  if (!String.prototype.camelCaseToHyphen) {
+    String.prototype.camelCaseToHyphen = function () {
+      let str = this;
+      str = str.replace(/[^\w\s\-]/gi, '');
+      str = str.replace(/([A-Z])/g, function ($1) {
+        return '-' + $1.toLowerCase()
+      });
+      return str.replace(/\s/g, '-').replace(/^-+/g, '')
+    }
+  }
+  if (!String.prototype.hyphenToCamelCase) {
+    String.prototype.hyphenToCamelCase = function () {
+      return this.replace(/-([a-z])/g, (m, w) => w.toUpperCase())
+    }
+  }
+  if (!String.prototype.splice) {
+    String.prototype.splice = function (start, delCount, newSubStr) {
+      return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount))
+    }
+  }
+  if (!String.prototype.parseJSON) {
+    String.prototype.parseJSON = function () {
+      try {
+        return JSON.parse(this)
+      } catch (error) {
+        return null
+      }
+    }
+  }
+  if (!String.prototype.log) {
+    String.prototype.log = function (label = !1) {
+      let args = [this.toString()];
+      if (label?.constructor?.name === 'String') args.unshift(label); else if (label === !0) args.unshift(this.constructor.name, this.length);
+      console.log(...args)
+    }
+  }
+  //#endregion Libraries String
+  //#region Libraries Inane Query
+  for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
+    if (!element.prototype.iqs) {
+      element.prototype.iqs = function (selectors) {
+        const el = this?.querySelector ? this : window.document;
+        return el.querySelector(selectors)
+      }
+    }
+    if (!window.iqs && window.document.iqs) window.iqs = window.document.iqs;
+    if (!element.prototype.iqsa) {
+      element.prototype.iqsa = function (selectors) {
+        const el = this?.querySelectorAll ? this : window.document;
+        return Array.from(el.querySelectorAll(selectors))
+      }
+    }
+    if (!window.iqsa && window.document.iqsa) window.iqsa = window.document.iqsa;
+    if (!element.prototype.iq) {
+      element.prototype.iq = function (selectors) {
+        const dynamic = selectors.startsWith('@@');
+        if (dynamic) selectors = selectors.substring(2);
+        const cmd = selectors.startsWith('@') || selectors.split(' ').pop().charAt(0) === '#' && !selectors.includes(',') ? 'querySelector' : 'querySelectorAll';
+        if (selectors.startsWith('@')) selectors = selectors.substring(1);
+        const el = this?.[cmd] ? this : window.document;
+        result = el[cmd](selectors);
+        result = cmd === 'querySelector' ? result : Array.from(result);
+        if (dynamic) return Array.isArray(result) ? (result.length === 1 ? result.pop() : result) : result;
+        return result
+      }
+    }
+    if (!window.iq && window.document.iq) window.iq = window.document.iq
+  }
+  //#endregion Libraries Inane Query
+})(unsafeWindow);
+//#endregion Libraries Extensions
