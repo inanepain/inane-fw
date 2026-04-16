@@ -1,3 +1,5 @@
+#!/usr/bin/env just --justfile
+
 # skeleton/inane-fw
 # version: $Id$
 # date: $Date$
@@ -54,3 +56,11 @@ compile target="changelog": (_start target) && (_done target)
 	asciidoctor -b docbook {{uppercase(target)}}.adoc
 	rm -f {{uppercase(target)}}.xml
 	echo "\t{{uppercase(target)}}.adoc {{RED}}done.{{NORMAL}}"
+
+#*********************************************
+#### MAINTENANCE
+##############################################
+# Remove .DS_Store files for directory tree
+rmdsstore:
+    @echo "Removing: .DS_Store files..."
+    @find "${@:-.}" -type f -name .DS_Store -delete
