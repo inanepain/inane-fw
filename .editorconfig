@@ -24,25 +24,25 @@ max_line_length = 120
 
 # JavaScript / TypeScript
 [*.{js,jsx,ts,tsx,mjs,cjs}]
-indent_size = 2
+indent_size = 4
 max_line_length = 100
 
 # SCSS / CSS
 [*.{scss,css}]
-indent_size = 2
+indent_size = 4
 max_line_length = 100
 
 # JSON / YAML
 [*.{json,yml,yaml}]
-indent_size = 2
+indent_size = 4
 
 # HTML / XML
 [*.{html,xml}]
-indent_size = 2
+indent_size = 4
 
 # Shell scripts
 [*.{sh,zsh,bash}]
-indent_size = 2
+indent_size = 4
 
 # Makefiles (must use tabs)
 [Makefile]

@@ -21,18 +21,23 @@ class One {
     }
 
     /**
-     * Create a One instance or return the already-created singleton.
+     * Constructs an instance of the class and initializes its properties.
+     * Ensures the class follows a singleton pattern by returning the existing instance
+     * if already created.
      *
-     * If an instance already exists the constructor returns that instance.
-     * Note: returning an object from a constructor will replace the constructed
-     * object with the returned one; this is used intentionally here to support
-     * the singleton pattern when `new One(name)` is called multiple times.
+     * @param {string} [name='Unknown'] - The name of the instance.
+     * @param {Object} [options={age: 0, gender: 'Male'}] - An object containing optional configuration parameters.
+     * @param {number} [options.age=0] - The age value to initialize the instance with.
+     * @param {string} [options.gender='Male'] - The gender value to initialize the instance with.
      *
-     * @param {string} name - One's name
-     * 
-     * @returns {One} The singleton instance
+     * @return {Object} An instance of the class.
      */
-    constructor(name) {
+    constructor(name = 'Unknown', options = {age: 0, gender: 'Male'}) {
+        const {
+            age = 0,
+            gender = 'Male',
+        } = options;
+
         if (this.constructor.#instance) {
             console.log(`${this.constructor.name} already created. Loading: ${this.constructor.#instance.name}`);
             return this.constructor.#instance;
@@ -50,7 +55,7 @@ class One {
      * Return the singleton instance, creating it if necessary.
      *
      * @param {string} [name] - Optional name for the instance when it is first created
-     * 
+     *
      * @returns {One}
      */
     static getInstance(name) {
