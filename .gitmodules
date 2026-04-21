@@ -76,13 +76,11 @@
 	branch = develop
 [submodule "lib/inanepain/servicemanager"]
 	path = lib/inanepain/servicemanager
-	url = https://inanepain@github.com/inanepain/servicemanager.git
-	branch = develop
-[submodule "auth"]
+	url = http://blackbetty.local:3000/inanepain/servicemanager.git
 	branch = develop
 [submodule "lib/inanepain/polyfill"]
 	path = lib/inanepain/polyfill
-	url = https://github.com/inanepain/polyfill.git
+	url = http://blackbetty.local:3000/inanepain/polyfill.git
 	branch = develop
 [submodule "lib/inanepain/log"]
 	path = lib/inanepain/log

@@ -3,3 +3,4 @@
 *.code-workspace
 /tmp/
 /data/wiki/
+/data/inane-fw.sqlite
