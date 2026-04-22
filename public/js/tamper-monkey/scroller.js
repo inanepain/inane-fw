@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scroller
 // @namespace    https://www.cathedral.co.za/tm/scroller
-// @version      1776372756
+// @version      1776895495
 // @description  Scrolls the page.
 // @author       Philip Michael Raab<philip@cathedral.co.za>
 // @match        *://*/*
@@ -22,7 +22,7 @@
 /*
  * Scrolls the page.
  *
- * @date 16 April 2026 10:52:36 PM SAST
+ * @date 23 April 2026 12:04:56 AM SAST
  *
  * Execution order: 2
  */
@@ -1484,7 +1484,6 @@ const shortcut = ((window) => {
     window.document.body.append(theEnd);
   }
 
-
   //#region Scrolling
   const scrollDuration = () => {
     let h = (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 2;
@@ -1505,7 +1504,7 @@ const shortcut = ((window) => {
     .add('shift + alt + d', () => {
       const sd = scrollDuration();
       dumper.info('Scroll duration calculated: ' + sd + 'ms');
-      ScrollTo.element(theEnd, 0, sd);
+      ScrollTo.element(iq('@footer') || theEnd, 0, sd);
     }, 'Scroll down.');
   //#endregion Scrolling
 

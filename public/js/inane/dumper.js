@@ -2,7 +2,7 @@
 /**
  * Dumper
  *
- * Logging with filters, Named loggers, enhanced assert and much more.
+ * Logging with filters, Named loggers, enhanced assert, and much more.
  *
  * @author Philip Michael Raab <philip@cathedral.co.za>
  * @copyright 2020 Philip Michael Raab <philip@cathedral.co.za>
@@ -42,9 +42,9 @@ class LogLevel {
      * @param {LogLevelOptions} options LogLevel values
      */
     constructor({
-        name,
-        value
-    }) {
+                    name,
+                    value
+                }) {
         this.#options = arguments[0];
 
         Object.defineProperties(this, {
@@ -62,7 +62,7 @@ class LogLevel {
     /**
      * Return LogLevel from a variety of input
      *
-     * If no matching level found based on the input then the default level in returned.
+     * If no matching level is found based on the input, then the default level in returned.
      *
      * @param {LogLevel|string|number|Object} level name, value (as number or string), object with only name or value (as object or string)
      *
@@ -70,7 +70,7 @@ class LogLevel {
      */
     static from(level) {
         if (level instanceof LogLevel && Dumper[level.name]) return Dumper[level.name];
-        else if (typeof level == `string` && Dumper[level.toUpperCase()]) return Dumper[level.toUpperCase()];
+        else if (typeof level === `string` && Dumper[level.toUpperCase()]) return Dumper[level.toUpperCase()];
         else if (Dumper[level]) return Dumper[level];
         else if (Dumper[level?.value]) return Dumper[level?.value];
         else if (Dumper[level?.name?.toUpperCase()]) return Dumper[level?.name?.toUpperCase()];
@@ -88,13 +88,13 @@ class LogLevel {
      */
     allows(level) {
         if ([defaults.level, level].includes(Dumper.OFF)) return false;
-        if (level == undefined) return true;
+        if (level === undefined) return true;
         return this.value - level.value <= 0;
     }
 }
 
 /**
- * Test if obj is static or an instance of Dumper
+ * Test if an obj is static or an instance of Dumper
  *
  * @param {Dumper} obj dumper to test
  *
@@ -109,7 +109,7 @@ const isStatic = (obj) => obj === Dumper;
  *
  * Creates 100% new object using JSON to stringify the object.<br/>
  *
- * N.B.: The to/from string conversion!!! Use for data/options.
+ * N.B.: The two/from string conversion!!! Use for data/options.
  *
  * @param {Object} original object to create a copy from
  *
@@ -117,10 +117,12 @@ const isStatic = (obj) => obj === Dumper;
  *
  * @ignore
  */
-const copyObject = (original) => {return JSON.parse(JSON.stringify(original));}
+const copyObject = (original) => {
+    return JSON.parse(JSON.stringify(original));
+}
 
 /**
- * Adds ONLY missing properties from source objects to target in decreasing priority
+ * Adds ONLY missing properties from source objects to the target in decreasing priority
  *
  * @example
  * // copy values from defaults missing in options to options
@@ -132,14 +134,14 @@ const copyObject = (original) => {return JSON.parse(JSON.stringify(original));}
  * @ignore
  */
 const mergeOptions = (target, ...source) => {
-    var key, i;
+    let key, i;
     for (i = 0; i < source.length; i++)
         for (key in source[i])
             if (!(key in target) && source[i].hasOwnProperty(key)) target[key] = source[i][key];
             else
-                try { // If we are dealing with child objects here we simple dive into them to process the whole object
+                try { // If we are dealing with child objects, here we simply dive into them to process the whole object
                     if (target[key].constructor === Object && source[i][key].constructor === Object) mergeOptions(target[key], source[i][key]);
-                } catch (error) { // If target has undefined or null we catch the error and set the value
+                } catch (error) { // If target has undefined or null, we catch the error and set the value
                     if (error.message.includes('target[key].constructor')) target[key] = source[i][key];
                 }
 };
@@ -169,7 +171,7 @@ const throttle = (func, limitDelay = 1000, options = {}) => {
     });
     let inThrottle = options.skipfirst;
     let inDebounce;
-    return function() {
+    return function () {
         const args = arguments;
         const context = options.context;
         if (!inThrottle) {
@@ -306,6 +308,7 @@ class Dumper {
     static get VERSION() {
         return '2.5.0';
     }
+
     /**
      * Version
      *
@@ -344,8 +347,9 @@ class Dumper {
     static get kids() {
         return this.children();
     }
+
     /**
-     * Gets this instance of Dumper's childern
+     * Gets this instance of Dumper's children
      *
      * Getter for retrieving the children of the current object.
      * This is an alias for the `children()` method.
@@ -381,19 +385,19 @@ class Dumper {
      * @param {Dumper#Options} options - customisations for instance logger
      */
     constructor({
-        clear = false,
-        level = Dumper.WARN,
-        bubbling = {
-            listen: true,
-            trigger: true,
-        },
-        trickle = 1000,
-        assert = {
-            time: false,
-            hhmmss: false,
-            limit: 0,
-        },
-    } = defaults) {
+                    clear = false,
+                    level = Dumper.WARN,
+                    bubbling = {
+                        listen: true,
+                        trigger: true,
+                    },
+                    trickle = 1000,
+                    assert = {
+                        time: false,
+                        hhmmss: false,
+                        limit: 0,
+                    },
+                } = defaults) {
         this.#options = this.#parseOptions((arguments[0] || defaults));
         if (!(this.#options.level instanceof LogLevel)) this.#options.level = LogLevel.from(this.#options.level);
 
@@ -405,7 +409,8 @@ class Dumper {
         this.clear = out.clear.bind(this);
 
         this.trickle = throttle(this.debug, this.#options.trickle, {context: this});
-        if (!this.dump) this.dump = () => {};
+        if (!this.dump) this.dump = () => {
+        };
 
         // Object.defineProperty(this, Dumper.TRACE.name, {
         //     value: Dumper.TRACE,
@@ -460,7 +465,7 @@ class Dumper {
 
     /**
      * Gets a Named Dumper instance</br>
-     * - If an instance by name exist it will be returned and NOT a new instance created.
+     * - If an instance by name exists, it will be returned and NOT a new instance created.
      *
      * @static
      * @param {string} name Uniquely identify the dumper.
@@ -483,17 +488,17 @@ class Dumper {
         },
     } = defaults) {
         let options = arguments[1] ?? {};
-        const children = (this == Dumper || this.#children == undefined) ? Children : this.#children;
+        const children = (this === Dumper || this.#children === undefined) ? Children : this.#children;
 
         if (!children.has(name)) {
-            // Any unset child options are copied from parent
-            if (this != Dumper) mergeOptions(options, this.#options);
+            // Any unset child options are copied from the parent
+            if (this !== Dumper) mergeOptions(options, this.#options);
             if (options.level && options.level.name) options.level = options.level.name;
 
             options = copyObject(options);
             options.level = LogLevel.from(options.level);
 
-            let context = this == Dumper ? {name: []} : copyObject(this.#context);
+            let context = this === Dumper ? {name: []} : copyObject(this.#context);
             context.parent = this;
             context.name.push(name);
 
@@ -508,14 +513,14 @@ class Dumper {
     }
 
     /**
-     * Retrieves the children of the current Dumper or if Class object it gets the root childen
+     * Retrieves the children of the current Dumper, or if a Class object, it gets the root childen
      *
      * @returns {Object} An object containing the children, where each key is the child's name
      *                   and the value is the corresponding child object.
      */
     static children() {
         const kids = Object.create(null);
-        for (let [name, child] of (this != Dumper && this.#children || Children)) kids[name] = child; // this.log(child.name, child);
+        for (let [name, child] of (this !== Dumper && this.#children || Children)) kids[name] = child; // this.log(child.name, child);
 
         return kids;
     }
@@ -529,6 +534,7 @@ class Dumper {
     static get TRACE() {
         return LogLevels.TRACE;
     }
+
     /**
      * DEBUG
      *
@@ -538,6 +544,7 @@ class Dumper {
     static get DEBUG() {
         return LogLevels.DEBUG;
     }
+
     /**
      * INFO
      *
@@ -547,6 +554,7 @@ class Dumper {
     static get INFO() {
         return LogLevels.INFO;
     }
+
     /**
      * TIME
      *
@@ -556,6 +564,7 @@ class Dumper {
     static get TIME() {
         return LogLevels.TIME;
     }
+
     /**
      * WARN
      *
@@ -565,6 +574,7 @@ class Dumper {
     static get WARN() {
         return LogLevels.WARN;
     }
+
     /**
      * ERROR
      *
@@ -574,6 +584,7 @@ class Dumper {
     static get ERROR() {
         return LogLevels.ERROR;
     }
+
     /**
      * OFF
      *
@@ -593,6 +604,7 @@ class Dumper {
     static get 1() {
         return this.TRACE;
     }
+
     /**
      * DEBUG
      *
@@ -602,6 +614,7 @@ class Dumper {
     static get 2() {
         return this.DEBUG;
     }
+
     /**
      * INFO
      *
@@ -611,6 +624,7 @@ class Dumper {
     static get 3() {
         return this.INFO;
     }
+
     /**
      * TIME
      *
@@ -620,6 +634,7 @@ class Dumper {
     static get 4() {
         return this.TIME;
     }
+
     /**
      * WARN
      *
@@ -629,6 +644,7 @@ class Dumper {
     static get 5() {
         return this.WARN;
     }
+
     /**
      * ERROR
      *
@@ -638,6 +654,7 @@ class Dumper {
     static get 8() {
         return this.ERROR;
     }
+
     /**
      * OFF
      *
@@ -657,6 +674,7 @@ class Dumper {
     static getLevel() {
         return (isStatic(this) ? defaults : this.#options).level;
     }
+
     /**
      * Set Level</br>
      * - Accepts: name, value (as number or string), object with only name or value (as object or string)
@@ -675,22 +693,22 @@ class Dumper {
      * @param {boolean} [bubbled=false] should not be set manually, true if update called from parent
      */
     static setLevel(level, bubbled = false) {
-        let options = (this == Dumper || this.#options == undefined) ? defaults : this.#options;
+        let options = (this === Dumper || this.#options === undefined) ? defaults : this.#options;
 
         if (!(level instanceof LogLevel)) level = LogLevel.from(level);
 
         // If initial setLevel OR updateChain is true: update options
-        if (!bubbled || (this == Dumper || options.bubbling.listen)) options.level = level;
+        if (!bubbled || (this === Dumper || options.bubbling.listen)) options.level = level;
 
         // Global Dumper & LogLevel.OFF: We don't chain Level since Global.OFF stops all logging as is.
-        // OR if the level chain set to stop bubbling
-        if ((this == Dumper && level == this.OFF) || (bubbled && options.bubbling.trigger == false)) return;
+        // OR if the level chain is set to stop bubbling
+        if ((this === Dumper && level === this.OFF) || (bubbled && options.bubbling.trigger === false)) return;
 
-        // Single Instance Dumper: Has no children so we stop here to prevent a Global setLevel call.
-        if (this != Dumper && this.#children == undefined) return this;
+        // Single Instance Dumper: Has no children, so we stop here to prevent a Global setLevel call.
+        if (this !== Dumper && this.#children === undefined) return this;
 
         // Update level of children
-        if (options.bubbling.trigger) for (let child of (this != Dumper && this.#children || Children).values()) child.setLevel(level, true);
+        if (options.bubbling.trigger) for (let child of (this !== Dumper && this.#children || Children).values()) child.setLevel(level, true);
         return this;
     }
 
@@ -728,12 +746,12 @@ class Dumper {
      * Writes to console regardless of levels and shouldn't be used in ust about any circumstance
      *
      * @static
-     * @param {...any} msgs items to dump
+     * @param {...any} messages items to dump
      *
      * @returns {Dumper} Dumper
      */
-    static dump(...msgs) {
-        if (out.dump) return out.dump.apply(this, msgs);
+    static dump(...messages) {
+        if (out.dump) return out.dump.apply(this, messages);
     }
 
     /**
@@ -743,9 +761,10 @@ class Dumper {
      * @param {...any} messages log messages
      */
     static trace(...messages) {
-        formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'DarkBlue'});
+        formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'DarkBlue'});
         if (this.getLevel().allows(Dumper.TRACE)) return out.trace.apply(this, messages);
     }
+
     /**
      * Outputs a message to the console with the log level `debug`
      *
@@ -755,9 +774,10 @@ class Dumper {
      * @returns {Dumper} Dumper
      */
     static debug(...messages) {
-        formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'LightBlue'});
+        formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'LightBlue'});
         if (this.getLevel().allows(Dumper.DEBUG)) return out.debug.apply(this, messages);
     }
+
     /**
      * Informative logging of information
      *
@@ -767,9 +787,10 @@ class Dumper {
      * @returns {Dumper} Dumper
      */
     static info(...messages) {
-        formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'Blue'});
+        formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'Blue'});
         if (this.getLevel().allows(Dumper.INFO)) return out.info.apply(this, messages);
     }
+
     /**
      * Outputs a warning message
      *
@@ -779,9 +800,10 @@ class Dumper {
      * @returns {Dumper} Dumper
      */
     static warn(...messages) {
-        formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'Orange'});
+        formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'Orange'});
         if (this.getLevel().allows(Dumper.WARN)) return out.warn.apply(this, messages);
     }
+
     /**
      * Outputs an error message
      *
@@ -791,9 +813,10 @@ class Dumper {
      * @returns {Dumper} Dumper
      */
     static error(...messages) {
-        formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'DarkRed'});
+        formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'DarkRed'});
         if (this.getLevel().allows(Dumper.ERROR)) return out.error.apply(this, messages);
     }
+
     /**
      * For general output of logging information
      *
@@ -803,25 +826,26 @@ class Dumper {
      * @returns {Dumper} Dumper
      */
     static log(...messages) {
-        formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'Black'});
+        formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'Black'});
         if (this.getLevel().allows()) return out.log.apply(this, messages);
     }
 
     /**
-     * Log a message and stack trace to console if the first argument is `false`
+     * Log a message and stack trace to the console if the first argument is `false`
      *
      * @since 2.4.3 assert available on Dumper class not only instances
      *
+     * @param assertion
      * @param {...any} messages log messages
      *
      * @returns {boolean} if assertion took place or not @since 2.4.1
      */
     static assert(assertion, ...messages) {
-        formatMessage(messages, (this == Dumper ? undefined : this.#context), {color: 'Crimson'});
+        formatMessage(messages, (this === Dumper ? undefined : this.#context), {color: 'Crimson'});
         const new_ts = Date.now();
         const old_ts = this._last_assert || 0;
 
-        const options = this == Dumper ? defaults : this.#options;
+        const options = this === Dumper ? defaults : this.#options;
 
         // Stop here if limit not reached
         if (options.assert.limit && old_ts && new_ts - old_ts < options.assert.limit) return false;
@@ -854,7 +878,7 @@ class Dumper {
      */
     static time(label = 'default') {
         let messages = [label];
-        formatMessage(messages, (this == Dumper ? undefined : this.#context));
+        formatMessage(messages, (this === Dumper ? undefined : this.#context));
         if (this.getLevel().allows(Dumper.TIME)) return out.time.call(this, messages.join(' - '));
     }
 
@@ -868,7 +892,7 @@ class Dumper {
      */
     static timeEnd(label = 'default') {
         let messages = [label];
-        formatMessage(messages, (this == Dumper ? undefined : this.#context));
+        formatMessage(messages, (this === Dumper ? undefined : this.#context));
         if (this.getLevel().allows(Dumper.TIME)) return out.timeEnd.call(this, messages.join(' - '));
     }
 
@@ -882,7 +906,7 @@ class Dumper {
      */
     static timeLog(label = 'default') {
         let messages = [label];
-        formatMessage(messages, (this == Dumper ? undefined : this.#context));
+        formatMessage(messages, (this === Dumper ? undefined : this.#context));
         if (this.getLevel().allows(Dumper.TIME)) return out.timeLog.call(this, messages.join(' - '));
     }
 
@@ -898,7 +922,7 @@ class Dumper {
      */
     static timeStamp() {
         let messages = [Date.now()];
-        formatMessage(messages, (this == Dumper ? undefined : this.#context));
+        formatMessage(messages, (this === Dumper ? undefined : this.#context));
         if (this.getLevel().allows(Dumper.TIME)) out.log.call(this, messages.join(' - '));
 
         out.timeStamp.call(this);
@@ -908,21 +932,21 @@ class Dumper {
     /**
      * Log the number of times this line has been called with the given label
      *
-     * It's worth noting that each Dumper has it's own counters.
+     * It's worth noting that each Dumper has its own counters.
      * So the count value for a label will differ from counter to counter.
      *
      * @static
      * @param {string} [label=default] If supplied, `count()` outputs the number of times it has been called with that label.
-     * @param {boolean} [returnCount=false] returns the counter value as int rather than the dumper.
+     * @param {boolean} [returnCount=false] returns the counter-value as int rather than the dumper.
      *
      * @returns {Dumper|number} Dumper or counter value
      */
     static count(label = 'default', returnCount = false) {
-        const counters = (this == Dumper ? Counters : this.#counters);
+        const counters = (this === Dumper ? Counters : this.#counters);
         if (!counters.hasOwnProperty(label)) counters[label] = 0;
         counters[label] += 1;
         let messages = [`${label}: ` + counters[label]];
-        formatMessage(messages, (this == Dumper ? undefined : this.#context));
+        formatMessage(messages, (this === Dumper ? undefined : this.#context));
         if (this.getLevel().allows(Dumper.TIME)) out.log.call(this, messages.join(' - '));
         return returnCount ? counters[label] : this;
     }
@@ -936,7 +960,7 @@ class Dumper {
      * @returns {Dumper} Dumper
      */
     static countReset(label = 'default') {
-        const counters = (this == Dumper ? Counters : this.#counters);
+        const counters = (this === Dumper ? Counters : this.#counters);
         if (counters.hasOwnProperty(label)) counters[label] = 0;
         return this;
     }
@@ -955,7 +979,7 @@ class Dumper {
     }
 
     /**
-     * Assert Limit option: ms between assert calls
+     * Assert Limit option: ms between assertion calls
      *
      * @type {number}
      */
@@ -965,7 +989,7 @@ class Dumper {
 
     set optionAssertLimit(assertLimit) {
         assertLimit = assertLimit * 1;
-        this.#options.assert.limit = assertLimit.toString() == 'NaN' ? 0 : assertLimit;
+        this.#options.assert.limit = assertLimit.toString() === 'NaN' ? 0 : assertLimit;
     }
 
     /**
@@ -1008,7 +1032,7 @@ class Dumper {
      * @since 2.3.0
      */
     get optionBubble() {
-        return this.optionBubbleFromParent == this.optionBubbleToChildren && this.optionBubbleToChildren || null;
+        return this.optionBubbleFromParent === this.optionBubbleToChildren && this.optionBubbleToChildren || null;
     }
 
     set optionBubble(bubble) {
@@ -1021,16 +1045,16 @@ class Dumper {
 /**
  * Dumper Options
  * @typedef {Object} Dumper#Options
- * @property {boolean} [clear=false] - clears the log
- * @property {LogLevel} [level={value: 5, name: 'WARN'}] - default log level
- * @property {Object} bubbling - how to handle option changes bubbling in and out
- * @property {boolean} [bubbling.listen=true] - listen for bubbled changes from parent
- * @property {boolean} [bubbling.trigger=true] - bubble changes to children
- * @property {number} trickle - throttle ms time
- * @property {Object} assert - options for assert
- * @property {boolean} [assert.time=false] - adds timestamp to assert log
- * @property {boolean} [assert.hhmmss=false] - changes timestamp to time string
- * @property {number} [assert.limit=0] - limits 1 assert log per limit period
+ * @property {boolean} [clear=false] - clears the log.
+ * @property {LogLevel} [level={value: 5, name: 'WARN'}] - default log level.
+ * @property {Object} bubbling - how to handle option changes bubbling in and out.
+ * @property {boolean} [bubbling.listen=true] - listen for bubbled changes from parent.
+ * @property {boolean} [bubbling.trigger=true] - bubble changes to children.
+ * @property {number} trickle - throttle ms time.
+ * @property {Object} assert - options for assertion.
+ * @property {boolean} [assert.time=false] - adds timestamp to assert log.
+ * @property {boolean} [assert.hhmmss=false] - changes timestamp to time string.
+ * @property {number} [assert.limit=0] - limits 1 assert log per limit period.
  * @memberof Dumper
  */
 /**
@@ -1053,8 +1077,8 @@ const defaults = {
     }
 };
 
-// Putting Dumper into global scope, where it's need when you want to debug.
-// If multiple Dumper are loaded, the first registered is always used
+// Putting Dumper into the global scope, where it's necessary when you want to debug.
+// If multiple Dumpers are loaded, the first registered is always used
 if (!globalThis.Dumper) {
     globalThis.Dumper = Dumper;
 } else if (globalThis.Dumper !== Dumper) {

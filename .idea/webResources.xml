@@ -10,6 +10,7 @@
             <path value="file://$PROJECT_DIR$/public/lib/bootstrap" />
             <path value="file://$PROJECT_DIR$/public/lib/bootstrap/5.3.8/css" />
             <path value="file://$PROJECT_DIR$/public/lib/bootstrap/5.3.8/js" />
+            <path value="file://$PROJECT_DIR$/public/js/tamper-monkey" />
           </resourceRoots>
         </entryData>
       </entry>
