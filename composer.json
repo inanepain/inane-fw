@@ -71,7 +71,8 @@
     "psr/http-message": "*",
     "psr/http-server-handler": "*",
     "psr/log": "^3.0@dev",
-    "psr/simple-cache": ">= 3"
+    "psr/simple-cache": ">= 3",
+      "ext-intl": "*"
   },
   "scripts": {
     "inane": [
