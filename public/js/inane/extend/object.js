@@ -99,8 +99,15 @@ if (!Object.prototype.unwatch) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Reassigns the value of an object's property by temporarily removing
+         * and restoring its accessors.
+         *
+         * @param {string} prop - The name of the property to reassign.
+         * @return {void}
+         */
         value: function(prop) {
-            var val = this[prop];
+            const val = this[prop];
             delete this[prop]; // remove accessors
             this[prop] = val;
         }
@@ -136,6 +143,15 @@ if (!Object.prototype.jsonString) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Converts the current object to a JSON string representation.
+         *
+         * @param {Function|null} replacer - A function that alters the behavior of the stringification process,
+         *     or null to use the default behavior.
+         * @param {number|string|null} space - A string or number used to insert white space into the output JSON string for readability,
+         *     or null to produce a compact representation.
+         * @return {string} A JSON string representation of the current object.
+         */
         value: function(replacer = null, space = null) {
             return JSON.stringify(this, replacer, space);
         }
@@ -160,9 +176,17 @@ if (!Object.prototype.pick) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Extracts the specified properties from the current object based on the given array of property names.
+         * If the input is a string, it will be converted to an array with a single element.
+         * Removes duplicate property names in the input array before processing.
+         *
+         * @param {Array|string} propsArray - An array of property names or a string representing a single property name.
+         * @return {Object|undefined} An object containing the extracted properties and their values, or undefined if the input is falsy.
+         */
         value: function(propsArray) {
             if (!propsArray) return;
-            if (!Array.isArray(propsArray) && (typeof propsArray == "string")) propsArray = [propsArray];
+            if (!Array.isArray(propsArray) && (typeof propsArray === "string")) propsArray = [propsArray];
             propsArray = propsArray.unique();
 
             const picked = {};
@@ -193,10 +217,18 @@ if (!Object.prototype.readPath) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Retrieves the value at the specified path within a nested object structure.
+         * If the path does not exist, returns undefined.
+         *
+         * @param {string|string[]} path - The path to the desired value, either as a string (delimited by the specified delimiter) or an array of keys.
+         * @param {string} [delimiter='.'] - The delimiter used to split the path string into keys. Default is '.'.
+         * @return {*} - The value at the specified path, or undefined if the path does not exist.
+         */
         value: function(path, delimiter = '.') {
             if (!path) return this;
 
-            const eP = typeof path == 'string' ? path.split(delimiter) : path;
+            const eP = typeof path === 'string' ? path.split(delimiter) : path;
             let t = Object.assign({}, this);
 
             for (let i = 0; i < eP.length; i++)
@@ -223,6 +255,11 @@ if (!Object.prototype.sorted) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Sorts the keys of the current object and selects a subset of those keys.
+         *
+         * @return {Array} An array containing the selected and sorted keys of the object.
+         */
         value: function() {
             return this.pick(this.keys().sort());
         }
@@ -251,6 +288,17 @@ if (!Object.prototype.propertyRename) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Renames a property of an object from `old_key` to `new_key`. Optionally, forces the renaming if `new_key` already exists.
+         * If `force` is false and `new_key` already exists, no changes will be made. Validates input and ensures `old_key`
+         * exists on the object before proceeding.
+         *
+         * @param {string} old_key - The name of the property to be renamed.
+         * @param {string} new_key - The new name for the property.
+         * @param {boolean} [force=false] - Whether to force renaming if `new_key` already exists on the object.
+         *
+         * @return {Object} The object with the property renamed.
+         */
         value: function(old_key, new_key, force = false) {
             // Validate inputs
             if (!old_key || !new_key) {
@@ -312,6 +360,15 @@ if (!Object.prototype.renameProperty) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Renames a property in an object by calling the `propertyRename` method with the provided parameters.
+         *
+         * @param {string} old_key - The current name of the property to be renamed.
+         * @param {string} new_key - The new name for the property.
+         * @param {boolean} [force=false] - Optional flag to determine if an existing property with the new name should be overwritten.
+         *
+         * @return {*} - The result of the `propertyRename` method call.
+         */
         value: function(old_key, new_key, force = false) {
             // Call the propertyRename method with the same parameters
             return this.propertyRename(old_key, new_key, force);
@@ -337,6 +394,15 @@ if (!Object.prototype.groupByProperty) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Groups the elements of an array or collection by a specified key.
+         *
+         * @param {string} key - The key used for grouping the objects within the array or collection.
+         *
+         * @return {Object} An object where the keys are the values of the specified key in each element,
+         *                  and the values are arrays of elements grouped by the specified key.
+         *                  Returns an empty object if grouping fails.
+         */
         value: function(key) {
             try {
                 let target = Array.isArray(this) ? this : this.values();
@@ -366,6 +432,11 @@ if (!Object.prototype.keys) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Retrieves an array of the enumerable property names (keys) of the current object.
+         *
+         * @return {string[]} An array containing the keys of the object.
+         */
         value: function() {
             return Object.keys(this);
         }
@@ -387,6 +458,12 @@ if (!Object.prototype.values) {
         enumerable: false,
         configurable: false,
         writable: true,
+        /**
+         * Retrieves all the enumerable property values of the current object.
+         *
+         * @return {Array} An array containing the values of all enumerable properties
+         * of the object on which the function is called.
+         */
         value: function() {
             return Object.values(this);
         }

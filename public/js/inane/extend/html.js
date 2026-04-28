@@ -56,7 +56,7 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
          *
          * @since 1.0.0
          *
-         * @param {DOMString} selectors A DOMString containing one or more selectors to match
+         * @param {DOMString|string} selectors A DOMString containing one or more selectors to match
          *
          * @returns {null|Element} An Element representing the first match or null if no match
          */
@@ -76,7 +76,7 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
          *
          * @since 1.1.0
          *
-         * @param {DOMString} selectors A DOMString containing one or more selectors to match
+         * @param {DOMString|string} selectors A DOMString containing one or more selectors to match
          *
          * @returns {Element[]} An Element array containing all matches
          */
@@ -94,18 +94,18 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
         /**
          * Unified Query method
          *
-         * Using either call, apply or bind to set this to an HTMLElement
-         *  will restrict the query to it's children.
+         * Using either call, apply, or bind to set this to an HTMLElement
+         *  will restrict the query to its children.
          *
-         * Prefixing the selectors string with:
-         *  `@` uses `querySelector` (return first element if multipule matches).
-         *  `@@` uses `querySelectorAll` but if only one match a single item is returned.
+         * Prefixing the selector string with:
+         *  `@` uses `querySelector` (return the first element of multiple matches).
+         *  `@@` uses `querySelectorAll` but if only one matches, a single item is returned.
          *
          * @since 1.1.1
          *
          * @param {DOMString|string} selectors A DOMString containing one or more selectors to match
          *
-         * @returns {null|Element|Element[]} An Element representing the first match, an Element array containing all matches or null if nothing matched
+         * @returns {null|Element|Element[]} An Element representing the first match, an Element array containing all matches, or null if nothing matched
          */
         element.prototype.iq = function(selectors) {
             const dynamic = selectors.startsWith('@@');
@@ -116,8 +116,8 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
             const el = this?.[cmd] ? this : window.document;
 
             result = el[cmd](selectors);
-            result = cmd == 'querySelector' ? result : Array.from(result);
-            if (dynamic) return Array.isArray(result) ? (result.length == 1 ? result.pop() : result) : result;
+            result = cmd === 'querySelector' ? result : Array.from(result);
+            if (dynamic) return Array.isArray(result) ? (result.length === 1 ? result.pop() : result) : result;
             return result;
         }
     }

@@ -106,10 +106,13 @@ if (!String.prototype.trimCharsRight) {
 
 if (!String.prototype.camelCaseToHyphen) {
     /**
-     * Convert strings into lowercase-hyphen
+     * Converts a camelCase string to a hyphenated string.
      *
-     * @param  {String} str
-     * @return {String}
+     * This method takes a string in camelCase format and returns
+     * the equivalent string where uppercase letters are replaced
+     * with a hyphen followed by their lowercase counterpart.
+     *
+     * @returns {string} The hyphenated version of the original string.
      */
     String.prototype.camelCaseToHyphen = function () {
         let str = this;
@@ -124,10 +127,16 @@ if (!String.prototype.camelCaseToHyphen) {
 
 if (!String.prototype.hyphenToCamelCase) {
     /**
-     * convert a hyphenated string to camelCase
+     * Converts a hyphen-separated string into camelCase format.
      *
-     * @param  {String} str
-     * @return {String}
+     * This method processes the calling string by treating each hyphen ('-')
+     * as a word boundary, capitalizing the first letter of each subsequent word,
+     * and removing the hyphens in the result. The first word is left in lowercase.
+     *
+     * @returns {string} A new string converted to camelCase format.
+     *
+     * @example
+     * 'example-string'.hyphenToCamelCase(); // Returns 'exampleString'
      */
     String.prototype.hyphenToCamelCase = function () {
         return this.replace(/-([a-z])/g, (m, w) => w.toUpperCase());
@@ -154,9 +163,12 @@ if (!String.prototype.splice) {
 
 if (!String.prototype.parseJSON) {
     /**
-     * Returns Object from valid string
+     * Parses a JSON string and returns the corresponding JavaScript object.
+     * This method extends the String prototype, allowing any string instance
+     * to be parsed into a JSON object directly.
      *
-     * @return Object
+     * @throws {SyntaxError} If the string is not a valid JSON format.
+     * @returns {any} The JavaScript object resulting from parsing the JSON string.
      */
     String.prototype.parseJSON = function () {
         try {
@@ -172,13 +184,13 @@ if (!String.prototype.parseJSON) {
  ***************************************************/
 if (!String.prototype.log) {
     /**
-     * Logs the string to console but still returns unchanged string
+     * Logs the string to the console but still returns unchanged string
      *
-     * @param {bool} [label=false] false no label, true: default label, string: custom label
+     * @param {boolean} [label=false] false no label, true: default label, string: custom label
      */
     String.prototype.log = function (label = false) {
         let args = [this.toString()];
-        if (label?.constructor?.name == 'String') args.unshift(label);
+        if (label?.constructor?.name === 'String') args.unshift(label);
         else if (label === true) args.unshift(this.constructor.name, this.length);
         console.log(...args);
     };

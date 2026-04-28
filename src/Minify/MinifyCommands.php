@@ -11,8 +11,8 @@
  * PHP version 8.5
  *
  * @author   Philip Michael Raab <philip@cathedral.co.za>
- * @package  inanepain\PROJECT
- * @category PROJECT
+ * @package  inanepain\minify
+ * @category minify
  *
  * @license  UNLICENSE
  * @license  https://unlicense.org/UNLICENSE UNLICENSE
@@ -24,21 +24,22 @@ declare(strict_types = 1);
 
 namespace Knot\Minify;
 
-use Inane\Console\Command\Command;
-use Inane\Console\Router\AbstractCommandController;
-use MatthiasMullie\Minify;
 use Inane\Cli\{
     Cli,
-    Pencil
-};
+    Pencil};
+use Inane\Console\Command\Command;
+use Inane\Console\Router\AbstractCommandController;
 use Inane\File\{
     File,
-    Path
-};
+    Path};
+use MatthiasMullie\Minify;
 
+use function implode;
 use function str_ends_with;
 use function str_replace;
 
+use const GLOB_BRACE;
+use const GLOB_NOSORT;
 use const PHP_EOL;
 
 /**
@@ -52,14 +53,24 @@ class MinifyCommands extends AbstractCommandController {
      *
      * @return int Returns 0 to indicate successful execution of the command.
      */
-    #[Command('minify:extend', 'Minify the extend library', ['em'])]
+    #[Command('minify:extend', 'Minify the extend library', ['me'])]
     public function extendCommand(): int {
+        $extenders = [
+            'object',
+            'array',
+            'date',
+            'html',
+            'number',
+            'string',
+        ];
+        $extendGlob = '{' . implode(',', $extenders) . '}';
+
         $default = new Pencil();
         $blue = new Pencil(Pencil\Colour::Blue);
 
         $blue->line('=== Inane Extend ===');
         $path = new Path('public/js/inane/extend');
-        foreach ($path->getFiles('*.min.*js') as $file) {
+        foreach($path->getFiles($extendGlob . '.min.*js', GLOB_NOSORT | GLOB_BRACE) ?? [] as $file) {
             $file->remove();
             Cli::line('Remove: ' . (string)$file);
         }
@@ -69,14 +80,20 @@ class MinifyCommands extends AbstractCommandController {
         $blue->line('Minifying extend library...');
         $minifier = new Minify\JS();
         $extend = '';
-        foreach ($path->getFiles('*.*js') as $file) {
+        foreach($path->getFiles($extendGlob . '.*js', GLOB_NOSORT | GLOB_BRACE) ?? [] as $file) {
             Cli::out('Minifying: ' . (string)$file . '...');
 
             if (!str_ends_with((string)$file, '.mjs') && !str_ends_with((string)$file, 'extend.js')) {
                 $extend .= $file->read() . PHP_EOL;
                 $minifier->add((string)$file);
             }
-            new Minify\JS((string)$file)->minify(str_replace(['.js', '.mjs'], ['.min.js', '.min.mjs'], (string)$file));
+            new Minify\JS((string)$file)->minify(str_replace([
+                '.js',
+                '.mjs',
+            ], [
+                '.min.js',
+                '.min.mjs',
+            ], (string)$file));
 
             Cli::line(' done');
         }

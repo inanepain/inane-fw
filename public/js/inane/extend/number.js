@@ -7,7 +7,11 @@
 
 if (!Number.getRandom) {
     /**
-     * Random number between to values.
+     * Generates a random integer within a specified range.
+     *
+     * @param {number} min - The minimum value of the range (inclusive). Defaults to 0 if not provided.
+     * @param {number} max - The maximum value of the range (inclusive). Defaults to the square of `min` if not provided.
+     * @return {number} A random integer between `min` and `max` (both inclusive).
      */
     Number.getRandom = function(min, max) {
         min = Math.ceil(min || 0);

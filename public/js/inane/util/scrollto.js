@@ -46,7 +46,7 @@
         constructor(el, { offset = 0, duration = 1000, fail_gracefully = false } = {}) {
             Object.assign(this.#options.config, this.constructor.defaults, arguments[1]);
 
-            if (typeof el == `string`) {
+            if (typeof el === `string`) {
                 this.#options.selector = el;
                 this.#options.el = document.querySelector(el);
             } else if (el instanceof HTMLElement) {
@@ -54,7 +54,7 @@
                 this.#options.el = el;
             }
 
-            if (this.#options.el == null && this.#options.config.fail_gracefully == false) throw `Parameter is not a valid HTMLElement or selector string!`;
+            if (this.#options.el == null && this.#options.config.fail_gracefully === false) throw `Parameter is not a valid HTMLElement or selector string!`;
 
             this.animateScrolling = this.constructor.animateScrolling.bind(this);
             this.scrollTo = this.constructor.element.bind(this, this.#options.el);

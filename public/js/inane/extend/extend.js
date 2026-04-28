@@ -1,4 +1,489 @@
 /**
+ * Extend Object
+ *
+ * @version 1.10.0
+ * @author Philip Michael Raab<philip@cathedral.co.za>
+ *
+ * Public Domain.
+ * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+ */
+
+/**
+ * 1.10.0 (2026 Jan 31)
+ *  * jsonString: Update - supports two params: `replacer` and `space`.
+ *
+ * 1.9.0 (2025 Jun 08)
+ *  * propertyRename: Update - now allows replacing existing property if `force` is true
+ *  * renameProperty: Update - now allows replacing existing property if `force` is true
+ *
+ * 1.8.0 (2025 May 22)
+ *  +/- groupByProperty/groupBy : `groupBy` renamed to `groupByProperty` no to clash with official `Object.groupBy`
+ *  + keys                      : `Object.keys` alias
+ *  + values                    : `Object.values` alias
+ *  + renameProperty            : `Object.propertyRename` alias
+ *
+ * 1.7.0 (2022 Jan 12)
+ *  + groupBy: Group by a property
+ *
+ * 1.6.0 (2022 Jan 12)
+ *  + propertyRename: Rename a property
+ *
+ * 1.5.0 (2021 Nov 10)
+ *  + sorted   : Get a sorted copy of object
+ *  - pick     : Update - can also take a string if only one property is required
+ *  - pick     : Fix - returns undefined for invalid properties
+ *
+ * 1.4.0 (2021 Oct 28)
+ *  + readWithPath : returns property value using a string as a path
+ *
+ * 1.3.0 (2020 Aug 06)
+ *  + pick     : return a new object with only the properties requested in an array
+ *
+ * 1.2.0 (2020 Jul 08)
+ *  - New      : watch now returns a change object with properties: property, value, previous
+ *  - Upd      : watch now returns a change object with properties: property, value, previous
+ *
+ * 1.1.0 (2018 Nov 01)
+ *  - New      : handler now only gets call if oldVal !== newVal
+ *
+ * 1.0.1 (2016 Apr 08)
+ *  - Fixed    : oldVal returns undefined after the 1st change
+ */
+
+/*
+let o = {p: 'yyyy'};
+o.watch('p', change=>console.log(change));
+o.p = 'la de da';
+*/
+
+// object.watch
+if (!Object.prototype.watch) {
+    Object.defineProperty(Object.prototype, 'watch', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        value: function(prop, handler) {
+            var change = {
+                    property: prop,
+                    value: this[prop],
+                    previous: undefined,
+                    set update(v) {
+                        if (this.value === v) return false;
+                        this.previous = this.value;
+                        this.value = v;
+                        return true;
+                    }
+                },
+                getter = function() {
+                    return change.value;
+                },
+                setter = function(val) {
+                    if (change.update = val) handler.call(this, change);
+                    return val;
+                };
+            if (delete this[prop]) { // can't watch constants
+                Object.defineProperty(this, prop, {
+                    get: getter,
+                    set: setter,
+                    // enumerable: true,
+                    configurable: true
+                });
+            }
+        }
+    });
+}
+
+// object.unwatch
+if (!Object.prototype.unwatch) {
+    Object.defineProperty(Object.prototype, 'unwatch', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Reassigns the value of an object's property by temporarily removing
+         * and restoring its accessors.
+         *
+         * @param {string} prop - The name of the property to reassign.
+         * @return {void}
+         */
+        value: function(prop) {
+            const val = this[prop];
+            delete this[prop]; // remove accessors
+            this[prop] = val;
+        }
+    });
+}
+
+/**
+ * Returns Object as JSON string, ala stringify.
+ *
+ * @method jsonString
+ *
+ * @param {function|(string|number)[]} [replacer] A function that alters the behavior of the stringification process or an array of strings and numbers that specifies properties of value to be included in the output. If replacer is an array, all elements in this array that are not strings or numbers (either primitives or wrapper objects), including Symbol values, are completely ignored. If replacer is anything other than a function or an array (e.g., null or not provided), all string-keyed properties of the object are included in the resulting JSON string.
+ * @param {string|number} [space] A string or number used to insert white space (including indentation, line break characters, etc.) into the output JSON string for readability purposes.
+ *  - If this is a number, it indicates the number of space characters to be used as indentation, clamped to 10 (that is, any number greater than 10 is treated as if it were 10). Values less than 1 indicate that no space should be used.
+ *  - If this is a string, the string (or the first 10 characters of the string, if it's longer than that) is inserted before every nested object or array.
+ *  - If space is anything other than a string or number (can be either a primitive or a wrapper object) — for example, is null or not provided — no white space is used.
+ *
+ * @return {string}
+ */
+if (!Object.prototype.jsonString) {
+    /**
+     * Returns Object as JSON string, ala stringify.
+     *
+     * @param {function|(string|number)[]} [replacer] A function that alters the behavior of the stringification process or an array of strings and numbers that specifies properties of value to be included in the output. If replacer is an array, all elements in this array that are not strings or numbers (either primitives or wrapper objects), including Symbol values, are completely ignored. If replacer is anything other than a function or an array (e.g., null or not provided), all string-keyed properties of the object are included in the resulting JSON string.
+     * @param {string|number} [space] A string or number used to insert white space (including indentation, line break characters, etc.) into the output JSON string for readability purposes.
+     *  - If this is a number, it indicates the number of space characters to be used as indentation, clamped to 10 (that is, any number greater than 10 is treated as if it were 10). Values less than 1 indicate that no space should be used.
+     *  - If this is a string, the string (or the first 10 characters of the string, if it's longer than that) is inserted before every nested object or array.
+     *  - If space is anything other than a string or number (can be either a primitive or a wrapper object) — for example, is null or not provided — no white space is used.
+     *
+     * @return {string}
+     */
+    Object.defineProperty(Object.prototype, 'jsonString', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Converts the current object to a JSON string representation.
+         *
+         * @param {Function|null} replacer - A function that alters the behavior of the stringification process,
+         *     or null to use the default behavior.
+         * @param {number|string|null} space - A string or number used to insert white space into the output JSON string for readability,
+         *     or null to produce a compact representation.
+         * @return {string} A JSON string representation of the current object.
+         */
+        value: function(replacer = null, space = null) {
+            return JSON.stringify(this, replacer, space);
+        }
+    });
+}
+
+/**
+ * Returns Object with only propsArray properties of the original
+ */
+if (!Object.prototype.pick) {
+    /**
+     * Returns Object with only propsArray properties of the original
+     *
+     * @since 1.3.0
+     * @since 1.5.0 can also take a string if only one property required
+     *
+     * @param propsArray Array of properties to pick or string of a single property
+     *
+     * @return {object}
+     */
+    Object.defineProperty(Object.prototype, 'pick', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Extracts the specified properties from the current object based on the given array of property names.
+         * If the input is a string, it will be converted to an array with a single element.
+         * Removes duplicate property names in the input array before processing.
+         *
+         * @param {Array|string} propsArray - An array of property names or a string representing a single property name.
+         * @return {Object|undefined} An object containing the extracted properties and their values, or undefined if the input is falsy.
+         */
+        value: function(propsArray) {
+            if (!propsArray) return;
+            if (!Array.isArray(propsArray) && (typeof propsArray === "string")) propsArray = [propsArray];
+            propsArray = propsArray.unique();
+
+            const picked = {};
+            propsArray.forEach(prop => {
+                if (this.hasOwnProperty(prop)) picked[prop] = this[prop];
+            });
+
+            return picked;
+        }
+    });
+}
+
+/**
+ * Read property using string path
+ */
+if (!Object.prototype.readPath) {
+    /**
+     * Get the value of a property using a string for the path
+     *
+     * @since 1.4.0
+     *
+     * @param path string as path
+     * @param delimiter path delimiter if not period (.)
+     *
+     * @return {any} property value
+     */
+    Object.defineProperty(Object.prototype, 'readPath', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Retrieves the value at the specified path within a nested object structure.
+         * If the path does not exist, returns undefined.
+         *
+         * @param {string|string[]} path - The path to the desired value, either as a string (delimited by the specified delimiter) or an array of keys.
+         * @param {string} [delimiter='.'] - The delimiter used to split the path string into keys. Default is '.'.
+         * @return {*} - The value at the specified path, or undefined if the path does not exist.
+         */
+        value: function(path, delimiter = '.') {
+            if (!path) return this;
+
+            const eP = typeof path === 'string' ? path.split(delimiter) : path;
+            let t = Object.assign({}, this);
+
+            for (let i = 0; i < eP.length; i++)
+                if (t && t.hasOwnProperty(eP[i])) t = t[eP[i]];
+                else t = undefined;
+
+            return t;
+        }
+    });
+}
+
+/**
+ * Get a sorted copy of an object.
+ */
+if (!Object.prototype.sorted) {
+    /**
+     * Get a sorted copy of object
+     *
+     * @since 1.5.0
+     *
+     * @return {Object} sorted object
+     */
+    Object.defineProperty(Object.prototype, 'sorted', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Sorts the keys of the current object and selects a subset of those keys.
+         *
+         * @return {Array} An array containing the selected and sorted keys of the object.
+         */
+        value: function() {
+            return this.pick(this.keys().sort());
+        }
+    });
+}
+
+/**
+ * Rename property
+ */
+if (!Object.prototype.propertyRename) {
+    /**
+     * Rename property
+     *
+     * - if new_key exists, nothing is done
+     *
+     * @since 1.6.0
+     * @since 1.9.0 updated to allow replacing existing property if `force` is true
+     *
+     * @param {string} old_key - property to rename
+     * @param {string} new_key - new name for property
+     * @param {boolean} [force=false] - if true, will force new_key if it exists
+     *
+     * @return {Object} this object
+     */
+    Object.defineProperty(Object.prototype, 'propertyRename', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Renames a property of an object from `old_key` to `new_key`. Optionally, forces the renaming if `new_key` already exists.
+         * If `force` is false and `new_key` already exists, no changes will be made. Validates input and ensures `old_key`
+         * exists on the object before proceeding.
+         *
+         * @param {string} old_key - The name of the property to be renamed.
+         * @param {string} new_key - The new name for the property.
+         * @param {boolean} [force=false] - Whether to force renaming if `new_key` already exists on the object.
+         *
+         * @return {Object} The object with the property renamed.
+         */
+        value: function(old_key, new_key, force = false) {
+            // Validate inputs
+            if (!old_key || !new_key) {
+                console.error('Object.propertyRename: old_key and new_key are required.');
+                return this;
+            }
+            if (typeof old_key !== 'string' || typeof new_key !== 'string') {
+                console.error('Object.propertyRename: old_key and new_key must be strings.');
+                return this;
+            }
+            if (old_key === new_key) {
+                console.warn('Object.propertyRename: old_key and new_key are the same, no action taken.');
+                return this;
+            }
+            if (!this.hasOwnProperty(old_key)) {
+                console.warn(`Object.propertyRename: old_key "${old_key}" does not exist on this object.`);
+                return this;
+            }
+            if (this.hasOwnProperty(new_key) && !force) {
+                // If new_key already exists and force is false, do nothing
+                console.warn(`Object.propertyRename: new_key "${new_key}" already exists on this object, no action taken.`);
+                return this;
+            }
+            // If old_key exists and new_key does not (or force), rename the property
+            if (this.hasOwnProperty(new_key) && force) {
+                // If force is true, delete the new_key if it exists
+                delete this[new_key];
+            }
+            // Define the new property with the same descriptor as the old one
+            Object.defineProperty(this, new_key, Object.getOwnPropertyDescriptor(this, old_key));
+            delete this[old_key];
+
+            return this;
+        }
+    });
+}
+
+/**
+ * Rename property
+ */
+if (!Object.prototype.renameProperty) {
+    /**
+     * Rename property
+     *
+     * - if new_key exists, nothing is done
+     *
+     * @see Object.propertyRename
+     *
+     * @since 1.8.0 alias of propertyRename
+     * @since 1.9.0 updated to allow replacing existing property if `force` is true
+     *
+     * @param {string} old_key - property to rename
+     * @param {string} new_key - new name for property
+     * @param {boolean} [force=false] - if true, will force new_key if it exists
+     *
+     * @return {Object} this object
+     */
+    Object.defineProperty(Object.prototype, 'renameProperty', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Renames a property in an object by calling the `propertyRename` method with the provided parameters.
+         *
+         * @param {string} old_key - The current name of the property to be renamed.
+         * @param {string} new_key - The new name for the property.
+         * @param {boolean} [force=false] - Optional flag to determine if an existing property with the new name should be overwritten.
+         *
+         * @return {*} - The result of the `propertyRename` method call.
+         */
+        value: function(old_key, new_key, force = false) {
+            // Call the propertyRename method with the same parameters
+            return this.propertyRename(old_key, new_key, force);
+        }
+    });
+}
+
+/**
+ * Returns object grouped by property.
+ */
+if (!Object.prototype.groupByProperty) {
+    /**
+     * Group by property
+     *
+     * @since 1.7.0
+     * @since 1.8.0 renamed to `groupByProperty` in 2024
+     *
+     * @param {string} key - property to group by
+     *
+     * @return {Object} object with a values group by key
+     */
+    Object.defineProperty(Object.prototype, 'groupByProperty', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Groups the elements of an array or collection by a specified key.
+         *
+         * @param {string} key - The key used for grouping the objects within the array or collection.
+         *
+         * @return {Object} An object where the keys are the values of the specified key in each element,
+         *                  and the values are arrays of elements grouped by the specified key.
+         *                  Returns an empty object if grouping fails.
+         */
+        value: function(key) {
+            try {
+                let target = Array.isArray(this) ? this : this.values();
+                return target.reduce((rv, x) => {
+                    (rv[x[key]] = rv[x[key]] || []).push(x);
+                    return rv;
+                }, {});
+            } catch (error) {
+                console.error('Unable to group object.');
+            }
+        }
+    });
+}
+
+/**
+ * Returns the object's keys
+ */
+if (!Object.prototype.keys) {
+    /**
+     * Returns the object's keys
+     *
+     * @since 1.8.0
+     *
+     * @return {string[]} the object's keys
+     */
+    Object.defineProperty(Object.prototype, 'keys', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Retrieves an array of the enumerable property names (keys) of the current object.
+         *
+         * @return {string[]} An array containing the keys of the object.
+         */
+        value: function() {
+            return Object.keys(this);
+        }
+    });
+}
+
+/**
+ * Returns the object's values
+ */
+if (!Object.prototype.values) {
+    /**
+     * Returns the object's values
+     *
+     * @since 1.8.0
+     *
+     * @return {Array} the object's values
+     */
+    Object.defineProperty(Object.prototype, 'values', {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        /**
+         * Retrieves all the enumerable property values of the current object.
+         *
+         * @return {Array} An array containing the values of all enumerable properties
+         * of the object on which the function is called.
+         */
+        value: function() {
+            return Object.values(this);
+        }
+    });
+}
+
+// const obj = {
+//     "A": "Aye,",
+//     "B": "Bee",
+//     "C": {
+//         "A": "CAye,",
+//         "B": "CBee",
+//         "C": "CCee",
+//     },
+// };
+
+// console.log(obj.readPath('C.B'));
+// console.log(obj.readPath(['C', 'A']));
+
+/**
  * Extend Array
  *
  * @author Philip Michael Raab<philip@inane.co.za>
@@ -43,7 +528,7 @@ if (!Array.prototype.searchObject) {
         return this.filter(item => {
             if (item.hasOwnProperty(nameKey) && keyValue !== undefined) {
                 if (fuzzy && typeof item[nameKey] == 'string') return item[nameKey].toLowerCase().includes(keyValue.toLowerCase());
-                return item[nameKey] == keyValue;
+                return item[nameKey] === keyValue;
             }
         });
     };
@@ -80,7 +565,7 @@ if (!Array.prototype.sortByProperty) {
      * @param sortNumerically sort number values
      */
     Array.prototype.sortByProperty = function(propName, sortNumerically = false) {
-        if (sortNumerically == true) {
+        if (sortNumerically === true) {
             this.sort(function(a, b) {
                 return a[propName] - b[propName];
             });
@@ -252,7 +737,7 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
          *
          * @since 1.0.0
          *
-         * @param {DOMString} selectors A DOMString containing one or more selectors to match
+         * @param {DOMString|string} selectors A DOMString containing one or more selectors to match
          *
          * @returns {null|Element} An Element representing the first match or null if no match
          */
@@ -272,7 +757,7 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
          *
          * @since 1.1.0
          *
-         * @param {DOMString} selectors A DOMString containing one or more selectors to match
+         * @param {DOMString|string} selectors A DOMString containing one or more selectors to match
          *
          * @returns {Element[]} An Element array containing all matches
          */
@@ -290,18 +775,18 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
         /**
          * Unified Query method
          *
-         * Using either call, apply or bind to set this to an HTMLElement
-         *  will restrict the query to it's children.
+         * Using either call, apply, or bind to set this to an HTMLElement
+         *  will restrict the query to its children.
          *
-         * Prefixing the selectors string with:
-         *  `@` uses `querySelector` (return first element if multipule matches).
-         *  `@@` uses `querySelectorAll` but if only one match a single item is returned.
+         * Prefixing the selector string with:
+         *  `@` uses `querySelector` (return the first element of multiple matches).
+         *  `@@` uses `querySelectorAll` but if only one matches, a single item is returned.
          *
          * @since 1.1.1
          *
          * @param {DOMString|string} selectors A DOMString containing one or more selectors to match
          *
-         * @returns {null|Element|Element[]} An Element representing the first match, an Element array containing all matches or null if nothing matched
+         * @returns {null|Element|Element[]} An Element representing the first match, an Element array containing all matches, or null if nothing matched
          */
         element.prototype.iq = function(selectors) {
             const dynamic = selectors.startsWith('@@');
@@ -312,8 +797,8 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
             const el = this?.[cmd] ? this : window.document;
 
             result = el[cmd](selectors);
-            result = cmd == 'querySelector' ? result : Array.from(result);
-            if (dynamic) return Array.isArray(result) ? (result.length == 1 ? result.pop() : result) : result;
+            result = cmd === 'querySelector' ? result : Array.from(result);
+            if (dynamic) return Array.isArray(result) ? (result.length === 1 ? result.pop() : result) : result;
             return result;
         }
     }
@@ -331,7 +816,11 @@ for (let element of [Document, HTMLElement, ShadowRoot, HTMLDocument]) {
 
 if (!Number.getRandom) {
     /**
-     * Random number between to values.
+     * Generates a random integer within a specified range.
+     *
+     * @param {number} min - The minimum value of the range (inclusive). Defaults to 0 if not provided.
+     * @param {number} max - The maximum value of the range (inclusive). Defaults to the square of `min` if not provided.
+     * @return {number} A random integer between `min` and `max` (both inclusive).
      */
     Number.getRandom = function(min, max) {
         min = Math.ceil(min || 0);
@@ -348,414 +837,6 @@ if (!Number.prototype.log) {
         console.log(this.constructor.toString().split(' ')[1].replace('()', '').toLowerCase() + '(' + this.toString().length + '): ' + this.toString());
     };
 }
-
-/**
- * Extend Object
- *
- * @version 1.10.0
- * @author Philip Michael Raab<philip@cathedral.co.za>
- *
- * Public Domain.
- * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
- */
-
-/**
- * 1.10.0 (2026 Jan 31)
- *  * jsonString: Update - supports two params: `replacer` and `space`.
- *
- * 1.9.0 (2025 Jun 08)
- *  * propertyRename: Update - now allows replacing existing property if `force` is true
- *  * renameProperty: Update - now allows replacing existing property if `force` is true
- *
- * 1.8.0 (2025 May 22)
- *  +/- groupByProperty/groupBy : `groupBy` renamed to `groupByProperty` no to clash with official `Object.groupBy`
- *  + keys                      : `Object.keys` alias
- *  + values                    : `Object.values` alias
- *  + renameProperty            : `Object.propertyRename` alias
- *
- * 1.7.0 (2022 Jan 12)
- *  + groupBy: Group by a property
- *
- * 1.6.0 (2022 Jan 12)
- *  + propertyRename: Rename a property
- *
- * 1.5.0 (2021 Nov 10)
- *  + sorted   : Get a sorted copy of object
- *  - pick     : Update - can also take a string if only one property is required
- *  - pick     : Fix - returns undefined for invalid properties
- *
- * 1.4.0 (2021 Oct 28)
- *  + readWithPath : returns property value using a string as a path
- *
- * 1.3.0 (2020 Aug 06)
- *  + pick     : return a new object with only the properties requested in an array
- *
- * 1.2.0 (2020 Jul 08)
- *  - New      : watch now returns a change object with properties: property, value, previous
- *  - Upd      : watch now returns a change object with properties: property, value, previous
- *
- * 1.1.0 (2018 Nov 01)
- *  - New      : handler now only gets call if oldVal !== newVal
- *
- * 1.0.1 (2016 Apr 08)
- *  - Fixed    : oldVal returns undefined after the 1st change
- */
-
-/*
-let o = {p: 'yyyy'};
-o.watch('p', change=>console.log(change));
-o.p = 'la de da';
-*/
-
-// object.watch
-if (!Object.prototype.watch) {
-    Object.defineProperty(Object.prototype, 'watch', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function(prop, handler) {
-            var change = {
-                    property: prop,
-                    value: this[prop],
-                    previous: undefined,
-                    set update(v) {
-                        if (this.value === v) return false;
-                        this.previous = this.value;
-                        this.value = v;
-                        return true;
-                    }
-                },
-                getter = function() {
-                    return change.value;
-                },
-                setter = function(val) {
-                    if (change.update = val) handler.call(this, change);
-                    return val;
-                };
-            if (delete this[prop]) { // can't watch constants
-                Object.defineProperty(this, prop, {
-                    get: getter,
-                    set: setter,
-                    // enumerable: true,
-                    configurable: true
-                });
-            }
-        }
-    });
-}
-
-// object.unwatch
-if (!Object.prototype.unwatch) {
-    Object.defineProperty(Object.prototype, 'unwatch', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function(prop) {
-            var val = this[prop];
-            delete this[prop]; // remove accessors
-            this[prop] = val;
-        }
-    });
-}
-
-/**
- * Returns Object as JSON string, ala stringify.
- *
- * @method jsonString
- *
- * @param {function|(string|number)[]} [replacer] A function that alters the behavior of the stringification process or an array of strings and numbers that specifies properties of value to be included in the output. If replacer is an array, all elements in this array that are not strings or numbers (either primitives or wrapper objects), including Symbol values, are completely ignored. If replacer is anything other than a function or an array (e.g., null or not provided), all string-keyed properties of the object are included in the resulting JSON string.
- * @param {string|number} [space] A string or number used to insert white space (including indentation, line break characters, etc.) into the output JSON string for readability purposes.
- *  - If this is a number, it indicates the number of space characters to be used as indentation, clamped to 10 (that is, any number greater than 10 is treated as if it were 10). Values less than 1 indicate that no space should be used.
- *  - If this is a string, the string (or the first 10 characters of the string, if it's longer than that) is inserted before every nested object or array.
- *  - If space is anything other than a string or number (can be either a primitive or a wrapper object) — for example, is null or not provided — no white space is used.
- *
- * @return {string}
- */
-if (!Object.prototype.jsonString) {
-    /**
-     * Returns Object as JSON string, ala stringify.
-     *
-     * @param {function|(string|number)[]} [replacer] A function that alters the behavior of the stringification process or an array of strings and numbers that specifies properties of value to be included in the output. If replacer is an array, all elements in this array that are not strings or numbers (either primitives or wrapper objects), including Symbol values, are completely ignored. If replacer is anything other than a function or an array (e.g., null or not provided), all string-keyed properties of the object are included in the resulting JSON string.
-     * @param {string|number} [space] A string or number used to insert white space (including indentation, line break characters, etc.) into the output JSON string for readability purposes.
-     *  - If this is a number, it indicates the number of space characters to be used as indentation, clamped to 10 (that is, any number greater than 10 is treated as if it were 10). Values less than 1 indicate that no space should be used.
-     *  - If this is a string, the string (or the first 10 characters of the string, if it's longer than that) is inserted before every nested object or array.
-     *  - If space is anything other than a string or number (can be either a primitive or a wrapper object) — for example, is null or not provided — no white space is used.
-     *
-     * @return {string}
-     */
-    Object.defineProperty(Object.prototype, 'jsonString', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function(replacer = null, space = null) {
-            return JSON.stringify(this, replacer, space);
-        }
-    });
-}
-
-/**
- * Returns Object with only propsArray properties of the original
- */
-if (!Object.prototype.pick) {
-    /**
-     * Returns Object with only propsArray properties of the original
-     *
-     * @since 1.3.0
-     * @since 1.5.0 can also take a string if only one property required
-     *
-     * @param propsArray Array of properties to pick or string of a single property
-     *
-     * @return {object}
-     */
-    Object.defineProperty(Object.prototype, 'pick', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function(propsArray) {
-            if (!propsArray) return;
-            if (!Array.isArray(propsArray) && (typeof propsArray == "string")) propsArray = [propsArray];
-            propsArray = propsArray.unique();
-
-            const picked = {};
-            propsArray.forEach(prop => {
-                if (this.hasOwnProperty(prop)) picked[prop] = this[prop];
-            });
-
-            return picked;
-        }
-    });
-}
-
-/**
- * Read property using string path
- */
-if (!Object.prototype.readPath) {
-    /**
-     * Get the value of a property using a string for the path
-     *
-     * @since 1.4.0
-     *
-     * @param path string as path
-     * @param delimiter path delimiter if not period (.)
-     *
-     * @return {any} property value
-     */
-    Object.defineProperty(Object.prototype, 'readPath', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function(path, delimiter = '.') {
-            if (!path) return this;
-
-            const eP = typeof path == 'string' ? path.split(delimiter) : path;
-            let t = Object.assign({}, this);
-
-            for (let i = 0; i < eP.length; i++)
-                if (t && t.hasOwnProperty(eP[i])) t = t[eP[i]];
-                else t = undefined;
-
-            return t;
-        }
-    });
-}
-
-/**
- * Get a sorted copy of an object.
- */
-if (!Object.prototype.sorted) {
-    /**
-     * Get a sorted copy of object
-     *
-     * @since 1.5.0
-     *
-     * @return {Object} sorted object
-     */
-    Object.defineProperty(Object.prototype, 'sorted', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function() {
-            return this.pick(this.keys().sort());
-        }
-    });
-}
-
-/**
- * Rename property
- */
-if (!Object.prototype.propertyRename) {
-    /**
-     * Rename property
-     *
-     * - if new_key exists, nothing is done
-     *
-     * @since 1.6.0
-     * @since 1.9.0 updated to allow replacing existing property if `force` is true
-     *
-     * @param {string} old_key - property to rename
-     * @param {string} new_key - new name for property
-     * @param {boolean} [force=false] - if true, will force new_key if it exists
-     *
-     * @return {Object} this object
-     */
-    Object.defineProperty(Object.prototype, 'propertyRename', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function(old_key, new_key, force = false) {
-            // Validate inputs
-            if (!old_key || !new_key) {
-                console.error('Object.propertyRename: old_key and new_key are required.');
-                return this;
-            }
-            if (typeof old_key !== 'string' || typeof new_key !== 'string') {
-                console.error('Object.propertyRename: old_key and new_key must be strings.');
-                return this;
-            }
-            if (old_key === new_key) {
-                console.warn('Object.propertyRename: old_key and new_key are the same, no action taken.');
-                return this;
-            }
-            if (!this.hasOwnProperty(old_key)) {
-                console.warn(`Object.propertyRename: old_key "${old_key}" does not exist on this object.`);
-                return this;
-            }
-            if (this.hasOwnProperty(new_key) && !force) {
-                // If new_key already exists and force is false, do nothing
-                console.warn(`Object.propertyRename: new_key "${new_key}" already exists on this object, no action taken.`);
-                return this;
-            }
-            // If old_key exists and new_key does not (or force), rename the property
-            if (this.hasOwnProperty(new_key) && force) {
-                // If force is true, delete the new_key if it exists
-                delete this[new_key];
-            }
-            // Define the new property with the same descriptor as the old one
-            Object.defineProperty(this, new_key, Object.getOwnPropertyDescriptor(this, old_key));
-            delete this[old_key];
-
-            return this;
-        }
-    });
-}
-
-/**
- * Rename property
- */
-if (!Object.prototype.renameProperty) {
-    /**
-     * Rename property
-     *
-     * - if new_key exists, nothing is done
-     *
-     * @see Object.propertyRename
-     *
-     * @since 1.8.0 alias of propertyRename
-     * @since 1.9.0 updated to allow replacing existing property if `force` is true
-     *
-     * @param {string} old_key - property to rename
-     * @param {string} new_key - new name for property
-     * @param {boolean} [force=false] - if true, will force new_key if it exists
-     *
-     * @return {Object} this object
-     */
-    Object.defineProperty(Object.prototype, 'renameProperty', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function(old_key, new_key, force = false) {
-            // Call the propertyRename method with the same parameters
-            return this.propertyRename(old_key, new_key, force);
-        }
-    });
-}
-
-/**
- * Returns object grouped by property.
- */
-if (!Object.prototype.groupByProperty) {
-    /**
-     * Group by property
-     *
-     * @since 1.7.0
-     * @since 1.8.0 renamed to `groupByProperty` in 2024
-     *
-     * @param {string} key - property to group by
-     *
-     * @return {Object} object with a values group by key
-     */
-    Object.defineProperty(Object.prototype, 'groupByProperty', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function(key) {
-            try {
-                let target = Array.isArray(this) ? this : this.values();
-                return target.reduce((rv, x) => {
-                    (rv[x[key]] = rv[x[key]] || []).push(x);
-                    return rv;
-                }, {});
-            } catch (error) {
-                console.error('Unable to group object.');
-            }
-        }
-    });
-}
-
-/**
- * Returns the object's keys
- */
-if (!Object.prototype.keys) {
-    /**
-     * Returns the object's keys
-     *
-     * @since 1.8.0
-     *
-     * @return {string[]} the object's keys
-     */
-    Object.defineProperty(Object.prototype, 'keys', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function() {
-            return Object.keys(this);
-        }
-    });
-}
-
-/**
- * Returns the object's values
- */
-if (!Object.prototype.values) {
-    /**
-     * Returns the object's values
-     *
-     * @since 1.8.0
-     *
-     * @return {Array} the object's values
-     */
-    Object.defineProperty(Object.prototype, 'values', {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: function() {
-            return Object.values(this);
-        }
-    });
-}
-
-// const obj = {
-//     "A": "Aye,",
-//     "B": "Bee",
-//     "C": {
-//         "A": "CAye,",
-//         "B": "CBee",
-//         "C": "CCee",
-//     },
-// };
-
-// console.log(obj.readPath('C.B'));
-// console.log(obj.readPath(['C', 'A']));
 
 /**
  * Extend String
@@ -865,10 +946,13 @@ if (!String.prototype.trimCharsRight) {
 
 if (!String.prototype.camelCaseToHyphen) {
     /**
-     * Convert strings into lowercase-hyphen
+     * Converts a camelCase string to a hyphenated string.
      *
-     * @param  {String} str
-     * @return {String}
+     * This method takes a string in camelCase format and returns
+     * the equivalent string where uppercase letters are replaced
+     * with a hyphen followed by their lowercase counterpart.
+     *
+     * @returns {string} The hyphenated version of the original string.
      */
     String.prototype.camelCaseToHyphen = function () {
         let str = this;
@@ -883,10 +967,16 @@ if (!String.prototype.camelCaseToHyphen) {
 
 if (!String.prototype.hyphenToCamelCase) {
     /**
-     * convert a hyphenated string to camelCase
+     * Converts a hyphen-separated string into camelCase format.
      *
-     * @param  {String} str
-     * @return {String}
+     * This method processes the calling string by treating each hyphen ('-')
+     * as a word boundary, capitalizing the first letter of each subsequent word,
+     * and removing the hyphens in the result. The first word is left in lowercase.
+     *
+     * @returns {string} A new string converted to camelCase format.
+     *
+     * @example
+     * 'example-string'.hyphenToCamelCase(); // Returns 'exampleString'
      */
     String.prototype.hyphenToCamelCase = function () {
         return this.replace(/-([a-z])/g, (m, w) => w.toUpperCase());
@@ -913,9 +1003,12 @@ if (!String.prototype.splice) {
 
 if (!String.prototype.parseJSON) {
     /**
-     * Returns Object from valid string
+     * Parses a JSON string and returns the corresponding JavaScript object.
+     * This method extends the String prototype, allowing any string instance
+     * to be parsed into a JSON object directly.
      *
-     * @return Object
+     * @throws {SyntaxError} If the string is not a valid JSON format.
+     * @returns {any} The JavaScript object resulting from parsing the JSON string.
      */
     String.prototype.parseJSON = function () {
         try {
@@ -931,13 +1024,13 @@ if (!String.prototype.parseJSON) {
  ***************************************************/
 if (!String.prototype.log) {
     /**
-     * Logs the string to console but still returns unchanged string
+     * Logs the string to the console but still returns unchanged string
      *
-     * @param {bool} [label=false] false no label, true: default label, string: custom label
+     * @param {boolean} [label=false] false no label, true: default label, string: custom label
      */
     String.prototype.log = function (label = false) {
         let args = [this.toString()];
-        if (label?.constructor?.name == 'String') args.unshift(label);
+        if (label?.constructor?.name === 'String') args.unshift(label);
         else if (label === true) args.unshift(this.constructor.name, this.length);
         console.log(...args);
     };

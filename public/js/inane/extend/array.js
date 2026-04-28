@@ -43,7 +43,7 @@ if (!Array.prototype.searchObject) {
         return this.filter(item => {
             if (item.hasOwnProperty(nameKey) && keyValue !== undefined) {
                 if (fuzzy && typeof item[nameKey] == 'string') return item[nameKey].toLowerCase().includes(keyValue.toLowerCase());
-                return item[nameKey] == keyValue;
+                return item[nameKey] === keyValue;
             }
         });
     };
@@ -80,7 +80,7 @@ if (!Array.prototype.sortByProperty) {
      * @param sortNumerically sort number values
      */
     Array.prototype.sortByProperty = function(propName, sortNumerically = false) {
-        if (sortNumerically == true) {
+        if (sortNumerically === true) {
             this.sort(function(a, b) {
                 return a[propName] - b[propName];
             });
