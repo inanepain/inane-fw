@@ -21,6 +21,37 @@ _start task='':
 _done task='':
     @echo "{{GREEN}}done{{NORMAL}} {{task}}"
 
+#region git
+# git push all
+[group: 'GIT']
+git-push-all: (_start "Push All") && (_done "Push All")
+    #!/usr/bin/env zsh
+    for d in lib/inanepain/*; do echo $d; cd $d; git pushall; cd -; done
+    pwd
+    git pushall
+
+# git pull submodules
+[group: 'GIT']
+git-pull-submodules:
+    #!/usr/bin/env zsh
+    git submodule foreach --recursive 'git pull'
+    pwd
+    git pull
+
+# git pull submodules github.com develop
+[group: 'GIT']
+git-pull-submodules-github-develop:
+    #!/usr/bin/env zsh
+    git submodule foreach --recursive 'git pull github.com develop'
+    pwd
+    git pull github.com develop
+
+# git pull submodules all
+[group: 'GIT']
+git-pull-submodules-all: (git-pull-submodules) && (git-pull-submodules-github-develop)
+
+#endregion git
+
 # Style Sheets
 css: (_start "Stylesheet") && (_done "Stylesheet")
 	#!/usr/bin/env zsh
