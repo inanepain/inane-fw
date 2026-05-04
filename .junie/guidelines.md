@@ -99,6 +99,9 @@ php test_example.php
   - Namespaces follow PSR-4.
   - Core libraries are under the `Inane\` namespace.
   - Skeleton application logic is under the `Knot\` namespace.
+- **PHP Doc**:
+    - Line between the last parameter and return.
+    - Line between return and throws.
 
 #### Project Structure
 - `config/`: Global configuration.

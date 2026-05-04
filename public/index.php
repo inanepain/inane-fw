@@ -10,6 +10,16 @@ use Knot\Application;
 chdir(dirname(__DIR__));
 
 require_once 'vendor/autoload.php';
+require_once '/Users/philip/Developer/php/playground/dirty-loader/src/Dirtyloader.php';
+
+Dirtyloader::register([
+    'loaders' => [
+        'path',
+    ],
+    'path' => [
+        'include',
+    ],
+]);
 
 #region DEBUG HTACCESS FLAGS
 // TODO: MAJOR WORK ON THIS DEBUG STUFF

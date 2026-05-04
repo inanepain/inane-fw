@@ -27,7 +27,9 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
+      <path value="$USER_HOME$/Developer/php/playground/dirty-loader/src" />
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/fig/event-dispatcher-util" />
       <path value="$PROJECT_DIR$/vendor/matthiasmullie/minify" />
       <path value="$PROJECT_DIR$/vendor/matthiasmullie/path-converter" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
@@ -37,9 +39,8 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/psr/http-server-handler" />
-      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
-      <path value="$PROJECT_DIR$/vendor/fig/event-dispatcher-util" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.5" />
