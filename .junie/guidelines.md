@@ -100,8 +100,8 @@ php test_example.php
   - Core libraries are under the `Inane\` namespace.
   - Skeleton application logic is under the `Knot\` namespace.
 - **PHP Doc**:
-    - Line between the last parameter and return.
-    - Line between return and throws.
+    - Line between the last @param and @return.
+    - Line between @return and @throws.
 
 #### Project Structure
 - `config/`: Global configuration.
