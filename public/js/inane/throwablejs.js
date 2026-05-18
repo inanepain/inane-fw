@@ -7,6 +7,6 @@
     // Check for a global Throwable object
     if (window.Throwable == undefined) {
         // import module for side effects, global Throwable created
-        await import(`./throwable.js`);
+        await import(`./throwable.mjs`);
     }
 })();

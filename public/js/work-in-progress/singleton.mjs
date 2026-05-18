@@ -1,7 +1,12 @@
-class One {
+/**
+ * A class implementing the Singleton design pattern.
+ * Ensures that only one instance of the class can exist
+ * and provides a global point of access to that instance.
+ */
+class Singleton {
     /**
      * Singleton instance holder (private static field).
-     * @type {One|undefined}
+     * @type {Singleton|undefined}
      */
     static #instance;
 
@@ -56,7 +61,7 @@ class One {
      *
      * @param {string} [name] - Optional name for the instance when it is first created
      *
-     * @returns {One}
+     * @returns {Singleton}
      */
     static getInstance(name) {
         if (!this.#instance) {
@@ -67,9 +72,9 @@ class One {
     }
 }
 
-let bob = new One('Bob');
-let john = new One('John');
-let max = One.getInstance('Max');
+let bob = new Singleton('Bob');
+let john = new Singleton('John');
+let max = Singleton.getInstance('Max');
 
 console.debug(`Bob's name: ${bob.name}`);
 console.debug(`John's name: ${john.name}`);

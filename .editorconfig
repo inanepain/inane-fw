@@ -20,17 +20,17 @@ trim_trailing_whitespace = false
 # PHP
 [*.php]
 indent_size = 4
-max_line_length = 120
+max_line_length = 180
 
 # JavaScript / TypeScript
 [*.{js,jsx,ts,tsx,mjs,cjs}]
 indent_size = 4
-max_line_length = 100
+max_line_length = 180
 
 # SCSS / CSS
 [*.{scss,css}]
 indent_size = 4
-max_line_length = 100
+max_line_length = 180
 
 # JSON / YAML
 [*.{json,yml,yaml}]

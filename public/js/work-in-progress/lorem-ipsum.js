@@ -2,7 +2,7 @@
  * LoremIpsum
  *
  * Quickly generate a LoremIpsum word list, sentence or paragraph.
- * A words array can be supplied at instantiation to increase or replace the build-in list.
+ * A word array can be supplied at instantiation to increase or replace the built-in list.
  *
  * @version 1.0.0
  */
@@ -32,11 +32,11 @@ class LoremIpsum {
      * Verify all words in the list are valid
      *
      * - remove duplicates
-     * - remove non strings
+     * - remove non-strings
      */
     #verify() {
         this.#words = this.#words.filter((word, pos) => {
-            return typeof word == 'string' && this.#words.indexOf(word) == pos;
+            return typeof word === 'string' && this.#words.indexOf(word) === pos;
         });
     }
 
@@ -54,7 +54,7 @@ class LoremIpsum {
     }
 
     /**
-     * Get random number between min and max
+     * Get a random number between min and max
      *
      * @param {number} [min] (optional) lower result limit
      * @param {number} [max] (optional) upper result limit
