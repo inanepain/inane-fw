@@ -34,7 +34,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author   Philip Michael Raab <philip@cathedral.co.za>
  * @package  inanepain\rebecca
@@ -51,11 +51,18 @@ declare(strict_types = 1);
 namespace p4;
 
 use Inane\Config\Config;
-use Inane\Stdlib\{Array\OptionsInterface, Json, Options};
+use Inane\Stdlib\{
+    Array\OptionsInterface,
+    Json,
+    Options};
 use OpenSwoole\Http\Request;
-use OpenSwoole\WebSocket\{Frame, Server};
+use OpenSwoole\WebSocket\{
+    Frame,
+    Server};
 use WeakReference;
+
 use function time;
+
 use const PHP_EOL;
 
 /**

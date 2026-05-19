@@ -8,7 +8,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author Philip Michael Raab<philip@cathedral.co.za>
  * @package inanepain\view
@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace Inane\View;
 
 use Inane\Stdlib\Json;
+
 use function array_map;
 use function is_array;
 
@@ -46,7 +47,7 @@ class JsonView extends View {
      * JSON encoding options flags.
      */
     private int $options;
-    
+
     /**
      * @param array<string, mixed> $data    Initial data
      * @param int                  $options JSON encoding options (e.g. JSON_PRETTY_PRINT)
@@ -55,7 +56,7 @@ class JsonView extends View {
         parent::__construct($data);
         $this->options = $options;
     }
-    
+
     /**
      * @inheritDoc
      */
@@ -64,7 +65,7 @@ class JsonView extends View {
         $processedData = $this->processData($this->data);
         return Json::encode($processedData, ['flags' => $this->options]);
     }
-    
+
     /**
      * Recursively process data to ensure nested views are rendered and decoded.
      *
@@ -76,7 +77,7 @@ class JsonView extends View {
         if (is_array($data)) {
             return array_map([$this, 'processData'], $data);
         }
-        return $data instanceof View 
+        return $data instanceof View
             ? Json::decode($data->render())
             : $data;
     }

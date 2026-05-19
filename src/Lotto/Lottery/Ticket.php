@@ -8,7 +8,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author Philip Michael Raab<philip@cathedral.co.za>
  * @package inanepain\lotto
@@ -32,6 +32,7 @@ use Inane\Stdlib\{
     Options};
 use ReflectionMethod;
 use Stringable;
+
 use function array_combine;
 use function array_map;
 use function array_sum;
@@ -42,6 +43,7 @@ use function in_array;
 use function str_pad;
 use function str_replace;
 use function strtolower;
+
 use const null;
 use const STR_PAD_LEFT;
 use const true;

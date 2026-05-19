@@ -34,7 +34,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author Philip Michael Raab <philip@cathedral.co.za>
  * @package inanepain\rebecca
@@ -54,6 +54,7 @@ use Inane\Stdlib\Array\OptionsInterface;
 use Inane\Stdlib\Object\MagicPropertyTrait;
 use Inane\Stdlib\Options;
 use OpenSwoole\WebSocket\Server;
+
 use function is_array;
 
 /**

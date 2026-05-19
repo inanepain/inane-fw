@@ -8,7 +8,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author Philip Michael Raab<philip@cathedral.co.za>
  * @package inanepain\lotto
@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace Knot\Lotto\Lottery;
 
 use Stringable;
+
 use function array_key_exists;
 use function str_replace;
 

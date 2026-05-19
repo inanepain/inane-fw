@@ -34,7 +34,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author Philip Michael Raab <philip@cathedral.co.za>
  * @package inanepain\rebecca
@@ -51,7 +51,9 @@ declare(strict_types=1);
 namespace p4;
 
 use Inane\Stdlib\Json;
+
 use function time;
+
 use const PHP_EOL;
 
 /**
@@ -88,7 +90,7 @@ class MessageHandler {
      * Sends an initial hello message back to the client and logs to stdout.
      *
      * @param EventSocket $event Event details (contains server instance and fd)
-     * 
+     *
      * @return void
      */
     public function open(EventSocket $event): void {
@@ -110,7 +112,7 @@ class MessageHandler {
      * Logs the close event; any cleanup for the connection could be added here.
      *
      * @param EventSocket $event Event details (contains server instance and fd)
-     * 
+     *
      * @return void
      */
     public function close(EventSocket $event): void {

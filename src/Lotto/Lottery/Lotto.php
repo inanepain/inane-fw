@@ -8,7 +8,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
  * @author Philip Michael Raab<philip@cathedral.co.za>
  * @package inanepain\lotto
@@ -36,12 +36,14 @@ use NumberFormatter;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Stringable;
+
 use function array_map;
 use function array_unshift;
 use function count;
 use function implode;
 use function is_array;
 use function is_string;
+
 use const null;
 use const PHP_EOL;
 
