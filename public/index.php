@@ -121,8 +121,8 @@ ini_set('error_reporting', E_ALL);
 //exit;
 
 //require_once 'index-merge.php';
-require_once 'index-output.php';
-exit;
+//require_once 'index-output.php';
+//exit;
 
 $returnCode = (static function(Application $app): bool|int {
     // FIX: boo

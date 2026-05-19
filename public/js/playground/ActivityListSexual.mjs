@@ -69,7 +69,6 @@ const ActivityListSexual = [
     'Table top sex',
     'Shower sex',
     'Bath sex',
-    'Doggy style',
     'Standing (she bent over)',
     'Blindfold play',
     'Light bondage wrists',

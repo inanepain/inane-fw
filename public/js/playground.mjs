@@ -9,12 +9,12 @@ const rl = readline.createInterface({
     output: stdout,
 });
 
-const setDebug = true;
+const setDebug = false;
 // const setLogLevel = Dumper.DEBUG;
 const ap = new ActivityPicker(ActivityListSexual, {
     rangeSize: 5,
     step: 10,
-    logLevel: 'DEBUG',
+    // logLevel: 'DEBUG',
     debug: { pick: setDebug, lastActivity: setDebug, options: setDebug, duplicate: setDebug, numberOfPicks: setDebug, }, king: 'kong'
 });
 
