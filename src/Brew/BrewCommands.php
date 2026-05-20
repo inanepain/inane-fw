@@ -96,30 +96,42 @@ class BrewCommands implements NotifyProgressInterface {
      * URL endpoint for accessing the formulae API data.
      */
     public const string FEED_URL = 'https://formulae.brew.sh/api/formula.json';
+
     //#endregion Class Constants
     //#region Properties
     protected Brew $brew;
+
     /**
      * Defines the length of the message.
      */
     protected int $messageLength = 10;
+
     /**
      * @var Options // Shortcut to Brew configuration options.
      */
     protected Options $config {
         get => $this->brew->getConfig();
     }
+
     #region Pencil
     protected Pencil $desc;
+
     protected Pencil $action;
+
     protected Pencil $counter;
+
     protected Pencil $alert;
+
     protected Pencil $tag;
+
     protected Pencil $icon;
+
     protected Pencil $url;
+
     //#endregion Properties    // Pencil: Output assigned a colour and style.
 
     protected Bar $downloadProgressBar;
+
     #endregion Pencil
 
     #region Instantiation
@@ -283,14 +295,39 @@ class BrewCommands implements NotifyProgressInterface {
 
         $formulasTable = new FormulasTable();                                                                 // * Constructor for the AbstractTable class.
         $total = count($formulasTable->fetchAll());                                                           // Counts all elements in an array, or something in an object.
-        $installed = count($formulasTable->find(['installed', 1]));                                           // Counts all elements in an array, or something in an object.
-        $hidden = count($formulasTable->find(['column' => 'tags', 'value' => '%hide%', 'type' => 'like']));   // Counts all elements in an array, or something in an object.
-        $review = count($formulasTable->find(['reviewed', 0]));                                               // Counts all elements in an array, or something in an object.
-        $flagged = count($formulasTable->find(['flag', 1]));                                                  // Counts all elements in an array, or something in an object.
+        $installed = count($formulasTable->find([
+            'installed',
+            1,
+        ]));                                                                                                  // Counts all elements in an array, or something in an object.
+        $hidden = count($formulasTable->find([
+            'column' => 'tags',
+            'value'  => '%hide%',
+            'type'   => 'like',
+        ]));                                                                                                  // Counts all elements in an array, or something in an object.
+        $review = count($formulasTable->find([
+            'reviewed',
+            0,
+        ]));                                                                                                  // Counts all elements in an array, or something in an object.
+        $flagged = count($formulasTable->find([
+            'flag',
+            1,
+        ]));                                                                                                  // Counts all elements in an array, or something in an object.
 
         $table = new TextTable();                                                     // TextTable Constructor
-        $table->addHeader(['Total', 'Installed', 'Flagged', 'Hidden', 'Review']);     // Adds a header row
-        $table->addRow(["$total", "$installed", "$flagged", "$hidden", "$review"]);   // Adds a row
+        $table->addHeader([
+            'Total',
+            'Installed',
+            'Flagged',
+            'Hidden',
+            'Review',
+        ]);                                                                           // Adds a header row
+        $table->addRow([
+            "$total",
+            "$installed",
+            "$flagged",
+            "$hidden",
+            "$review",
+        ]);                                                                           // Adds a row
 
         Cli::line($table->render());   // Outputs a line of text to the CLI.
 
@@ -330,9 +367,12 @@ class BrewCommands implements NotifyProgressInterface {
             $bar->tick(0, 'Loading formula: ' . $this->formatMessage($feed->get('name')));
 
             if ($f) {
-                if (version_compare($feed->get('versions')->get('stable'), $f->version) > 0) {   // Compares two "PHP-standardized" version number strings
+                if (version_compare($feed->get('versions')
+                        ->get('stable'), $f->version) > 0) {   // Compares two "PHP-standardized" version number strings
                     $bar->tick(0, 'Updating formula: ' . $this->formatMessage($feed->get('name')));
-                    $f->version = $feed->get('versions')->get('stable');                                          // @var string The version of the formula.
+                    $f->version = $feed->get('versions')
+                        ->get('stable')
+                    ;                                          // @var string The version of the formula.
                     $f->state = 'update';
 
                     if (!$f->installed && !in_array('hide', $f->tagArray, true)) {   // @var bool If the formula is installed. | Checks if a value exists in an array
@@ -378,8 +418,8 @@ class BrewCommands implements NotifyProgressInterface {
     #[Command('brew:update', 'Update local homebrew formula database', ['hbu'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function updateLocalCommand(): int {
         $formulasTable = Application::app()->serviceManager->get(FormulasTable::class);               // * Constructor for the AbstractTable class.
-        $formulas = $formulasTable->fetchAll();             // FormulasTable
-        Cli::line('Total formulas: ' . count($formulas));   // Outputs a line of text to the CLI.
+        $formulas = $formulasTable->fetchAll();                                                       // FormulasTable
+        Cli::line('Total formulas: ' . count($formulas));                                             // Outputs a line of text to the CLI.
 
         $ttl = Hours::hours(1)->seconds->unit;
         $rfc = new RemoteFileCache(defaultTTL: $ttl);   // Remote File Cache Constructor
@@ -393,7 +433,9 @@ class BrewCommands implements NotifyProgressInterface {
 
             $response = $client->sendRequest($request);
 
-            $json = $response->getBody()->getContents();
+            $json = $response->getBody()
+                ->getContents()
+            ;
             $rfc->set(self::FEED_URL, $json);
         }
         $feeds = Json::decode($json, ['asOptions' => true]);   // Takes a JSON encoded string and converts it into a PHP value.
@@ -483,19 +525,19 @@ class BrewCommands implements NotifyProgressInterface {
         #[Argument('Tag filter', required: false)]   // Command line argument constructor.
         string $tag = '',
 
-        #[Option('installed', 'i', 'Installed', valueless: true)]   // Constructor method to initialize the class with specific properties.
+        #[Option('installed', 'i', 'Installed', valueless: true)]   // Constructor method to initialise the class with specific properties.
         bool $installed = false,
 
-        #[Option('uninstalled', 'u', 'Not currently installed', valueless: true)]   // Constructor method to initialize the class with specific properties.
+        #[Option('uninstalled', 'u', 'Not currently installed', valueless: true)]   // Constructor method to initialise the class with specific properties.
         bool $uninstalled = false,
 
-        #[Option('reviewed', 'r', 'For review', valueless: true)]   // Constructor method to initialize the class with specific properties.
+        #[Option('reviewed', 'r', 'For review', valueless: true)]   // Constructor method to initialise the class with specific properties.
         bool $review = false,
 
-        #[Option('flagged', 'f', 'Flagged items', valueless: true)]   // Constructor method to initialize the class with specific properties.
+        #[Option('flagged', 'f', 'Flagged items', valueless: true)]   // Constructor method to initialise the class with specific properties.
         bool $flag = false,
 
-        #[Option('extra', 'e', 'Extra information', valueless: true)]   // Constructor method to initialize the class with specific properties.
+        #[Option('extra', 'e', 'Extra information', valueless: true)]   // Constructor method to initialise the class with specific properties.
         bool $extra = false,
     ): int {
         Cli::line('Show brew formulas:');   // Outputs a line of text to the CLI.
@@ -505,23 +547,39 @@ class BrewCommands implements NotifyProgressInterface {
 
         $where = [];
         if ($uninstalled) {   // Filters the Homebrew formulas based on specified criteria and displays the matching formulas.
-            $where[] = ['installed', 0];
+            $where[] = [
+                'installed',
+                0,
+            ];
             Cli::line(' - Uninstalled:');   // Outputs a line of text to the CLI.
         }
         if ($installed) {   // Filters the Homebrew formulas based on specified criteria and displays the matching formulas.
-            $where[] = ['installed', 1];
+            $where[] = [
+                'installed',
+                1,
+            ];
             Cli::line(' - Installed:');   // Outputs a line of text to the CLI.
         }
         if ($flag) {   // Filters the Homebrew formulas based on specified criteria and displays the matching formulas.
-            $where[] = ['flag', 1];
+            $where[] = [
+                'flag',
+                1,
+            ];
             Cli::line(' - Flagged:');   // Outputs a line of text to the CLI.
         }
         if ($review) {   // Filters the Homebrew formulas based on specified criteria and displays the matching formulas.
-            $where[] = ['reviewed', 0];
+            $where[] = [
+                'reviewed',
+                0,
+            ];
             Cli::line(' - For review:');   // Outputs a line of text to the CLI.
         }
         if (!empty($tag)) {   // Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value
-            $where[] = ['column' => 'tags', 'value' => '%' . $tag . '%', 'type' => 'like'];
+            $where[] = [
+                'column' => 'tags',
+                'value'  => '%' . $tag . '%',
+                'type'   => 'like',
+            ];
             Cli::line(' - Tag: ' . $tag);   // Outputs a line of text to the CLI.
         }
 
@@ -581,8 +639,9 @@ class BrewCommands implements NotifyProgressInterface {
         Cli::line('Formulas to review: ' . (string)$total);   // Outputs a line of text to the CLI.
 
         foreach($formulas as $formula) {
-            $this->counter->out('- ' . str_pad(string: (string)++$current, length: $width, pad_type: STR_PAD_LEFT) . '/' . (string)$total . ' ');   // Write to STDOUT ending on the same line.
-            $this->printFormula($formula, true); // Outputs the details of a given formula to the CLI.
+            $this->counter->out('- ' . str_pad(string  : (string)++$current, length: $width,
+                                               pad_type: STR_PAD_LEFT) . '/' . (string)$total . ' ');   // Write to STDOUT ending on the same line.
+            $this->printFormula($formula, true);                                                        // Outputs the details of a given formula to the CLI.
 
             $menu['flag'] = match ($formula->flag) {
                 true => 'Unflag',
@@ -608,7 +667,7 @@ class BrewCommands implements NotifyProgressInterface {
                     shell_exec("open {$formula->homepage}"); // Execute command via shell and return the complete output as a string
                     $action = 'install';
                 } elseif ($choice === 'flag') {
-                    $this->action->line("\t" . $menu['flag'] . "ged formula.");
+                    $this->action->line("\t" . $menu['flag'] . 'ged formula.');
                     $formula->flag = !$formula->flag;
                     $action = 'install';
                 } elseif ($choice === 'hide') {
@@ -645,7 +704,7 @@ class BrewCommands implements NotifyProgressInterface {
      */
     #[Command('brew:tags', 'List all tags in use', ['bht'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function tagsCommand(
-        #[Option('usage', 'u', 'Sort by usage count', valueless: true)]   // Constructor method to initialize the class with specific properties.
+        #[Option('usage', 'u', 'Sort by usage count', valueless: true)]   // Constructor method to initialise the class with specific properties.
         bool $usage = false,
     ): int {
         Cli::line('Brew tags:');   // Outputs a line of text to the CLI.
@@ -654,11 +713,20 @@ class BrewCommands implements NotifyProgressInterface {
         if ($usage) asort($tags);   // Lists all tags currently in use, optionally sorting them by their usage count, and displays | Sort an array and maintain index association
 
         $table = new TextTable();                       // TextTable Constructor
-        $table->addHeader(['Count', 'Tag', 'Usage']);   // Adds a header row
+        $table->addHeader([
+            'Count',
+            'Tag',
+            'Usage',
+        ]);                                             // Adds a header row
 
         $current = 1;
-        Cli::line('Tagged formulas: ' . (string)$this->brew->getTagged()->count());                                                                              // Outputs a line of text to the CLI.
-        foreach($tags as $tag => $count) $table->addRow([(string)($current++), $tag, (string)$count]);   // Adds a row
+        Cli::line('Tagged formulas: ' . (string)$this->brew->getTagged()
+                ->count());                                                                              // Outputs a line of text to the CLI.
+        foreach($tags as $tag => $count) $table->addRow([
+            (string)($current++),
+            $tag,
+            (string)$count,
+        ]);                                                                                              // Adds a row
 
         Cli::line($table->render());   // Outputs a line of text to the CLI.
 

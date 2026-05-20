@@ -133,9 +133,7 @@ class Application {
         $reflection = new ReflectionObject($object);
 
         foreach($reflection->getAttributes(ConfigAwareAttribute::class) as $classAttribute) {
-            //            if ($classAttribute->getName() === ConfigAwareAttribute::class) {
             $this->configManager->setConfigFor($object);
-            //            }
         }
     }
 
