@@ -17,13 +17,16 @@ class ActivityPicker extends MergeOptions {
      * relationship education, or similar purposes.
      */
     #activities = [
-        'Breast caressing',
-        'Grinding while clothed',
-        '69 position oral',
-        'Anal rimming (him on her)',
-        'Clitoral fingering',
-        'Handjob techniques',
-        'Shallow penetration',
+        '1. Couple activity: Cook a three-course meal together',
+        '2. Team-building activity: Escape room challenge',
+        '3. Outdoor activity: Hiking a nature trail',
+        '4. Kids activity: Treasure hunt in the garden',
+        '5. Date idea: Rooftop picnic at sunset',
+        '6. Icebreaker: Two truths and a lie',
+        '7. Fitness activity: HIIT circuit workout',
+        '8. Party game: Charades',
+        '9. Coding exercise: Build a CLI todo app in PHP',
+        '10. Classroom activity: Debate on AI ethics',
     ];
 
     /**
@@ -40,8 +43,8 @@ class ActivityPicker extends MergeOptions {
      * @property {boolean} debug.duplicate - Flag to indicate if duplicate actions should be logged.
      */
     #options = {
-        rangeSize: 9,
-        step: 5,
+        rangeSize: 1,
+        step: 1,
         retryDuplicates: 3,
         logLevel: 'WARN',
         debug: {
@@ -97,8 +100,10 @@ class ActivityPicker extends MergeOptions {
      * @param {number} minIndex - The proposed minimum index to be set.
      */
     set #minIndex(minIndex) {
-        if ((this.#cache.minIndex = this.clamp(minIndex, 0, this.#lastActivity)) === this.#lastActivity)
+        if (minIndex > this.#lastActivity) {
             this.#isComplete = true;
+        }
+        this.#cache.minIndex = this.clamp(minIndex, 0, this.#lastActivity);
     }
 
     /**
@@ -109,9 +114,20 @@ class ActivityPicker extends MergeOptions {
      * @return {number} The calculated maximum index value.
      */
     get #maxIndex() {
-        let maxIndex = this.#minIndex + this.#options.rangeSize;
-        if (maxIndex > this.#lastActivity) maxIndex = this.#lastActivity;
-        return maxIndex;
+        let maxIndex = this.#minIndex + this.#options.rangeSize - 1;
+        return this.clamp(maxIndex, 0, this.#lastActivity);
+        // if (maxIndex > this.#lastActivity) maxIndex = this.#lastActivity;
+        // return maxIndex;
+    }
+
+
+    /**
+     * Retrieves the index of the last activity in the activity list.
+     *
+     * @return {number} The index of the most recent activity in the #activities array.
+     */
+    get #totalActivity() {
+        return this.#activities.length;
     }
 
     /**
@@ -120,7 +136,7 @@ class ActivityPicker extends MergeOptions {
      * @return {number} The index of the most recent activity in the #activities array.
      */
     get #lastActivity() {
-        return this.#activities.length - 1;
+        return this.#totalActivity - 1;
     }
 
     // mergeMethod = ActivityPicker.mergeMethodUpdateOnly;
@@ -256,12 +272,12 @@ class ActivityPicker extends MergeOptions {
      * Sets the number of picks and optionally adjusts the range optimization.
      *
      * @param {number} numberOfPicks - The desired number of picks to be set.
-     * @param {boolean} [optimiseRange=false] - Indicates whether to optimize the range size based on the step value. A number can be used to set it manually.
+     * @param {boolean|number} [optimiseRange=false] - Indicates whether to optimize the range size based on the step value. A number can be used to set it manually.
      *
      * @return {this} The instance of the class to allow method chaining.
      */
     setNumberOfPicks(numberOfPicks, optimiseRange = false) {
-        this.#options.step = Math.ceil((this.#lastActivity + 1) / numberOfPicks);
+        this.#options.step = Math.ceil(this.#totalActivity / numberOfPicks);
 
         const newValues = {};
         newValues.step = this.#options.step;
@@ -270,7 +286,8 @@ class ActivityPicker extends MergeOptions {
             if (typeof optimiseRange === 'number') {
                 this.#options.rangeSize = optimiseRange;
             } else {
-                this.#options.rangeSize = Math.ceil((this.#lastActivity + 1) / this.#options.step);
+                // this.#options.rangeSize = Math.ceil(this.#totalActivity / this.#options.step);
+                this.#options.rangeSize = this.#options.step;
             }
             newValues.rangeSize = this.#options.rangeSize;
         }

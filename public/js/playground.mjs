@@ -1,5 +1,4 @@
 import {ActivityPicker} from './playground/ActivityPicker.mjs';
-import {ActivityListSexual} from './playground/ActivityListSexual.mjs';
 
 import readline from 'node:readline/promises';
 import {stdin, stdout} from 'node:process';
@@ -9,17 +8,21 @@ const rl = readline.createInterface({
     output: stdout,
 });
 
-const setDebug = false;
+const activitySet = null;
+// const activitySet = ActivityListSexual;
+
+const setDebug = !false;
 // const setLogLevel = Dumper.DEBUG;
-const ap = new ActivityPicker(ActivityListSexual, {
-    rangeSize: 5,
-    step: 10,
-    // logLevel: 'DEBUG',
+const ap = new ActivityPicker(activitySet, {
+    // rangeSize: 5,
+    // step: 10,
+    logLevel: 'DEBUG',
     debug: { pick: setDebug, lastActivity: setDebug, options: setDebug, duplicate: setDebug, numberOfPicks: setDebug, }, king: 'kong'
 });
 
+ap.setNumberOfPicks(10, true);
 // ap.setNumberOfPicks(40);
-ap.setNumberOfPicks(15, true);
+// ap.setNumberOfPicks(15, true);
 
 let i = 0;
 let games = 0, limit = 1;
