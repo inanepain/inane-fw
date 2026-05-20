@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Inane\Html\Helper\{
+use Inane\View\Helper\{
     HtmlBuilder,
     jQuery};
 

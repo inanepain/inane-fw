@@ -80,7 +80,7 @@ $includes = [
     'html-builder', // 7
 ];
 
-$include = $includes[6];
+$include = $includes[0];
 
 if ($include !== null) {
     require_once "index-{$include}.php";
