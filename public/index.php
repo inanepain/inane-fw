@@ -69,61 +69,23 @@ ini_set('error_reporting', E_ALL);
 //ini_set('error_reporting', (string)$error_reporting);
 #endregion DEBUG HTACCESS FLAGS
 
-//$page = 1;
-//if ($page === 1) {
-//    // Simple page
-//    $view = new HtmlView('dashboard', [
-//        'title'        => 'User Dashboard',
-//        'widgets'      => [
-//            [
-//                'title'   => 'Stats',
-//                'content' => '100 users'
-//            ],
-//            [
-//                'title'   => 'Revenue',
-//                'content' => '$5,000'
-//            ]
-//        ],
-//        'sidebarItems' => [
-//            'Profile',
-//            'Settings',
-//            'Logout'
-//        ]
-//    ]);
-//
-//    $view->setLayout('main');
-//    echo $view->render();
-//} elseif ($page === 2) {
-//    // Nested views
-//    $cardView = new HtmlView('components:card', [
-//        'title'   => 'Welcome',
-//        'content' => 'Hello user!'
-//    ]);
-//
-//    $pageView = new HtmlView('home');
-//    $pageView->setLayout('main')
-//        ->nest('welcomeCard', $cardView)
-//        ->setData('title', 'Home Page')
-//    ;
-//
-//    echo $pageView->render();
-//} elseif ($page === 3) {
-//    $apiView = new JsonView([
-//        'status' => 'success',
-//        'data' => [
-//            'user' => ['id' => 1, 'name' => 'John']
-//        ]
-//    ]);
-//
-//    header('Content-Type: application/json');
-//    echo $apiView->render();
-//}
-//exit;
+$includes = [
+    null, // 0
+    'merge', // 1
+    'output', // 2
+    'view-json', // 3
+    'view-nested', // 4
+    'view-nested2', // 5 error: startBlock
+    'view-simple', // 6
+    'html-builder', // 7
+];
 
-//require_once 'index-merge.php';
-//require_once 'index-output.php';
-require_once 'index-activitypicker.php';
-exit;
+$include = $includes[6];
+
+if ($include !== null) {
+    require_once "index-{$include}.php";
+    exit;
+}
 
 $returnCode = (static function(Application $app): bool|int {
     // FIX: boo
@@ -145,5 +107,5 @@ $returnCode = (static function(Application $app): bool|int {
     return true;
 })(Application::app());
 
-echo "Return Code: $returnCode" . PHP_EOL;
-echo "Error reporting: $error_reporting" . PHP_EOL;
+//echo "Return Code: $returnCode" . PHP_EOL;
+//echo "Error reporting: $error_reporting" . PHP_EOL;

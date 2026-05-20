@@ -55,7 +55,7 @@ class TemplateResolver {
     private static array $cache = [];
     private static string $basePath = 'views';
 
-    private static string $extention = '.phtml';
+    private static string $extension = '.phtml';
     //#endregion Properties
 
     /**
@@ -83,10 +83,10 @@ class TemplateResolver {
                 $type,
                 $name,
             ] = explode(':', $template, 2);
-            $pathComponents[] = self::$templatePaths[$type] . '/' . $name . static::$extention;
+            $pathComponents[] = self::$templatePaths[$type] . '/' . $name . static::$extension;
         } else {
             // Default to pages
-            $pathComponents[] = self::$templatePaths['pages'] . '/' . $template . static::$extention;
+            $pathComponents[] = self::$templatePaths['pages'] . '/' . $template . static::$extension;
         }
 
         $path = implode('/', $pathComponents);
