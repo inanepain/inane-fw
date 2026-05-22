@@ -27,6 +27,9 @@ namespace Knot\ActivityPicker;
 
 use Inane\Cli\Cli;
 use Inane\Cli\Pencil;
+use Inane\Cli\Pencil\{
+    Colour,
+    Style};
 use Inane\Config\ConfigAware\ConfigAwareAttribute;
 use Inane\Config\ConfigAware\ConfigAwareTrait;
 use Inane\Config\ConfigManager;
@@ -34,6 +37,7 @@ use Inane\Console\Command\{
     Argument,
     Command,
     Option};
+use Inane\Datetime\Timespan;
 use Random\RandomException;
 
 /**
@@ -72,12 +76,14 @@ class ActivityCommands {
      */
     use  ConfigAwareTrait;
 
+    private ?int $timeout = null;
+
     /**
      * Retrieves the cyan pen instance. If not already initialized, creates a new instance
      * of the Pencil class with the color set to Cyan.
      */
     protected Pencil $penCyan {
-        get => $this->penCyan ?? $this->penCyan = new Pencil(Pencil\Colour::Cyan);
+        get => $this->penCyan ?? $this->penCyan = new Pencil(colour: Colour::Blue, style: Style::Plain);
     }
 
     /**
@@ -101,10 +107,15 @@ class ActivityCommands {
      * @throws RandomException
      */
     protected function displayActivities(ActivityPicker $ap): void {
+        $stub = '';
+        if ($this->timeout !== null) {
+            Cli::line('Questions are automatically shown after: ' . new Timespan($this->timeout)->duration());
+            $stub = "\n";
+        }
         $i = 0;
         while(!$ap->end) {
-            Cli::promptStreamSelect('Enter for activity');
-            Cli::out("\t" . ++$i . '. ');
+            if ('q' === Cli::promptStreamSelect(question: 'Enter for activity (q to quit)', timeout: $this->timeout)) break;
+            Cli::out($stub . "\t" . ++$i . '. ');
             $this->penCyan->line($ap->pick());
         }
     }
@@ -114,7 +125,7 @@ class ActivityCommands {
     /**
      * Handles the "activity:picker" console command to select a default set of activities.
      *
-     * @param string|null $activityList  An optional argument specifying the activity list to use, or null to use the default list.
+     * @param string|null $activities    An optional argument specifying the activity list to use, or null to use the default list.
      * @param int|null    $numberOfPicks An optional option specifying the number of activities to pick. If not provided, no limit is set.
      *
      * @return int Returns 0 on successful execution of the command.
@@ -123,24 +134,30 @@ class ActivityCommands {
     #[Command('activity:picker', 'Pick default activities', ['ap'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function activitiesCommand(
         #[Argument('Activity list: null for default', required: false, default: null)]   // Command line argument constructor.
-        ?string $activityList = null,
+        ?string $activities = null,
 
         #[Option('picks', 'p', 'Number of picks required', default: null, valueless: false)]
         ?int $numberOfPicks = null,
+
+        #[Option('timeout', 't', 'Number of seconds before automatically showing next pick', default: null, valueless: false)]
+        ?int $timeout = null,
     ): int {
-        $activities = null;
-        if ($activityList !== null && $this->config->lists->has($activityList)) {
-            $activities = $this->config->lists->get($activityList);
+        $list = null;
+        $this->timeout = $timeout;
+
+        if ($activities !== null && $this->config->lists->has($activities)) {
+            $list = $this->config->lists->get($activities);
         } else {
-            $activityList = null;
+            $activities = null;
         }
 
         $setDebug = false;
 
-        $ap = new ActivityPicker(activities: $activities, options: [
+        $ap = new ActivityPicker(activities: $list, options: [
             'debug' => [
                 'totalActivities' => $setDebug,
                 'options'         => $setDebug,
+                'rangeSize'       => !$setDebug,
             ],
         ]);
 
@@ -148,7 +165,7 @@ class ActivityCommands {
             $ap->setNumberOfPicks($numberOfPicks, true);
         }
 
-        Cli::line('Displaying activities: ' . $activityList ?? 'default');
+        Cli::line('Displaying activities: ' . $activities ?? 'default');
         $this->displayActivities($ap);
 
         return 0;

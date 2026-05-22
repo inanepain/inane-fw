@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * inane-fw
+ *
+ * Inane Framework
+ *
+ * $Id$
+ * $Date$
+ *
+ * PHP version 8.5
+ *
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\inane-fw
+ * @category inane-fw
+ *
+ * @license  UNLICENSE
+ * @license  https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
+ */
+
 declare(strict_types = 1);
 
 use Inane\Cli\Cli;
@@ -11,6 +31,7 @@ chdir(dirname(__DIR__));
 
 require_once 'vendor/autoload.php';
 require_once '/Users/philip/Developer/php/playground/dirty-loader/src/Dirtyloader.php';
+require_once 'index-functions.php';
 
 Dirtyloader::register([
     'loaders' => [

@@ -11,14 +11,13 @@
  * PHP version 8.5
  *
  * @author   Philip Michael Raab <philip@cathedral.co.za>
- * @package  inanepain\PROJECT
- * @category PROJECT
+ * @package  inanepain\inane-fw
+ * @category inane-fw
  *
  * @license  UNLICENSE
  * @license  https://unlicense.org/UNLICENSE UNLICENSE
  *
  * _version_ $version
- *
  */
 
 declare(strict_types = 1);
@@ -28,22 +27,19 @@ namespace Knot\ActivityPicker;
 use Inane\Log\Logger;
 use Inane\Log\Writer\StderrorWriter;
 use Inane\Log\Writer\StdoutWriter;
+use Inane\Stdlib\Array\OptionsInterface;
 use Inane\Stdlib\Exception\JsonException;
 use Inane\Stdlib\Merge\MergeInterface;
 use Inane\Stdlib\Merge\MergeTrait;
 use Inane\Stdlib\Options;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Log\LogLevel;
 use Random\RandomException;
 
 use function array_shift;
 use function ceil;
-use function count;
+use function clamp;
 use function is_array;
 use function is_int;
-use function max;
-use function min;
 use function random_int;
 
 /**
@@ -82,7 +78,34 @@ class ActivityPicker implements MergeInterface {
     }
 
     /**
-     * Configuration options for the application behavior.
+     * Manages configuration options and their initialization.
+     *
+     * The `$options` container includes settings such as range size, step size,
+     * retry limits for duplicates, logging level, and detailed debugging options.
+     * Provides lazy initialization of default values if not already defined.
+     *
+     * Type details:
+     * - Container: `\Inane\Stdlib\Options`
+     * - Keys:
+     *   - `rangeSize` int
+     *   - `step` int
+     *   - `retryDuplicates` int
+     *   - `logLevel` string
+     *   - `debug` \Inane\Stdlib\Options  Debug options container (not a plain array)
+     *
+     * Hint for static analysers/IDEs:
+     * - `debug` is an instance of `\Inane\Stdlib\Options`, so chained access like
+     *   `$this->options->debug->get($context)` is valid and not a magic property misuse.
+     *
+     * @var Options&object{
+     *     rangeSize: int,
+     *     step: int,
+     *     retryDuplicates: int,
+     *     logLevel: string,
+     *     debug: \Inane\Stdlib\Options
+     * }
+     *
+     * @throws JsonException
      */
     private Options $options {
         /**
@@ -99,6 +122,7 @@ class ActivityPicker implements MergeInterface {
                 'options'         => false,
                 'duplicate'       => false,
                 'numberOfPicks'   => false,
+                'rangeSize'       => false,
             ],
         ]);
         /**
@@ -143,7 +167,7 @@ class ActivityPicker implements MergeInterface {
                 $this->isComplete = true;
             }
 
-            $this->cache->minIndex = $this->clamp($value, 0, $this->lastActivity);
+            $this->cache->minIndex = clamp($value, $this->activities->firstKey(), $this->lastActivity);
         }
     }
 
@@ -154,7 +178,7 @@ class ActivityPicker implements MergeInterface {
         get {
             $maxIndex = $this->minIndex + $this->options->rangeSize - 1;
 
-            return $this->clamp($maxIndex, 0, $this->lastActivity);
+            return clamp($maxIndex, $this->activities->firstKey(), $this->lastActivity);
         }
     }
 
@@ -162,21 +186,21 @@ class ActivityPicker implements MergeInterface {
      * Total number of activities.
      */
     private int $totalActivities {
-        get => count($this->activities);
+        get => $this->activities->count();
     }
 
     /**
      * Index of the last activity.
      */
     private int $lastActivity {
-        get => $this->totalActivities - 1;
+        get => $this->activities->lastKey();
     }
 
     /**
      * Determines whether the minimum index is the first index.
      */
     public bool $start {
-        get => $this->minIndex === 0;
+        get => $this->minIndex === $this->activities->firstKey();
     }
 
     /**
@@ -190,7 +214,7 @@ class ActivityPicker implements MergeInterface {
      * Retrieves the current activity.
      */
     public string $activity {
-        get => $this->activities[$this->currentIndex ?? 0];
+        get => $this->activities[$this->currentIndex ?? $this->activities->firstKey()];
     }
 
     /**
@@ -213,7 +237,7 @@ class ActivityPicker implements MergeInterface {
      */
     public function __construct(null|array|Options $activities = null, array|Options $options = []) {
         if ($activities !== null) {
-            $this->activities = $activities;
+            $this->activities = $activities instanceof OptionsInterface ? $activities->values() : array_values($activities);
         }
 
         $this->mergeOptions($this->options, $options);
@@ -229,8 +253,6 @@ class ActivityPicker implements MergeInterface {
      * @param mixed  $messages Additional message(s) to log.
      *
      * @return void
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     private function log(string $level, string $context, ...$messages): void {
         if ($this->options->debug->get($context)) {
@@ -248,24 +270,23 @@ class ActivityPicker implements MergeInterface {
     }
 
     /**
-     * Helper to clamp values.
-     */
-    private function clamp(int $value, int $min, int $max): int {
-        return max($min, min($max, $value));
-    }
-
-    /**
      * Sets the number of picks.
      */
     public function setNumberOfPicks(int $numberOfPicks, bool|int $optimiseRange = false): self {
+        $numberOfPicks = clamp($numberOfPicks, 1, $this->totalActivities);
         $this->options->step = (int)ceil($this->totalActivities / $numberOfPicks);
 
         if ($optimiseRange !== false) {
             if (is_int($optimiseRange)) {
                 $this->options->rangeSize = $optimiseRange;
             } else {
-                //                $this->options->rangeSize = (int)ceil(($this->lastActivity + 1) / $this->options->step);
                 $this->options->rangeSize = $this->options->step;
+                $this->log('debug', 'rangeSize', 'Scale Range Size', $this->options->rangeSize, 'Reach', $this->options->rangeSize * $numberOfPicks, 'Target', $this->totalActivities);
+
+                while(($this->options->rangeSize * $numberOfPicks) < $this->totalActivities) {
+                    $this->options->rangeSize++;
+                    $this->log('debug', 'rangeSize', 'Scale Range Size', $this->options->rangeSize, 'Reach', $this->options->rangeSize * $numberOfPicks, 'Target', $this->totalActivities);
+                }
             }
         }
 
