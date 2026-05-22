@@ -43,17 +43,20 @@ $source = new \Inane\Stdlib\Options([
 echo "Add\n";
 // $merge->mergeMethod = MergeMethod::AddOnly;
 // $result = $merge->mergeOptions($target, $source);
-$result = Merge::mergeOptionsWithMethod(MergeMethod::AddOnly, $target1, $source);
-print_r($result);
+$result1 = Merge::mergeOptionsWithMethod(MergeMethod::AddOnly, $target1, $source);
+$result2 = Merge::mergeOptionsAddOnly($target1, $source);
+print_r([$result1, $result2]);
 
 echo "Update\n";
 // $merge->mergeMethod = MergeMethod::UpdateOnly;
 // $result = $merge->mergeOptions($target, $source);
 $result = Merge::mergeOptionsWithMethod(MergeMethod::UpdateOnly, $target2, $source);
-print_r($result);
+$result2 = Merge::mergeOptionsUpdateOnly($target1, $source);
+print_r([$result1, $result2]);
 
 echo "AddUpdate\n";
 // $merge->mergeMethod = MergeMethod::AddAndUpdate;
 // $result = $merge->mergeOptions($target, $source);
 $result = Merge::mergeOptionsWithMethod(MergeMethod::AddAndUpdate, $target3, $source);
-print_r($result);
+$result2 = Merge::mergeOptionsAddAndUpdate($target1, $source);
+print_r([$result1, $result2]);

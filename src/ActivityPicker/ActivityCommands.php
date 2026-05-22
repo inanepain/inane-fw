@@ -157,7 +157,7 @@ class ActivityCommands {
             'debug' => [
                 'totalActivities' => $setDebug,
                 'options'         => $setDebug,
-                'rangeSize'       => !$setDebug,
+                'rangeSize'       => $setDebug,
             ],
         ]);
 
