@@ -74,7 +74,8 @@
         "psr/log": "^3.0@dev",
         "psr/simple-cache": ">= 3",
         "ext-intl": "*",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "ext-gmp": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
