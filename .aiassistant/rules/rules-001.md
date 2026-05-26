@@ -10,3 +10,4 @@ apply: always
 
 - Line between the last @param and @return.
 - Line between @return and @throws.
+- Allways add @throws.
