@@ -5,8 +5,8 @@
  *
  * Inane Framework
  *
- *
- *
+ * $Id$
+ * $Date$
  *
  * PHP version 8.5
  *
@@ -17,8 +17,7 @@
  * @license  UNLICENSE
  * @license  https://unlicense.org/UNLICENSE UNLICENSE
  *
- * _version_
- *
+ * _version_ $version
  */
 
 declare(strict_types = 1);
