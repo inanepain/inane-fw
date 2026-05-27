@@ -46,11 +46,15 @@
     "autoload-dev": {
         "psr-4": {
             "Inane\\Datetime\\": "source/lib/datetime/src/",
+            "Inane\\Db\\": "source/lib/db/src/",
             "Inane\\Rebecca\\": "source/lib/rebecca/src/",
             "Inane\\Stdlib\\": "source/lib/stdlib/src/",
             "Inane\\View\\": "source/lib/view/src/",
             "Test\\View\\Helper\\": "source/lib/view/tests/"
-        }
+        },
+        "files": [
+            "public/index-functions.php"
+        ]
     },
     "config": {
         "preferred-install": "dist",

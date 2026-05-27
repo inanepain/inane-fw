@@ -82,7 +82,7 @@ class HtmlBuilder implements Stringable {
         @[
             'tag'    => $tag,
             'action' => $action,
-        ] = $matches[0];
+        ] = $matches[0] + ['action' => 'None'];
         $action = $action ? Action::tryFromName($action, true) : Action::None;
 
         return [
@@ -116,7 +116,7 @@ class HtmlBuilder implements Stringable {
                         foreach($val as $k => $v) $styleValues[] = "$k:$v";
 
                         $currStyle = implode(';', $styleValues);
-                    } elseif ($key === 'optimize') ; //code to be done
+                    } // elseif ($key === 'optimize') ; //code to be done
                     else $paramsList[] = "$key=\"$val\"";
                 }
                 $params = ' ' . implode(' ', $paramsList);

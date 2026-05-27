@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd">
+
+    <!--
+        Global PHPUnit configuration for Inane Framework
+
+        This root configuration delegates to child configurations located
+        in submodules / libraries. Add additional <file> entries under
+        <includes> as new libraries gain their own phpunit.xml files.
+    -->
+
+    <coverage/>
+
+    <!-- Aggregate tests directly (PHPUnit does not support including other XML configs) -->
+    <!-- Define a single aggregate testsuite that points to module test directories -->
+    <testsuites>
+        <testsuite name="Inane Framework Aggregate Suite">
+            <directory suffix="Test.php">lib/inanepain/auth/tests</directory>
+            <directory suffix="Test.php">lib/inanepain/datetime/tests</directory>
+            <directory suffix="Test.php">source/lib/view/tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Source directories for coverage analysis -->
+    <source>
+        <include>
+            <directory suffix=".php">lib/inanepain/auth/src</directory>
+            <directory suffix=".php">lib/inanepain/datetime/src</directory>
+            <directory suffix=".php">source/lib/view/src</directory>
+        </include>
+    </source>
+
+    <!-- Source inclusion is defined in child configs -->
+
+</phpunit>
