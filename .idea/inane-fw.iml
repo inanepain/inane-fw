@@ -32,6 +32,8 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/src" isTestSource="false" packagePrefix="Inane\Log\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" packagePrefix="Test\View\Helper\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/db/src" isTestSource="true" packagePrefix="Inane\Db\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/minify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/path-converter" />
