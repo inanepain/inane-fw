@@ -22,6 +22,7 @@
         <testsuite name="Inane Framework Aggregate Suite">
             <directory suffix="Test.php">lib/inanepain/auth/tests</directory>
             <directory suffix="Test.php">lib/inanepain/datetime/tests</directory>
+            <directory suffix="Test.php">lib/inanepain/id-forge/tests</directory>
             <directory suffix="Test.php">source/lib/view/tests</directory>
         </testsuite>
     </testsuites>
@@ -31,6 +32,7 @@
         <include>
             <directory suffix=".php">lib/inanepain/auth/src</directory>
             <directory suffix=".php">lib/inanepain/datetime/src</directory>
+            <directory suffix=".php">lib/inanepain/id-forge/src</directory>
             <directory suffix=".php">source/lib/view/src</directory>
         </include>
     </source>

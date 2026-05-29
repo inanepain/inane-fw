@@ -11,6 +11,10 @@
             <path value="file://$PROJECT_DIR$/public/lib/bootstrap/5.3.8/css" />
             <path value="file://$PROJECT_DIR$/public/lib/bootstrap/5.3.8/js" />
             <path value="file://$PROJECT_DIR$/public/js/tamper-monkey" />
+            <path value="file://$PROJECT_DIR$/data" />
+            <path value="file://$PROJECT_DIR$/view" />
+            <path value="file://$PROJECT_DIR$/views" />
+            <path value="file://$PROJECT_DIR$/filesrv" />
           </resourceRoots>
         </entryData>
       </entry>
