@@ -1,0 +1,58 @@
+{
+    "format": {"category":[], "language":"","quote":{"person":null,"source":null,"year":null},"starSign":[]},
+    "templates": {
+        "category": {
+            "format": {"category":[]},
+            "templates": {
+                "1liner": {"category":["1liner"]},
+                "baby": {"category":["baby"]},
+                "confucius": {"category":["confucius"]},
+                "dictionary": {"category":["dictionary"]},
+                "fact": {"category":["fact"]},
+                "fart": {"category":["fart"]},
+                "gay": {"category":["gay"]},
+                "jesus": {"category":["jesus"]},
+                "limerick": {"category":["limerick"]},
+                "missionary": {"category":["missionary"]},
+                "orgy": {"category":["orgy"]},
+                "Q&A": {"category":["Q&A"]},
+                "quote": {"category":["quote"]},
+                "sex": {"category":["sex"]},
+                "starSign": {"category":["starSign"]},
+                "virgin": {"category":["virgin"]}
+            }
+        },
+        "quote": {
+            "dependency": {"category":["quote"]},
+            "format": {"quote":{"person":null,"source":null,"year":null}},
+            "templates": {
+                "QOTD": {"quote":{"person":null,"source":"Quote of the Day","year":null}}
+            }
+        },
+        "starSign": {
+            "dependency": {"category":["starSign"]},
+            "format": {"starSign":[]},
+            "templates": {
+                "aries": {"starSign":["aries"]},
+                "taurus": {"starSign":["taurus"]},
+                "gemini": {"starSign":["gemini"]},
+                "cancer": {"starSign":["cancer"]},
+                "leo": {"starSign":["leo"]},
+                "virgo": {"starSign":["virgo"]},
+                "libra": {"starSign":["libra"]},
+                "scorpio": {"starSign":["scorpio"]},
+                "sagittarius": {"starSign":["sagittarius"]},
+                "capricorn": {"starSign":["capricorn"]},
+                "aquarius": {"starSign":["aquarius"]},
+                "pisces": {"starSign":["pisces"]}
+            }
+        },
+        "language": {
+            "format": {"language":""},
+            "templates": {
+                "German": {"language":"German"},
+                "Latin": {"language":"Latin"}
+            }
+        }
+    }
+}

@@ -21,10 +21,10 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/src" isTestSource="false" packagePrefix="Inane\Session\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/src" isTestSource="false" packagePrefix="Inane\Stdlib\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/view/src" isTestSource="false" packagePrefix="Inane\View\" />
-      <sourceFolder url="file://$MODULE_DIR$/source/lib/datetime/src" isTestSource="true" packagePrefix="Inane\Datetime\" />
-      <sourceFolder url="file://$MODULE_DIR$/source/lib/rebecca/src" isTestSource="true" packagePrefix="Inane\Rebecca\" />
-      <sourceFolder url="file://$MODULE_DIR$/source/lib/stdlib/src" isTestSource="true" packagePrefix="Inane\Stdlib\" />
-      <sourceFolder url="file://$MODULE_DIR$/source/lib/view/src" isTestSource="true" packagePrefix="Inane\View\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/datetime/src" isTestSource="false" packagePrefix="Inane\Datetime\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/rebecca/src" isTestSource="false" packagePrefix="Inane\Rebecca\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/stdlib/src" isTestSource="false" packagePrefix="Inane\Stdlib\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/view/src" isTestSource="false" packagePrefix="Inane\View\" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Knot\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/redis/./src" isTestSource="false" packagePrefix="Inane\Redis\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/src" isTestSource="false" packagePrefix="Inane\ServiceManager\" />
@@ -33,11 +33,14 @@
       <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" packagePrefix="Test\View\Helper\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/source/lib/db/src" isTestSource="true" packagePrefix="Inane\Db\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/db/src" isTestSource="false" packagePrefix="Inane\Db\" />
       <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/minify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/path-converter" />
