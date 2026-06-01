@@ -26,8 +26,9 @@ _done task='':
 [group: 'GIT']
 git-push-all: (_start "Push All") && (_done "Push All")
     #!/usr/bin/env zsh
-    for d in lib/inanepain/*; do echo $d; cd $d; git pushall; cd -; done
-    pwd
+    source ~/bin/functions/colours
+    for d in lib/inanepain/*; do msg "${Blue}$d"; cd $d; git pushall; cd -; done
+    msg "${Blue}$(pwd)"
     git pushall
 
 # git pull submodules
@@ -35,7 +36,7 @@ git-push-all: (_start "Push All") && (_done "Push All")
 git-pull-submodules:
     #!/usr/bin/env zsh
     git submodule foreach --recursive 'git pull'
-    pwd
+    msg "${Blue}$(pwd)"
     git pull
 
 # git pull submodules github.com develop
@@ -43,7 +44,7 @@ git-pull-submodules:
 git-pull-submodules-github-develop:
     #!/usr/bin/env zsh
     git submodule foreach --recursive 'git pull github.com develop'
-    pwd
+    msg "${Blue}$(pwd)"
     git pull github.com develop
 
 # git pull submodules all
