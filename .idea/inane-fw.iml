@@ -37,6 +37,7 @@
       <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" />
