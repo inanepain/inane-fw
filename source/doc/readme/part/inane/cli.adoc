@@ -1,0 +1,16 @@
+= Inane\Cli
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/cli
+include::{lib-root}/README.adoc[tag=tagConfig]
+
+[%collapsible]
+====
+{description}
+
+***
+// tag::taglinkBack[]
+link:../inane.adoc[<< Back]
+// end::taglinkBack[]
+====
+

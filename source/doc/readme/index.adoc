@@ -54,4 +54,8 @@ include::./part/config.adoc[leveloffset=+1]
 
 <<<
 
+include::./part/inane.adoc[leveloffset=+1]
+
+<<<
+
 include::./part/examples.adoc[leveloffset=+1]

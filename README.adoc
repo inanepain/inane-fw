@@ -209,6 +209,786 @@ Composer libraries.
 
 :leveloffset: +1
 
+= Inane Libraries
+
+:leveloffset: +1
+
+= Inane\Auth
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/auth
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Authentication adapters for common use cases.
+:keywords: inane, inanepain, library, auth, authentication, OTP, two-factor, 2FA
+:revnumber: 1.2.0
+:revdate: 2026-05-26
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: auth
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Cache
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/cache
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Some simple caching tools implementing PSR-6 and PSR-16.
+:keywords: inanepain, cache, psr-6, psr-16
+:homepage: https://github.com/inanepain/cache
+:copyright: Unlicense
+:revnumber: 0.1.0
+:revdate: 2025-12-31
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: cache
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Cli
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/cli
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Utilities to simplify working with the console.
+:keywords: inanepain, library, console, cli, utility, text-table, prompt
+:homepage: https://github.com/inanepain/cli
+:copyright: Unlicense
+:revnumber: 0.17.0
+:revdate: 2025-09-14
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: cli
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Config
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/config
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Configuration helpers.
+:keywords: inanepain, library, config
+:homepage: https://github.com/inanepain/config
+:copyright: Unlicense
+:revnumber: 0.4.0
+:revdate: 2026-02-04
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: config
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Console
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/console
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Console routing and argument handling.
+:keywords: library,inanepain,composer,php,console,routing,route,router,command,argument
+:homepage: https://github.com/inanepain/console
+:revnumber: 0.3.0
+:revdate: 2026-01-14
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:toclevels: 3
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: console
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Crypt
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/crypt
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Encryption helpers and password hashers.
+:keywords: inanepain, library, crypt, encrypt, decrypt
+:homepage: https://github.com/inanepain/crypt
+:revnumber: 0.1.0
+:revdate: 2026-xx-xx
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: crypt
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Datetime
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/datetime
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Things to help you bend space and time to your will. Or at least do some calculations with it.
+:keywords: inanepain, library, datetime, date, time, timespan, timestamp, duration, FuzzyTime
+:homepage: https://github.com/inanepain/datetime
+:revnumber: 0.4.0
+:revdate: 2025-09-29
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: datetime
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Db
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/db
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Some helpers for database task and query construction.
+:keywords: inanepain, db, database, sql, query, builder, MySQL, PostgresSQL
+:homepage: https://github.com/inanepain/db
+:copyright: Unlicense
+:revnumber: 0.3.0
+:revdate: 2025-11-20
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:toclevels: 4
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: db
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Dumper
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/dumper
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: A little tool to help with debugging by writing a `var_dump` like message unobtrusively into a collapsible panel at the bottom of a page.
+:keywords: inanepain,library,composer,php,dumper,debug,assert,silence-counter,exception,log,logging
+:homepage: https://github.com/inanepain/dumper
+:revnumber: 1.17.0
+:revdate: 2025-12-08
+:copyright: Unlicense
+:experimental:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:pkg-vendor: inanepain
+:pkg-name: dumper
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Event
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/event
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: PSR-14 implementation: event dispatcher.
+:keywords: inanepain, library, event, dispatcher, listener
+:homepage: https://github.com/inanepain/event
+:revnumber: 0.1.0
+:revdate: 2022-03-14
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:toclevels: 3
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: event
+:pkg-id: {pkg-vendor}/{pkg-name}
+:ns-root: Inane\Event
+:ns-provider: Inane\Event\Provider
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\File
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/file
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: File utilities for local and remote files.
+:keywords: inane, filesystem, file, path, directory, io, read, write
+:homepage: https://github.com/inanepain/file
+:copyright: Unlicense
+:revnumber: 0.3.0
+:revdate: 2025-04-25
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: file
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Http
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/http
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Http client (psr-18), request and response object message interfaces (psr-7).
+:keywords: inane, inanepain, library, http, client, request, response, serve, psr-7, psr-18
+:homepage: https://github.com/inanepain/http
+:copyright: Unlicense
+:revnumber: 0.4.0
+:revdate: 2026-02-20
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: http
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\IdForge
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/id-forge
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: A lightweight & versatile library for generating and encoding unique identifiers. It provides fast, secure, and flexible solutions for modern applications.
+:keywords: inanepain, library, unique identifier, id generation, base32, base58, base64, nanoid, snowflakeid, uuid, ulid, php, encoding, cryptography
+:homepage: https://github.com/inanepain/id-forge
+:revnumber: 0.2.0
+:revdate: 2026-05-26
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectnumlevels: 5
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: id-forge
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Log
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/log
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Flexible PSR-3 logging implementation with support for multiple writers.
+:keywords: inanepain, inane, library, log, psr-3, logger, writer
+:copyright: Unlicense
+:homepage: https://github.com/inanepain/log
+:revnumber: 0.1.0
+:revdate: 2026-04-13
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: log
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Polyfill
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/polyfill
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Various Polyfill functions for php backwards compatibility.
+:keywords: inanepain, library, polyfill
+:homepage: https://github.com/inanepain/polyfill
+:revnumber: 0.2.0
+:revdate: 2025-06-23
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: polyfill
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Quickrank
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/quickrank
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: QR Code Generator for PHP.
+:keywords: inanepain, library, qrcode
+:homepage: https://github.com/inanepain/quickrank
+:revnumber: 0.1.0
+:revdate: 2025-11-24
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: quickrank
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Redis
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/redis
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Wrapper around the php redis extension.
+:keywords: inanepain, library, redis, db, wrapper, cache
+:homepage: https://github.com/inanepain/redis
+:revnumber: 0.1.0
+:revdate: 2026-xx-xx
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: redis
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Routing
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/routing
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: HTTP Routing using attributes.
+:keywords: routing, router, route, attribute
+:homepage: https://github.com/inanepain/routing
+:revnumber: 1.4.0
+:revdate: 2025-04-09
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: auto
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: routing
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\ServiceManager
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/servicemanager
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Factory-driven dependency injection container.
+:keywords: inanepain, library, servicemanager, container, psr-11
+:copyright: Unlicense
+:homepage: https://github.com/inanepain/servicemanager
+:revnumber: 0.2.0
+:revdate: 2026-02-23
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: servicemanager
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Session
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/session
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: A lightweight, secure and extensible PHP session handling library.
+:keywords: inanepain, library, session, secure, remember me
+:homepage: https://github.com/inanepain/session
+:revnumber: 0.1.0
+:revdate: 2025-11-10
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:toclevels: 3
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: session
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\Stdlib
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/stdlib
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Common classes that cover a wide range of cases that are used throughout the inanepain libraries.
+:keywords: inanepain, inane, library, stdlib, json, xml, array, exception, notice, config
+:copyright: Unlicense
+:homepage: https://gitgithub.com/inanepain/stdlib
+:revnumber: 0.9.0
+:revdate: 2026-05-26
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: stdlib
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+:leveloffset: +1
+
+= Inane\View
+:prj-root: ../../../../..
+:inane-root: {prj-root}/lib/inanepain
+:lib-root: {inane-root}/view
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: View layer with models for the most common content types.
+:keywords: php, inanepain, library, view, model, renderer, template, content, cms
+:homepage: https://github.com/inanepain/view
+:revnumber: 0.1.0
+:revdate: 2025-10-29
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: view
+:pkg-id: {pkg-vendor}/{pkg-name}
+
+[%collapsible]
+====
+{description}
+
+***
+====
+
+
+:leveloffset: 1
+
+:leveloffset!:
+
+<<<
+
+:leveloffset: +1
+
 = Examples
 
 :leveloffset!:

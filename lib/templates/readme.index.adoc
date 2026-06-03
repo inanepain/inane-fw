@@ -27,6 +27,6 @@
 
 <<<
 
-include::./part/install.adoc[leveloffset=+1]
+\include::./part/install.adoc[leveloffset=+1]
 
 <<<
