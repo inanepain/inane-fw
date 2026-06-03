@@ -19,4 +19,3 @@ CREATE INDEX idx_online
 
 CREATE UNIQUE INDEX idx_username
 	ON users (username);
-
