@@ -26,6 +26,7 @@
             <directory suffix="Test.php">lib/inanepain/crypt/tests</directory>
             <directory suffix="Test.php">lib/inanepain/config/tests</directory>
             <directory suffix="Test.php">lib/inanepain/servicemanager/tests</directory>
+            <directory suffix="Test.php">lib/inanepain/cache/tests</directory>
             <directory suffix="Test.php">source/lib/view/tests</directory>
         </testsuite>
     </testsuites>
@@ -39,6 +40,7 @@
             <directory suffix=".php">lib/inanepain/crypt/src</directory>
             <directory suffix=".php">lib/inanepain/config/src</directory>
             <directory suffix=".php">lib/inanepain/servicemanager/src</directory>
+            <directory suffix=".php">lib/inanepain/cache/src</directory>
             <directory suffix=".php">source/lib/view/src</directory>
         </include>
     </source>

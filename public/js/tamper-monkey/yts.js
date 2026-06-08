@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         YTS Helper
 // @namespace    https://www.cathedral.co.za/tm/yts
-// @version      1776372756
+// @version      1780951168
 // @description  YTS keyboard shortcuts.
 // @author       Philip Michael Raab<philip@cathedral.co.za>
 // @match        https://yts.mx/*
 // @match        https://yts.bz/*
 // @match        https://www.yts-official.cc/*
+// @match        https://en.yts-official.biz/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -24,7 +25,7 @@
 /*
  * YTS keyboard shortcuts.
  *
- * @date 16 April 2026 10:52:36 PM SAST
+ * @date 08 June 2026 10:39:28 PM SAST
  *
  * Execution order: >
  */
@@ -1270,13 +1271,20 @@
         const first = window.iq('ul.tsc_pagination li:first-child');
         if (!first[0].classList.contains('hidden')) {
             let id = 0;
-            if (first[id].textContent.includes('First')) {
+            if (first[id].textContent.includes('First') || first[id].textContent.includes('1.')) {
                 dumper.debug("    Shortcut: First Page");
                 const fp = id;
                 shortcut.add('shift + alt + f', () => {
                     first[fp].iqs('a').click();
                 }, 'First page.');
                 id++;
+
+                if (first[id].nextElementSibling.textContent.includes('Previous')) {
+                    dumper.debug("    Shortcut: Previous Page");
+                    shortcut.add('shift + alt + p', () => {
+                        first[fp].nextElementSibling.iqs('a').click();
+                    }, 'Previous page.');
+                }
             }
 
             if (first[id].textContent.includes('Previous')) {
@@ -1298,10 +1306,17 @@
 
         const last = iq('@ul.tsc_pagination li:last-child');
         if (!last.innerText.startsWith('Next')) {
-            dumper.debug("    Shortcut: Next Page");
+            dumper.debug("    Shortcut: Last Page");
             shortcut.add('shift + alt + l', () => {
                 last.iqs('a').click();
-            }, 'Next page.');
+            }, 'Last page.');
+
+            if (last.previousElementSibling.textContent.includes('Next')) {
+                dumper.debug("    Shortcut: Next Page");
+                shortcut.add('shift + alt + n', () => {
+                    last.previousElementSibling.iqs('a').click();
+                }, 'Next page.');
+            }
         }
     }
     //#endregion Navigation
@@ -1504,7 +1519,6 @@
             else showNotice(`Possible blockers removed: <strong>${b}</strong>`, { title: title, type: 'success', icon: '❎', timeout: 6000 });
         }, 'Remove Blocker.')
     //#endregion RemoveBlocker
-
 
     //#region Dumper Debug
     dumper.debug('    Shortcut: Dumper => DEBUG');
