@@ -45,6 +45,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Inane\\Console\\": "source/lib/console/src/",
             "Inane\\Datetime\\": "source/lib/datetime/src/",
             "Inane\\Db\\": "source/lib/db/src/",
             "Inane\\Rebecca\\": "source/lib/rebecca/src/",
