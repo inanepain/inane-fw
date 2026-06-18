@@ -41,6 +41,7 @@
       <sourceFolder url="file://$MODULE_DIR$/source/lib/console/src" isTestSource="true" packagePrefix="Inane\Console\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/minify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/path-converter" />
