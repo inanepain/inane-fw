@@ -80,7 +80,8 @@
         "psr/simple-cache": ">= 3",
         "ext-intl": "*",
         "ext-libxml": "*",
-        "ext-gmp": "*"
+        "ext-gmp": "*",
+        "ext-posix": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
