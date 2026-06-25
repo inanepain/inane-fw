@@ -23,8 +23,8 @@
 declare(strict_types = 1);
 
 use Inane\Cli\Cli;
-use Inane\Console\Control\Select;
-use Inane\Console\Control\SelectOption;
+use Inane\Console\Control\Select\Select;
+use Inane\Console\Control\Select\SelectOption;
 use Inane\Stdlib\Exception\ConfigurationException;
 
 if (file_exists(getcwd() . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php')) {
