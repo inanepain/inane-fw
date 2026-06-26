@@ -44,6 +44,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/include" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/minify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/path-converter" />
