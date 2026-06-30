@@ -27,9 +27,10 @@ namespace Knot\Db\Entity;
 
 use Inane\Db\Entity\{
     AbstractEntity,
-    EntityPrepareMethod};
+    EntityBeforeSaveMethod};
 use Inane\Stdlib\{
     Array\OptionsInterface,
+    Exception\JsonException,
     Json,
     Options};
 use Knot\Db\Table\FortunesTable;
@@ -158,7 +159,7 @@ class Fortune extends AbstractEntity {
      * @var int The viewed of the fortune.
      */
     public int $viewed {
-        get => $this->data[__PROPERTY__] ? $this->data[__PROPERTY__] : ($this->data[__PROPERTY__] = time());
+        get => $this->data[__PROPERTY__] ?: ($this->data[__PROPERTY__] = time());
         set => $this->data[__PROPERTY__] = $value;
     }
     #endregion columns
@@ -243,11 +244,12 @@ class Fortune extends AbstractEntity {
     /**
      * Prepares the entity for further operations.
      *
-     * @use \Inane\Db\Entity\EntityPrepareMethod to set this as a pre-save method.
+     * @use EntityBeforeSaveMethod to set this as a pre-save method.
      *
      * @return void
+     * @throws JsonException
      */
-    #[EntityPrepareMethod]
+    #[EntityBeforeSaveMethod]
     protected function prepare(): void {
         $save = false;
         $details = $this->details;
@@ -255,25 +257,25 @@ class Fortune extends AbstractEntity {
             ->toArray()
         ;
 
-        if (!in_array('limerick', $category)) {
+        if (!in_array('limerick', $category, true)) {
             if ($this->checkLimerick($this->fortune)) {
                 $details->merge(['category' => ['limerick']]);
                 $save = true;
             }
         }
-        if (!in_array('Q&A', $category)) {
+        if (!in_array('Q&A', $category, true)) {
             if (str_starts_with($this->fortune, 'Q:')) {
                 $details->merge(['category' => ['Q&A']]);
                 $save = true;
             }
         }
-        if (!in_array('confucius', $category)) {
+        if (!in_array('confucius', $category, true)) {
             if (str_starts_with($this->fortune, 'Confuci')) {
                 $details->merge(['category' => ['confucius']]);
                 $save = true;
             }
         }
-        if (!in_array('starSign', $category)) {
+        if (!in_array('starSign', $category, true)) {
             foreach(self::$starSigns as $starSign) {
                 if (str_starts_with($this->fortune, $starSign)) {
                     $details->merge([
@@ -285,14 +287,14 @@ class Fortune extends AbstractEntity {
                 }
             }
         }
-        if (!in_array('quote', $category)) {
+        if (!in_array('quote', $category, true)) {
             preg_match('/(\n\s+-- \D+$)/', $this->fortune, $matches);
             if (!empty($matches)) {
                 $details->merge(['category' => ['quote']]);
                 $save = true;
             }
         }
-        if (!in_array('1liner', $category)) {
+        if (!in_array('1liner', $category, true)) {
             if (!str_contains($this->fortune, PHP_EOL)) {
                 $details->merge(['category' => ['1liner']]);
                 $save = true;

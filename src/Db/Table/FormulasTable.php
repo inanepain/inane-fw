@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace Knot\Db\Table;
 
-use Inane\Db\Sql\Where;
 use Inane\Db\Table\AbstractTable;
 use Knot\Db\Entity\Formula;
 
@@ -37,7 +36,6 @@ use const false;
  * @method false|Formula fetch(string $id): \false|AbstractEntity
  * @method Formula[] fetchAll()
  * @method Formula[] find(array $conditions)
- * @method Formula[] search(array|Where|string $query)
  * @method Formula insert(Formula $entity)
  * @method Formula update(Formula $entity)
  * @method bool delete(Formula $entity)

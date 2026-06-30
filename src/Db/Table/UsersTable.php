@@ -33,7 +33,7 @@ use Knot\Db\Entity\User;
  *
  * @method false|User fetch(string|int|float $id)
  * @method User[] fetchAll()
- * @method User[] search(array|string $query)
+ * @method User[] find(array $conditions)
  * @method User insert(User $entity)
  * @method User update(User $entity)
  * @method bool delete(User $entity)

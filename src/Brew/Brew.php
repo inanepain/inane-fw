@@ -284,7 +284,7 @@ class Brew {
             ->select()
             ->orderBy('updated', OrderDirection::DESC)
             ->limit(1)
-        ;//->table('formulas');
+        ;
         $stmt = $this->formulasTable::$db->getDriver()
             ->prepare($qb->toSql())
         ;

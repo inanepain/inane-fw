@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace Knot\Db\Table;
 
-use Inane\Db\Sql\Where;
 use Inane\Db\Table\AbstractTable;
 use Knot\Db\Entity\Fortune;
 
@@ -35,7 +34,6 @@ use Knot\Db\Entity\Fortune;
  * @method false|Fortune fetch(int $id)
  * @method Fortune[] fetchAll()
  * @method Fortune[] find(array $conditions)
- * @method Fortune[] search(array|Where|string $query)
  * @method Fortune insert(Fortune $entity)
  * @method Fortune update(Fortune $entity)
  * @method bool delete(Fortune $entity)
