@@ -10,4 +10,7 @@ apply: always
 
 - Line between the last @param and @return.
 - Line between @return and @throws.
-- Allways add @throws.
+- Always add @throws.
+
+## Language
+- Use British English with -ise spellings, not Oxford spelling.
