@@ -28,7 +28,6 @@
             "Inane\\Http\\": "lib/inanepain/http/src/",
             "Inane\\IdForge\\": "lib/inanepain/id-forge/src/",
             "Inane\\Log\\": "lib/inanepain/log/src/",
-            "Inane\\Polyfill\\": "lib/inanepain/polyfill/src/",
             "Inane\\QR\\": "lib/inanepain/quickrank/src/",
             "Inane\\Redis\\": "lib/inanepain/redis/src/",
             "Inane\\Routing\\": "lib/inanepain/routing/src/",

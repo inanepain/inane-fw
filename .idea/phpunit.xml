@@ -9,10 +9,10 @@
         <option value="$PROJECT_DIR$/lib/inanepain/id-forge/tests" />
         <option value="$PROJECT_DIR$/lib/inanepain/crypt/tests" />
         <option value="$PROJECT_DIR$/lib/inanepain/config/tests" />
-        <option value="$PROJECT_DIR$/lib/inanepain/servicemanager/tests" />
         <option value="$PROJECT_DIR$/lib/inanepain/cache/tests" />
         <option value="$PROJECT_DIR$/lib/inanepain/session/tests" />
         <option value="$PROJECT_DIR$/lib/inanepain/quickrank/tests" />
+        <option value="$PROJECT_DIR$/lib/inanepain/servicemanager/tests" />
         <option value="$PROJECT_DIR$/lib/inanepain/log/tests" />
         <option value="$PROJECT_DIR$/source/lib/view/tests" />
       </list>
