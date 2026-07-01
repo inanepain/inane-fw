@@ -22,6 +22,14 @@ _done task='':
     @echo "{{GREEN}}done{{NORMAL}} {{task}}"
 
 #region git
+# git push submodules
+[group: 'GIT']
+git-push-sm: (_start "Push Submodules") && (_done "Push Submodules")
+    #!/usr/bin/env zsh
+    git submodule foreach --recursive 'git push'
+    msg "${Blue}$(pwd)"
+    git push
+
 # git push all
 [group: 'GIT']
 git-push-all: (_start "Push All") && (_done "Push All")
@@ -33,7 +41,7 @@ git-push-all: (_start "Push All") && (_done "Push All")
 
 # git pull submodules
 [group: 'GIT']
-git-pull-submodules:
+git-pull-sm:
     #!/usr/bin/env zsh
     git submodule foreach --recursive 'git pull'
     msg "${Blue}$(pwd)"
@@ -41,7 +49,7 @@ git-pull-submodules:
 
 # git pull submodules github.com develop
 [group: 'GIT']
-git-pull-submodules-github-develop:
+git-pull-sm-github-develop:
     #!/usr/bin/env zsh
     git submodule foreach --recursive 'git pull github.com develop'
     msg "${Blue}$(pwd)"
@@ -49,7 +57,7 @@ git-pull-submodules-github-develop:
 
 # git pull submodules all
 [group: 'GIT']
-git-pull-submodules-all: (git-pull-submodules) && (git-pull-submodules-github-develop)
+git-pull-sm-all: (git-pull-sm) && (git-pull-sm-github-develop)
 
 #endregion git
 
