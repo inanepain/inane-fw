@@ -43,6 +43,7 @@ git-push-all: (_start "Push All") && (_done "Push All")
 [group: 'GIT']
 git-pull-sm:
     #!/usr/bin/env zsh
+    source ~/bin/functions/colours
     git submodule foreach --recursive 'git pull'
     msg "${Blue}$(pwd)"
     git pull
@@ -51,6 +52,7 @@ git-pull-sm:
 [group: 'GIT']
 git-pull-sm-github-develop:
     #!/usr/bin/env zsh
+    source ~/bin/functions/colours
     git submodule foreach --recursive 'git pull github.com develop'
     msg "${Blue}$(pwd)"
     git pull github.com develop
