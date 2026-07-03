@@ -35,7 +35,16 @@ use Inane\Stdlib\Hash\HashUtility;
 
 class HashCommands {
     // ee43c751e7f77a021ce4ee5726a06c5c3bff1702326f0e8d259d2055ca27d52e
-
+    /**
+     * Tries to identify the hash type of a given string.
+     *
+     * @param string $hash     The hash string to identify.
+     * @param bool   $extended Show extended hash types.
+     *
+     * @return int 0 on success, otherwise an error code.
+     *
+     * @throws \RuntimeException If the hash cannot be processed or an internal error occurs.
+     */
     #[Command('hash:identify', 'Tries to identify the hash type of a given string.')]
     public function identifyHashCommand(
         #[Argument('The hash string to identify.', required: true)]
@@ -51,6 +60,16 @@ class HashCommands {
         return 0;
     }
 
+    /**
+     * Tries to create the hash of a given string.
+     *
+     * @param string      $string The string to hash.
+     * @param string|null $type   Hash type. Optional; if omitted the default hash type is used.
+     *
+     * @return int 0 on success, otherwise an error code returned by {@see ValueError::getCode()}.
+     *
+     * @throws \ValueError If the hash cannot be created due to an invalid type or other value error.
+     */
     #[Command('hash:create', 'Tries to create the hash of a given string.')]
     public function createHashCommand(
         #[Argument('The string to hash.', required: true)]
@@ -70,6 +89,11 @@ class HashCommands {
         return 0;
     }
 
+    /**
+     * Lists all available hash algorithms.
+     *
+     * @return int 0 on success, otherwise an error code.
+     */
     #[Command('hash:list', 'Lists all available hash algorithms.')]
     public function listHashesCommand(): int {
         $types = HashUtility::listAlgorythems();

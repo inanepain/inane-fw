@@ -24,28 +24,49 @@ declare(strict_types = 1);
 
 namespace Knot\Lotto;
 
-use Inane\Console\Command\Command;
-use Inane\Stdlib\Thing\Step;
-use Knot\Application;
-use Knot\Lotto\Lottery\Lotto;
+use Inane\{
+    Console\Command\Command,
+    Stdlib\Thing\Step};
 use Inane\Cli\{
     Cli,
-    Pencil
-};
+    Pencil,
+    Shell};
+use Knot\Application;
+use Knot\Lotto\Lottery\Lotto;
 
 use function array_map;
 use function implode;
 use function str_repeat;
 
+/**
+ * Lottery console commands.
+ */
 class LottoCommands {
+    /**
+     * Print a horizontal divider using the current terminal width.
+     *
+     * @param string       $divider Divider character to repeat.
+     * @param Pencil|null  $pencil Optional pencil instance to write with.
+     *
+     * @return Pencil
+     */
     public function divider(string $divider = '=', ?Pencil $pencil = null): Pencil {
-        $text = str_repeat($divider, \Inane\Cli\Shell::columns());
+        // Build the divider line to match the active shell width.
+        $text = str_repeat($divider, Shell::columns());
         if ($pencil === null) {
             $pencil = new Pencil();
         }
+
         return $pencil->line($text);
     }
 
+    /**
+     * Displays an overview of the lottery, listing both expired and current tickets.
+     *
+     * @return int The exit status code (0 on success).
+     *
+     * @throws \Exception If the configuration for {@see Lotto} cannot be retrieved or parsed.
+     */
     #[Command('lotto:view', 'Overview of lottery', ['lo'])]
     public function lottoCommand(): int {
         $lotto = Lotto::fromArray(Application::app()->config->getConfig(Lotto::class));
@@ -58,6 +79,7 @@ class LottoCommands {
         $once = new Step();
 
         foreach ($lotto->getTickets($lotto::ACTIVE) as $ticket) {
+            // Draw a divider between current ticket entries.
             if ($once()) $this->divider('-');
             Cli::line((string)$ticket);
             Cli::line('  ' . implode("\n  ", array_map('strval', $ticket->getDraws())));

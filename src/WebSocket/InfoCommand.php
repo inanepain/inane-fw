@@ -41,14 +41,28 @@ class InfoCommand extends Command {
     protected array $defaults = ['fd' => null];
 //#endregion Properties
 
+    /**
+     *
+     * @return void
+     */
     public function __construct() {
         parent::__construct(0);
     }
 
+    /**
+     * Retrieves the name of the command.
+     *
+     * @return string The command name.
+     */
     public function getName(): string {
         return 'info';
     }
 
+    /**
+     * Returns a description of the client information.
+     *
+     * @return string
+     */
     public function getDescription(): string {
         return 'Returns client information';
     }

@@ -28,6 +28,7 @@ use Inane\Rebecca\{
     Command\Command};
 use Inane\Stdlib\{
     Array\OptionsInterface,
+    Exception\JsonException,
     Json,
     Options};
 use Swoole\WebSocket\Server;
@@ -36,18 +37,44 @@ use Swoole\WebSocket\Server;
  * Example: Broadcast Command (Rank 5 - Moderator level)
  */
 class BroadcastCommand extends Command {
+    /**
+     * Constructs the object and initializes it by calling the parent constructor with a fixed parameter.
+     *
+     * @return void
+     */
     public function __construct() {
         parent::__construct(5);
     }
 
+    /**
+     * Retrieves the name of this object.
+     *
+     * @return string
+     */
     public function getName(): string {
         return 'broadcast';
     }
 
+    /**
+     * Returns a textual description of the operation performed by this method.
+     *
+     * @return string
+     */
     public function getDescription(): string {
         return 'Broadcasts a message to all connected clients';
     }
 
+    /**
+     * Broadcasts a message to all connected clients on the given server.
+     *
+     * @param Server                      $server The WebSocket server instance whose connections will receive the broadcast.
+     * @param Client                      $client The client initiating the broadcast; its file descriptor is included in the payload.
+     * @param null|array|OptionsInterface $data   Optional data for the broadcast. If not an instance of {@see OptionsInterface},
+     *                                            it will be converted to one.
+     *
+     * @return void
+     * @throws JsonException
+     */
     public function execute(Server $server, Client $client, null|array|OptionsInterface $data = null): void {
         if (! $data instanceof OptionsInterface)
             $data = new Options($data);

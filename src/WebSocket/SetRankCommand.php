@@ -29,26 +29,52 @@ use Inane\Rebecca\{
     WebSocketServer};
 use Inane\Stdlib\{
     Array\OptionsInterface,
+    Exception\JsonException,
     Json,
     Options};
+use InvalidArgumentException;
 use Swoole\WebSocket\Server;
 
 /**
  * Example: Set Rank Command (Rank 10 - Admin level)
  */
 class SetRankCommand extends Command {
+    /**
+     *
+     */
     public function __construct() {
         parent::__construct(10);
     }
 
+    /**
+     * Retrieves the name of the command.
+     *
+     * @return string The command name, which is 'setrank'.
+     */
     public function getName(): string {
         return 'setrank';
     }
 
+    /**
+     * Returns a brief description of the command.
+     *
+     * @return string The command description, used for help or logging purposes.
+     */
     public function getDescription(): string {
         return 'Sets the rank of a client (admin only)';
     }
 
+    /**
+     * Executes the set‑rank command.
+     *
+     * @param Server                      $server The server instance used to send responses and broadcast updates.
+     * @param Client                      $client The client that initiated the command.
+     * @param null|array|OptionsInterface $data   Optional data array or OptionsInterface instance containing the target file descriptor and new rank.
+     *
+     * @return void
+     *
+     * @throws InvalidArgumentException|JsonException If the provided data cannot be converted into an OptionsInterface instance.
+     */
     public function execute(Server $server, Client $client, null|array|OptionsInterface $data = null): void {
         if (! $data instanceof OptionsInterface)
             $data = new Options($data);
