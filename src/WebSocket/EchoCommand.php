@@ -31,33 +31,45 @@ use Inane\Stdlib\{
     Json,
     Options};
 use Swoole\WebSocket\Server;
+use Throwable;
 
 /**
  * Example: Echo Command (Rank 0 - Available to all)
  */
 class EchoCommand extends Command {
     /**
+     * Constructs an instance of the class.
+     *
+     * This constructor calls the parent's constructor with a default argument to ensure proper initialization
+     * and inheritance behavior. It sets up any necessary initial state for new objects without requiring additional input from users.
      *
      * @return void
-     *
      */
     public function __construct() {
-        parent::__construct(0);
+        parent::__construct();
     }
 
     /**
+     * Returns a constant representing an action or command in PHP scripting language that outputs data to some output stream such as STDOUT.
      *
-     * @return string
+     * This method doesn't accept any parameters and simply returns a predefined static value associated with the echo operation
+     * within the context of this class's functionality. It is used for identifying purposes rather than executing
+     * an actual command or action at runtime when called in different scenarios where such identification may be necessary.
      *
+     * @return string 'echo'
      */
     public function getName(): string {
         return 'echo';
     }
 
     /**
+     * Retrieves a description of an entity or concept by returning its associated textual representation as a string.
      *
-     * @return string
+     * This method is designed to provide human-readable descriptions that are convenient for display purposes,
+     * logging, error messages, user interfaces, etc., abstracting away any complex internal representations
+     * used within the system. The returned strings can be formatted and used according to application requirements.
      *
+     * @return string A description of an entity or concept.
      */
     public function getDescription(): string {
         return 'Echoes back the message';
@@ -72,7 +84,7 @@ class EchoCommand extends Command {
      *
      * @return void
      *
-     * @throws \Throwable If encoding the JSON fails or if an invalid $data type is provided.
+     * @throws Throwable If encoding the JSON fails or if an invalid $data type is provided.
      */
     public function execute(Server $server, Client $client, null|array|OptionsInterface $data = null): void {
         if (! $data instanceof OptionsInterface)

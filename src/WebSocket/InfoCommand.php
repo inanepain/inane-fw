@@ -29,6 +29,7 @@ use Inane\Rebecca\{
     WebSocketServer};
 use Inane\Stdlib\{
     Array\OptionsInterface,
+    Exception\JsonException,
     Json,
     Options};
 use Swoole\WebSocket\Server;
@@ -42,38 +43,60 @@ class InfoCommand extends Command {
 //#endregion Properties
 
     /**
+     * Constructs an instance of the class.
+     *
+     * This method initializes a new object by calling the constructor of its parent class with
+     * default parameters (if any) and sets up the initial state as per subclass logic. It may also
+     * perform additional initialization specific to this object's context or set properties if needed.
      *
      * @return void
      */
     public function __construct() {
-        parent::__construct(0);
+        parent::__construct();
     }
 
     /**
-     * Retrieves the name of the command.
+     * Retrieves a constant name associated with an object instance as a string value. This method is typically used to collect
+     * metadata or identification information about the current object's context in which it operates.
      *
-     * @return string The command name.
+     * @return string The retrieved name, represented by its corresponding identifier for this specific
+     *             context of operation within the application domain.
      */
     public function getName(): string {
         return 'info';
     }
 
     /**
-     * Returns a description of the client information.
+     * Retrieves a description of an entity as provided by its associated client's data source. This method is designed to fetch and format textual representation that summarizes key attributes or characteristics related to
+     * specific details about clients based on the context it operates within.
      *
-     * @return string
+     * @return string A descriptive text representing client information obtained from the relevant sources
      */
     public function getDescription(): string {
         return 'Returns client information';
     }
 
     /**
-     * Executes the command
+     * Executes the command processing routine for a server-client interaction.
      *
-     * @param \Swoole\WebSocket\Server $server
-     * @param \Inane\Rebecca\Client $client
-     * @param null|array|\Inane\Stdlib\Array\OptionsInterface $data
-     * @return void
+     * This method is responsible for handling incoming data, initializing the necessary resources
+     * based on provided arguments and executing predefined tasks. It uses various components such as
+     * Server instances to manage connections or handle specific client requests through WebSocketServer routines.
+     *
+     * The execution involves setting up default options if none are supplied.
+     * It then iterates over server connections to establish clients for each connection, handles additional data
+     * passed via the 'data' parameter and finally pushes processed information back onto the server as a response.
+     *
+     * @param Server                      $server An instance of the Server class that manages active connections.
+     * @param Client                      $client A client object representing an individual user's session or interaction with the server.
+     * @param null|array|OptionsInterface $data   Optional data passed to customize options. If not provided, defaults will be used; if it's
+     *                                            a non-OptionsInterface instance,
+     *                                            it is converted into Options before proceeding.
+     *
+     * @return void This method does not return any value as its primary purpose is to process and handle tasks rather than
+     *                  producing output directly returned from the function call itself. It may modify server state or client
+     *                  session data accordingly by pushing responses back onto the Server instance managed connections.
+     * @throws JsonException
      */
     public function execute(Server $server, Client $client, null|array|OptionsInterface $data = null): void {
         if (! $data instanceof OptionsInterface)
