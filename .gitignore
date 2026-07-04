@@ -5,3 +5,4 @@
 /data/wiki/
 /data/inane-fw.sqlite
 source/image/inane-fw/Icon
+*.cache
