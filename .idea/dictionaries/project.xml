@@ -2,6 +2,7 @@
   <dictionary name="project">
     <words>
       <w>Confuci</w>
+      <w>Crockford</w>
       <w>Nable</w>
       <w>Ordinalise</w>
       <w>Snefru</w>
@@ -10,15 +11,21 @@
       <w>confucius</w>
       <w>filesrv</w>
       <w>funcs</w>
+      <w>getmac</w>
       <w>haval</w>
       <w>hhmmss</w>
       <w>icanon</w>
+      <w>ifconfig</w>
       <w>iqsa</w>
       <w>lflags</w>
+      <w>nonces</w>
+      <w>notbase</w>
       <w>ordinalise</w>
       <w>ripemd</w>
       <w>servfile</w>
       <w>skipfirst</w>
+      <w>snowflakeid</w>
+      <w>ulid</w>
     </words>
   </dictionary>
 </component>
