@@ -60,10 +60,12 @@ class PingCommand extends Command {
     public static int $returnType = self::RETURN_JSON;
 
     /**
+     * Constructs a new PingCommand instance.
      *
+     * @param int $rank The rank of the command, used to determine command availability. Default is 0 (available to all).
      */
-    public function __construct() {
-        parent::__construct(0);
+    public function __construct(int $rank = 0) {
+        parent::__construct($rank);
     }
 
     /**

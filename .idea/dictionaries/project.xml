@@ -23,6 +23,7 @@
       <w>ordinalise</w>
       <w>ripemd</w>
       <w>servfile</w>
+      <w>setrank</w>
       <w>skipfirst</w>
       <w>snowflakeid</w>
       <w>ulid</w>

@@ -41,6 +41,9 @@ require_once $autoload;
 const INANE_DUMPER_HIDE_RUNKIT7 = true;
 //\Inane\Dumper\Dumper::$showRunkit7SupportMessage = false;
 
+/**
+ *
+ */
 $items = [
     new SelectOption(1, 'One (Names)', '{i}. {l}'),
     new SelectOption(2, 'Two (Places)', '{i}. {l}'),
@@ -51,6 +54,9 @@ $items = [
 ];
 
 $mainMenu = new Select(items: $items);
+/**
+ *
+ */
 $option = $mainMenu(true);
 
 if ($option === null) {
@@ -58,6 +64,9 @@ if ($option === null) {
     exit(0);
 }
 
+/**
+ *
+ */
 $menuItemFormat = null;
 
 if ($option === 1) {
