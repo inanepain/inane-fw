@@ -25,7 +25,6 @@ declare(strict_types = 1);
 
 namespace Knot;
 
-use Dev\App\AppError;
 use Inane\Cli\Cli;
 use Inane\Config\{
     Config,
@@ -89,10 +88,25 @@ class Application {
      * @var ServiceManager  The ServiceManager class is responsible for managing and providing access to services.
      */
 
+    /**
+     * The configuration manager
+     *
+     * @var ConfigManager The configuration manager responsible for handling application configuration.
+     */
     protected ConfigManager $configManager;
+    /**
+     * The application configuration
+     *
+     * @var Config|OptionsInterface The application configuration object.
+     */
     public Config|OptionsInterface $config {
         get => $this->configManager->getConfig();
     }
+    /**
+     * The service manager
+     *
+     * @var ServiceManager The service manager responsible for managing and providing access to services.
+     */
     protected(set) ServiceManager $serviceManager;
     /**
      * @var Path  The Path class represents a file system path and provides methods for manipulating and working with paths.
@@ -148,6 +162,14 @@ class Application {
         $this->isConsole = Cli::isCli();
     }
 
+    /**
+     * Initialises the application services and configurations.
+     *
+     * This method sets up the base path, creates the service manager,
+     * bootstraps objects with configuration, configures sessions and routers.
+     *
+     * @return void
+     */
     protected function initialise(): void {
         \Inane\Dumper\Dumper::$enabled = $this?->config?->dumper?->enabled ?? false;
         \Inane\Dumper\Dumper::$bufferOutput = $this->isConsole ? false : ($this?->config?->dumper?->bufferOutput ?? true);
@@ -184,6 +206,14 @@ class Application {
         }
     }
 
+    /**
+     * Configures the router based on whether the application is running in console mode.
+     *
+     * If running in console mode, it configures the console router; otherwise,
+     * it configures the HTTP router.
+     *
+     * @return void
+     */
     protected function configureRouter(): void {
         if ($this->isConsole) $this->configureRouterConsole();
         else $this->configureRouterHTTP();
@@ -237,6 +267,14 @@ class Application {
         $this->router->addRoutes($controllers);
     }
 
+    /**
+     * Configures the console router with available commands.
+     *
+     * This method sets up command routing by discovering command classes using glob patterns,
+     * excluding abstract classes, and registering them with the console router.
+     *
+     * @return void
+     */
     protected function configureRouterConsole(): void {
         global $argv;
         $routerConfig = new Options([

@@ -40,10 +40,12 @@ use Swoole\WebSocket\Server;
  */
 class SetRankCommand extends Command {
     /**
+     * Constructs a new SetRankCommand instance.
      *
+     * @param int $rank The rank of the command, used to determine command availability. Default is 10 (admin only).
      */
-    public function __construct() {
-        parent::__construct(10);
+    public function __construct(int $rank = 10) {
+        parent::__construct($rank);
     }
 
     /**
