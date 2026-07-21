@@ -96,15 +96,15 @@ class Draw implements Stringable {
 
         /*
         Wednesday theme
-        This works when list start on a wednesday
+        This works when list starts on a wednesday
         last is also 1 letter shorter
         */
-        if ($this->type == LottoType::Lotto)
-            $gap = $this->day == 'saturday' ? ' ' : '';
-        elseif ($this->type == LottoType::PowerBall)
-            $gap = $this->day == 'friday' ? ' ' : '';
+        if ($this->type === LottoType::Lotto)
+            $gap = $this->day === 'saturday' ? ' ' : '';
+        elseif ($this->type === LottoType::PowerBall)
+            $gap = $this->day === 'friday' ? ' ' : '';
 
         $won = str_replace('R 0', 'R  ', $fmt->format($this->won));
-        return "$this->number: $this->placement $this->date ($this->day)$gap won: " . ($this->won == -1 ? 'pending' : $won);
+        return "$this->number: $this->placement $this->date ($this->day)$gap won: " . ($this->won === -1 ? 'pending' : $won);
     }
 }

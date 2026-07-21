@@ -36,6 +36,7 @@ use Psr\Log\LogLevel;
 use Random\RandomException;
 
 use function array_shift;
+use function array_values;
 use function ceil;
 use function clamp;
 use function is_array;
@@ -78,11 +79,11 @@ class ActivityPicker implements MergeInterface {
     }
 
     /**
-     * Manages configuration options and their initialization.
+     * Manages configuration options and their initialisation.
      *
      * The `$options` container includes settings such as range size, step size,
      * retry limits for duplicates, logging level, and detailed debugging options.
-     * Provides lazy initialization of default values if not already defined.
+     * Provides lazy initialisation of default values if not already defined.
      *
      * Type details:
      * - Container: `\Inane\Stdlib\Options`
@@ -228,9 +229,9 @@ class ActivityPicker implements MergeInterface {
     }
 
     /**
-     * Constructor method for initializing the class with activities and options.
+     * Constructor method for initialising the class with activities and options.
      *
-     * @param null|array|Options $activities Optional activities to initialize the class with.
+     * @param null|array|Options $activities Optional activities to initialise the class with.
      * @param array|Options      $options    Optional configuration options.
      *
      * @return void
@@ -249,7 +250,7 @@ class ActivityPicker implements MergeInterface {
      * Logs a message with a specified level and context if debugging is enabled for the context.
      *
      * @param string $level    The log level (e.g., 'debug', 'info', 'error').
-     * @param string $context  The context under which the log is categorized.
+     * @param string $context  The context under which the log is categorised.
      * @param mixed  $messages Additional message(s) to log.
      *
      * @return void

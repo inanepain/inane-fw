@@ -9,7 +9,7 @@
 - Always add @throws.
 
 ## Language
-- Use British English with -ise spellings, not Oxford spelling.
+- Do use British English spelling with -ise, not (-ize) Oxford spelling.
 
 ## Naming Conventions
 - Class names should be in StudlyCaps.

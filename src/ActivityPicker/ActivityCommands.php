@@ -44,10 +44,10 @@ use Random\RandomException;
  * Trait ConfigAwareTrait
  *
  * Provides functionality for managing configuration settings
- * within a class. This trait allows the storage, retrieval,
+ * within a class. This trait allows the storage, retrieval
  * and existence checks for configuration data in a reusable way.
  *
- * Implementing classes can utilize this trait to handle
+ * Implementing classes can use this trait to handle
  * configuration-related functionality without duplicating logic.
  *
  * Methods:
@@ -62,10 +62,10 @@ class ActivityCommands {
      * Trait ConfigAwareTrait
      *
      * Provides functionality for managing configuration settings
-     * within a class. This trait allows the storage, retrieval,
+     * within a class. This trait allows the storage, retrieval
      * and existence checks for configuration data in a reusable way.
      *
-     * Implementing classes can utilize this trait to handle
+     * Implementing classes can use this trait to handle
      * configuration-related functionality without duplicating logic.
      *
      * Methods:
@@ -79,14 +79,15 @@ class ActivityCommands {
     private ?int $timeout = null;
 
     /**
-     * Retrieves the cyan pen instance. If not already initialized, creates a new instance
-     * of the Pencil class with the color set to Cyan.
+     * Retrieves the cyan pen instance. If not already initialised, creates a new instance
+     * of the Pencil class with the colour set to Cyan.
      */
     protected Pencil $penCyan {
         get => $this->penCyan ?? $this->penCyan = new Pencil(colour: Colour::Blue, style: Style::Plain);
     }
 
     /**
+     * Initialises the object and sets its configuration using ConfigManager.
      *
      * @return void
      */
@@ -125,8 +126,8 @@ class ActivityCommands {
     /**
      * Handles the "activity:picker" console command to select a default set of activities.
      *
-     * @param string|null $activities    An optional argument specifying the activity list to use, or null to use the default list.
-     * @param int|null    $numberOfPicks An optional option specifying the number of activities to pick. If not provided, no limit is set.
+     * @param null|string $activities    An optional argument specifying the activity list to use, or null to use the default list.
+     * @param null|int    $numberOfPicks An optional option specifying the number of activities to pick. If not provided, no limit is set.
      *
      * @return int Returns 0 on successful execution of the command.
      * @throws RandomException
@@ -139,7 +140,7 @@ class ActivityCommands {
         #[Option('picks', 'p', 'Number of picks required', default: null, valueless: false)]
         ?int $numberOfPicks = null,
 
-        #[Option('timeout', 't', 'Number of seconds before automatically showing next pick', default: null, valueless: false)]
+        #[Option('timeout', 't', 'Number of seconds before automatically showing the next pick', default: null, valueless: false)]
         ?int $timeout = null,
     ): int {
         $list = null;

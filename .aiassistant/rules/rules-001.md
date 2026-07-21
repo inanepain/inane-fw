@@ -13,4 +13,4 @@ apply: always
 - Always add @throws.
 
 ## Language
-- Use British English with -ise spellings, not Oxford spelling.
+- Do use British English spelling with -ise, not (-ize) Oxford spelling.

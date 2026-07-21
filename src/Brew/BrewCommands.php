@@ -143,18 +143,29 @@ class BrewCommands implements NotifyProgressInterface {
     public function __construct() {
         $this->brew = Application::app()->serviceManager->get(Brew::class);
 
-        $this->desc = static::pancilFactory($this->config->ui->text->desc);
-        $this->action = static::pancilFactory($this->config->ui->text->action);
-        $this->counter = static::pancilFactory($this->config->ui->text->counter);
-        $this->alert = static::pancilFactory($this->config->ui->text->alert);
-        $this->tag = static::pancilFactory($this->config->ui->text->tag);
-        $this->icon = static::pancilFactory($this->config->ui->text->icon);
-        $this->url = static::pancilFactory($this->config->ui->text->url);
+        $this->desc = static::pencilFactory($this->config->ui->text->desc);
+        $this->action = static::pencilFactory($this->config->ui->text->action);
+        $this->counter = static::pencilFactory($this->config->ui->text->counter);
+        $this->alert = static::pencilFactory($this->config->ui->text->alert);
+        $this->tag = static::pencilFactory($this->config->ui->text->tag);
+        $this->icon = static::pencilFactory($this->config->ui->text->icon);
+        $this->url = static::pencilFactory($this->config->ui->text->url);
 
         $this->brew->on('alert', $this->alert->line(...));
     }
 
-    protected static function pancilFactory(string $config): Pencil {
+    /**
+     * Creates a Pencil object based on the provided configuration string.
+     *
+     * The configuration string should contain space-separated properties such as color and style.
+     * Supported colors include those defined in Pencil\Colour, and supported styles include those defined in Pencil\Style.
+     * If 'blink' is specified in the configuration, it will be replaced with 'SlowBlink'.
+     *
+     * @param string $config A string containing space-separated properties for the pencil.
+     *
+     * @return Pencil Returns a new Pencil object configured according to the provided string.
+     */
+    protected static function pencilFactory(string $config): Pencil {
         $properties = explode(' ', str_replace('blink', 'SlowBlink', $config));
 
         $args = [];
@@ -293,25 +304,25 @@ class BrewCommands implements NotifyProgressInterface {
     public function statsCommand(): int {
         Cli::line('Brew formula stats');   // Outputs a line of text to the CLI.
 
-        $formulasTable = new FormulasTable();                                                                 // * Constructor for the AbstractTable class.
-        $total = count($formulasTable->fetchAll());                                                           // Counts all elements in an array, or something in an object.
+        $formulasTable = new FormulasTable(); // * Constructor for the AbstractTable class.
+        $total = count($formulasTable->fetchAll()); // Counts all elements in an array, or something in an object.
         $installed = count($formulasTable->find([
             'installed',
             1,
-        ]));                                                                                                  // Counts all elements in an array, or something in an object.
+        ])); // Counts all elements in an array, or something in an object.
         $hidden = count($formulasTable->find([
             'column' => 'tags',
             'value'  => '%hide%',
             'type'   => 'like',
-        ]));                                                                                                  // Counts all elements in an array, or something in an object.
+        ])); // Counts all elements in an array, or something in an object.
         $review = count($formulasTable->find([
             'reviewed',
             0,
-        ]));                                                                                                  // Counts all elements in an array, or something in an object.
+        ])); // Counts all elements in an array, or something in an object.
         $flagged = count($formulasTable->find([
             'flag',
             1,
-        ]));                                                                                                  // Counts all elements in an array, or something in an object.
+        ])); // Counts all elements in an array, or something in an object.
 
         $table = new TextTable();                                                     // TextTable Constructor
         $table->addHeader([
@@ -425,7 +436,7 @@ class BrewCommands implements NotifyProgressInterface {
         $rfc = new RemoteFileCache(defaultTTL: $ttl);   // Remote File Cache Constructor
 
         if ($rfc->has(self::FEED_URL)) {
-            $json = $rfc->get(self::FEED_URL);                     // Fetches a value from the cache.
+            $json = $rfc->get(self::FEED_URL); // Fetches a value from the cache.
         } else {
             $request = new Request('GET', self::FEED_URL);
             $client = new Client();

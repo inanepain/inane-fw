@@ -47,7 +47,7 @@ use function passthru;
  * Trait ConfigAwareTrait
  *
  * Provides functionality for managing configuration settings
- * within a class. This trait facilitates the storage, retrieval,
+ * within a class. This trait facilitates the storage, retrieval
  * and existence checks of configuration data, enabling reusable logic.
  *
  * Methods:
@@ -62,10 +62,10 @@ class Brew {
      * Trait ConfigAwareTrait
      *
      * Provides functionality for managing configuration settings
-     * within a class. This trait allows the storage, retrieval,
+     * within a class. This trait allows the storage, retrieval
      * and existence checks for configuration data in a reusable way.
      *
-     * Implementing classes can utilize this trait to handle
+     * Implementing classes can use this trait to handle
      * configuration-related functionality without duplicating logic.
      *
      * Methods:
@@ -82,6 +82,7 @@ class Brew {
     protected Options $listeners;
 
     //#region Properties
+
     /**
      * A collection of tags associated with a specific item or entity.
      */
@@ -103,6 +104,7 @@ class Brew {
 
                 $this->tags = $tags;
             }
+
             return $this->tags;
         }
     }
@@ -111,14 +113,17 @@ class Brew {
      * Default configuration settings for the application.
      */
     protected array $defaultConfig = [
-        'ui'     => [
+        'ui'      => [
             /**
              * Flag icon to use for various statuses.
              */
             'icon' => [
-                'flag' => '⚑', // ⛳️📌📍⚑⚐
-                'new'  => '✷', // ✷✦✜
-                'url'  => '☍', // ☍⎈
+                'flag' => '⚑',
+                // ⛳️📌📍⚑⚐
+                'new'  => '✷',
+                // ✷✦✜
+                'url'  => '☍',
+                // ☍⎈
             ],
             /**
              * Text colour options.
@@ -157,19 +162,20 @@ class Brew {
                 'alert'   => 'red',
             ],
         ],
-        'info'   => [
+        'info'    => [
             /**
              * Whether to display extended information about formulae automatically.
              */
             'extended' => true,
         ],
-        'review' => [
+        'review'  => [
             /**
              * Default Action to take when reviewing formulae.
              * 'next' - Move to the next formula.
              * 'hide' - Hide the current formula.
              */
-            'action'     => 'hide', // options: next, hide
+            'action'     => 'hide',
+            // options: next, hide
             /**
              * Whether to automatically update the review status of formulae when reviewing.
              * - update if the last update ran longer than the value in seconds ago
@@ -194,13 +200,14 @@ class Brew {
     public bool $dryRun {
         get => $this->config->dryRun;
     }
+
     //#endregion Properties
 
     #region Instantiation
     /**
      * Constructor for the Brew class.
      *
-     * Initializes the object with a FormulasTable instance and sets up a cache.
+     * Initialises the object with a FormulasTable instance and sets up a cache.
      *
      * @param FormulasTable $formulasTable An instance of the FormulasTable class to interact with the database.
      */
@@ -245,7 +252,7 @@ class Brew {
             $this->listeners->$event = [];
         }
 
-        foreach ($this->listeners->$event as $listener) {
+        foreach($this->listeners->$event as $listener) {
             $listener($value);
         }
     }
@@ -290,7 +297,10 @@ class Brew {
         ;
         $stmt->execute($qb->getBindings());
 
-        $result = $stmt->fetchAll($this->formulasTable::$db->getDriver()::FETCH_CLASS, Formula::class, [null, $this->formulasTable]);
+        $result = $stmt->fetchAll($this->formulasTable::$db->getDriver()::FETCH_CLASS, Formula::class, [
+            null,
+            $this->formulasTable,
+        ]);
         $diff = new Timestamp((int)$result[0]->updated)->diff(new Timestamp());
 
         return $diff->getSeconds() > $this->config->review->autoupdate ? $diff->getSeconds() : false;
@@ -308,7 +318,11 @@ class Brew {
     public function getTagged(): Options {
         $key = 'tagged';
         if (!$this->cache->has($key)) {
-            $formulas = $this->formulasTable->find(['tags', '<>', '']);
+            $formulas = $this->formulasTable->find([
+                'tags',
+                '<>',
+                '',
+            ]);
             $this->cache->set($key, $formulas);
         }
 
@@ -318,14 +332,17 @@ class Brew {
     /**
      * Retrieves formulas that are pending review.
      *
-     * @return Formula[] Returns an Options object containing the reviewed formulas.
+     * @return Options Returns an Options object containing the reviewed formulas.
      *
      * @throws RuntimeException
      */
     public function getReviewQueue(): Options {
         $key = 'review';
         if (!$this->cache->has($key)) {
-            $formulas = $this->formulasTable->find(['reviewed', 0]);
+            $formulas = $this->formulasTable->find([
+                'reviewed',
+                0,
+            ]);
             $this->cache->set($key, $formulas);
         }
 
@@ -333,11 +350,11 @@ class Brew {
     }
 
     /**
-     * Generates a list of tags from the formulas table.
+     * Generates a list of tags from the formula table.
      *
      * @deprecated $tags property instead. This method will be removed in a future release.
      *
-     * @see tags A collection of tags associated with a specific item or entity.
+     * @see        tags A collection of tags associated with a specific item or entity.
      *
      * @return array Returns an associative array with tag names as keys and their counts as values.
      */
@@ -364,7 +381,13 @@ class Brew {
      * @return Formula[] Returns an array of Formula objects matching the provided package names.
      */
     public function getPackages(string ...$package): array {
-        return $this->formulasTable->find([['type' => 'in', 'column' => 'name', 'values' => $package]]);
+        return $this->formulasTable->find([
+            [
+                'type'   => 'in',
+                'column' => 'name',
+                'values' => $package,
+            ],
+        ]);
     }
     #endregion Data Retrieval
 

@@ -20,7 +20,7 @@ trim_trailing_whitespace = false
 # PHP
 [*.php]
 indent_size = 4
-max_line_length = 180
+max_line_length = 200
 
 # JavaScript / TypeScript
 [*.{js,jsx,ts,tsx,mjs,cjs}]

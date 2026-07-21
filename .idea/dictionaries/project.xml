@@ -5,6 +5,7 @@
       <w>Crockford</w>
       <w>Nable</w>
       <w>Ordinalise</w>
+      <w>Quickrank</w>
       <w>Snefru</w>
       <w>abcdefghijklmnopqrstuvwxyz</w>
       <w>ansisqlquerybuilder</w>
@@ -22,10 +23,12 @@
       <w>notbase</w>
       <w>ordinalise</w>
       <w>ripemd</w>
+      <w>samesite</w>
       <w>servfile</w>
       <w>setrank</w>
       <w>skipfirst</w>
       <w>snowflakeid</w>
+      <w>strval</w>
       <w>ulid</w>
     </words>
   </dictionary>

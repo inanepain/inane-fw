@@ -25,6 +25,7 @@ declare(strict_types = 1);
 
 namespace Knot;
 
+use Exception;
 use Inane\Cli\Cli;
 use Inane\Config\{
     Config,
@@ -35,16 +36,23 @@ use Inane\Config\{
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
+use Inane\Dumper\Dumper;
 use Inane\File\Path;
 use Inane\Routing\Exception\InvalidRouteException;
 use Inane\Routing\RouteMatch;
 use Inane\Routing\Router;
+use Inane\ServiceManager\Exception\NotFoundException;
 use Inane\ServiceManager\ServiceManager;
 use Inane\Session\SessionManager;
 use Inane\Stdlib\{
     Array\OptionsInterface,
+    Exception\BadMethodCallException,
+    Exception\JsonException,
+    Exception\RuntimeException,
+    Exception\UnexpectedValueException,
     Options,
     Utility\ClassUtility};
+use ReflectionException;
 use ReflectionObject;
 
 use function getcwd;
@@ -58,13 +66,13 @@ use const PREG_OFFSET_CAPTURE;
 
 class Application {
     /**
-     * Private constructor method for initializing the class with configuration.
+     * Private constructor method for initialising the class with configuration.
      *
      * @param ConfigInterface $config The application configuration.
      *
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function __construct(ConfigInterface $config) {
         $this->configManager = ConfigManager::instance()
@@ -74,19 +82,18 @@ class Application {
         $this->bootstrap();
         $this->initialise();
     }
+
     /**
      * The instance of the application
      *
      * @var Application The instance of the application
      */
     private static Application $instance;
+
     /**
      * @var ConsoleRouter|Router   ConsoleRouter | Router
      */
     private ConsoleRouter|Router $router;
-    /**
-     * @var ServiceManager  The ServiceManager class is responsible for managing and providing access to services.
-     */
 
     /**
      * The configuration manager
@@ -94,6 +101,7 @@ class Application {
      * @var ConfigManager The configuration manager responsible for handling application configuration.
      */
     protected ConfigManager $configManager;
+
     /**
      * The application configuration
      *
@@ -102,33 +110,39 @@ class Application {
     public Config|OptionsInterface $config {
         get => $this->configManager->getConfig();
     }
+
     /**
      * The service manager
      *
      * @var ServiceManager The service manager responsible for managing and providing access to services.
      */
     protected(set) ServiceManager $serviceManager;
+
     /**
      * @var Path  The Path class represents a file system path and provides methods for manipulating and working with paths.
      */
     protected Path $base;
+
     /**
      * @var bool Returns true if the application is running in console mode, false otherwise.
      */
     private(set) bool $isConsole = PHP_SAPI === 'cli';
+
     /**
      * The matched route
      *
-     * @var \Inane\Routing\RouteMatch The matched route
+     * @var null|RouteMatch The matched route
      */
-    public protected(set) ?RouteMatch $routeMatch;
+    protected(set) ?RouteMatch $routeMatch;
 
     /**
-     * Gets the instance of the application
+     * Returns the singleton instance of the application.
      *
-     * @return Application
+     * @return Application The application instance
+     *
+     * @throws Exception If an error occurs while creating the application instance
      */
-    public static function app(): Application {
+    public static function app(): self {
         if (!isset(self::$instance)) self::$instance = new static(Config::fromConfigFile());
 
         return self::$instance;
@@ -154,7 +168,7 @@ class Application {
     /**
      * Sets up the application
      *
-     * Creates required objects and configuration them so that everything is ready to run.
+     * Creates required objects and configuration them so that everything's ready to run.
      *
      * @return void
      */
@@ -163,16 +177,18 @@ class Application {
     }
 
     /**
-     * Initialises the application services and configurations.
+     * Initialises the application components
      *
-     * This method sets up the base path, creates the service manager,
-     * bootstraps objects with configuration, configures sessions and routers.
+     * Sets up the dumper configuration, base path, service manager,
+     * and configures session and router.
      *
      * @return void
+     * @throws NotFoundException
+     * @throws RuntimeException
      */
     protected function initialise(): void {
-        \Inane\Dumper\Dumper::$enabled = $this?->config?->dumper?->enabled ?? false;
-        \Inane\Dumper\Dumper::$bufferOutput = $this->isConsole ? false : ($this?->config?->dumper?->bufferOutput ?? true);
+        Dumper::$enabled = $this?->config?->dumper?->enabled ?? false;
+        Dumper::$bufferOutput = $this->isConsole ? false : ($this?->config?->dumper?->bufferOutput ?? true);
 
         $this->base = new Path(getcwd());
 
@@ -193,7 +209,7 @@ class Application {
      *
      * @return void
      *
-     * @throws \Inane\Stdlib\Exception\RuntimeException
+     * @throws RuntimeException
      */
     protected function configureSession(): void {
         if (!isset($_SESSION)) {
@@ -213,6 +229,7 @@ class Application {
      * it configures the HTTP router.
      *
      * @return void
+     * @throws Exception
      */
     protected function configureRouter(): void {
         if ($this->isConsole) $this->configureRouterConsole();
@@ -222,14 +239,14 @@ class Application {
     /**
      * Configures the HTTP router with the defined options and controllers.
      *
-     * The method initializes the router with predefined configurations such as
+     * The method initialises the router with predefined configurations such as
      * query string handling, controller glob patterns, and default controllers.
      * It also merges additional configurations from an external source, processes
      * controller files, and adds the resulting routes to the router.
      *
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function configureRouterHTTP(): void {
         $routerConfig = new Options([
@@ -274,6 +291,9 @@ class Application {
      * excluding abstract classes, and registering them with the console router.
      *
      * @return void
+     * @throws \Inane\Stdlib\Exception\Exception
+     * @throws JsonException
+     * @throws ReflectionException
      */
     protected function configureRouterConsole(): void {
         global $argv;
@@ -316,9 +336,9 @@ class Application {
      *
      * @return void
      *
-     * @throws \Inane\Stdlib\Exception\BadMethodCallException
-     * @throws \Inane\Stdlib\Exception\UnexpectedValueException
-     * @throws \ReflectionException
+     * @throws BadMethodCallException
+     * @throws InvalidRouteException
+     * @throws UnexpectedValueException
      */
     protected function routing(): void {
         $this->routeMatch = $this->router->match($this->request);
@@ -332,7 +352,7 @@ class Application {
      *
      * @return bool|int Return status
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function run(): bool|int {
         return $this->router->run();

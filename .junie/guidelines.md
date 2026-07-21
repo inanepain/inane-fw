@@ -5,8 +5,8 @@ This document provides essential information for developers working on the Inane
 ---
 
 ## 1. General Language Guide
-- Use British English with ~is~ spellings, not Oxford spelling ~iz~.
-- Use UK English for all generated text, comments, documentation, commit messages and user-facing content.
+- Do use British English spelling with ~ise~, not Oxford spelling with ~ize~.
+- Use British English for all generated text, comments, documentation, commit messages and user-facing content.
 - Maintain these conventions consistently across all responses.
 
 
@@ -58,7 +58,7 @@ The project uses `just` (via `justfile`) and Composer scripts for common tasks:
 ## 3. Testing Information
 
 ### Running Tests
-Currently, the project does not use a centralised testing framework like PHPUnit. Testing is primarily done through manual scripts or playground files.
+Currently, the project doesn’t use a centralised testing framework like PHPUnit. Testing is primarily done through manual scripts or playground files.
 
 - **PHP Tests**: Located in various directories (e.g., `lib/inanepain/cli/test.php`). Run them directly using the PHP CLI (ensure PHP 8.5+).
 - **JavaScript Tests**: Located in `public/js/inane/playground/`. These are typically ES modules (`.mjs`) used for frontend testing.
