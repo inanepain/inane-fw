@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         YTS Helper
 // @namespace    https://www.cathedral.co.za/tm/yts
-// @version      1780951168
+// @version      1784757481
 // @description  YTS keyboard shortcuts.
 // @author       Philip Michael Raab<philip@cathedral.co.za>
 // @match        https://yts.mx/*
 // @match        https://yts.bz/*
+// @match        https://yts.gg/*
 // @match        https://www.yts-official.cc/*
 // @match        https://en.yts-official.biz/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
@@ -25,7 +26,7 @@
 /*
  * YTS keyboard shortcuts.
  *
- * @date 08 June 2026 10:39:28 PM SAST
+ * @date 22 July 2026 11:58:02 PM SAST
  *
  * Execution order: >
  */
