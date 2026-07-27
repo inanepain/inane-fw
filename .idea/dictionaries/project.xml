@@ -9,8 +9,11 @@
       <w>Snefru</w>
       <w>abcdefghijklmnopqrstuvwxyz</w>
       <w>ansisqlquerybuilder</w>
+      <w>compgen</w>
       <w>confucius</w>
+      <w>feof</w>
       <w>filesrv</w>
+      <w>fread</w>
       <w>funcs</w>
       <w>getmac</w>
       <w>haval</w>
@@ -22,6 +25,8 @@
       <w>nonces</w>
       <w>notbase</w>
       <w>ordinalise</w>
+      <w>pclose</w>
+      <w>popen</w>
       <w>ripemd</w>
       <w>samesite</w>
       <w>servfile</w>
