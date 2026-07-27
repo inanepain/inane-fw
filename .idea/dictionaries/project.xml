@@ -16,6 +16,7 @@
       <w>fread</w>
       <w>funcs</w>
       <w>getmac</w>
+      <w>getpwuid</w>
       <w>haval</w>
       <w>hhmmss</w>
       <w>icanon</w>
