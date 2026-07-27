@@ -47,9 +47,16 @@ abstract class AbstractController implements ConfigAwareInterface {
     protected ServiceManager $serviceManager;
 //#endregion Properties
 
+    /**
+     * Constructor method to initialise the class with the required application components.
+     *
+     * @return void
+     *
+     * @throws \RuntimeException If the application instance could not be retrieved.
+     */
     public function __construct() {
         $app = Application::app();
-        
+
         $this->routeMatch = $app->routeMatch;
         $this->request = $app->request;
         $this->response = $app->response;
