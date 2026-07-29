@@ -50,7 +50,20 @@
             "Inane\\Rebecca\\": "source/lib/rebecca/src/",
             "Inane\\Stdlib\\": "source/lib/stdlib/src/",
             "Inane\\View\\": "source/lib/view/src/",
-            "Test\\View\\Helper\\": "source/lib/view/tests/"
+            "Test\\View\\Helper\\": "source/lib/view/tests/",
+            "Inane\\Auth\\Tests\\": "lib/inanepain/auth/tests/",
+            "Inane\\Cache\\Tests\\": "lib/inanepain/cache/tests/",
+            "Inane\\Config\\Tests\\": "lib/inanepain/config/tests/",
+            "Inane\\Console\\Tests\\": "lib/inanepain/console/tests/",
+            "Inane\\Crypt\\Tests\\": "lib/inanepain/crypt/tests/",
+            "Inane\\Datetime\\Tests\\": "lib/inanepain/datetime/tests/",
+            "Inane\\File\\Tests\\": "lib/inanepain/file/tests/",
+            "Inane\\IdForge\\Tests\\": "lib/inanepain/id-forge/tests/",
+            "Inane\\Log\\Tests\\": "lib/inanepain/log/tests/",
+            "Inane\\QR\\Tests\\": "lib/inanepain/quickrank/tests/",
+            "Inane\\ServiceManager\\Tests\\": "lib/inanepain/servicemanager/tests/",
+            "Inane\\Session\\Tests\\": "lib/inanepain/session/tests/",
+            "Inane\\Stdlib\\Tests\\": "lib/inanepain/stdlib/tests/"
         },
         "files": [
             "public/index-functions.php"
