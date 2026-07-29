@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JsonSchemaMappingsProjectConfiguration">
+    <state>
+      <map>
+        <entry key="composer.json">
+          <value>
+            <SchemaInfo>
+              <option name="name" value="composer.json" />
+              <option name="relativePathToSchema" value="https://getcomposer.org/schema.json" />
+              <option name="applicationDefined" value="true" />
+              <option name="patterns">
+                <list>
+                  <Item>
+                    <option name="path" value="lib/inanepain/id-forge/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/console/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/log/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/auth/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/crypt/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/datetime/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/file/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/quickrank/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/servicemanager/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/session/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/cache/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/config/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/db/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/dumper/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/event/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/http/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/polyfill/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/redis/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/routing/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/stdlib/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/view/composer.json" />
+                  </Item>
+                </list>
+              </option>
+            </SchemaInfo>
+          </value>
+        </entry>
+      </map>
+    </state>
+  </component>
+</project>
