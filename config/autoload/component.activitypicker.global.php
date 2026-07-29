@@ -22,10 +22,22 @@
 
 declare(strict_types = 1);
 
+use Knot\ActivityPicker\ActivityCommands;
+
 return [
     'components' => [
-        \Knot\ActivityPicker\ActivityCommands::class => [
+        /**
+         * Activity picker.configurations.
+         */
+        ActivityCommands::class => [
+            /**
+             * List of activity categories.
+             * List items should be in increasing intensity.
+             */
             'lists' => [
+                /**
+                 * List of sexual activities.
+                 */
                 'sexual' => [
                     'Sensual kissing',
                     'Neck kissing and licking',
@@ -48,9 +60,9 @@ return [
                     'Finger sucking',
                     'Mutual masturbation watching',
                     'Cunnilingus (clit licking)',
-                    'Fellatio (cock sucking)',
+                    'Fellatio (cocksucking)',
                     '69 position oral',
-                    '69 position oral (lying on side)',
+                    '69 position oral (lying onside)',
                     'Ball licking',
                     'Perineum licking',
                     'Ass cheek licking',
@@ -88,7 +100,7 @@ return [
                     'Side-by-side (him behind her)',
                     'Kneeling oral to penetration',
                     'Wall pressing sex',
-                    'Table top sex',
+                    'Table-top sex',
                     'Shower sex',
                     'Bath sex',
                     'Standing (she bent over)',
@@ -104,7 +116,7 @@ return [
                     'Choking (light, consensual)',
                     'Breast fucking',
                     'Thigh fucking',
-                    'Footjob',
+                    'Foot job',
                     'Mutual fingering',
                     'Double oral stimulation',
                     'Kissing during penetration',
@@ -117,7 +129,7 @@ return [
                     'Second round quickie',
                     'Slow build-up teasing',
                     'Sudden intense fucking',
-                    'Analingus during handjob',
+                    'Analingus during a handjob',
                     'Rimjob while fingering',
                     'Prostate massage (external)',
                     'Clit sucking while fingering',
