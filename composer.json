@@ -53,6 +53,7 @@
             "Test\\View\\Helper\\": "source/lib/view/tests/",
             "Inane\\Auth\\Tests\\": "lib/inanepain/auth/tests/",
             "Inane\\Cache\\Tests\\": "lib/inanepain/cache/tests/",
+            "Inane\\Cli\\Tests\\": "lib/inanepain/cli/tests/",
             "Inane\\Config\\Tests\\": "lib/inanepain/config/tests/",
             "Inane\\Console\\Tests\\": "lib/inanepain/console/tests/",
             "Inane\\Crypt\\Tests\\": "lib/inanepain/crypt/tests/",
