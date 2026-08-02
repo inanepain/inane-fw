@@ -45,6 +45,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" packagePrefix="Inane\ServiceManager\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/console/src" isTestSource="true" packagePrefix="Inane\Console\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cli/tests" isTestSource="true" packagePrefix="Inane\Cli\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" packagePrefix="Inane\Cache\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" />

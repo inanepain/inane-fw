@@ -77,6 +77,9 @@
                   <Item>
                     <option name="path" value="lib/inanepain/view/composer.json" />
                   </Item>
+                  <Item>
+                    <option name="path" value="lib/inanepain/cli/composer.json" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>
