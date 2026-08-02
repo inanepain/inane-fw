@@ -8,9 +8,8 @@ include::{lib-root}/README.adoc[tag=tagConfig]
 ====
 {description}
 
-***
+'''
 // tag::taglinkBack[]
 link:../inane.adoc[<< Back]
 // end::taglinkBack[]
 ====
-

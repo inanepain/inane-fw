@@ -4,4 +4,4 @@ The aim of this site is to further the inanepain libraries and create a standard
 
 == Directory Structure
 
-Currently, everything is in one big mixing bowl, which is not a problem for the code, but not so easy to follow as a human.
+Currently, everything’s in one big mixing bowl, which isn’t a problem for the code, but not so easy to follow as a human.
