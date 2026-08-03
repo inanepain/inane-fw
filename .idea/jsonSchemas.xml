@@ -80,6 +80,12 @@
                   <Item>
                     <option name="path" value="lib/inanepain/cli/composer.json" />
                   </Item>
+                  <Item>
+                    <option name="path" value="source/lib/CardDeck/composer.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="source/lib/card-deck/composer.json" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>

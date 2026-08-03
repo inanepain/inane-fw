@@ -64,7 +64,9 @@
             "Inane\\QR\\Tests\\": "lib/inanepain/quickrank/tests/",
             "Inane\\ServiceManager\\Tests\\": "lib/inanepain/servicemanager/tests/",
             "Inane\\Session\\Tests\\": "lib/inanepain/session/tests/",
-            "Inane\\Stdlib\\Tests\\": "lib/inanepain/stdlib/tests/"
+            "Inane\\Stdlib\\Tests\\": "lib/inanepain/stdlib/tests/",
+            "Inane\\CardDeck\\": "source/lib/card-deck/src/",
+            "Inane\\CardDeck\\Tests\\": "source/lib/card-deck/tests/"
         },
         "files": [
             "public/index-functions.php"
@@ -94,7 +96,8 @@
         "ext-intl": "*",
         "ext-libxml": "*",
         "ext-gmp": "*",
-        "ext-posix": "*"
+        "ext-posix": "*",
+        "ext-gd": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
