@@ -1,0 +1,177 @@
+= inanepain/card-deck image:./icon.png[title=inanepain/card-deck,25]
+// tag::tagConfig[]
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Holds a full deck of playing cards with human-readable names and images.
+:keywords: inane, inanepain, library, card-deck
+:revnumber: 0.1.0
+:revdate: 2026-08-03
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: card-deck
+:pkg-id: {pkg-vendor}/{pkg-name}
+// end::tagConfig[]
+
+== image:./icon.png[title={pkg-id},25] {pkg-id}
+
+{description}
+
+:sectnums:
+
+<<<
+
+:leveloffset: +1
+
+= Install
+
+.composer
+[source,shell,subs=attributes+]
+----
+composer require {pkg-id}
+----
+
+:leveloffset!:
+
+<<<
+
+:leveloffset: +1
+
+= Examples
+
+:leveloffset: +1
+
+= Deck View
+
+[source,php]
+----
+use CardDeck\Deck;
+
+// Create deck - this also shuffles
+$myDeck = new Deck();
+
+// Shuffle again (not required because it's already done, but I'm just showing function call)
+$myDeck->shuffleDeck();
+
+// Get all card IDs
+$allCards = $myDeck->ids;
+
+// Loop thru and extract info on cards
+$counter = 1;
+foreach($allCards as $id) {
+    $cardName = $myDeck->getCardNameByID($id);
+    $cardSuitName = $myDeck->getSuitNameByID($id);
+    $cardRankName = $myDeck->getRankNameByID($id);
+    print("$counter. [<a href='test-deck-image.php?id=$id'>id=$id</a>] [suit=$cardSuitName] [rank=$cardRankName] <b>$cardName</b><BR><img alt='$cardName' width=72 height=96 src='test-deck-image.php?id=$id'><hr>\n");
+    $counter++;
+}
+----
+
+:leveloffset: 1
+
+:leveloffset: +1
+
+= Random Card
+
+[source,php]
+----
+use CardDeck\Deck;
+
+// Create deck - this also shuffles
+$myDeck = new Deck();
+
+// Get a random card ID show the info
+$id = $myDeck->getRandomCardID();
+$cardName = $myDeck->getCardNameByID($id);
+$cardSuitName = $myDeck->getSuitNameByID($id);
+$cardRankName = $myDeck->getRankNameByID($id);
+print("[<a href='test-deck-image.php?id=$id'>id=$id</a>] [suit=$cardSuitName] [rank=$cardRankName] <b>$cardName</b><BR><img alt='$cardName' width=72 height=96 src='test-deck-image.php?id=$id'><hr>\n");
+
+print("<a href='?" . mt_rand(0, 1000000) . "'>Hit Me</a>");
+----
+
+:leveloffset: 1
+
+:leveloffset: +1
+
+= Card Image
+
+[source,php]
+----
+use CardDeck\Deck;
+
+// Testing the deck class
+// Takes card ID from query string and sends binary image data to browser/client
+// If no query string, then it displays some useful links
+
+// Get card ID from a query string
+$cardID = $_GET['id'] ?? 'q-d';
+
+if (strlen($cardID) !== 0) {
+    // Create a new deck and shuffle
+    $myDeck = new Deck();
+
+    $file = "img/$cardID.png";
+    $card = $myDeck->getCardImageByID($cardID);
+
+    // Capture Image to File
+    if (file_exists($file)) unlink($file);
+    imagepng($card, $file, 0);
+    // OR
+    // Capture to String
+    // start buffering
+     ob_start();
+    imagepng($card, null, 0);
+    $contents = ob_get_contents();
+    // end capture
+    ob_end_clean();
+
+    // be tidy; free up memory
+    imagedestroy($card);
+
+    // If we didn't save to a file, we can still do it
+    file_put_contents($file, $contents);
+
+    // output jpeg (or any other chosen) format & quality
+    //  PNG_NO_FILTER, PNG_ALL_FILTERS
+    // imagepng($card, $file, 9, PNG_NO_FILTER);
+    // imagepng($card, $file);
+    // imagepng($card, $file, 1);
+//    imagepng($card, $file, 0);
+    // imagepng($card, $file, 9, PNG_ALL_FILTERS);
+    // capture output to string
+    // $contents = ob_get_contents();
+    // end capture
+    // ob_end_clean();
+
+    // be tidy; free up memory
+    // imagedestroy($card);
+
+    // lastly (for the example) we're writing the string to a file
+//    $fh = fopen('./temp/img.jpg', 'a+');
+//    fwrite($fh, $contents);
+//    fclose($fh);
+
+
+//    file_put_contents($file, $contents);
+
+    // Send card image to browser/client
+    $myDeck->sendCardImageToClientByID($cardID);
+} else {
+    print("You need to supply a card ID!<br>");
+    print("Test this script via <a href='test-deck-view.php'>test-deck-view.php</a> or <a href='test-deck-randomcard.php'>test-deck-randomcard.php</a><BR>");
+    print("OR append '<a href='?id=a-s'>?id=a-s</a>' to this URL to display the Ace of Spades, for example.");
+}
+
+----
+
+:leveloffset: 1
+
+:leveloffset!:
