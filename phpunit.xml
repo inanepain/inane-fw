@@ -33,6 +33,7 @@
             <directory suffix="Test.php">lib/inanepain/session/tests</directory>
             <directory suffix="Test.php">lib/inanepain/log/tests</directory>
             <directory suffix="Test.php">lib/inanepain/quickrank/tests</directory>
+            <directory suffix="Test.php">lib/inanepain/cli/tests</directory>
             <directory suffix="Test.php">source/lib/view/tests</directory>
         </testsuite>
     </testsuites>
@@ -53,6 +54,7 @@
             <directory suffix=".php">lib/inanepain/session/src</directory>
             <directory suffix=".php">lib/inanepain/log/src</directory>
             <directory suffix=".php">lib/inanepain/quickrank/src</directory>
+            <directory suffix=".php">lib/inanepain/cli/src</directory>
             <directory suffix=".php">source/lib/view/src</directory>
         </include>
     </source>

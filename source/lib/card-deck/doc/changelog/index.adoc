@@ -1,0 +1,19 @@
+= Changelog: inanepain/card-deck
+:author: Philip Michael Raab
+:email: <philip@inane.co.za>
+:description: Holds a full deck of playing cards with human-readable names and images.
+:keywords: inane, inanepain, library, card-deck
+:revnumber: 0.1.0
+:revdate: 2026-08-03
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums!:
+:toc: auto
+:sectanchors:
+
+== History
+
+include::./release/0.0.0.adoc[leveloffset=+2]

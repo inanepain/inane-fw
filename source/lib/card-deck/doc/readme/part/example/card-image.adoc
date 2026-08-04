@@ -1,0 +1,70 @@
+= Card Image
+
+[source,php]
+----
+use CardDeck\Deck;
+
+// Testing the deck class
+// Takes card ID from query string and sends binary image data to browser/client
+// If no query string, then it displays some useful links
+
+// Get card ID from a query string
+$cardID = $_GET['id'] ?? 'q-d';
+
+if (strlen($cardID) !== 0) {
+    // Create a new deck and shuffle
+    $myDeck = new Deck();
+
+    $file = "img/$cardID.png";
+    $card = $myDeck->getCardImageByID($cardID);
+
+    // Capture Image to File
+    if (file_exists($file)) unlink($file);
+    imagepng($card, $file, 0);
+    // OR
+    // Capture to String
+    // start buffering
+     ob_start();
+    imagepng($card, null, 0);
+    $contents = ob_get_contents();
+    // end capture
+    ob_end_clean();
+
+    // be tidy; free up memory
+    imagedestroy($card);
+
+    // If we didn't save to a file, we can still do it
+    file_put_contents($file, $contents);
+
+    // output jpeg (or any other chosen) format & quality
+    //  PNG_NO_FILTER, PNG_ALL_FILTERS
+    // imagepng($card, $file, 9, PNG_NO_FILTER);
+    // imagepng($card, $file);
+    // imagepng($card, $file, 1);
+//    imagepng($card, $file, 0);
+    // imagepng($card, $file, 9, PNG_ALL_FILTERS);
+    // capture output to string
+    // $contents = ob_get_contents();
+    // end capture
+    // ob_end_clean();
+
+    // be tidy; free up memory
+    // imagedestroy($card);
+
+    // lastly (for the example) we're writing the string to a file
+//    $fh = fopen('./temp/img.jpg', 'a+');
+//    fwrite($fh, $contents);
+//    fclose($fh);
+
+
+//    file_put_contents($file, $contents);
+
+    // Send card image to browser/client
+    $myDeck->sendCardImageToClientByID($cardID);
+} else {
+    print("You need to supply a card ID!<br>");
+    print("Test this script via <a href='test-deck-view.php'>test-deck-view.php</a> or <a href='test-deck-randomcard.php'>test-deck-randomcard.php</a><BR>");
+    print("OR append '<a href='?id=a-s'>?id=a-s</a>' to this URL to display the Ace of Spades, for example.");
+}
+
+----

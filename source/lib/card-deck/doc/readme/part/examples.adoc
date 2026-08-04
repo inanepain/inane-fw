@@ -1,0 +1,7 @@
+= Examples
+
+include::example/deck-view.adoc[leveloffset=+1]
+
+include::example/random-card.adoc[leveloffset=+1]
+
+include::example/card-image.adoc[leveloffset=+1]

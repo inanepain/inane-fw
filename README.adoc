@@ -26,6 +26,8 @@
 
 {description}
 
+The packages should be work with the current (8.5) #php version.
+
 :sectnums:
 
 <<<
@@ -38,7 +40,7 @@ The aim of this site is to further the inanepain libraries and create a standard
 
 == Directory Structure
 
-Currently, everything is in one big mixing bowl, which is not a problem for the code, but not so easy to follow as a human.
+Currently, everything’s in one big mixing bowl, which isn’t a problem for the code, but not so easy to follow as a human.
 
 :leveloffset!:
 
@@ -62,7 +64,7 @@ composer require {pkg-id}
 
 = Develop
 
-Since this is more of a *development* project, it is most likely that you'd want to *checkout* the code rather than use *composer* to install it.
+Since this is more of a *development* project, it’s most likely that you'd want to *check out* the code rather than use *composer* to install it.
 
 == Setup
 
@@ -139,58 +141,6 @@ Sites main source code.
 
 Web server root.
 
-:leveloffset: +1
-
-= source
-
-Code for additional components.
-
-:leveloffset: +1
-
-= database
-
-Stores the DDL for the project's databases. Thus keeping changes tracked in git. Each connection should have its own directory under which schemas, tables and sundry are contained.
-
-[source,text]
-----
-├──  database/ <1>
-│   └──  inane-fw/ <2>
-│       └──  main/ <3>
-│           ├──  __mobile_app_scripts__.sql <4>
-│           ├──  departments.sql
-│           ├──  divinations.sql
-│           ├──  formulas.sql
-│           ├──  fortunes.sql
-│           ├──  sqlean_define.sql
-│           ├──  students.sql
-│           ├──  update_timestamp.sql
-│           └──  users.sql
-----
-<1> Root of database DDL files.
-<2> Connection name.
-<3> Schema.
-<4> Table, view, trigger, function, ... scripts.
-
-:leveloffset: 2
-
-== doc
-
-AsciiDoc files that build the project README and CHANGELOG.
-
-== image
-
-Custom images for the site.
-
-== lib
-
-Development area for new, overriding or extending libraries. It can also be a bit of a playground to experiment with various ideas.
-
-== style
-
-Stylesheet source files.
-
-:leveloffset: 1
-
 == vendor
 
 Composer libraries.
@@ -221,8 +171,8 @@ Composer libraries.
 :email: <philip@cathedral.co.za>
 :description: Authentication adapters for common use cases.
 :keywords: inane, inanepain, library, auth, authentication, OTP, two-factor, 2FA
-:revnumber: 1.2.0
-:revdate: 2026-05-26
+:revnumber: 1.3.0
+:revdate: 2026-06-08
 :copyright: Unlicense
 :experimental:
 :hide-uri-scheme:
@@ -240,7 +190,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 :leveloffset: 1
@@ -256,8 +206,8 @@ Composer libraries.
 :keywords: inanepain, cache, psr-6, psr-16
 :homepage: https://github.com/inanepain/cache
 :copyright: Unlicense
-:revnumber: 0.1.0
-:revdate: 2025-12-31
+:revnumber: 0.3.0
+:revdate: 2026-06-08
 :experimental:
 :hide-uri-scheme:
 :icons: font
@@ -274,9 +224,8 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
-
 
 :leveloffset: 1
 :leveloffset: +1
@@ -309,7 +258,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -344,7 +293,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -360,8 +309,8 @@ Composer libraries.
 :description: Console routing and argument handling.
 :keywords: library,inanepain,composer,php,console,routing,route,router,command,argument
 :homepage: https://github.com/inanepain/console
-:revnumber: 0.3.0
-:revdate: 2026-01-14
+:revnumber: 0.4.0
+:revdate: 2026-06-25
 :copyright: Unlicense
 :experimental:
 :hide-uri-scheme:
@@ -380,7 +329,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -415,7 +364,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -450,7 +399,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -486,7 +435,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -518,7 +467,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -556,7 +505,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -591,7 +540,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -626,7 +575,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -639,7 +588,7 @@ Composer libraries.
 :lib-root: {inane-root}/id-forge
 :author: Philip Michael Raab
 :email: <philip@cathedral.co.za>
-:description: A lightweight & versatile library for generating and encoding unique identifiers. It provides fast, secure, and flexible solutions for modern applications.
+:description: A lightweight & versatile library for generating and encoding unique identifiers. It provides fast, secure and flexible solutions for modern applications.
 :keywords: inanepain, library, unique identifier, id generation, base32, base58, base64, nanoid, snowflakeid, uuid, ulid, php, encoding, cryptography
 :homepage: https://github.com/inanepain/id-forge
 :revnumber: 0.2.0
@@ -662,7 +611,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -679,8 +628,8 @@ Composer libraries.
 :keywords: inanepain, inane, library, log, psr-3, logger, writer
 :copyright: Unlicense
 :homepage: https://github.com/inanepain/log
-:revnumber: 0.1.0
-:revdate: 2026-04-13
+:revnumber: 0.1.1
+:revdate: 2026-06-19
 :experimental:
 :hide-uri-scheme:
 :icons: font
@@ -697,7 +646,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -731,7 +680,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -766,7 +715,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -801,7 +750,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -836,7 +785,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -871,7 +820,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -907,7 +856,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -942,7 +891,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 
@@ -977,7 +926,7 @@ Composer libraries.
 ====
 {description}
 
-***
+'''
 ====
 
 

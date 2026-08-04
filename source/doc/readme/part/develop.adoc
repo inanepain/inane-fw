@@ -1,6 +1,6 @@
 = Develop
 
-Since this is more of a *development* project, it is most likely that you'd want to *checkout* the code rather than use *composer* to install it.
+Since this is more of a *development* project, it’s most likely that you'd want to *check out* the code rather than use *composer* to install it.
 
 == Setup
 

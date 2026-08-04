@@ -26,6 +26,8 @@
 
 {description}
 
+The packages should be work with the current (8.5) #php version.
+
 :sectnums:
 
 <<<
