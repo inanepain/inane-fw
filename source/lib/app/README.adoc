@@ -1,0 +1,41 @@
+= inanepain/app image:./icon.png[title=inanepain/app,25]
+// tag::tagConfig[]
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Base application classes that tie some of the other libraries together.
+:keywords: inane, inanepain, library, app
+:revnumber: 0.1.0
+:revdate: 2026-08-03
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:toc: left
+:sectanchors:
+:idprefix: topic-
+:idseparator: -
+:pkg-vendor: inanepain
+:pkg-name: app
+:pkg-id: {pkg-vendor}/{pkg-name}
+// end::tagConfig[]
+
+== image:./icon.png[title={pkg-id},25] {pkg-id}
+
+{description}
+
+:sectnums:
+
+<<<
+
+:leveloffset: +1
+
+= Install
+
+.composer
+[source,shell,subs=attributes+]
+----
+composer require {pkg-id}
+----
+
+:leveloffset!:

@@ -1,0 +1,27 @@
+= Changelog: inanepain/app
+:author: Philip Michael Raab
+:email: <philip@inane.co.za>
+:description: Base application classes that tie some of the other libraries together.
+:keywords: inane, inanepain, library, app
+:revnumber: 0.1.0
+:revdate: 2026-08-03
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums!:
+:toc: auto
+:sectanchors:
+
+== History
+
+:leveloffset: +2
+
+= 0.1.0-dev (2026 Xxx xx)
+:revnumber: 0.1.0-dev
+:revdate: 2026-xx-xx
+
+* Initial release.
+
+:leveloffset!:

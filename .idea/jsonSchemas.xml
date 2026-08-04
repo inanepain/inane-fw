@@ -86,6 +86,9 @@
                   <Item>
                     <option name="path" value="source/lib/card-deck/composer.json" />
                   </Item>
+                  <Item>
+                    <option name="path" value="source/lib/app/composer.json" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>

@@ -26,6 +26,7 @@ declare(strict_types = 1);
 namespace Knot;
 
 use Exception;
+use Inane\App\ApplicationInterface;
 use Inane\Cli\Cli;
 use Inane\Config\{
     Config,
@@ -64,7 +65,7 @@ use const GLOB_NOSORT;
 use const PHP_SAPI;
 use const PREG_OFFSET_CAPTURE;
 
-class Application {
+class Application implements ApplicationInterface {
     /**
      * Private constructor method for initialising the class with configuration.
      *
@@ -297,38 +298,16 @@ class Application {
      */
     protected function configureRouterConsole(): void {
         global $argv;
-        $routerConfig = new Options([
+
+        $routerConfig = $this->configManager->getConfig(ConsoleRouter::class)->modify([
             'arguments' => $argv,
             'commands'  => [
-                'glob'        => 'src/*/*Commands.php',
-                'glob_ignore' => '/(Abstract)/',
-                'default'     => [],
+                'path'        => $this->base
             ],
         ]);
 
-        $this->router = new ConsoleRouter($routerConfig->arguments->toArray());
-
-        $commands = new Options();
-        if ($command = $routerConfig->commands) {
-            if ($glob = $command->glob) {
-                foreach($this->base->getFiles($glob, GLOB_BRACE | GLOB_NOSORT) as $file) {
-                    if ($ignore = $command->glob_ignore) {
-                        preg_match($ignore, $file->getFilename(), $matches, PREG_OFFSET_CAPTURE);
-                        if (!empty($matches)) continue;
-                    }
-                    if ($ns = ClassUtility::getClassFromFile($file)) $commands[] = $ns;
-                }
-            }
-
-            if ($default = $command->default) {
-                $commands->merge($default)
-                    ->unique()
-                ;
-            }
-        }
-
-        //         dd($commands, 'commands');
-        $this->router->registerCommands($commands);
+        $this->router = new ConsoleRouter($argv, $routerConfig);
+        $this->router->buildCommands();
     }
 
     /**

@@ -10,7 +10,7 @@
 set shell := ["zsh", "-cu"]
 set positional-arguments
 
-project := "inane\\card-deck"
+project := "inane\\app"
 
 # list recipes
 _default:
