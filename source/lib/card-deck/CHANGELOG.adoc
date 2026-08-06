@@ -18,8 +18,8 @@
 
 :leveloffset: +2
 
-= 0.1.0-dev (2026 Xxx xx)
-:revnumber: 0.1.0-dev
+= 26.8.0-dev (2026 Xxx xx)
+:revnumber: 26.8.0-dev
 :revdate: 2026-xx-xx
 
 * Initial release.
