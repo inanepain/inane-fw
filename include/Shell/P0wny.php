@@ -8,6 +8,7 @@ use Exception;
 use Inane\Http\Response;
 use Inane\Stdlib\Exception\BadMethodCallException;
 use Inane\Stdlib\Exception\UnexpectedValueException;
+use Inane\Stdlib\Json;
 use Inane\View\Renderer\PhpRenderer;
 use JsonException;
 use RuntimeException;
@@ -30,13 +31,11 @@ use function fwrite;
 use function getcwd;
 use function getenv;
 use function gethostname;
-use function header;
 use function implode;
 use function is_array;
 use function is_dir;
 use function is_resource;
 use function is_string;
-use function json_encode;
 use function ob_get_clean;
 use function ob_start;
 use function passthru;
@@ -48,12 +47,12 @@ use function preg_match;
 use function proc_close;
 use function proc_open;
 use function shell_exec;
+use function str_replace;
 use function stream_get_contents;
 use function stripos;
 use function system;
 
 use const DIRECTORY_SEPARATOR;
-use const JSON_THROW_ON_ERROR;
 use const PHP_EOL;
 use const PHP_OS_FAMILY;
 
@@ -68,6 +67,8 @@ if (file_exists(getcwd() . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR 
     echo('AND' . PHP_EOL);
     echo('Missing environment variable `ENV_PHP_VENDOR` which should point to the php vendor autoload.php file.' . PHP_EOL);
     exit(10);
+} elseif (file_exists('vendor/autoload.php')) {
+    $autoload = 'vendor/autoload.php';
 }
 
 require_once $autoload;
@@ -89,6 +90,10 @@ final class P0wny {
         'hostname' => 'shell',
         'version'  => '0.1.0',
     ];
+
+    protected \Inane\Http\Client $httpClient {
+        get => $this->httpClient ??= new \Inane\Http\Client();
+    }
 
     /**
      * Initialises a new instance of the class with the specified view directory path.
@@ -125,7 +130,7 @@ final class P0wny {
         $renderer = new PhpRenderer($this->viewDirectory);
         $html = $renderer->render('p0wny', $this->config);
 
-        new \Inane\Http\Client()->send(new Response($html));
+        $this->httpClient->send(new Response($html));
     }
 
     /**
@@ -142,8 +147,7 @@ final class P0wny {
             default => null,
         };
 
-        header('Content-Type: application/json');
-        echo json_encode($response, JSON_THROW_ON_ERROR);
+        $this->httpClient->send(new Response(body: Json::encode($response), headers: ['Content-Type' => 'application/json']));
     }
 
     /**
@@ -480,4 +484,9 @@ final class P0wny {
     }
 }
 
-new P0wny(__DIR__)->handle();
+$templateDir = str_replace(getcwd() . DIRECTORY_SEPARATOR, '', __DIR__);
+
+/**
+ * php -S localhost:6789 -t include/Shell include/Shell/P0wny.php
+ */
+new P0wny($templateDir)->handle();
