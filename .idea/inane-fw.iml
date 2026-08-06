@@ -30,20 +30,20 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/src" isTestSource="false" packagePrefix="Inane\ServiceManager\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/src" isTestSource="false" packagePrefix="Inane\Log\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" packagePrefix="Test\View\Helper\" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" packagePrefix="Inane\Auth\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/db/src" isTestSource="true" packagePrefix="Inane\Db\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/tests" isTestSource="true" packagePrefix="Inane\Config\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" packagePrefix="Inane\Crypt\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" packagePrefix="Inane\Datetime\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" packagePrefix="Inane\IdForge\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" packagePrefix="Inane\ServiceManager\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/console/src" isTestSource="true" packagePrefix="Inane\Console\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cli/tests" isTestSource="true" packagePrefix="Inane\Cli\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/card-deck/src" isTestSource="true" packagePrefix="Inane\CardDeck\" />
@@ -51,15 +51,15 @@
       <sourceFolder url="file://$MODULE_DIR$/source/lib/app/src" isTestSource="true" packagePrefix="Inane\App\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/app/tests" isTestSource="true" packagePrefix="Inane\App\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" packagePrefix="Inane\Cache\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" packagePrefix="Inane\Session\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" packagePrefix="Inane\Log\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/tests" isTestSource="true" packagePrefix="Inane\Console\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/tests" isTestSource="true" packagePrefix="Inane\QR\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/file/tests" isTestSource="true" packagePrefix="Inane\File\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/tests" isTestSource="true" packagePrefix="Inane\Stdlib\Tests\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />

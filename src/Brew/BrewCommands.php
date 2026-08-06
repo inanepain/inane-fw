@@ -496,10 +496,15 @@ class BrewCommands implements NotifyProgressInterface {
         exec($cmd, $output);                    // Execute an external program
         $formulasTable = new FormulasTable();   // * Constructor for the AbstractTable class.
 
-        $counter = new Options([                                                                                   // Options
-                                                                                                                   'total'     => count($output ?: []),
-                                                                                                                   // Counts all elements in an array, or something in an object.
-                                                                                                                   'installed' => 0,
+        // Set all formulas to uninstalled.
+        $query = $formulasTable->queryBuilder()->update(['installed' => false]);
+        $formulasTable::$db->getDriver()->prepare($query->toSql())->execute($query->getBindings());
+
+        $counter = new Options([
+            // Options
+            'total'     => count($output ?: []),
+            // Counts all elements in an array, or something in an object.
+            'installed' => 0,
         ]);
 
         foreach($output ?: [] as $formula) {
@@ -507,6 +512,7 @@ class BrewCommands implements NotifyProgressInterface {
             if (!$f) continue;
             if (!$f->installed) {
                 $f->installed = true;   // @var bool If the formula is installed.
+                $f->reviewed = true;
                 $f->save();             // Saves the current entity to the database.
                 $counter->installed++;
             }

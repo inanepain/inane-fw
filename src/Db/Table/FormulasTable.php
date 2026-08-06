@@ -41,7 +41,23 @@ use const false;
  * @method bool delete(Formula $entity)
  */
 class FormulasTable extends AbstractTable {
+    /**
+     * The database table name for storing formulas.
+     *
+     * This variable holds the name of the database table used to store formulas.
+     * It's a string constant that represents the table's identifier in the database schema.
+     *
+     * @var string
+     */
     protected string $table = 'formulas';
+
+    /**
+     * Defines an associative array representing the structure of a software package or module.
+     *
+     * Each key in the array corresponds to a property of the package, and its associated value is typically initialised as an empty string or zero, indicating that it hasn't been set yet.
+     *
+     * @var array
+     */
     protected array $columns = [
         'name' => '',
         'desc' => '',
@@ -55,7 +71,30 @@ class FormulasTable extends AbstractTable {
         'updated' => null,
         'modified' => null,
     ];
+
+    /**
+     * Specifies the primary identifier key for a software package or module.
+     *
+     * This variable holds the name of the key that uniquely identifies each package within a collection.
+     *
+     * @var string
+     */
     protected(set) string $primaryId = 'name';
+
+    /**
+     * Indicates whether auto-increment functionality should be enabled for a database table or column.
+     *
+     * When set to `true`, it enables auto-increment, meaning that the value of the field will automatically increase with each new record inserted into the table.
+     * When set to `false`, auto-increment is disabled, and manual values must be assigned to the field.
+     *
+     * @var bool
+     */
     protected bool $autoIncrement = false;
+
+    /**
+     * Assigns the fully qualified class name of the Formula class to the variable entityClass.
+     *
+     * @var string $entityClass The class name of the Formula class.
+     */
     protected string $entityClass = Formula::class;
 }
