@@ -5,7 +5,7 @@
  * @version 1.1.0
  */
 
-if (!Number.getRandom) {
+if (!Number.prototype.getRandom) {
     /**
      * Generates a random integer within a specified range.
      *
