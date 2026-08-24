@@ -24,6 +24,9 @@ declare(strict_types=1);
 
 namespace Knot\Lotto\Lottery;
 
+use Exception;
+use Inane\Cli\Pencil;
+use Inane\Stdlib\Exception\RuntimeException;
 use Stringable;
 
 use function array_key_exists;
@@ -40,6 +43,26 @@ use function str_replace;
  * @version 0.1.0
  */
 class Draw implements Stringable {
+    /**
+     * Retrieves the pencil instance.
+     *
+     * @return Pencil The pencil instance.
+     *
+     * @throws RuntimeException If the pencil cannot be instantiated.
+     */
+    protected Pencil $pencil {
+        get => $this->pencil ??= new Pencil();
+    }
+
+    /**
+     * @var string $pending The pending status formatted in yellow.
+     *
+     * @throws Exception If there is an error during the formatting process.
+     */
+    protected string $pending {
+        get => $this->pending ??= $this->pencil->format(Pencil\Colour::Yellow->text('pending'));
+    }
+
     /**
      * @var int $number The draw number.
      */
@@ -83,13 +106,15 @@ class Draw implements Stringable {
      *
      * @param LottoType $type The lottery type associated with the draw.
      */
-    public function __construct(private(set) LottoType $type) {
+    public function __construct(private(set) readonly LottoType $type) {
     }
 
     /**
      * Get the draw as a string.
-     * .
+     *
+     *
      * @return string The draw as a string.
+     * @throws RuntimeException
      */
     public function __toString(): string {
         $fmt = Lotto::getNumberFormatter('r2', ['pattern' => '¤ #00.00']);
@@ -104,7 +129,7 @@ class Draw implements Stringable {
         elseif ($this->type === LottoType::PowerBall)
             $gap = $this->day === 'friday' ? ' ' : '';
 
-        $won = str_replace('R 0', 'R  ', $fmt->format($this->won));
-        return "$this->number: $this->placement $this->date ($this->day)$gap won: " . ($this->won === -1 ? 'pending' : $won);
+        $won = $this->won < 0 ? $this->pending : str_replace('R 0', 'R  ', $fmt->format($this->won));
+        return "$this->number: $this->placement $this->date ($this->day)$gap won: $won";
     }
 }

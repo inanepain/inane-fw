@@ -28,13 +28,11 @@ use Inane\Config\ConfigAware\ConfigAwareTrait;
 use Inane\Datetime\Timestamp;
 use Inane\Stdlib\{
     Array\OptionsInterface,
-    Exception\InvalidArgumentException,
+    Exception\JsonException,
     Exception\RuntimeException,
     Options};
 use Inane\Stdlib\String\NumberFormatterTrait;
-use NumberFormatter;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use ReflectionException;
 use Stringable;
 
 use function array_map;
@@ -90,8 +88,6 @@ class Lotto implements Stringable {
         'tickets' => [],
     ];
 
-    protected static NumberFormatter $numberFormatter;
-
     /**
      * Represents a collection of tickets.
      */
@@ -132,9 +128,9 @@ class Lotto implements Stringable {
     }
 
     /**
-     * Constructor for initializing the class and setting up required properties.
+     * Constructor for initialising the class and setting up required properties.
      *
-     * Initializes the tickets property with a new instance of Options.
+     * Initialises the ticket property with a new instance of Options.
      *
      * @return void
      */
@@ -144,16 +140,14 @@ class Lotto implements Stringable {
     }
 
     /**
-     * Initialize the ticket options and configuration settings.
+     * Initialise the ticket options and configuration settings.
      *
      * This method sets up the ticket options and checks for pre-configured
      * ticket data in the provided configuration. If ticket data is present
-     * in the configuration, it will be added to the initialized options.
+     * in the configuration, it'll be added to the initialised options.
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     protected function initialise(): void {
         $this->tickets = new Options();
@@ -217,6 +211,8 @@ class Lotto implements Stringable {
      * @return self The current instance, allowing for method chaining.
      *
      * @throws RuntimeException
+     * @throws JsonException
+     * @throws ReflectionException
      */
     public function addTicket(Ticket|array $ticket): self {
         if (is_array($ticket)) {
@@ -240,17 +236,18 @@ class Lotto implements Stringable {
      *
      * @param null|int $display
      *
-     * @return Options<\Ticket> Array of tickets.
+     * @return Ticket[] Array of tickets.
      *
-     * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws RuntimeException
      */
     public function getTickets(?int $display = null): OptionsInterface {
-        $display = $display === null ? $this->display : $display;
+        $display = $display ?? $this->display;
         $showActive = ($display & static::ACTIVE) === static::ACTIVE;
         $showExpired = ($display & static::EXPIRED) === static::EXPIRED;
 
         $tickets = new Options();
-        /** @var \Ticket $ticket */
+        /** @var Ticket $ticket */
         foreach (new Options($this->tickets) as $id => $ticket) {
             if ($showExpired && $ticket->expired) $tickets->set($id, $ticket);
             if ($showActive && !$ticket->expired) $tickets->set($id, $ticket);
@@ -268,7 +265,7 @@ class Lotto implements Stringable {
      * - won: true/false
      * - expired: true/false
      * - draws: number of draws
-     * - lines: number of lines or numbers on ticket
+     * - lines: number of lines or numbers on a ticket
      *
      * draws & lines:
      * - exact: give it a number (5)
@@ -280,7 +277,8 @@ class Lotto implements Stringable {
      *
      * @return array filtered tickets.
      *
-     * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws RuntimeException
      */
     public function filterTickets(array $query = []): array {
         /**
@@ -305,12 +303,12 @@ class Lotto implements Stringable {
                 if ($qry === null) continue;
 
                 if ($cmd === 'p.date')
-                    if ($qry != $ticket->bought) {
+                    if ($qry !== $ticket->bought) {
                         $tickets->unset($index);
                         break;
                     }
                 if ($cmd = 'd.date') {
-                    // if draw date is set match.
+                    // if draw date is set, match.
                 }
             }
         }
@@ -327,7 +325,8 @@ class Lotto implements Stringable {
      *
      * @return string The string representation of the object.
      *
-     * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws RuntimeException
      */
     public function __toString(): string {
         $s = array_map('strval', $this->getTickets()->toArray());

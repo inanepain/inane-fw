@@ -28,8 +28,10 @@ use DateTime;
 use Inane\Stdlib\{
     Array\OptionsInterface,
     Exception\DateMalformedStringException,
-    Exception\ReflectionException,
+    Exception\JsonException,
+    Exception\RuntimeException,
     Options};
+use ReflectionException;
 use ReflectionMethod;
 use Stringable;
 
@@ -37,6 +39,7 @@ use function array_combine;
 use function array_map;
 use function array_sum;
 use function count;
+use function dd;
 use function func_get_args;
 use function implode;
 use function in_array;
@@ -96,14 +99,14 @@ class Ticket implements Stringable {
     private array $ticketDraws = [];
 
     /**
-     * @var float|int $total The total winnings for the ticket.
+     * @var float $total The total winnings for the ticket.
      */
     private(set) float $total = 0;
     /**
      * @var bool $hasWon Whether the ticket has winnings.
      */
     public bool $hasWon {
-        get => (bool) $this->total;
+        get => $this->total > 0;
     }
 
     /**
@@ -117,19 +120,23 @@ class Ticket implements Stringable {
      * @var OptionsInterface $storage An instance of OptionsInterface for storing ticket options.
      */
     private OptionsInterface $storage {
-        get => isset($this->storage) ? $this->storage : ($this->storage = new Options());
+        get => $this->storage ??= new Options();
         set => $this->storage = $value;
     }
 
     /**
      * Create a new Ticket instance.
      *
-     * @param string $bought The date the ticket was bought.
-     * @param LottoType $type The type of lottery the ticket is for.
-     * @param int $draws The number of draws the ticket has.
-     * @param int|null $lines The number of lines or numbers on the ticket.
-     * @param float|null $price The price of the ticket.
-     * @param array $winnings An array of winnings for each draw.
+     * @param string     $bought   The date the ticket was bought.
+     * @param LottoType  $type     The type of lottery the ticket is for.
+     * @param int        $draws    The number of draws the ticket has.
+     * @param int|null   $lines    The number of lines or numbers on the ticket.
+     * @param float|null $price    The price of the ticket.
+     * @param array      $winnings An array of winnings for each draw.
+     *
+     * @throws JsonException
+     * @throws RuntimeException
+     * @throws ReflectionException
      */
     public function __construct(
         public readonly string $bought,
@@ -146,9 +153,7 @@ class Ticket implements Stringable {
         try {
             $this->parseTicket($winnings);
         } catch (DateMalformedStringException $e) {   // Thrown when an invalid Date/Time string is detected.
-
-        } catch (ReflectionException $e) {
-
+            dd($e);
         }
     }
 
@@ -160,26 +165,27 @@ class Ticket implements Stringable {
      * @return void
      */
     private function bootstrap(array $winnings): void {
-        if (!isset($this::$expireTime)) $this::$expireTime = new DateTime()->setTime(Lotto::lottoTime, 0, 0)->getTimestamp();
+        if (!isset($this::$expireTime)) $this::$expireTime = new DateTime()->setTime(Lotto::lottoTime, 0)->getTimestamp();
         $this->total = array_sum($winnings);
     }
 
     /**
      * Create a draw object and add it to the ticket's draw array.
      * '
-     * @param int $number The draw number.
-     * @param string $date The draw date.
-     * @param string $day The day of the week the draw occurred.
+     *
+     * @param int    $number    The draw number.
+     * @param string $date      The draw date.
+     * @param string $day       The day of the week the draw occurred.
      * @param string $placement The placement of the draw result.
-     * @param float $won The winnings for the draw result.
+     * @param float  $won       The winnings for the draw result.
      *
      * @return void
      *
      * @throws ReflectionException
      */
-    private function createDraw(int $number, string $date, string $day, string $placement, float $won) {
+    private function createDraw(int $number, string $date, string $day, string $placement, float $won): void {
         $values = func_get_args();
-        $keys = array_map(fn($arg) => $arg->name, new ReflectionMethod($this::class, __FUNCTION__)->getParameters());
+        $keys = array_map(static fn($arg) => $arg->name, new ReflectionMethod($this::class, __FUNCTION__)->getParameters());
         $params = array_combine($keys, $values);
 
         $this->ticketDraws[$date] = Draw::fromArray($this->type, $params);
@@ -246,6 +252,7 @@ class Ticket implements Stringable {
      * Get the ticket as a string.
      *
      * @return string The ticket as a string.
+     * @throws RuntimeException
      */
     public function __toString(): string {
         $fmt = Lotto::getNumberFormatter('r3', ['pattern' => '¤ #000.00']);
@@ -260,8 +267,8 @@ class Ticket implements Stringable {
         $s .= ': [' . $this->bought . ']';
         $s .= ' ' . $this->first;
         $s .= ' => ' . $this->last;
-        $s .= ':' . static::padLine(($this->expired ? 'expired' : static::formatNumber($this->remain, 1) . ' draw' . ($this->remain == 1 ? '' : 's') . ' left'));
-        $s .= '! Won so far: ' . $total . ($this->expired ? ("> Profit: {$profit}") : '');
+        $s .= ':' . static::padLine(($this->expired ? 'expired' : static::formatNumber($this->remain, 1) . ' draw' . ($this->remain === 1 ? '' : 's') . ' left'));
+        $s .= '! Won so far: ' . $total . ($this->expired ? ("> Profit: $profit") : '');
         // $s .= '! Won so far: R' . static::formatNumber($this->total, 3, ' ', STR_PAD_RIGHT) . ($this->expired ? ("> Profit: {$this->profit}") : '');
         return $s;
     }
