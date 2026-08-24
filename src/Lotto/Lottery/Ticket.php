@@ -81,6 +81,13 @@ class Ticket implements Stringable {
     public int $remain {
         get => $this->draws - $this->drawn;
     }
+
+    /**
+     * @var bool $active Indicates whether the ticket is active, determined by checking if it has been drawn at least once.
+     */
+    public bool $active {
+        get => $this->drawn > 0;
+    }
     /**
      * @var bool $expired Whether the ticket has expired.
      */

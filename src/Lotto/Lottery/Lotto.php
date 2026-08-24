@@ -93,7 +93,7 @@ class Lotto implements Stringable {
      */
     private OptionsInterface $tickets;
     /**
-     * Represents the time for the lottery draw, specified in hours (24-hour format).
+     * Represents the time for the lottery draw, specified in the past hours (24-hour format).
      */
     public const int lottoTime = 21;
     /**
@@ -107,7 +107,7 @@ class Lotto implements Stringable {
      */
     private int $Lotto = 0;
     /**
-     * Initializes the PowerBall value to zero.
+     * Initialises the PowerBall value to zero.
      */
     private int $PowerBall = 0;
 
@@ -236,7 +236,7 @@ class Lotto implements Stringable {
      *
      * @param null|int $display
      *
-     * @return Ticket[] Array of tickets.
+     * @return OptionsInterface<Ticket> Array of tickets.
      *
      * @throws JsonException
      * @throws RuntimeException
@@ -331,7 +331,7 @@ class Lotto implements Stringable {
     public function __toString(): string {
         $s = array_map('strval', $this->getTickets()->toArray());
         $e = count($s);
-        array_unshift($s, 'Lotto Tickets: ' . (string)$e . '/' . (string)$this->total . ' (lotto: ' . (string)$this->Lotto . ' / power ball: ' . (string)$this->PowerBall . ')');
+        array_unshift($s, 'Lotto Tickets: ' . $e . '/' . $this->total . ' (lotto: ' . $this->Lotto . ' / power ball: ' . $this->PowerBall . ')');
 
         return implode(PHP_EOL, $s);
     }
