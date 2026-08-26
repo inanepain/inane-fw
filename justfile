@@ -9,21 +9,24 @@ set positional-arguments
 set dotenv-load
 
 # list recipes
+[default]
 _default:
     @echo "$PROJECT:"
     @just --list --list-heading ''
 
 # start
+[arg('task', help="New task being run.")]
 _start task='':
     @echo "{{GREEN}}start{{NORMAL}}: {{task}}"
 
 # done
+[arg('task', help="Completed task.")]
 _done task='':
     @echo "{{GREEN}}done{{NORMAL}} {{task}}"
 
 #region git
 # git push submodules
-[group: 'GIT']
+[group: 'git']
 git-push-sm: (_start "Push Submodules") && (_done "Push Submodules")
     #!/usr/bin/env zsh
     git submodule foreach --recursive 'git push'
@@ -31,7 +34,7 @@ git-push-sm: (_start "Push Submodules") && (_done "Push Submodules")
     git push
 
 # git push all
-[group: 'GIT']
+[group: 'git']
 git-push-all: (_start "Push All") && (_done "Push All")
     #!/usr/bin/env zsh
     source ~/bin/functions/colours
@@ -40,7 +43,7 @@ git-push-all: (_start "Push All") && (_done "Push All")
     git pushall
 
 # git pull submodules
-[group: 'GIT']
+[group: 'git']
 git-pull-sm:
     #!/usr/bin/env zsh
     source ~/bin/functions/colours
@@ -49,7 +52,7 @@ git-pull-sm:
     git pull
 
 # git pull submodules github.com develop
-[group: 'GIT']
+[group: 'git']
 git-pull-sm-github-develop:
     #!/usr/bin/env zsh
     source ~/bin/functions/colours
@@ -58,12 +61,13 @@ git-pull-sm-github-develop:
     git pull github.com develop
 
 # git pull submodules all
-[group: 'GIT']
+[group: 'git']
 git-pull-sm-all: (git-pull-sm) && (git-pull-sm-github-develop)
 
 #endregion git
 
 # Style Sheets
+[group: 'compile']
 css: (_start "Stylesheet") && (_done "Stylesheet")
 	#!/usr/bin/env zsh
 	echo "{{MAGENTA}}$PROJECT{{NORMAL}}: Building stylesheets..."
@@ -103,6 +107,7 @@ compile target="changelog": (_start target) && (_done target)
 #### MAINTENANCE
 ##############################################
 # Remove .DS_Store files for directory tree
+[group: 'utility']
 rmdsstore:
     @echo "Removing: .DS_Store files..."
     @find "${@:-.}" -type f -name .DS_Store -delete
