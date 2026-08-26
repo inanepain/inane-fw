@@ -60,6 +60,7 @@
             "Inane\\Console\\Tests\\": "lib/inanepain/console/tests/",
             "Inane\\Crypt\\Tests\\": "lib/inanepain/crypt/tests/",
             "Inane\\Datetime\\Tests\\": "lib/inanepain/datetime/tests/",
+            "Inane\\Db\\Tests\\": "lib/inanepain/db/tests/",
             "Inane\\Dumper\\Tests\\": "lib/inanepain/dumper/tests/",
             "Inane\\File\\Tests\\": "lib/inanepain/file/tests/",
             "Inane\\IdForge\\Tests\\": "lib/inanepain/id-forge/tests/",

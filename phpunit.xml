@@ -27,6 +27,7 @@
             <directory suffix="Test.php">lib/inanepain/console/tests</directory>
             <directory suffix="Test.php">lib/inanepain/crypt/tests</directory>
             <directory suffix="Test.php">lib/inanepain/datetime/tests</directory>
+            <directory suffix="Test.php">lib/inanepain/db/tests</directory>
             <directory suffix="Test.php">lib/inanepain/dumper/tests</directory>
             <directory suffix="Test.php">lib/inanepain/file/tests</directory>
             <directory suffix="Test.php">lib/inanepain/id-forge/tests</directory>
@@ -49,6 +50,7 @@
             <directory suffix=".php">lib/inanepain/console/src</directory>
             <directory suffix=".php">lib/inanepain/crypt/src</directory>
             <directory suffix=".php">lib/inanepain/datetime/src</directory>
+            <directory suffix=".php">lib/inanepain/db/src</directory>
             <directory suffix=".php">lib/inanepain/dumper/src</directory>
             <directory suffix=".php">lib/inanepain/file/src</directory>
             <directory suffix=".php">lib/inanepain/id-forge/src</directory>

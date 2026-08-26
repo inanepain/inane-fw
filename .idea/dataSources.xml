@@ -13,5 +13,16 @@
       <working-dir>$ProjectFileDir$</working-dir>
       <init-script>$USER_HOME$/lib/sqlite/init.sql</init-script>
     </data-source>
+    <data-source source="LOCAL" name="inane.db.test" uuid="b787fb2f-19fe-4bdc-b9e6-000535bd6fe1">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/lib/inanepain/db/tests/test.sqlite</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="auto-refresh-interval" value="30" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <init-script>$USER_HOME$/lib/sqlite/init.sql</init-script>
+    </data-source>
   </component>
 </project>
