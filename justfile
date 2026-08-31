@@ -15,11 +15,13 @@ _default:
     @just --list --list-heading ''
 
 # start
+[group: 'helpers']
 [arg('task', help="New task being run.")]
 _start task='':
     @echo "{{GREEN}}start{{NORMAL}}: {{task}}"
 
 # done
+[group: 'helpers']
 [arg('task', help="Completed task.")]
 _done task='':
     @echo "{{GREEN}}done{{NORMAL}} {{task}}"
