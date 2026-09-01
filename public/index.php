@@ -30,7 +30,10 @@ use Knot\Application;
 chdir(dirname(__DIR__));
 
 require_once 'vendor/autoload.php';
-require_once '/Users/philip/Developer/php/playground/dirty-loader/src/Dirtyloader.php';
+
+if (file_exists($dirtyLoader = 'C:/Users/PhilipRaab/Development/PHP/dirty-loader/src/Dirtyloader.php')) require_once $dirtyLoader;
+elseif (file_exists($dirtyLoader = '/Users/philip/Developer/php/playground/dirty-loader/src/Dirtyloader.php')) require_once $dirtyLoader;
+
 require_once 'index-functions.php';
 
 Dirtyloader::register([

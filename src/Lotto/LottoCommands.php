@@ -75,7 +75,7 @@ class LottoCommands {
         if ($current) $display |= Lotto::ACTIVE;
         if ($expired) $display |= Lotto::EXPIRED;
 
-        $lotto = Lotto::fromArray(Application::app()->config->getConfig(Lotto::class));
+        $lotto = Lotto::fromArray(Application::app()->config->getConfig(Lotto::class) ?? []);
         $lotto->display = $display;
 
         $this->pencil->line(Pencil\Colour::Blue->text('## Overview', Pencil\Style::Bold));
