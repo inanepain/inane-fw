@@ -1,0 +1,8030 @@
+{
+    "Academy Engraved LET Plain:1.0": {
+        "name": "Academy Engraved LET Plain:1.0",
+        "version": "16.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Adelle Sans Devanagari": {
+        "name": "Adelle Sans Devanagari",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Extrabold",
+            "Heavy",
+            "Light",
+            "Regular",
+            "Semibold",
+            "Thin"
+        ]
+    },
+    "AkayaKanadaka": {
+        "name": "AkayaKanadaka",
+        "version": "20.0d1e2 (1.000)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "AkayaTelivigala": {
+        "name": "AkayaTelivigala",
+        "version": "20.0d1e2 (1.000)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Al Bayan": {
+        "name": "Al Bayan",
+        "version": "18.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Plain"
+        ]
+    },
+    "Al Firat": {
+        "name": "Al Firat",
+        "version": "13.0d2e10",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Al Khalil": {
+        "name": "Al Khalil",
+        "version": "13.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Al Nile": {
+        "name": "Al Nile",
+        "version": "13.0d2e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Al Rafidain Al Fanni": {
+        "name": "Al Rafidain Al Fanni",
+        "version": "18.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Al Rafidain": {
+        "name": "Al Rafidain",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Al Tarikh": {
+        "name": "Al Tarikh",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Algiers": {
+        "name": "Algiers",
+        "version": "18.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "American Typewriter": {
+        "name": "American Typewriter",
+        "version": "16.0d2e4",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Condensed",
+            "Light",
+            "Semibold"
+        ]
+    },
+    "Andale Mono": {
+        "name": "Andale Mono",
+        "version": "Version 2.00x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Annai MN": {
+        "name": "Annai MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Apple Braille": {
+        "name": "Apple Braille",
+        "version": "13.0d2e27",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Apple Braille Outline 6 Dot": {
+        "name": "Apple Braille Outline 6 Dot",
+        "version": "13.0d2e27",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Apple Braille Outline 8 Dot": {
+        "name": "Apple Braille Outline 8 Dot",
+        "version": "13.0d2e27",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Apple Braille Pinpoint 6 Dot": {
+        "name": "Apple Braille Pinpoint 6 Dot",
+        "version": "13.0d2e27",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Apple Braille Pinpoint 8 Dot": {
+        "name": "Apple Braille Pinpoint 8 Dot",
+        "version": "13.0d2e27",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Apple Chancery": {
+        "name": "Apple Chancery",
+        "version": "13.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Apple Color Emoji": {
+        "name": "Apple Color Emoji",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Apple LiGothic": {
+        "name": "Apple LiGothic",
+        "version": "13.0d2e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Medium"
+        ]
+    },
+    "Apple LiSung": {
+        "name": "Apple LiSung",
+        "version": "16.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light"
+        ]
+    },
+    "Apple SD Gothic Neo": {
+        "name": "Apple SD Gothic Neo",
+        "version": "19.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Thin",
+            "UltraLight"
+        ]
+    },
+    "Apple Symbols": {
+        "name": "Apple Symbols",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "AppleGothic": {
+        "name": "AppleGothic",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "AppleMyungjo": {
+        "name": "AppleMyungjo",
+        "version": "13.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Arial": {
+        "name": "Arial",
+        "version": "Version 5.01.2x",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Arial Hebrew": {
+        "name": "Arial Hebrew",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light"
+        ]
+    },
+    "Arial Hebrew Scholar": {
+        "name": "Arial Hebrew Scholar",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light"
+        ]
+    },
+    "Arial Narrow": {
+        "name": "Arial Narrow",
+        "version": "Version 2.38.1x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Arial Rounded MT": {
+        "name": "Arial Rounded MT",
+        "version": "Version 1.51x",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Arial Unicode MS": {
+        "name": "Arial Unicode MS",
+        "version": "Version 1.01x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Arima Koshi": {
+        "name": "Arima Koshi",
+        "version": "Version 1.019",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Thin"
+        ]
+    },
+    "Arima Madurai": {
+        "name": "Arima Madurai",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Thin"
+        ]
+    },
+    "Arima Madurai Semi": {
+        "name": "Arima Madurai Semi",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Asphalt": {
+        "name": "Asphalt",
+        "version": "13.1d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Medium"
+        ]
+    },
+    "Athelas": {
+        "name": "Athelas",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Regular"
+        ]
+    },
+    "Avenir": {
+        "name": "Avenir",
+        "version": "13.0d3e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Black",
+            "Heavy",
+            "Heavy Oblique",
+            "Light",
+            "Light Oblique",
+            "Medium",
+            "Medium Oblique",
+            "Oblique"
+        ]
+    },
+    "Avenir Book": {
+        "name": "Avenir Book",
+        "version": "13.0d3e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Oblique"
+        ]
+    },
+    "Avenir Next": {
+        "name": "Avenir Next",
+        "version": "13.0d1e10",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Heavy",
+            "Heavy Italic",
+            "Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "Condensed",
+            "Demi",
+            "Light",
+            "Light Italic",
+            "Ultra"
+        ]
+    },
+    "Avenir Roman": {
+        "name": "Avenir Roman",
+        "version": "13.0d3e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Ayuthaya": {
+        "name": "Ayuthaya",
+        "version": "13.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BIZ UDGothic": {
+        "name": "BIZ UDGothic",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "BIZ UDMincho": {
+        "name": "BIZ UDMincho",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BM DoHyeon OTF": {
+        "name": "BM DoHyeon OTF",
+        "version": "14.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BM HANNA 11yrs old OTF": {
+        "name": "BM HANNA 11yrs old OTF",
+        "version": "18.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BM HANNA Air OTF": {
+        "name": "BM HANNA Air OTF",
+        "version": "18.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BM HANNA Pro OTF": {
+        "name": "BM HANNA Pro OTF",
+        "version": "18.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BM JUA OTF": {
+        "name": "BM JUA OTF",
+        "version": "18.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BM KIRANGHAERANG OTF": {
+        "name": "BM KIRANGHAERANG OTF",
+        "version": "14.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BM YEONSUNG OTF": {
+        "name": "BM YEONSUNG OTF",
+        "version": "14.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Baghdad": {
+        "name": "Baghdad",
+        "version": "13.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Bai Jamjuree": {
+        "name": "Bai Jamjuree",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Balega": {
+        "name": "Balega",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Baloo 2": {
+        "name": "Baloo 2",
+        "version": "20.0d1e2 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Baloo Bhai 2": {
+        "name": "Baloo Bhai 2",
+        "version": "20.0d1e2 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Baloo Bhaijaan": {
+        "name": "Baloo Bhaijaan",
+        "version": "20.0d1e2 (1.443)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Baloo Bhaina 2": {
+        "name": "Baloo Bhaina 2",
+        "version": "20.0d1e3 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Baloo Chettan 2": {
+        "name": "Baloo Chettan 2",
+        "version": "20.0d1e2 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Baloo Da 2": {
+        "name": "Baloo Da 2",
+        "version": "20.0d1e2 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Baloo Paaji 2": {
+        "name": "Baloo Paaji 2",
+        "version": "20.0d1e3 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Baloo Tamma 2": {
+        "name": "Baloo Tamma 2",
+        "version": "20.0d1e3 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Baloo Tammudu 2": {
+        "name": "Baloo Tammudu 2",
+        "version": "20.0d1e2 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Baloo Thambi 2": {
+        "name": "Baloo Thambi 2",
+        "version": "20.0d1e2 (1.640)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Bangla MN": {
+        "name": "Bangla MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Bangla Sangam MN": {
+        "name": "Bangla Sangam MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Bank Gothic": {
+        "name": "Bank Gothic",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light",
+            "Medium"
+        ]
+    },
+    "Baoli SC": {
+        "name": "Baoli SC",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Baoli TC": {
+        "name": "Baoli TC",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Baskerville": {
+        "name": "Baskerville",
+        "version": "13.0d1e10",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Basra": {
+        "name": "Basra",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Bebas Neue": {
+        "name": "Bebas Neue",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "Beirut": {
+        "name": "Beirut",
+        "version": "13.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "BiauKai": {
+        "name": "BiauKai",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS"
+        ],
+        "weights": []
+    },
+    "BiauKaiHK": {
+        "name": "BiauKaiHK",
+        "version": "14.0d1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "BiauKaiTC": {
+        "name": "BiauKaiTC",
+        "version": "14.0d1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Big Caslon": {
+        "name": "Big Caslon",
+        "version": "13.0d1e11",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Medium"
+        ]
+    },
+    "Blackmoor LET Plain:2.0": {
+        "name": "Blackmoor LET Plain:2.0",
+        "version": "16.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "BlairMdITC TT": {
+        "name": "BlairMdITC TT",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Medium"
+        ]
+    },
+    "Bodoni 72": {
+        "name": "Bodoni 72",
+        "version": "13.0d2e1",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Bodoni 72 Book": {
+        "name": "Bodoni 72 Book",
+        "version": "13.0d2e1",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Bodoni 72 Oldstyle": {
+        "name": "Bodoni 72 Oldstyle",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Bodoni 72 Oldstyle Book": {
+        "name": "Bodoni 72 Oldstyle Book",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Bodoni 72 Smallcaps Book": {
+        "name": "Bodoni 72 Smallcaps Book",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Bodoni Ornaments": {
+        "name": "Bodoni Ornaments",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Bodoni SvtyTwo ITC TT": {
+        "name": "Bodoni SvtyTwo ITC TT",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Bodoni SvtyTwo ITC TT Book": {
+        "name": "Bodoni SvtyTwo ITC TT Book",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS"
+        ],
+        "weights": []
+    },
+    "Bodoni SvtyTwo ITC TT BookIta": {
+        "name": "Bodoni SvtyTwo ITC TT BookIta",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS"
+        ],
+        "weights": []
+    },
+    "Book Antiqua": {
+        "name": "Book Antiqua",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Bookman Old Style": {
+        "name": "Bookman Old Style",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Bordeaux Roman Bold LET": {
+        "name": "Bordeaux Roman Bold LET",
+        "version": "13.0d3e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Plain"
+        ]
+    },
+    "Bradley Hand": {
+        "name": "Bradley Hand",
+        "version": "14.0d0e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Braganza": {
+        "name": "Braganza",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Brill": {
+        "name": "Brill",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold Italic",
+            "Medium Italic",
+            "Semibold Italic",
+            "Italic"
+        ]
+    },
+    "Brill Roman": {
+        "name": "Brill Roman",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Medium",
+            "Regular",
+            "Semibold"
+        ]
+    },
+    "Brush Script MT": {
+        "name": "Brush Script MT",
+        "version": "Version 1.52x-1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Cambay Devanagari": {
+        "name": "Cambay Devanagari",
+        "version": "20.0d1e2 (1.180)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Oblique",
+            "Oblique",
+            "Regular"
+        ]
+    },
+    "Canela": {
+        "name": "Canela",
+        "version": "15.0d1e14",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Regular",
+            "Regular Italic"
+        ]
+    },
+    "Canela Deck": {
+        "name": "Canela Deck",
+        "version": "15.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "Regular Italic"
+        ]
+    },
+    "Canela Text": {
+        "name": "Canela Text",
+        "version": "15.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "Regular Italic"
+        ]
+    },
+    "Capitals": {
+        "name": "Capitals",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Carlito": {
+        "name": "Carlito",
+        "version": "Version 1.103",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Catamaran": {
+        "name": "Catamaran",
+        "version": "Version 1.100",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Thin"
+        ]
+    },
+    "Century Gothic": {
+        "name": "Century Gothic",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Century Schoolbook": {
+        "name": "Century Schoolbook",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Chakra Petch": {
+        "name": "Chakra Petch",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Chalkboard": {
+        "name": "Chalkboard",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Chalkboard SE": {
+        "name": "Chalkboard SE",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Regular"
+        ]
+    },
+    "Chalkduster": {
+        "name": "Chalkduster",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Charcoal CY": {
+        "name": "Charcoal CY",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Charm": {
+        "name": "Charm",
+        "version": "Version 1.002",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Charmonman": {
+        "name": "Charmonman",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Charter": {
+        "name": "Charter",
+        "version": "14.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Black Italic",
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Charter Roman": {
+        "name": "Charter Roman",
+        "version": "14.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Cochin": {
+        "name": "Cochin",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Comic Sans MS": {
+        "name": "Comic Sans MS",
+        "version": "Version 5.00x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Copperplate": {
+        "name": "Copperplate",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light"
+        ]
+    },
+    "Corsiva Hebrew": {
+        "name": "Corsiva Hebrew",
+        "version": "19.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Courier": {
+        "name": "Courier",
+        "version": "19.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Oblique",
+            "Oblique"
+        ]
+    },
+    "Courier New": {
+        "name": "Courier New",
+        "version": "Version 5.00.2x",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "DB LCD Temp": {
+        "name": "DB LCD Temp",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS"
+        ],
+        "weights": [
+            "Black"
+        ]
+    },
+    "DFKaiShu-SB-Estd-BF": {
+        "name": "DFKaiShu-SB-Estd-BF",
+        "version": "UNKNOWN",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": []
+    },
+    "DIN Alternate": {
+        "name": "DIN Alternate",
+        "version": "13.0d3e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "DIN": {
+        "name": "DIN",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Condensed"
+        ]
+    },
+    "Damascus": {
+        "name": "Damascus",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Medium",
+            "Regular"
+        ]
+    },
+    "Damascus Semi": {
+        "name": "Damascus Semi",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Dash Practice": {
+        "name": "Dash Practice",
+        "version": "20.0d3e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Dash": {
+        "name": "Dash",
+        "version": "20.0d3e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Dear Joe Four": {
+        "name": "Dear Joe Four",
+        "version": "13.0d2e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Dear Joe Four Small": {
+        "name": "Dear Joe Four Small",
+        "version": "13.0d2e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Semibold"
+        ]
+    },
+    "DecoType Naskh": {
+        "name": "DecoType Naskh",
+        "version": "14.0d0e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Devanagari MT": {
+        "name": "Devanagari MT",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Devanagari Sangam MN": {
+        "name": "Devanagari Sangam MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Didot": {
+        "name": "Didot",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Italic"
+        ]
+    },
+    "Dijla": {
+        "name": "Dijla",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Diwan Kufi": {
+        "name": "Diwan Kufi",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Diwan Thuluth": {
+        "name": "Diwan Thuluth",
+        "version": "13.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Domaine Display": {
+        "name": "Domaine Display",
+        "version": "14.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Medium",
+            "Medium Italic"
+        ]
+    },
+    "Druk": {
+        "name": "Druk",
+        "version": "15.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Heavy",
+            "Heavy Italic",
+            "Medium",
+            "Medium Italic"
+        ]
+    },
+    "Druk Super": {
+        "name": "Druk Super",
+        "version": "15.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Druk Text": {
+        "name": "Druk Text",
+        "version": "15.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Druk Wide": {
+        "name": "Druk Wide",
+        "version": "15.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Medium",
+            "Medium Italic"
+        ]
+    },
+    "Euphemia UCAS": {
+        "name": "Euphemia UCAS",
+        "version": "15.0d1e3",
+        "platforms": [
+            "iOS",
+            "tvOS",
+            "watchOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Italic"
+        ]
+    },
+    "Fahkwang": {
+        "name": "Fahkwang",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Fakt Slab Stencil Pro": {
+        "name": "Fakt Slab Stencil Pro",
+        "version": "13.0d3e7",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Medium"
+        ]
+    },
+    "Farah": {
+        "name": "Farah",
+        "version": "13.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Farisi": {
+        "name": "Farisi",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Forgotten Futurist": {
+        "name": "Forgotten Futurist",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Regular"
+        ]
+    },
+    "Forgotten Futurist Shadow": {
+        "name": "Forgotten Futurist Shadow",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Founders Grotesk": {
+        "name": "Founders Grotesk",
+        "version": "15.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Condensed",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular Italic",
+            "Semibold",
+            "Semibold Italic"
+        ]
+    },
+    "Founders Grotesk Text": {
+        "name": "Founders Grotesk Text",
+        "version": "15.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Regular Italic"
+        ]
+    },
+    "Futura": {
+        "name": "Futura",
+        "version": "16.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Medium",
+            "Medium Italic",
+            "ExtraBold",
+            "Condensed"
+        ]
+    },
+    "GB18030 Bitmap": {
+        "name": "GB18030 Bitmap",
+        "version": "18.0d1e1",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Galvji": {
+        "name": "Galvji",
+        "version": "14.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Oblique",
+            "Oblique"
+        ]
+    },
+    "Garamond": {
+        "name": "Garamond",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Geeza Pro": {
+        "name": "Geeza Pro",
+        "version": "20.0d1e11",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Geneva": {
+        "name": "Geneva",
+        "version": "17.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Geneva CY": {
+        "name": "Geneva CY",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Georgia": {
+        "name": "Georgia",
+        "version": "Version 5.00x-4",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Gill Sans": {
+        "name": "Gill Sans",
+        "version": "16.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "SemiBold",
+            "SemiBold Italic",
+            "UltraBold"
+        ]
+    },
+    "Gotu": {
+        "name": "Gotu",
+        "version": "20.0d1e2 (2.320)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Grantha Sangam MN": {
+        "name": "Grantha Sangam MN",
+        "version": "20.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "DemiBold",
+            "Light",
+            "Medium",
+            "Regular"
+        ]
+    },
+    "Graphik": {
+        "name": "Graphik",
+        "version": "15.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular Italic",
+            "Semibold",
+            "Semibold Italic"
+        ]
+    },
+    "Graphik Compact": {
+        "name": "Graphik Compact",
+        "version": "15.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "Regular Italic",
+            "Semibold",
+            "Semibold Italic"
+        ]
+    },
+    "Gujarati MT": {
+        "name": "Gujarati MT",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Gujarati Sangam MN": {
+        "name": "Gujarati Sangam MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "GungSeo": {
+        "name": "GungSeo",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Gurmukhi MN": {
+        "name": "Gurmukhi MN",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Gurmukhi MT": {
+        "name": "Gurmukhi MT",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Gurmukhi Sangam MN": {
+        "name": "Gurmukhi Sangam MN",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Hannotate SC": {
+        "name": "Hannotate SC",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Hannotate TC": {
+        "name": "Hannotate TC",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "HanziPen SC": {
+        "name": "HanziPen SC",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "HanziPen TC": {
+        "name": "HanziPen TC",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "HeadLineA": {
+        "name": "HeadLineA",
+        "version": "13.0d3e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Hei": {
+        "name": "Hei",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Heiti SC": {
+        "name": "Heiti SC",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light",
+            "Medium"
+        ]
+    },
+    "Heiti TC": {
+        "name": "Heiti TC",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light",
+            "Medium"
+        ]
+    },
+    "Helvetica": {
+        "name": "Helvetica",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Oblique",
+            "Light",
+            "Light Oblique",
+            "Oblique"
+        ]
+    },
+    "Helvetica CY": {
+        "name": "Helvetica CY",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "BoldOblique",
+            "Oblique",
+            "Plain"
+        ]
+    },
+    "Helvetica Neue": {
+        "name": "Helvetica Neue",
+        "version": "17.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Thin",
+            "Thin Italic",
+            "UltraLight",
+            "UltraLight Italic",
+            "Black",
+            "Condensed"
+        ]
+    },
+    "Herculanum": {
+        "name": "Herculanum",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Kaku Gothic Pro W3": {
+        "name": "Hiragino Kaku Gothic Pro W3",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Kaku Gothic Pro W6": {
+        "name": "Hiragino Kaku Gothic Pro W6",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Kaku Gothic ProN W3": {
+        "name": "Hiragino Kaku Gothic ProN W3",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Kaku Gothic ProN W6": {
+        "name": "Hiragino Kaku Gothic ProN W6",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Kaku Gothic Std W8": {
+        "name": "Hiragino Kaku Gothic Std W8",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Kaku Gothic StdN W8": {
+        "name": "Hiragino Kaku Gothic StdN W8",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Maru Gothic Pro W4": {
+        "name": "Hiragino Maru Gothic Pro W4",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Maru Gothic ProN W4": {
+        "name": "Hiragino Maru Gothic ProN W4",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Mincho Pro W3": {
+        "name": "Hiragino Mincho Pro W3",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Mincho Pro W6": {
+        "name": "Hiragino Mincho Pro W6",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Mincho ProN W3": {
+        "name": "Hiragino Mincho ProN W3",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Mincho ProN W6": {
+        "name": "Hiragino Mincho ProN W6",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans CNS W3": {
+        "name": "Hiragino Sans CNS W3",
+        "version": "17.0d0e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans CNS W6": {
+        "name": "Hiragino Sans CNS W6",
+        "version": "17.0d0e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans GB W3": {
+        "name": "Hiragino Sans GB W3",
+        "version": "13.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans GB W6": {
+        "name": "Hiragino Sans GB W6",
+        "version": "13.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans TC W3": {
+        "name": "Hiragino Sans TC W3",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans TC W6": {
+        "name": "Hiragino Sans TC W6",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W0": {
+        "name": "Hiragino Sans W0",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W1": {
+        "name": "Hiragino Sans W1",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W2": {
+        "name": "Hiragino Sans W2",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W3": {
+        "name": "Hiragino Sans W3",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W4": {
+        "name": "Hiragino Sans W4",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W5": {
+        "name": "Hiragino Sans W5",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W6": {
+        "name": "Hiragino Sans W6",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W7": {
+        "name": "Hiragino Sans W7",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W8": {
+        "name": "Hiragino Sans W8",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Hiragino Sans W9": {
+        "name": "Hiragino Sans W9",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hoefler Text": {
+        "name": "Hoefler Text",
+        "version": "14.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Black Italic",
+            "Italic"
+        ]
+    },
+    "Hoefler Text Ornaments": {
+        "name": "Hoefler Text Ornaments",
+        "version": "14.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Hopper Script": {
+        "name": "Hopper Script",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Hubballi": {
+        "name": "Hubballi",
+        "version": "20.0d1e2 (1.000)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "ITF Devanagari": {
+        "name": "ITF Devanagari",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Demi",
+            "Light",
+            "Medium"
+        ]
+    },
+    "ITF Devanagari Book": {
+        "name": "ITF Devanagari Book",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "ITF Devanagari Marathi": {
+        "name": "ITF Devanagari Marathi",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Demi",
+            "Light",
+            "Medium"
+        ]
+    },
+    "ITF Devanagari Marathi Book": {
+        "name": "ITF Devanagari Marathi Book",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Impact": {
+        "name": "Impact",
+        "version": "Version 5.00x",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "InaiMathi": {
+        "name": "InaiMathi",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Iowan Old Style": {
+        "name": "Iowan Old Style",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Black Italic",
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Iowan Old Style Roman": {
+        "name": "Iowan Old Style Roman",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "Iowan Old Style Titling": {
+        "name": "Iowan Old Style Titling",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Jaini": {
+        "name": "Jaini",
+        "version": "20.0d1e2 (1.001)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Jaini Purva": {
+        "name": "Jaini Purva",
+        "version": "20.0d1e2 (1.001)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Jazz LET Plain:1.0": {
+        "name": "Jazz LET Plain:1.0",
+        "version": "16.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Journal Sans New Inline": {
+        "name": "Journal Sans New Inline",
+        "version": "13.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "K2D": {
+        "name": "K2D",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraBold",
+            "ExtraBold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic",
+            "Thin",
+            "Thin Italic"
+        ]
+    },
+    "Kai": {
+        "name": "Kai",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Kailasa": {
+        "name": "Kailasa",
+        "version": "16.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Kaiti SC": {
+        "name": "Kaiti SC",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Kaiti TC": {
+        "name": "Kaiti TC",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Kannada MN": {
+        "name": "Kannada MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Kannada Sangam MN": {
+        "name": "Kannada Sangam MN",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Katari": {
+        "name": "Katari",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Black Italic",
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular"
+        ]
+    },
+    "Kavivanar": {
+        "name": "Kavivanar",
+        "version": "20.0d1e2 (1.89)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Kefa": {
+        "name": "Kefa",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Khmer MN": {
+        "name": "Khmer MN",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Khmer Sangam MN": {
+        "name": "Khmer Sangam MN",
+        "version": "14.0d1e9",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Kigelia Arabic": {
+        "name": "Kigelia Arabic",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Extrabold",
+            "Light",
+            "Regular",
+            "Semibold"
+        ]
+    },
+    "Kigelia": {
+        "name": "Kigelia",
+        "version": "18.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Extrabold",
+            "Extrabold Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Regular",
+            "Semibold",
+            "Semibold Italic"
+        ]
+    },
+    "Klee": {
+        "name": "Klee",
+        "version": "15.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Demibold",
+            "Medium"
+        ]
+    },
+    "KoHo": {
+        "name": "KoHo",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Kodchasan": {
+        "name": "Kodchasan",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Kohinoor Bangla": {
+        "name": "Kohinoor Bangla",
+        "version": "20.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Medium",
+            "Semibold"
+        ]
+    },
+    "Kohinoor Devanagari": {
+        "name": "Kohinoor Devanagari",
+        "version": "20.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Medium",
+            "Regular",
+            "Semibold"
+        ]
+    },
+    "Kohinoor Gujarati": {
+        "name": "Kohinoor Gujarati",
+        "version": "20.0d1e1",
+        "platforms": [
+            "iOS",
+            "tvOS",
+            "watchOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Medium",
+            "Regular",
+            "Semibold"
+        ]
+    },
+    "Kohinoor Telugu": {
+        "name": "Kohinoor Telugu",
+        "version": "20.01d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Medium",
+            "Semibold"
+        ]
+    },
+    "Kokonor": {
+        "name": "Kokonor",
+        "version": "18.0d1e10",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Koufi Abjadi": {
+        "name": "Koufi Abjadi",
+        "version": "13.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Krub": {
+        "name": "Krub",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Krungthep": {
+        "name": "Krungthep",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "KufiStandardGK": {
+        "name": "KufiStandardGK",
+        "version": "13.0d1e11",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Lahore Gurmukhi": {
+        "name": "Lahore Gurmukhi",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Laimoon": {
+        "name": "Laimoon",
+        "version": "13.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Lantinghei SC": {
+        "name": "Lantinghei SC",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Demibold",
+            "Extralight",
+            "Heavy"
+        ]
+    },
+    "Lantinghei TC": {
+        "name": "Lantinghei TC",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Demibold",
+            "Extralight",
+            "Heavy"
+        ]
+    },
+    "Lao MN": {
+        "name": "Lao MN",
+        "version": "14.0d1e9",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Lao Sangam MN": {
+        "name": "Lao Sangam MN",
+        "version": "14.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Lava Devanagari": {
+        "name": "Lava Devanagari",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Heavy",
+            "Medium",
+            "Regular"
+        ]
+    },
+    "Lava Kannada": {
+        "name": "Lava Kannada",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Heavy",
+            "Medium",
+            "Regular"
+        ]
+    },
+    "Lava Telugu": {
+        "name": "Lava Telugu",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Heavy",
+            "Medium",
+            "Regular"
+        ]
+    },
+    "LiHei Pro": {
+        "name": "LiHei Pro",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "LiSong Pro": {
+        "name": "LiSong Pro",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Libian SC": {
+        "name": "Libian SC",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Libian TC": {
+        "name": "Libian TC",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "LingWai SC": {
+        "name": "LingWai SC",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Medium"
+        ]
+    },
+    "LingWai TC": {
+        "name": "LingWai TC",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Medium"
+        ]
+    },
+    "Lucida Grande": {
+        "name": "Lucida Grande",
+        "version": "15.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Luminari": {
+        "name": "Luminari",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Maku": {
+        "name": "Maku",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Malayalam MN": {
+        "name": "Malayalam MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Malayalam Sangam MN": {
+        "name": "Malayalam Sangam MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Mali": {
+        "name": "Mali",
+        "version": "Version 1.010",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Marion": {
+        "name": "Marion",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Italic",
+            "Regular"
+        ]
+    },
+    "Marker Felt": {
+        "name": "Marker Felt",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Thin"
+        ]
+    },
+    "Marker Felt Wide": {
+        "name": "Marker Felt Wide",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Menlo": {
+        "name": "Menlo",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Regular"
+        ]
+    },
+    "Microsoft Sans Serif": {
+        "name": "Microsoft Sans Serif",
+        "version": "Version 5.00.1x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Mishafi Gold": {
+        "name": "Mishafi Gold",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Mishafi": {
+        "name": "Mishafi",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Modak": {
+        "name": "Modak",
+        "version": "20.0d1e2 (1.155)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Mona Lisa Solid ITC TT": {
+        "name": "Mona Lisa Solid ITC TT",
+        "version": "13.0d3e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Monaco": {
+        "name": "Monaco",
+        "version": "17.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Mshtakan": {
+        "name": "Mshtakan",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "BoldOblique",
+            "Oblique"
+        ]
+    },
+    "Mukta": {
+        "name": "Mukta",
+        "version": "20.0d1e2 (2.538)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Mukta Malar": {
+        "name": "Mukta Malar",
+        "version": "20.0d1e2 (2.538)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Mukta Vaani": {
+        "name": "Mukta Vaani",
+        "version": "20.0d1e2 (2.538)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "MuktaMahee": {
+        "name": "MuktaMahee",
+        "version": "20.0d2e4",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Muna": {
+        "name": "Muna",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Myanmar MN": {
+        "name": "Myanmar MN",
+        "version": "14.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Myanmar Sangam MN": {
+        "name": "Myanmar Sangam MN",
+        "version": "14.0d1e8",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Myriad Arabic": {
+        "name": "Myriad Arabic",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Black Italic",
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Semibold",
+            "Semibold Italic"
+        ]
+    },
+    "Nadeem": {
+        "name": "Nadeem",
+        "version": "18.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Nanum Brush Script": {
+        "name": "Nanum Brush Script",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Nanum Pen Script": {
+        "name": "Nanum Pen Script",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "NanumGothic": {
+        "name": "NanumGothic",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold"
+        ]
+    },
+    "NanumMyeongjo": {
+        "name": "NanumMyeongjo",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold"
+        ]
+    },
+    "New Peninim MT": {
+        "name": "New Peninim MT",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "New Peninim MT Bold Inclined": {
+        "name": "New Peninim MT Bold Inclined",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "New Peninim MT Inclined": {
+        "name": "New Peninim MT Inclined",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Niramit": {
+        "name": "Niramit",
+        "version": "Version 1.001",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic"
+        ]
+    },
+    "Nisan": {
+        "name": "Nisan",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Nom Na Tong": {
+        "name": "Nom Na Tong",
+        "version": "20.0d2e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Noteworthy": {
+        "name": "Noteworthy",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light"
+        ]
+    },
+    "Noto Nastaliq Urdu": {
+        "name": "Noto Nastaliq Urdu",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Noto Sans Adlam": {
+        "name": "Noto Sans Adlam",
+        "version": "Version 3.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Armenian": {
+        "name": "Noto Sans Armenian",
+        "version": "15.0d1e2",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Thin"
+        ]
+    },
+    "Noto Sans Avestan": {
+        "name": "Noto Sans Avestan",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Bamum": {
+        "name": "Noto Sans Bamum",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Bassa Vah": {
+        "name": "Noto Sans Bassa Vah",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Batak": {
+        "name": "Noto Sans Batak",
+        "version": "Version 2.002",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Bhaiksuki": {
+        "name": "Noto Sans Bhaiksuki",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Brahmi": {
+        "name": "Noto Sans Brahmi",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Buginese": {
+        "name": "Noto Sans Buginese",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Buhid": {
+        "name": "Noto Sans Buhid",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Canadian Aboriginal": {
+        "name": "Noto Sans Canadian Aboriginal",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Carian": {
+        "name": "Noto Sans Carian",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Caucasian Albanian": {
+        "name": "Noto Sans Caucasian Albanian",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Chakma": {
+        "name": "Noto Sans Chakma",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Cham": {
+        "name": "Noto Sans Cham",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Coptic": {
+        "name": "Noto Sans Coptic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Cuneiform": {
+        "name": "Noto Sans Cuneiform",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Cypriot": {
+        "name": "Noto Sans Cypriot",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Duployan": {
+        "name": "Noto Sans Duployan",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Egyptian Hieroglyphs": {
+        "name": "Noto Sans Egyptian Hieroglyphs",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Elbasan": {
+        "name": "Noto Sans Elbasan",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Glagolitic": {
+        "name": "Noto Sans Glagolitic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Gothic": {
+        "name": "Noto Sans Gothic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Gunjala Gondi": {
+        "name": "Noto Sans Gunjala Gondi",
+        "version": "Version 1.002",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Hanifi Rohingya": {
+        "name": "Noto Sans Hanifi Rohingya",
+        "version": "Version 2.002",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Hanunoo": {
+        "name": "Noto Sans Hanunoo",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Hatran": {
+        "name": "Noto Sans Hatran",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Imperial Aramaic": {
+        "name": "Noto Sans Imperial Aramaic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Inscriptional Pahlavi": {
+        "name": "Noto Sans Inscriptional Pahlavi",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Inscriptional Parthian": {
+        "name": "Noto Sans Inscriptional Parthian",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Javanese": {
+        "name": "Noto Sans Javanese",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Kaithi": {
+        "name": "Noto Sans Kaithi",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Kannada": {
+        "name": "Noto Sans Kannada",
+        "version": "20.0d1e2",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Thin"
+        ]
+    },
+    "Noto Sans Kayah Li": {
+        "name": "Noto Sans Kayah Li",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Kharoshthi": {
+        "name": "Noto Sans Kharoshthi",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Khojki": {
+        "name": "Noto Sans Khojki",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Khudawadi": {
+        "name": "Noto Sans Khudawadi",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Lepcha": {
+        "name": "Noto Sans Lepcha",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Limbu": {
+        "name": "Noto Sans Limbu",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Linear A": {
+        "name": "Noto Sans Linear A",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Linear B": {
+        "name": "Noto Sans Linear B",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Lisu": {
+        "name": "Noto Sans Lisu",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Lycian": {
+        "name": "Noto Sans Lycian",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Lydian": {
+        "name": "Noto Sans Lydian",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Mahajani": {
+        "name": "Noto Sans Mahajani",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Mandaic": {
+        "name": "Noto Sans Mandaic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Manichaean": {
+        "name": "Noto Sans Manichaean",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Marchen": {
+        "name": "Noto Sans Marchen",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Masaram Gondi": {
+        "name": "Noto Sans Masaram Gondi",
+        "version": "Version 1.003",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Meetei Mayek": {
+        "name": "Noto Sans Meetei Mayek",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Mende Kikakui": {
+        "name": "Noto Sans Mende Kikakui",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Meroitic": {
+        "name": "Noto Sans Meroitic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Miao": {
+        "name": "Noto Sans Miao",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Modi": {
+        "name": "Noto Sans Modi",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Mongolian": {
+        "name": "Noto Sans Mongolian",
+        "version": "Version 1.04 uh",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Noto Sans Mro": {
+        "name": "Noto Sans Mro",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Multani": {
+        "name": "Noto Sans Multani",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Myanmar": {
+        "name": "Noto Sans Myanmar",
+        "version": "17.0d1e2",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Thin"
+        ]
+    },
+    "Noto Sans NKo": {
+        "name": "Noto Sans NKo",
+        "version": "Version 2.004",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Nabataean": {
+        "name": "Noto Sans Nabataean",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans New Tai Lue": {
+        "name": "Noto Sans New Tai Lue",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Newa": {
+        "name": "Noto Sans Newa",
+        "version": "Version 2.002",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Ol Chiki": {
+        "name": "Noto Sans Ol Chiki",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Old Hungarian": {
+        "name": "Noto Sans Old Hungarian",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Old": {
+        "name": "Noto Sans Old",
+        "version": "Version 2.002",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular",
+            "Italic"
+        ]
+    },
+    "Noto Sans Old North Arabian": {
+        "name": "Noto Sans Old North Arabian",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Old Permic": {
+        "name": "Noto Sans Old Permic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Old Persian": {
+        "name": "Noto Sans Old Persian",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Old South Arabian": {
+        "name": "Noto Sans Old South Arabian",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Old Turkic": {
+        "name": "Noto Sans Old Turkic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Oriya": {
+        "name": "Noto Sans Oriya",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Noto Sans Osage": {
+        "name": "Noto Sans Osage",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Osmanya": {
+        "name": "Noto Sans Osmanya",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Pahawh Hmong": {
+        "name": "Noto Sans Pahawh Hmong",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Palmyrene": {
+        "name": "Noto Sans Palmyrene",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Pau Cin Hau": {
+        "name": "Noto Sans Pau Cin Hau",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans PhagsPa": {
+        "name": "Noto Sans PhagsPa",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Phoenician": {
+        "name": "Noto Sans Phoenician",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Psalter Pahlavi": {
+        "name": "Noto Sans Psalter Pahlavi",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Rejang": {
+        "name": "Noto Sans Rejang",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Samaritan": {
+        "name": "Noto Sans Samaritan",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Saurashtra": {
+        "name": "Noto Sans Saurashtra",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Sharada": {
+        "name": "Noto Sans Sharada",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Siddham": {
+        "name": "Noto Sans Siddham",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Sora Sompeng": {
+        "name": "Noto Sans Sora Sompeng",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Sundanese": {
+        "name": "Noto Sans Sundanese",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Syloti Nagri": {
+        "name": "Noto Sans Syloti Nagri",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Syriac": {
+        "name": "Noto Sans Syriac",
+        "version": "Version 3.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "SemiBold",
+            "Thin",
+            "Regular"
+        ]
+    },
+    "Noto Sans Tagalog": {
+        "name": "Noto Sans Tagalog",
+        "version": "Version 2.002",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Tagbanwa": {
+        "name": "Noto Sans Tagbanwa",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Tai Le": {
+        "name": "Noto Sans Tai Le",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Tai Tham": {
+        "name": "Noto Sans Tai Tham",
+        "version": "Version 1.04 uh",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Noto Sans Tai Viet": {
+        "name": "Noto Sans Tai Viet",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Takri": {
+        "name": "Noto Sans Takri",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Thaana": {
+        "name": "Noto Sans Thaana",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Tifinagh": {
+        "name": "Noto Sans Tifinagh",
+        "version": "Version 2.006",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Tirhuta": {
+        "name": "Noto Sans Tirhuta",
+        "version": "Version 2.001",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Ugaritic": {
+        "name": "Noto Sans Ugaritic",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Vai": {
+        "name": "Noto Sans Vai",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Wancho": {
+        "name": "Noto Sans Wancho",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Warang Citi": {
+        "name": "Noto Sans Warang Citi",
+        "version": "Version 3.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Yi": {
+        "name": "Noto Sans Yi",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Sans Zawgyi": {
+        "name": "Noto Sans Zawgyi",
+        "version": "17.0d1e2",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Thin"
+        ]
+    },
+    "Noto Serif Ahom": {
+        "name": "Noto Serif Ahom",
+        "version": "Version 2.003",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Serif Balinese": {
+        "name": "Noto Serif Balinese",
+        "version": "Version 2.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Serif Hmong Nyiakeng": {
+        "name": "Noto Serif Hmong Nyiakeng",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Noto Serif Kannada": {
+        "name": "Noto Serif Kannada",
+        "version": "20.0d1e2 (2.001)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Thin"
+        ]
+    },
+    "Noto Serif Myanmar": {
+        "name": "Noto Serif Myanmar",
+        "version": "14.0d1e5",
+        "platforms": [
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraBold",
+            "ExtraLight",
+            "Light",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Thin"
+        ]
+    },
+    "Noto Serif Yezidi": {
+        "name": "Noto Serif Yezidi",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "November Bangla Traditional": {
+        "name": "November Bangla Traditional",
+        "version": "20.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Extralight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Thin",
+            "Regular",
+            "Condensed"
+        ]
+    },
+    "November Bangla Traditional Regular Compressed": {
+        "name": "November Bangla Traditional Regular Compressed",
+        "version": "20.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Extralight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Thin"
+        ]
+    },
+    "November Bangla Traditional Regular Compressed Hairline": {
+        "name": "November Bangla Traditional Regular Compressed Hairline",
+        "version": "20.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "November Bangla Traditional Compressed": {
+        "name": "November Bangla Traditional Compressed",
+        "version": "20.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "November Bangla Traditional Regular Condensed Hairline": {
+        "name": "November Bangla Traditional Regular Condensed Hairline",
+        "version": "20.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "November Bangla Traditional Regular Hairline": {
+        "name": "November Bangla Traditional Regular Hairline",
+        "version": "20.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Devanagari": {
+        "name": "October Compressed Devanagari",
+        "version": "15.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Devanagari Hairline": {
+        "name": "October Compressed Devanagari Hairline",
+        "version": "15.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Gujarati": {
+        "name": "October Compressed Gujarati",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Gujarati Hairline": {
+        "name": "October Compressed Gujarati Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Gurmukhi": {
+        "name": "October Compressed Gurmukhi",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Gurmukhi Hairline": {
+        "name": "October Compressed Gurmukhi Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Kannada": {
+        "name": "October Compressed Kannada",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Kannada Hairline": {
+        "name": "October Compressed Kannada Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Meetei Mayek": {
+        "name": "October Compressed Meetei Mayek",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Meetei Mayek Hairline": {
+        "name": "October Compressed Meetei Mayek Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Odia": {
+        "name": "October Compressed Odia",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Odia Hairline": {
+        "name": "October Compressed Odia Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Ol Chiki": {
+        "name": "October Compressed Ol Chiki",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Ol Chiki Hairline": {
+        "name": "October Compressed Ol Chiki Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Tamil": {
+        "name": "October Compressed Tamil",
+        "version": "15.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Tamil Hairline": {
+        "name": "October Compressed Tamil Hairline",
+        "version": "15.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Compressed Telugu": {
+        "name": "October Compressed Telugu",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Compressed Telugu Hairline": {
+        "name": "October Compressed Telugu Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Devanagari": {
+        "name": "October Condensed Devanagari",
+        "version": "15.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Devanagari Hairline": {
+        "name": "October Condensed Devanagari Hairline",
+        "version": "15.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Gujarati": {
+        "name": "October Condensed Gujarati",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Gujarati Hairline": {
+        "name": "October Condensed Gujarati Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Gurmukhi": {
+        "name": "October Condensed Gurmukhi",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Gurmukhi Hairline": {
+        "name": "October Condensed Gurmukhi Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Kannada": {
+        "name": "October Condensed Kannada",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Kannada Hairline": {
+        "name": "October Condensed Kannada Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Meetei Mayek": {
+        "name": "October Condensed Meetei Mayek",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Meetei Mayek Hairline": {
+        "name": "October Condensed Meetei Mayek Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Odia": {
+        "name": "October Condensed Odia",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Odia Hairline": {
+        "name": "October Condensed Odia Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Ol Chiki": {
+        "name": "October Condensed Ol Chiki",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Ol Chiki Hairline": {
+        "name": "October Condensed Ol Chiki Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Tamil": {
+        "name": "October Condensed Tamil",
+        "version": "15.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Tamil Hairline": {
+        "name": "October Condensed Tamil Hairline",
+        "version": "15.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Condensed Telugu": {
+        "name": "October Condensed Telugu",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Condensed Telugu Hairline": {
+        "name": "October Condensed Telugu Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Devanagari": {
+        "name": "October Devanagari",
+        "version": "15.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Devanagari Hairline": {
+        "name": "October Devanagari Hairline",
+        "version": "15.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Gujarati": {
+        "name": "October Gujarati",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Gujarati Hairline": {
+        "name": "October Gujarati Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Gurmukhi": {
+        "name": "October Gurmukhi",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Gurmukhi Hairline": {
+        "name": "October Gurmukhi Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Kannada": {
+        "name": "October Kannada",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Kannada Hairline": {
+        "name": "October Kannada Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Meetei Mayek": {
+        "name": "October Meetei Mayek",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Meetei Mayek Hairline": {
+        "name": "October Meetei Mayek Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Odia": {
+        "name": "October Odia",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Odia Hairline": {
+        "name": "October Odia Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Ol Chiki": {
+        "name": "October Ol Chiki",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Ol Chiki Hairline": {
+        "name": "October Ol Chiki Hairline",
+        "version": "18.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Tamil": {
+        "name": "October Tamil",
+        "version": "15.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Tamil Hairline": {
+        "name": "October Tamil Hairline",
+        "version": "15.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "October Telugu": {
+        "name": "October Telugu",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "ExtraLight",
+            "Heavy",
+            "Light",
+            "Medium",
+            "Regular",
+            "Thin"
+        ]
+    },
+    "October Telugu Hairline": {
+        "name": "October Telugu Hairline",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Optima": {
+        "name": "Optima",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Regular"
+        ]
+    },
+    "Optima ExtraBlack": {
+        "name": "Optima ExtraBlack",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Oriya MN": {
+        "name": "Oriya MN",
+        "version": "20.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Oriya Sangam MN": {
+        "name": "Oriya Sangam MN",
+        "version": "20.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Osaka": {
+        "name": "Osaka",
+        "version": "16.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Osaka-Mono": {
+        "name": "Osaka-Mono",
+        "version": "16.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "PCMyungjo": {
+        "name": "PCMyungjo",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "PSL Ornanong Pro": {
+        "name": "PSL Ornanong Pro",
+        "version": "14.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Demibold",
+            "Demibold Italic",
+            "Italic",
+            "Light",
+            "Light Italic"
+        ]
+    },
+    "PT Mono": {
+        "name": "PT Mono",
+        "version": "13.0d2e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "PT Sans": {
+        "name": "PT Sans",
+        "version": "13.0d3e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "PT Sans Caption": {
+        "name": "PT Sans Caption",
+        "version": "13.0d3e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "PT Sans Narrow": {
+        "name": "PT Sans Narrow",
+        "version": "13.0d3e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "PT Serif": {
+        "name": "PT Serif",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "PT Serif Caption": {
+        "name": "PT Serif Caption",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Padyakke Expanded One": {
+        "name": "Padyakke Expanded One",
+        "version": "20.0d1e2 (1.402)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Palatino": {
+        "name": "Palatino",
+        "version": "18.0d1e19",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Papyrus": {
+        "name": "Papyrus",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Condensed"
+        ]
+    },
+    "Party LET": {
+        "name": "Party LET",
+        "version": "16.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Plain"
+        ]
+    },
+    "Phosphate Inline": {
+        "name": "Phosphate Inline",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Phosphate Solid": {
+        "name": "Phosphate Solid",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "PilGi": {
+        "name": "PilGi",
+        "version": "13.0d2e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "PingFang HK": {
+        "name": "PingFang HK",
+        "version": "20.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light",
+            "Medium",
+            "Regular",
+            "Semibold",
+            "Thin",
+            "Ultralight"
+        ]
+    },
+    "PingFang MO": {
+        "name": "PingFang MO",
+        "version": "20.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light",
+            "Medium",
+            "Regular",
+            "Semibold",
+            "Thin",
+            "Ultralight"
+        ]
+    },
+    "PingFang SC": {
+        "name": "PingFang SC",
+        "version": "20.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light",
+            "Medium",
+            "Regular",
+            "Semibold",
+            "Thin",
+            "Ultralight"
+        ]
+    },
+    "PingFang TC": {
+        "name": "PingFang TC",
+        "version": "20.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light",
+            "Medium",
+            "Regular",
+            "Semibold",
+            "Thin",
+            "Ultralight"
+        ]
+    },
+    "Plantagenet Cherokee": {
+        "name": "Plantagenet Cherokee",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "PortagoITC TT": {
+        "name": "PortagoITC TT",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Princetown LET": {
+        "name": "Princetown LET",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Produkt": {
+        "name": "Produkt",
+        "version": "15.0d1e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Extralight",
+            "Extralight Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "Regular Italic"
+        ]
+    },
+    "Proxima Nova": {
+        "name": "Proxima Nova",
+        "version": "15.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Extrabold",
+            "Light",
+            "Medium",
+            "Semibold"
+        ]
+    },
+    "Proxima Nova Bold It": {
+        "name": "Proxima Nova Bold It",
+        "version": "15.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Proxima Nova Extrabold It": {
+        "name": "Proxima Nova Extrabold It",
+        "version": "15.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Proxima Nova It": {
+        "name": "Proxima Nova It",
+        "version": "15.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Proxima Nova Light It": {
+        "name": "Proxima Nova Light It",
+        "version": "15.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Proxima Nova Medium It": {
+        "name": "Proxima Nova Medium It",
+        "version": "15.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Proxima Nova Semibold It": {
+        "name": "Proxima Nova Semibold It",
+        "version": "15.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Publico Headline": {
+        "name": "Publico Headline",
+        "version": "15.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Black Italic",
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Publico Headline Roman": {
+        "name": "Publico Headline Roman",
+        "version": "15.0d1e6",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Publico Text": {
+        "name": "Publico Text",
+        "version": "15.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Semibold",
+            "Semibold Italic"
+        ]
+    },
+    "Publico Text Roman": {
+        "name": "Publico Text Roman",
+        "version": "15.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Quotes Caps": {
+        "name": "Quotes Caps",
+        "version": "15.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Quotes Script": {
+        "name": "Quotes Script",
+        "version": "15.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Raanana": {
+        "name": "Raanana",
+        "version": "14.0d1e14",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Raya": {
+        "name": "Raya",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Rockwell": {
+        "name": "Rockwell",
+        "version": "13.0d2e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "STFangsong": {
+        "name": "STFangsong",
+        "version": "17.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STHeiti": {
+        "name": "STHeiti",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIX Two Math": {
+        "name": "STIX Two Math",
+        "version": "Version 2.00 b137",
+        "platforms": [
+            "iOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "STIX Two Text": {
+        "name": "STIX Two Text",
+        "version": "Version 2.13 b171",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Medium",
+            "Regular",
+            "SemiBold",
+            "Medium Italic",
+            "SemiBold Italic"
+        ]
+    },
+    "STIXGeneral-Bold": {
+        "name": "STIXGeneral-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "STIXGeneral-BoldItalic": {
+        "name": "STIXGeneral-BoldItalic",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "STIXGeneral-Italic": {
+        "name": "STIXGeneral-Italic",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "STIXGeneral-Regular": {
+        "name": "STIXGeneral-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsD-Bold": {
+        "name": "STIXIntegralsD-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsD-Regular": {
+        "name": "STIXIntegralsD-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsSm-Bold": {
+        "name": "STIXIntegralsSm-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsSm-Regular": {
+        "name": "STIXIntegralsSm-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsUp-Bold": {
+        "name": "STIXIntegralsUp-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsUp-Regular": {
+        "name": "STIXIntegralsUp-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsUpD-Bold": {
+        "name": "STIXIntegralsUpD-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsUpD-Regular": {
+        "name": "STIXIntegralsUpD-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsUpSm-Bold": {
+        "name": "STIXIntegralsUpSm-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXIntegralsUpSm-Regular": {
+        "name": "STIXIntegralsUpSm-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXNonUnicode-Bold": {
+        "name": "STIXNonUnicode-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXNonUnicode-BoldItalic": {
+        "name": "STIXNonUnicode-BoldItalic",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXNonUnicode-Italic": {
+        "name": "STIXNonUnicode-Italic",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXNonUnicode-Regular": {
+        "name": "STIXNonUnicode-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeFiveSym-Regular": {
+        "name": "STIXSizeFiveSym-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeFourSym-Bold": {
+        "name": "STIXSizeFourSym-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeFourSym-Regular": {
+        "name": "STIXSizeFourSym-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeOneSym-Bold": {
+        "name": "STIXSizeOneSym-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeOneSym-Regular": {
+        "name": "STIXSizeOneSym-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeThreeSym-Bold": {
+        "name": "STIXSizeThreeSym-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeThreeSym-Regular": {
+        "name": "STIXSizeThreeSym-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeTwoSym-Bold": {
+        "name": "STIXSizeTwoSym-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXSizeTwoSym-Regular": {
+        "name": "STIXSizeTwoSym-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXVariants-Bold": {
+        "name": "STIXVariants-Bold",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STIXVariants-Regular": {
+        "name": "STIXVariants-Regular",
+        "version": "Version 1.1.0",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STKaiti": {
+        "name": "STKaiti",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STSong": {
+        "name": "STSong",
+        "version": "17.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "STXihei": {
+        "name": "STXihei",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sama Devanagari": {
+        "name": "Sama Devanagari",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Sama Devanagari Book": {
+        "name": "Sama Devanagari Book",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sama Gujarati": {
+        "name": "Sama Gujarati",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Sama Gujarati Book": {
+        "name": "Sama Gujarati Book",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sama Gurmukhi": {
+        "name": "Sama Gurmukhi",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Sama Gurmukhi Book": {
+        "name": "Sama Gurmukhi Book",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sama Kannada": {
+        "name": "Sama Kannada",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Sama Kannada Book": {
+        "name": "Sama Kannada Book",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sama Malayalam": {
+        "name": "Sama Malayalam",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Sama Malayalam Book": {
+        "name": "Sama Malayalam Book",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sama Tamil": {
+        "name": "Sama Tamil",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "ExtraBold",
+            "Medium",
+            "Regular",
+            "SemiBold"
+        ]
+    },
+    "Sama Tamil Book": {
+        "name": "Sama Tamil Book",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sana": {
+        "name": "Sana",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Santa Fe LET Plain:1.0": {
+        "name": "Santa Fe LET Plain:1.0",
+        "version": "13.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sarabun": {
+        "name": "Sarabun",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraBold",
+            "ExtraBold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic",
+            "Regular",
+            "SemiBold",
+            "SemiBold Italic",
+            "Thin",
+            "Thin Italic"
+        ]
+    },
+    "Sathu": {
+        "name": "Sathu",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sauber Script": {
+        "name": "Sauber Script",
+        "version": "15.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Savoye LET Plain:1.0": {
+        "name": "Savoye LET Plain:1.0",
+        "version": "13.0d2e4",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "Scheme-Bold": {
+        "name": "Scheme-Bold",
+        "version": "13.0d3e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": []
+    },
+    "SchoolHouse Cursive B": {
+        "name": "SchoolHouse Cursive B",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "SchoolHouse Printed A": {
+        "name": "SchoolHouse Printed A",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Seravek": {
+        "name": "Seravek",
+        "version": "13.0d3e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "ExtraLight",
+            "ExtraLight Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Medium",
+            "Medium Italic"
+        ]
+    },
+    "Shobhika": {
+        "name": "Shobhika",
+        "version": "20.0d1e2 (1.040)",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Shree Devanagari 714": {
+        "name": "Shree Devanagari 714",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "SignPainter-HouseScript": {
+        "name": "SignPainter-HouseScript",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Semibold"
+        ]
+    },
+    "Silom": {
+        "name": "Silom",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "SimSong": {
+        "name": "SimSong",
+        "version": "16.0d3e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Sinhala MN": {
+        "name": "Sinhala MN",
+        "version": "14.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Sinhala Sangam MN": {
+        "name": "Sinhala Sangam MN",
+        "version": "14.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Skia": {
+        "name": "Skia",
+        "version": "13.0d1e54",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Condensed",
+            "Light",
+            "Regular"
+        ]
+    },
+    "Skia Black Extended": {
+        "name": "Skia Black Extended",
+        "version": "13.0d1e54",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Skia Extended": {
+        "name": "Skia Extended",
+        "version": "13.0d1e54",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Skia Light Extended": {
+        "name": "Skia Light Extended",
+        "version": "13.0d1e54",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Snell Roundhand": {
+        "name": "Snell Roundhand",
+        "version": "15.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold"
+        ]
+    },
+    "Somer": {
+        "name": "Somer",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Songti SC": {
+        "name": "Songti SC",
+        "version": "17.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Light",
+            "Regular"
+        ]
+    },
+    "Songti TC": {
+        "name": "Songti TC",
+        "version": "17.0d2e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Regular"
+        ]
+    },
+    "Spot Mono": {
+        "name": "Spot Mono",
+        "version": "16.0d2e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Medium",
+            "Regular"
+        ]
+    },
+    "Srisakdi": {
+        "name": "Srisakdi",
+        "version": "Version 1.000",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Stone Sans ITC TT": {
+        "name": "Stone Sans ITC TT",
+        "version": "16.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Stone Sans Sem ITC TT Semi": {
+        "name": "Stone Sans Sem ITC TT Semi",
+        "version": "16.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Stone Sans Sem ITC TT SemiIta": {
+        "name": "Stone Sans Sem ITC TT SemiIta",
+        "version": "16.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Sukhumvit Set": {
+        "name": "Sukhumvit Set",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Medium",
+            "Thin"
+        ]
+    },
+    "Sukhumvit Set Semi": {
+        "name": "Sukhumvit Set Semi",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Sukhumvit Set Text": {
+        "name": "Sukhumvit Set Text",
+        "version": "17.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Superclarendon": {
+        "name": "Superclarendon",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Black",
+            "Black Italic",
+            "Bold",
+            "Bold Italic",
+            "Italic",
+            "Light",
+            "Light Italic",
+            "Regular"
+        ]
+    },
+    "Symbol": {
+        "name": "Symbol",
+        "version": "13.0d2e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Synchro LET": {
+        "name": "Synchro LET",
+        "version": "13.0d4e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Tahoma": {
+        "name": "Tahoma",
+        "version": "Version 5.01.2x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Tamil MN": {
+        "name": "Tamil MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Tamil Sangam MN": {
+        "name": "Tamil Sangam MN",
+        "version": "20.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Black",
+            "Bold",
+            "Demibold",
+            "Light",
+            "Medium"
+        ]
+    },
+    "Telugu MN": {
+        "name": "Telugu MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Telugu Sangam MN": {
+        "name": "Telugu Sangam MN",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "The Hand Serif": {
+        "name": "The Hand Serif",
+        "version": "13.1d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Semibold"
+        ]
+    },
+    "Thonburi": {
+        "name": "Thonburi",
+        "version": "18.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light"
+        ]
+    },
+    "Times": {
+        "name": "Times",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Times New Roman": {
+        "name": "Times New Roman",
+        "version": "Version 5.01.4x",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Times Roman": {
+        "name": "Times Roman",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Tiro Bangla": {
+        "name": "Tiro Bangla",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Tiro Devanagari Hindi": {
+        "name": "Tiro Devanagari Hindi",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Tiro Devanagari Marathi": {
+        "name": "Tiro Devanagari Marathi",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Tiro Devanagari Sanskrit": {
+        "name": "Tiro Devanagari Sanskrit",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Tiro Gurmukhi": {
+        "name": "Tiro Gurmukhi",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Tiro Kannada": {
+        "name": "Tiro Kannada",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Tiro Tamil": {
+        "name": "Tiro Tamil",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Tiro Telugu": {
+        "name": "Tiro Telugu",
+        "version": "20.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Italic"
+        ]
+    },
+    "Toppan Bunkyu Gothic": {
+        "name": "Toppan Bunkyu Gothic",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Demibold",
+            "Regular"
+        ]
+    },
+    "Toppan Bunkyu Midashi Gothic": {
+        "name": "Toppan Bunkyu Midashi Gothic",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Extrabold"
+        ]
+    },
+    "Toppan Bunkyu Midashi Mincho": {
+        "name": "Toppan Bunkyu Midashi Mincho",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Extrabold"
+        ]
+    },
+    "Toppan Bunkyu Mincho": {
+        "name": "Toppan Bunkyu Mincho",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Trattatello": {
+        "name": "Trattatello",
+        "version": "13.0d2e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Trebuchet MS": {
+        "name": "Trebuchet MS",
+        "version": "Version 5.00x",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Tsukushi A Round Gothic": {
+        "name": "Tsukushi A Round Gothic",
+        "version": "15.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Tsukushi B Round Gothic": {
+        "name": "Tsukushi B Round Gothic",
+        "version": "15.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Regular"
+        ]
+    },
+    "Tw Cen MT": {
+        "name": "Tw Cen MT",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Type Embellishments One LET Embellishments One LET Plain:1.0": {
+        "name": "Type Embellishments One LET Embellishments One LET Plain:1.0",
+        "version": "13.0d2e7",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Verdana": {
+        "name": "Verdana",
+        "version": "Version 5.01x",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS"
+        ],
+        "weights": [
+            "Bold",
+            "Bold Italic",
+            "Italic"
+        ]
+    },
+    "Waseem": {
+        "name": "Waseem",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Light",
+            "Regular"
+        ]
+    },
+    "Wawati SC": {
+        "name": "Wawati SC",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Wawati TC": {
+        "name": "Wawati TC",
+        "version": "15.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Webdings": {
+        "name": "Webdings",
+        "version": "Version 5.00x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Weibei SC": {
+        "name": "Weibei SC",
+        "version": "13.0d2e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Weibei TC": {
+        "name": "Weibei TC",
+        "version": "13.0d2e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold"
+        ]
+    },
+    "Wingdings": {
+        "name": "Wingdings",
+        "version": "Version 5.00x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Wingdings 2": {
+        "name": "Wingdings 2",
+        "version": "Version 1.55x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Wingdings 3": {
+        "name": "Wingdings 3",
+        "version": "Version 1.55x",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Xingkai SC": {
+        "name": "Xingkai SC",
+        "version": "17.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light"
+        ]
+    },
+    "Xingkai TC": {
+        "name": "Xingkai TC",
+        "version": "17.0d1e3",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light"
+        ]
+    },
+    "Yaziji": {
+        "name": "Yaziji",
+        "version": "13.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "YuGothic": {
+        "name": "YuGothic",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Medium"
+        ]
+    },
+    "YuKyokasho": {
+        "name": "YuKyokasho",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Medium"
+        ]
+    },
+    "YuKyokasho Yoko": {
+        "name": "YuKyokasho Yoko",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Medium"
+        ]
+    },
+    "YuMincho +36p Kana": {
+        "name": "YuMincho +36p Kana",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Demibold",
+            "Extrabold",
+            "Medium"
+        ]
+    },
+    "YuMincho": {
+        "name": "YuMincho",
+        "version": "17.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Demibold",
+            "Extrabold",
+            "Medium"
+        ]
+    },
+    "Yuanti SC": {
+        "name": "Yuanti SC",
+        "version": "17.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Regular"
+        ]
+    },
+    "Yuanti TC": {
+        "name": "Yuanti TC",
+        "version": "17.0d1e4",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Light",
+            "Regular"
+        ]
+    },
+    "Yuppy SC": {
+        "name": "Yuppy SC",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Yuppy TC": {
+        "name": "Yuppy TC",
+        "version": "13.0d1e1",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Regular"
+        ]
+    },
+    "Zapf Dingbats": {
+        "name": "Zapf Dingbats",
+        "version": "13.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "watchOS"
+        ],
+        "weights": []
+    },
+    "Zapfino": {
+        "name": "Zapfino",
+        "version": "18.0d1e2",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": []
+    },
+    "Zawra": {
+        "name": "Zawra",
+        "version": "13.0d1e5",
+        "platforms": [
+            "iOS",
+            "macOS"
+        ],
+        "weights": [
+            "Bold",
+            "Heavy"
+        ]
+    }
+}
