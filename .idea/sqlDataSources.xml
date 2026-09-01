@@ -10,6 +10,17 @@
         </node>
       </scope>
     </mapping>
+    <mapping uuid="8de2bc72-accf-4163-88f5-b0f01ae725de" name="inane.db.test.mapping">
+      <data-sources db="b787fb2f-19fe-4bdc-b9e6-000535bd6fe1" ddl="0d31e897-f4d6-43d1-82a8-ff48931d6738" />
+      <scope>
+        <node negative="1">
+          <node kind="database" negative="1">
+            <node kind="schema" negative="1" />
+          </node>
+          <node kind="schema" qname="main" />
+        </node>
+      </scope>
+    </mapping>
   </component>
   <component name="SqlDataSourceStorage">
     <option name="dataSources">
@@ -26,6 +37,24 @@
           <option name="remarks" value="Inane framework (DDL)" />
           <option name="outPath" value="$PROJECT_DIR$/source/database/inane-fw" />
           <option name="outLayout" value="File per object by schema.groovy" />
+        </State>
+        <State>
+          <option name="id" value="0d31e897-f4d6-43d1-82a8-ff48931d6738" />
+          <option name="name" value="inane.db.test.ddl" />
+          <option name="dbmsName" value="SQLITE" />
+          <option name="parent" value="b787fb2f-19fe-4bdc-b9e6-000535bd6fe1" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/lib/inanepain/db/tests/ddl" />
+            </array>
+          </option>
+          <option name="outPath" value="$PROJECT_DIR$/lib/inanepain/db/tests/ddl" />
+          <option name="outLayout" value="File per object by schema.groovy" />
+          <option name="scopes">
+            <map>
+              <entry key="$PROJECT_DIR$/lib/inanepain/db/tests/ddl/main" value="main" />
+            </map>
+          </option>
         </State>
       </list>
     </option>
