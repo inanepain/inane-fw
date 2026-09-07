@@ -245,7 +245,7 @@ class BrewCommands implements NotifyProgressInterface {
      *
      * @return int Returns 0 upon successful execution of the specified action on the given packages.
      */
-    #[Command('brew:attrib', 'Modify package properties', ['bha'])]   // Constructor method for initialising a console command with a name, description, and aliases.
+    #[Command('brew:attrib', 'Modify package properties', ['hba'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function attribCommand(
         #[Argument('Actions: install, uninstall, flag, unflag, hide, unhide, info', required: true, default: 'info')]   // Command line argument constructor.
         string $action = 'info',
@@ -719,7 +719,7 @@ class BrewCommands implements NotifyProgressInterface {
      *
      * @throws RuntimeException
      */
-    #[Command('brew:tags', 'List all tags in use', ['bht'])]   // Constructor method for initialising a console command with a name, description, and aliases.
+    #[Command('brew:tags', 'List all tags in use', ['hbt'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function tagsCommand(
         #[Option('usage', 'u', 'Sort by usage count', valueless: true)]   // Constructor method to initialise the class with specific properties.
         bool $usage = false,
