@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "id": "TASK_1",
+    "priority": "LOW",
+    "tags": [],
+    "title": "http \u003d\u003e https",
+    "description": "TODO: Temp only \u003d\u003e to upgrade implementations",
+    "status": "TODO",
+    "date": {
+      "date": {
+        "year": 2026,
+        "month": 9,
+        "day": 1
+      },
+      "time": {
+        "hour": 22,
+        "minute": 32,
+        "second": 32,
+        "nano": 153007000
+      }
+    },
+    "isImported": true,
+    "fileName": "Request.php",
+    "lineNumber": 128,
+    "fullCommentText": "TODO: Temp only \u003d\u003e to upgrade implementations"
+  }
+]

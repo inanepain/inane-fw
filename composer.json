@@ -101,7 +101,8 @@
         "ext-libxml": "*",
         "ext-gmp": "*",
         "ext-posix": "*",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-ctype": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
