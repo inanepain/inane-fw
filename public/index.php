@@ -95,13 +95,14 @@ ini_set('error_reporting', E_ALL);
 
 $includes = [
     null, // 0
-    'merge', // 1
-    'output', // 2
-    'view-json', // 3
-    'view-nested', // 4
-    'view-nested2', // 5 error: startBlock
-    'view-simple', // 6
-    'html-builder', // 7
+    'event', // 1
+    'merge', // 2
+    'output', // 3
+    'view-json', // 4
+    'view-nested', // 5
+    'view-nested2', // 6 error: startBlock
+    'view-simple', // 7
+    'html-builder', // 8
 ];
 
 $include = $includes[0];
