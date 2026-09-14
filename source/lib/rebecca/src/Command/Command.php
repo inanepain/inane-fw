@@ -37,9 +37,9 @@ abstract class Command {
     //#endregion Properties
 
     /**
-     * Constructor method to initialize the object with a rank value.
+     * Constructor method to initialise the object with a rank value.
      *
-     * @param int $rank The rank to initialize the object with. Defaults to 0.
+     * @param int $rank The rank to initialise the object with. Defaults to 0.
      *
      * @return void
      */

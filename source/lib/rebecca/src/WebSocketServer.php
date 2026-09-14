@@ -82,7 +82,7 @@ abstract class WebSocketServer {
      *
      * @param null|OptionsInterface $config Server and runtime configuration
      *
-     * @return static The initialized WebSocket server instance
+     * @return static The initialised WebSocket server instance
      */
     public static function init(?OptionsInterface $config = null): static {
         if (!isset(static::$instance)) {

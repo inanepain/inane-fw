@@ -38,7 +38,7 @@ use Swoole\WebSocket\Server;
  */
 class BroadcastCommand extends Command {
     /**
-     * Constructs the object and initializes it by calling the parent constructor with a fixed parameter.
+     * Constructs the object and initialises it by calling the parent constructor with a fixed parameter.
      *
      * @return void
      */

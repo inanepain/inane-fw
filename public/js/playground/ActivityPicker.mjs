@@ -71,7 +71,7 @@ class ActivityPicker extends MergeOptions {
      * Represents the current index in a sequence or collection.
      * Used to track or reference the position of an element within a structure.
      * The value is typically a number or null when no position is selected.
-     * Initialized to null, indicating that no index is currently set.
+     * Initialised to null, indicating that no index is currently set.
      */
     #currentIndex = null;
     /**
@@ -174,13 +174,13 @@ class ActivityPicker extends MergeOptions {
     }
 
     /**
-     * Constructs a new instance of the class and initializes its state.
+     * Constructs a new instance of the class and initialises its state.
      *
-     * @param {Array} activities - The list of activities to be managed. If undefined or null, no activities will be initialized.
+     * @param {Array} activities - The list of activities to be managed. If undefined or null, no activities will be initialised.
      * @param {Object} [options={rangeSize: 9, step: 5}] - Configuration options for initializing the instance.
      * @param {number} [options.rangeSize=9] - The range size to be used in the configuration.
      * @param {number} [options.step=5] - The step value to be used in the configuration.
-     * @return {void} This constructor does not return a value but initializes the class instance.
+     * @return {void} This constructor does not return a value but initialises the class instance.
      */
     constructor(activities, options = {rangeSize: 9, step: 5}) {
         super();

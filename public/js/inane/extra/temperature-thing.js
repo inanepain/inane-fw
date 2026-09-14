@@ -152,7 +152,7 @@ class TemperatureThing {
      * @param {number} degrees - The temperature in Kelvin.
      * @param {Object} [extra={}] - Optional extra parameters for initialization.
      *
-     * @returns {this} A new instance of the class initialized with the given Kelvin temperature.
+     * @returns {this} A new instance of the class initialised with the given Kelvin temperature.
      */
     static fromKelvin(degrees, extra = {}) {
         return new this({kelvin: degrees}, extra);
@@ -164,7 +164,7 @@ class TemperatureThing {
      * @param {number} degrees - The temperature in Celsius.
      * @param {Object} [extra={}] - Optional extra parameters for initialization.
      *
-     * @returns {this} A new instance of the class initialized with the given Celsius value.
+     * @returns {this} A new instance of the class initialised with the given Celsius value.
      */
     static fromCelsius(degrees, extra = {}) {
         return new this({celsius: degrees}, extra);
@@ -176,7 +176,7 @@ class TemperatureThing {
      * @param {number} degrees - The temperature in Fahrenheit.
      * @param {Object} [extra={}] - Optional extra parameters for initialization.
      *
-     * @returns {this} A new instance of the class initialized with the given Fahrenheit value.
+     * @returns {this} A new instance of the class initialised with the given Fahrenheit value.
      */
     static fromFahrenheit(degrees, extra = {}) {
         return new this({fahrenheit: degrees}, extra);

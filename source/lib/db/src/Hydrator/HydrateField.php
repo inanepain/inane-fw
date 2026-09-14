@@ -37,7 +37,7 @@ namespace Inane\Db\Hydrator;
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_PARAMETER)]
 class HydrateField {
     /**
-     * Constructor method to initialize the object with optional alias, type, and format.
+     * Constructor method to initialise the object with optional alias, type, and format.
      *
      * @param string|null    $alias  An optional string representing the alias.
      * @param FieldType|null $type   An optional FieldType object representing the type.

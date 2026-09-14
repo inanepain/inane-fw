@@ -31,7 +31,7 @@ class DumperTester {
     #initialised = false;
 
     /**
-     * Initializes the dumper instance for the class.
+     * Initialises the dumper instance for the class.
      *
      * If a dumper is not provided, it attempts to use the existing instance or falls back to `globalThis.Dumper`.
      * Logs the dumper name if a new dumper is set, and updates version and log level information.

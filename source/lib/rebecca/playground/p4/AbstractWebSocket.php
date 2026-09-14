@@ -113,7 +113,7 @@ abstract class AbstractWebSocket {
      *
      * @param null|OptionsInterface $config Server and runtime configuration
      *
-     * @return static The initialized WebSocket server instance
+     * @return static The initialised WebSocket server instance
      */
     public static function init(?OptionsInterface $config = null): static {
         if (!isset(static::$instance)) {
@@ -154,7 +154,7 @@ abstract class AbstractWebSocket {
     /**
      * Bootstrap internal state and instantiate the WebSocket server.
      *
-     * Initializes the event handlers container and constructs the
+     * Initialises the event handlers container and constructs the
      * OpenSwoole WebSocket Server from configuration, then wires
      * event callbacks via setupServer().
      *
@@ -222,7 +222,7 @@ abstract class AbstractWebSocket {
      *
      * Hooks the following events:
      * - start: logs server address
-     * - open: creates/initializes per-connection handler
+     * - open: creates/initialises per-connection handler
      * - message: dispatches to built-ins or per-connection handler
      * - close: removes per-connection handler
      *

@@ -1,7 +1,7 @@
 <?php
 
-use OpenSwoole\WebSocket\Server;
 use OpenSwoole\WebSocket\Frame;
+use OpenSwoole\WebSocket\Server;
 
 /**
  * Rebecca class to manage individual WebSocket connections
@@ -242,7 +242,7 @@ class WebSocketServer {
     }
 }
 
-// Initialize and start the server
+// Initialise and start the server
 $wsServer = new WebSocketServer('0.0.0.0', 9501);
 
 // Register commands

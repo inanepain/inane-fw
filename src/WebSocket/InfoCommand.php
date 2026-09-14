@@ -45,7 +45,7 @@ class InfoCommand extends Command {
     /**
      * Constructs an instance of the class.
      *
-     * This method initializes a new object by calling the constructor of its parent class with
+     * This method initialises a new object by calling the constructor of its parent class with
      * default parameters (if any) and sets up the initial state as per subclass logic. It may also
      * perform additional initialization specific to this object's context or set properties if needed.
      *

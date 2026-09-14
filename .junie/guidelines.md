@@ -25,7 +25,7 @@ The project relies heavily on git submodules for its internal libraries (located
    cd inane-fw
    ```
 
-2. **Initialize Submodules**:
+2. **Initialise Submodules**:
    ```bash
    git submodule update --init --recursive
    ```

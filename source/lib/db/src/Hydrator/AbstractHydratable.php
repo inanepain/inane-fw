@@ -176,7 +176,7 @@ abstract class AbstractHydratable {
     }
 
     /**
-     * Initializes reflection metadata for the specified class.
+     * Initialises reflection metadata for the specified class.
      *
      * This method inspects the constructor of the provided class and caches the
      * constructor parameters along with any attributes used for mapping aliases.

@@ -1,6 +1,6 @@
 <?php
 
-// Initialize and start the server
+// Initialise and start the server
 $wsServer = new WebSocketServer('0.0.0.0', 9501);
 
 // Register commands with different rank requirements

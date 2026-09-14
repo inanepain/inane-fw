@@ -44,7 +44,7 @@ final class Thing {
     private \Inane\Stdlib\Output\OutputInterface $outputHandler;
 
     /**
-     * Initializes the class with the given input data.
+     * Initialises the class with the given input data.
      *
      * @param mixed $inputData The input data to be used for initialization.
      *

@@ -48,7 +48,7 @@ require_once $autoload;
  * across application layers. The class includes user-specific information
  * such as ID, full name, email address, creation date, and an optional role.
  *
- * The constructor initializes all properties, allowing for concise and
+ * The constructor initialises all properties, allowing for concise and
  * straightforward instantiation.
  *
  * @param string            $id        The unique identifier of the user.

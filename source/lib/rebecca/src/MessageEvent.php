@@ -135,7 +135,7 @@ class MessageEvent {
     }
 
     /**
-     * Initializes the bootstrap process by sequentially verifying the structure, client, user, and command.
+     * Initialises the bootstrap process by sequentially verifying the structure, client, user, and command.
      *
      * @return void
      *

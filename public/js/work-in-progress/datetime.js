@@ -45,7 +45,7 @@ class Datetime {
     #timeFormat = 'UnixTimestamp';
     /**
      * Represents a data object that can be used to store and manage key-value pairs.
-     * This object is initialized as empty but can be populated with dynamic properties as needed.
+     * This object is initialised as empty but can be populated with dynamic properties as needed.
      * Commonly used as a generic container for temporary or structured data in an application.
      */
     #data = {};
@@ -53,10 +53,10 @@ class Datetime {
     /**
      * Constructs an instance of the class with a timestamp and its format.
      *
-     * @param {number|null} [eitherTimestamp=null] - The timestamp value to initialize. If null, the current timestamp is used.
+     * @param {number|null} [eitherTimestamp=null] - The timestamp value to initialise. If null, the current timestamp is used.
      * @param {boolean} [isUnixTimestamp=true] - A flag indicating whether the given timestamp is in Unix Timestamp format (true) or Mac Absolute Time format (false).
      *
-     * @return {void} Initializes the instance with appropriate timestamp formats and precomputes formatted datetime.
+     * @return {void} Initialises the instance with appropriate timestamp formats and precomputes formatted datetime.
      */
     constructor(eitherTimestamp = null, isUnixTimestamp = true) {
         this.#timeFormat = isUnixTimestamp ? 'UnixTimestamp' : 'MacAbsoluteTime';
@@ -77,7 +77,7 @@ class Datetime {
      * Converts a given Unix timestamp into an instance of the current class.
      *
      * @param {number} unixTimestamp - The Unix timestamp to be converted.
-     * @return {Object} An instance of the current class initialized with the specified Unix timestamp.
+     * @return {Object} An instance of the current class initialised with the specified Unix timestamp.
      */
     static fromUnixTimestamp(unixTimestamp) {
         return new this(unixTimestamp);

@@ -119,7 +119,7 @@ class Lotto implements Stringable {
     /**
      * Creates an instance of the class and populates it with the given data.
      *
-     * @param array|OptionsInterface $data Data to initialize the object with.
+     * @param array|OptionsInterface $data Data to initialise the object with.
      *
      * @return static An instance of the class loaded with the provided data.
      */

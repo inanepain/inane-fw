@@ -125,7 +125,7 @@ class GiteaPackageUploader {
     }
 
     /**
-     * Initializes the necessary components and configurations for the application.
+     * Initialises the necessary components and configurations for the application.
      *
      * This method is responsible for bootstrapping the application by setting up
      * required dependencies, configurations, or any other initialization logic.
