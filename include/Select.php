@@ -127,3 +127,5 @@ try {
 } catch (ConfigurationException $e) {
     Cli::line($e->getMessage());
 }
+
+$select->screen->beep('Exiting...');
