@@ -81,6 +81,7 @@ if ($option === 1) {
 } elseif ($option === 2) {
     $prompt = 'Select an option (Menu 2):';
     $items = [
+        'animal' => ['label' => 'Cat', 'menuFormat' => '* {l}'],
         new SelectOption(1, 'Home', '{i}. {l}'),
         new SelectOption('w', 'Work', '{i}. {l}'),
         new SelectOption(null, 'None', '{i}. {l}'),
@@ -99,7 +100,7 @@ if ($option === 1) {
     $items = [
         'plant'  => 'Avo',
         'fruit'  => 'Banana',
-        'animal' => 'Cat',
+        'animal' => ['label' => 'Cat', 'menuFormat' => '* {l}'], // Overridden by menuOptionFormat.
         new SelectOption('animal', 'Dog'),
     ];
 } elseif ($option === 5) {
