@@ -1,0 +1,609 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Generated schema for packages-list",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "number"
+            },
+            "owner": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "login": {
+                        "type": "string"
+                    },
+                    "login_name": {
+                        "type": "string"
+                    },
+                    "source_id": {
+                        "type": "number"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "avatar_url": {
+                        "type": "string"
+                    },
+                    "html_url": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "type": "string"
+                    },
+                    "is_admin": {
+                        "type": "boolean"
+                    },
+                    "last_login": {
+                        "type": "string"
+                    },
+                    "created": {
+                        "type": "string"
+                    },
+                    "restricted": {
+                        "type": "boolean"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "prohibit_login": {
+                        "type": "boolean"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "visibility": {
+                        "type": "string"
+                    },
+                    "followers_count": {
+                        "type": "number"
+                    },
+                    "following_count": {
+                        "type": "number"
+                    },
+                    "starred_repos_count": {
+                        "type": "number"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "login",
+                    "login_name",
+                    "source_id",
+                    "full_name",
+                    "email",
+                    "avatar_url",
+                    "html_url",
+                    "language",
+                    "is_admin",
+                    "last_login",
+                    "created",
+                    "restricted",
+                    "active",
+                    "prohibit_login",
+                    "location",
+                    "website",
+                    "description",
+                    "visibility",
+                    "followers_count",
+                    "following_count",
+                    "starred_repos_count",
+                    "username"
+                ]
+            },
+            "repository": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "owner": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "number"
+                            },
+                            "login": {
+                                "type": "string"
+                            },
+                            "login_name": {
+                                "type": "string"
+                            },
+                            "source_id": {
+                                "type": "number"
+                            },
+                            "full_name": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "avatar_url": {
+                                "type": "string"
+                            },
+                            "html_url": {
+                                "type": "string"
+                            },
+                            "language": {
+                                "type": "string"
+                            },
+                            "is_admin": {
+                                "type": "boolean"
+                            },
+                            "last_login": {
+                                "type": "string"
+                            },
+                            "created": {
+                                "type": "string"
+                            },
+                            "restricted": {
+                                "type": "boolean"
+                            },
+                            "active": {
+                                "type": "boolean"
+                            },
+                            "prohibit_login": {
+                                "type": "boolean"
+                            },
+                            "location": {
+                                "type": "string"
+                            },
+                            "website": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "visibility": {
+                                "type": "string"
+                            },
+                            "followers_count": {
+                                "type": "number"
+                            },
+                            "following_count": {
+                                "type": "number"
+                            },
+                            "starred_repos_count": {
+                                "type": "number"
+                            },
+                            "username": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "login",
+                            "login_name",
+                            "source_id",
+                            "full_name",
+                            "email",
+                            "avatar_url",
+                            "html_url",
+                            "language",
+                            "is_admin",
+                            "last_login",
+                            "created",
+                            "restricted",
+                            "active",
+                            "prohibit_login",
+                            "location",
+                            "website",
+                            "description",
+                            "visibility",
+                            "followers_count",
+                            "following_count",
+                            "starred_repos_count",
+                            "username"
+                        ]
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "empty": {
+                        "type": "boolean"
+                    },
+                    "private": {
+                        "type": "boolean"
+                    },
+                    "fork": {
+                        "type": "boolean"
+                    },
+                    "template": {
+                        "type": "boolean"
+                    },
+                    "parent": {},
+                    "mirror": {
+                        "type": "boolean"
+                    },
+                    "size": {
+                        "type": "number"
+                    },
+                    "language": {
+                        "type": "string"
+                    },
+                    "languages_url": {
+                        "type": "string"
+                    },
+                    "html_url": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    },
+                    "ssh_url": {
+                        "type": "string"
+                    },
+                    "clone_url": {
+                        "type": "string"
+                    },
+                    "original_url": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string"
+                    },
+                    "stars_count": {
+                        "type": "number"
+                    },
+                    "forks_count": {
+                        "type": "number"
+                    },
+                    "watchers_count": {
+                        "type": "number"
+                    },
+                    "open_issues_count": {
+                        "type": "number"
+                    },
+                    "open_pr_counter": {
+                        "type": "number"
+                    },
+                    "release_counter": {
+                        "type": "number"
+                    },
+                    "default_branch": {
+                        "type": "string"
+                    },
+                    "archived": {
+                        "type": "boolean"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "archived_at": {
+                        "type": "string"
+                    },
+                    "permissions": {
+                        "type": "object",
+                        "properties": {
+                            "admin": {
+                                "type": "boolean"
+                            },
+                            "push": {
+                                "type": "boolean"
+                            },
+                            "pull": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "admin",
+                            "push",
+                            "pull"
+                        ]
+                    },
+                    "has_issues": {
+                        "type": "boolean"
+                    },
+                    "internal_tracker": {
+                        "type": "object",
+                        "properties": {
+                            "enable_time_tracker": {
+                                "type": "boolean"
+                            },
+                            "allow_only_contributors_to_track_time": {
+                                "type": "boolean"
+                            },
+                            "enable_issue_dependencies": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "enable_time_tracker",
+                            "allow_only_contributors_to_track_time",
+                            "enable_issue_dependencies"
+                        ]
+                    },
+                    "has_wiki": {
+                        "type": "boolean"
+                    },
+                    "has_pull_requests": {
+                        "type": "boolean"
+                    },
+                    "has_projects": {
+                        "type": "boolean"
+                    },
+                    "projects_mode": {
+                        "type": "string"
+                    },
+                    "has_releases": {
+                        "type": "boolean"
+                    },
+                    "has_packages": {
+                        "type": "boolean"
+                    },
+                    "has_actions": {
+                        "type": "boolean"
+                    },
+                    "ignore_whitespace_conflicts": {
+                        "type": "boolean"
+                    },
+                    "allow_merge_commits": {
+                        "type": "boolean"
+                    },
+                    "allow_rebase": {
+                        "type": "boolean"
+                    },
+                    "allow_rebase_explicit": {
+                        "type": "boolean"
+                    },
+                    "allow_squash_merge": {
+                        "type": "boolean"
+                    },
+                    "allow_fast_forward_only_merge": {
+                        "type": "boolean"
+                    },
+                    "allow_rebase_update": {
+                        "type": "boolean"
+                    },
+                    "default_delete_branch_after_merge": {
+                        "type": "boolean"
+                    },
+                    "default_merge_style": {
+                        "type": "string"
+                    },
+                    "default_allow_maintainer_edit": {
+                        "type": "boolean"
+                    },
+                    "avatar_url": {
+                        "type": "string"
+                    },
+                    "internal": {
+                        "type": "boolean"
+                    },
+                    "mirror_interval": {
+                        "type": "string"
+                    },
+                    "object_format_name": {
+                        "type": "string"
+                    },
+                    "mirror_updated": {
+                        "type": "string"
+                    },
+                    "repo_transfer": {},
+                    "topics": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "licenses": {}
+                },
+                "required": [
+                    "id",
+                    "owner",
+                    "name",
+                    "full_name",
+                    "description",
+                    "empty",
+                    "private",
+                    "fork",
+                    "template",
+                    "parent",
+                    "mirror",
+                    "size",
+                    "language",
+                    "languages_url",
+                    "html_url",
+                    "url",
+                    "link",
+                    "ssh_url",
+                    "clone_url",
+                    "original_url",
+                    "website",
+                    "stars_count",
+                    "forks_count",
+                    "watchers_count",
+                    "open_issues_count",
+                    "open_pr_counter",
+                    "release_counter",
+                    "default_branch",
+                    "archived",
+                    "created_at",
+                    "updated_at",
+                    "archived_at",
+                    "permissions",
+                    "has_issues",
+                    "internal_tracker",
+                    "has_wiki",
+                    "has_pull_requests",
+                    "has_projects",
+                    "projects_mode",
+                    "has_releases",
+                    "has_packages",
+                    "has_actions",
+                    "ignore_whitespace_conflicts",
+                    "allow_merge_commits",
+                    "allow_rebase",
+                    "allow_rebase_explicit",
+                    "allow_squash_merge",
+                    "allow_fast_forward_only_merge",
+                    "allow_rebase_update",
+                    "default_delete_branch_after_merge",
+                    "default_merge_style",
+                    "default_allow_maintainer_edit",
+                    "avatar_url",
+                    "internal",
+                    "mirror_interval",
+                    "object_format_name",
+                    "mirror_updated",
+                    "repo_transfer",
+                    "topics",
+                    "licenses"
+                ]
+            },
+            "creator": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "login": {
+                        "type": "string"
+                    },
+                    "login_name": {
+                        "type": "string"
+                    },
+                    "source_id": {
+                        "type": "number"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "avatar_url": {
+                        "type": "string"
+                    },
+                    "html_url": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "type": "string"
+                    },
+                    "is_admin": {
+                        "type": "boolean"
+                    },
+                    "last_login": {
+                        "type": "string"
+                    },
+                    "created": {
+                        "type": "string"
+                    },
+                    "restricted": {
+                        "type": "boolean"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "prohibit_login": {
+                        "type": "boolean"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "visibility": {
+                        "type": "string"
+                    },
+                    "followers_count": {
+                        "type": "number"
+                    },
+                    "following_count": {
+                        "type": "number"
+                    },
+                    "starred_repos_count": {
+                        "type": "number"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "login",
+                    "login_name",
+                    "source_id",
+                    "full_name",
+                    "email",
+                    "avatar_url",
+                    "html_url",
+                    "language",
+                    "is_admin",
+                    "last_login",
+                    "created",
+                    "restricted",
+                    "active",
+                    "prohibit_login",
+                    "location",
+                    "website",
+                    "description",
+                    "visibility",
+                    "followers_count",
+                    "following_count",
+                    "starred_repos_count",
+                    "username"
+                ]
+            },
+            "type": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "version": {
+                "type": "string"
+            },
+            "html_url": {
+                "type": "string"
+            },
+            "created_at": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "id",
+            "owner",
+            "repository",
+            "creator",
+            "type",
+            "name",
+            "version",
+            "html_url",
+            "created_at"
+        ]
+    }
+}

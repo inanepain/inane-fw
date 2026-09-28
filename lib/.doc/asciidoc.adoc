@@ -1,0 +1,13 @@
+= Asciidoc
+:experimental:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:toc: auto
+
+Firstly you need `asciidoctor` but that's not all, `asciidoctor-reducer` is also needed to build the final README files from the sources.
+
+[source,shell]
+----
+gem install asciidoctor-reducer
+----

@@ -1,0 +1,19 @@
+= Gitea
+:experimental:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:toc: auto
+
+== Package Management
+
+Run the `gitea-package.php` file to simplify package uploads. It looks in *C:\Users\Philip\Downloads* footnote:configuration[Configurable using the $config argument.] for files matching the pattern `\*-*.\*.*.zip`, next it asks for the *vendor* footnote:configuration[]. +
+Once the required information is entered the script attempts to upload the package to Gitea and if you want to delete local file. The prompt for either action can be disabled in the `$config`.
+
+.gitea-package uploader
+[source,shell]
+----
+php lib/gitea-package.php
+----
+
+NOTE: At some point this will probably be added to the develop commandline interface.

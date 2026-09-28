@@ -1,0 +1,58 @@
+= Library: Readme
+:author: Philip Michael Raab
+:email: <philip@cathedral.co.za>
+:description: Notes on managing and working with the `inanepain` and `cathedral` libraries.
+:keywords: cathedral, inane, inanepain, library, readme, notes, information
+:revnumber: 0.2.0
+:revdate: 2025-08-15
+:copyright: Unlicense
+:experimental:
+:hide-uri-scheme:
+:icons: font
+:source-highlighter: highlight.js
+:sectnums: |,all|
+:toc: auto
+:sectanchors:
+
+Some simple and basic information is worth keeping in mind when working with either the `inanepain` or `cathedral` libraries.
+
+== Versioning
+
+I've finally hit upon an idea that I believe will make it easier to handle the versions for Classes.
+
+My current issue is that I bump the version when making a change, then, when next I change the file, I bump it again because I'd forgotten it’d been bumped already, or the other way round.
+
+.version bump process
+* When I make changes to a file, I give it a *TODO* labelled *version bump*
+* When I create a release, I close the todos and bump the version at the same time
+
+== PHPDOC
+
+[source,shell]
+----
+rm -fr .phpdoc
+rm -fr phpdoc
+mkdir phpdoc
+phpdoc -d inanepain/*/src/ -t phpdoc --title="Libraries"
+----
+
+'''
+
+include::.doc/asciidoc.adoc[leveloffset=+1]
+
+'''
+
+include::.doc/gitea.adoc[leveloffset=+1]
+
+'''
+
+include::.doc/git-attributes.adoc[leveloffset=+1]
+
+'''
+
+== TODO
+
+[todo]
+----
+include::TODO[]
+----

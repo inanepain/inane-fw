@@ -1,0 +1,12 @@
+Library - General Tasks:
+    These are not development tasks for the libraries but rather for their administration.
+    - Update license file and composer.json to use the Unlicense license. @inanepain @cathedral @done(25-05-02 09:08)
+    - Check for references to the `inane` domain and switch them to `cathedral`. @inanepain @cathedral @started(25-05-02 09:09)
+      This is for email addresses and links to the website.
+    Composer.json compiler:
+        Seriously, you have got to do this!
+        A script to build composer.json files for the libraries.
+        - create template composer.json file
+        - build vendor and package list
+        - create entry per package in config with custom options
+        - build package composer.json files
