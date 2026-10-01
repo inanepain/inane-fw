@@ -7,3 +7,5 @@
 source/image/inane-fw/Icon
 *.cache
 phpdoc/
+*.sublime-project
+*.sublime-workspace
