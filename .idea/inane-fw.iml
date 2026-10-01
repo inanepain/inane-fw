@@ -54,6 +54,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" packagePrefix="Inane\ServiceManager\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/console/src" isTestSource="true" packagePrefix="Inane\Console\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cli/tests" isTestSource="true" packagePrefix="Inane\Cli\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/public/js" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/card-deck/src" isTestSource="true" packagePrefix="Inane\CardDeck\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/card-deck/tests" isTestSource="true" packagePrefix="Inane\CardDeck\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/app/src" isTestSource="true" packagePrefix="Inane\App\" />
@@ -97,7 +98,6 @@
       <excludeFolder url="file://$MODULE_DIR$/backlog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fig/event-dispatcher-util" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
-      <excludeFolder url="file://$MODULE_DIR$/public/js/tamper-monkey" />
       <excludeFolder url="file://$MODULE_DIR$/public/lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
@@ -134,6 +134,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.op/plugins" />
       <excludeFolder url="file://$MODULE_DIR$/.phpunit.cache" />
       <excludeFolder url="file://$MODULE_DIR$/.todo" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/phpdoc" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
