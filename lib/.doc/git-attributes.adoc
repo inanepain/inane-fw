@@ -5,7 +5,7 @@
 :sectnums: |,all|
 :toc: auto
 
-I can not find the documentration I wrote but found these files.
+I can’t find the documentation I wrote but found these files.
 
 .setup attributes
 [source,zsh]
@@ -17,16 +17,4 @@ include::git-attributes/git_attribute_setup.sh[]
 [source,zsh]
 ----
 include::git-attributes/git_attribute_reset.sh[]
-----
-
-[source,shell]
-----
-git config filter.tagger.smudge C:\\Users\\Philip\\bin\\git_attribute_tagger_smudge.bat
-git config filter.tagger.clean C:\\Users\\Philip\\bin\\git_attribute_tagger_clean.bat
-git rm -r :/ && git checkout HEAD -- :/
-----
-
-[source,shell]
-----
-git config filter.tagger.smudge C:\\Users\\Philip\\bin\\git_attribute_tagger_smudge.bat; git config filter.tagger.clean C:\\Users\\Philip\\bin\\git_attribute_tagger_clean.bat; git rm -r :/ && git checkout HEAD -- :/
 ----
