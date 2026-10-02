@@ -29,9 +29,8 @@ return [
 		'allow_modifications' => false,
 	],
 	'view'   => [
-		'path'   => 'View',
-		// 'layout' => 'layout/layout',
-		'layout' => 'layout/lo2',
+		'path'   => dirname(__DIR__) . '/views',
+		'layout' => 'layouts/site',
 	],
 	'router' => [
 		'splitQuerystring' => true,

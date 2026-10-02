@@ -1,0 +1,14 @@
+<?php
+declare(strict_types=1);
+/** @var string $item */
+?>
+<h2>Item: <?= htmlspecialchars((string)$item, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></h2>
+<?php if (($image ?? '') !== ''): ?>
+    <img width="300" src="<?= htmlspecialchars((string)$image, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>" alt="<?= htmlspecialchars((string)$item, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+<?php else: ?>
+    <p>No image is available for this item.</p>
+<?php endif; ?>
+<?php if (($qrcode ?? '') !== ''): ?>
+    <h3>Item QR code</h3>
+    <img width="200" src="<?= htmlspecialchars((string)$qrcode, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>" alt="QR code for this item">
+<?php endif; ?>

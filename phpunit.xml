@@ -39,6 +39,7 @@
             <directory suffix="Test.php">lib/inanepain/stdlib/tests</directory>
             <directory suffix="Test.php">lib/inanepain/view/tests</directory>
             <directory suffix="Test.php">source/lib/view/tests</directory>
+            <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
 

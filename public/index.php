@@ -25,7 +25,6 @@ declare(strict_types = 1);
 use Inane\Cli\Cli;
 use Inane\Dumper\Dumper;
 use Inane\Dumper\Type;
-use Inane\Stdlib\Options;
 use Knot\Application\Console;
 
 chdir(dirname(__DIR__));
@@ -37,14 +36,14 @@ elseif (file_exists($dirtyLoader = '/Users/philip/Developer/php/playground/dirty
 
 require_once 'index-functions.php';
 
-Dirtyloader::register([
-    'loaders' => [
-        'path',
-    ],
-    'path' => [
-        'include',
-    ],
-]);
+//if (class_exists('Dirtyloader')) Dirtyloader::register([
+//    'loaders' => [
+//        'path',
+//    ],
+//    'path' => [
+//        'include',
+//    ],
+//]);
 
 #region DEBUG HTACCESS FLAGS
 // TODO: MAJOR WORK ON THIS DEBUG STUFF
@@ -131,12 +130,10 @@ $returnCode = (static function(): bool|int {
             ->run();
     }
 
-    Dumper::todo('kick something!', 'A task');
-    Dumper::todo(new Options(['a']), 'Another task');
-
     // Server existing files in web dir
-    $file = 'public' . $_SERVER['REQUEST_URI'];
-    if (file_exists($file) && !is_dir($file)) return false;
+    $publicPath = realpath(__DIR__) . DIRECTORY_SEPARATOR;
+    $file = realpath(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+    if (PHP_SAPI === 'cli-server' && $file !== false && str_starts_with($file, $publicPath) && is_file($file)) return false;
 
     return \Knot\Application\Web::getInstance()->run();
 })();

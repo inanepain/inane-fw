@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- `php` 8.5+ (validated: `PHP 8.5.6`)
+- `php` 8.5+ (validated: `PHP 8.5.11`)
 - `composer` (validated: `Composer 2.10.0`)
 - `git` (validated: `2.50.1`)
 
@@ -57,7 +57,8 @@ Example using PHPUnit `--filter` (runs the `HtmlBuilderTest` tests from the aggr
   `cd /Users/philip/Sites/inane-fw && php public/index.php`
 
 - Web app via PHP built-in server:
-  `TBD`
+  `cd /Users/philip/Sites/inane-fw && php -S 127.0.0.1:8085 -t public public/index.php`
+  Open `http://127.0.0.1:8085/`. Home, item, session and logout return HTML; login requires the configured users database, downloads require files under `filesrv`, and user creation calls the development API at `http://blackbetty.local/api/user`.
 
 - WebSocket server (`public/serve.php`) (long-running):
   `TBD`
@@ -70,6 +71,7 @@ Example using PHPUnit `--filter` (runs the `HtmlBuilderTest` tests from the aggr
 - Root PHPUnit config (`phpunit.xml`) aggregates tests from:
   - `lib/inanepain/*/tests` (several)
   - `source/lib/view/tests`
+  - `tests` (application rendering and HTTP model options)
 - Documentation build uses `asciidoctor-reducer` and `asciidoctor` (installed locally in this environment).
 
 ---
@@ -77,7 +79,7 @@ Example using PHPUnit `--filter` (runs the `HtmlBuilderTest` tests from the aggr
 ## Tools
 
 - Validated versions in this environment:
-  - `php -v` → `PHP 8.5.6`
+  - `php -v` → `PHP 8.5.11`
   - `composer --version` → `2.10.0`
   - `just --version` → `1.51.0`
   - `git --version` → `2.50.1`

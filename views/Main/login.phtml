@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+/** @var string $username */
+/** @var string $message */
+?>
+<h2>Demo login</h2>
+<p>User: <?= htmlspecialchars((string)$username, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p>
+<p><?= htmlspecialchars((string)$message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p>
+<p>This username-only route is a development demonstration, not production authentication.</p>

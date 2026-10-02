@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "103bfdfb018f624e41ab5edaf8d257d6",
+    "content-hash": "dacd5bb50efe3d4259042c830682266d",
     "packages": [
         {
             "name": "fig/event-dispatcher-util",
@@ -920,12 +920,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "1c0ead3da5642231b5d2e9ea2c165840529adac2"
+                "reference": "e3bf42297dff130d6fd9ed61e83e7f5eefab9cbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/1c0ead3da5642231b5d2e9ea2c165840529adac2",
-                "reference": "1c0ead3da5642231b5d2e9ea2c165840529adac2",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/e3bf42297dff130d6fd9ed61e83e7f5eefab9cbd",
+                "reference": "e3bf42297dff130d6fd9ed61e83e7f5eefab9cbd",
                 "shasum": ""
             },
             "require": {
@@ -937,7 +937,7 @@
                 "php": ">=8.4",
                 "phpunit/php-text-template": "^6.0",
                 "sebastian/complexity": "^6.0",
-                "sebastian/environment": "^9.3.2",
+                "sebastian/environment": "^9.3.3",
                 "sebastian/git-state": "^1.0",
                 "sebastian/lines-of-code": "^5.0.2",
                 "sebastian/version": "^7.0",
@@ -1003,7 +1003,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-01T12:21:35+00:00"
+            "time": "2026-10-01T20:24:10+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1308,12 +1308,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8806689f26e674bd9925a91c5dcdfd3cf6bc5e18"
+                "reference": "c578f31ac9163b74755f283522e7a0e88c01d2c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8806689f26e674bd9925a91c5dcdfd3cf6bc5e18",
-                "reference": "8806689f26e674bd9925a91c5dcdfd3cf6bc5e18",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c578f31ac9163b74755f283522e7a0e88c01d2c8",
+                "reference": "c578f31ac9163b74755f283522e7a0e88c01d2c8",
                 "shasum": ""
             },
             "require": {
@@ -1393,7 +1393,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-10-01T14:28:33+00:00"
+            "time": "2026-10-02T12:45:43+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -2635,7 +2635,9 @@
         "ext-gmp": "*",
         "ext-posix": "*",
         "ext-gd": "*",
-        "ext-ctype": "*"
+        "ext-ctype": "*",
+        "ext-simplexml": "*",
+        "ext-pdo": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"

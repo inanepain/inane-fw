@@ -24,71 +24,78 @@ declare(strict_types = 1);
 
 namespace Knot\Web;
 
+use Inane\Db\Adapter\Adapter;
 use Inane\Http\{
     Request,
+    Response,
     Stream};
 use Inane\QR\QRObject;
 use Inane\Routing\Route;
 use Inane\Session\SessionManager;
 use Inane\Stdlib\Exception\RuntimeException;
-use Knot\Application\{
-    AbstractController,
-    ModelInterface,
-    ViewModel,
-    Web};
+use Inane\View\Model\HttpModel;
+use Knot\Application\AbstractController;
+use Knot\Application\Web;
 use Knot\Db\Entity\User;
 use Knot\Db\Table\UsersTable;
 use Knot\Session\UserSession;
 use PDO;
 
-use function file_exists;
+use function is_file;
 
 class MainController extends AbstractController {
+    /**
+     * Shows the welcome page.
+     *
+     * @return HttpModel
+     *
+     * @throws RuntimeException
+     */
     #[Route(path: '/', name: 'home', extra: [
         'label' => 'Welcome',
         'title' => 'Home Page',
         'class' => 'text-red button button-grey'
     ])]
-    public function home(): array|ModelInterface {
+    public function home(): HttpModel {
         $identity = null;
         if (UserSession::has('uid')) {
             $identity = UserSession::get('identity');
         }
 
-        return new ViewModel([
+        return new HttpModel([
             'developer' => $identity?->name ?: '',
         ]);
     }
 
+    /**
+     * Shows an item and its QR code.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return HttpModel
+     *
+     * @throws \Throwable If QR generation fails.
+     */
     #[Route(path: '/view/{item}', name: 'item', extra: [
         'label' => 'Item: {item}',
         'class' => 'text-purple'
     ])]
-    public function viewTask(array $params): array|ModelInterface {
-        $b64 = new \Inane\Auth\TwoFactor\Token(token: 'TRIuzh6BCcWSNDQq', name: 'granny-git')->getImageBase64();
+    public function viewTask(array $params): HttpModel {
+        $item = (string)$params['item'];
+        $params['image'] = preg_match('/\A[a-zA-Z0-9_-]+\z/', $item) === 1
+            && is_file(dirname(__DIR__, 2) . '/public/img/' . $item . '.png')
+                ? '/img/' . rawurlencode($item) . '.png' : '';
+        $params['qrcode'] = new QRObject($item)->getImageBase64();
 
-        if (file_exists('public/img/' . $params['item'] . '.png')) {
-            $img = '<img width="300" src="/img/' . $params['item'] . '.png" alt="' . $params['item'] . '"/>';
-        } else {
-            $img = '';
-        }
-
-        $qrText = 'WIFI:S:Supersonic_WiFi_5G;P:yYTeheFY;T:WPA;;';
-        $qr = new QRObject($qrText);
-
-        $params['img'] = $img;
-        $params['qrcode'] = $b64;
-        $params['qrwifi'] = $qr->getImageBase64();
-
-        return new ViewModel($params);
+        return new HttpModel($params);
     }
 
     /**
      * Handles session-related tasks, including setting user roles and flash messages.
      *
-     * @param array $params An array of parameters relevant to the session task.
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
      *
-     * @return array|ModelInterface Returns an array or a model interface based on the operation result.
+     * @return HttpModel
      *
      * @throws RuntimeException
      * @throws \ReflectionException
@@ -97,8 +104,7 @@ class MainController extends AbstractController {
         'label' => 'Session',
         'title' => 'Session'
     ])]
-    public function sessionTask(array $params): array|ModelInterface {
-        //        dd($_SESSION);
+    public function sessionTask(array $params): HttpModel {
 
         if (!UserSession::has('role')) {
             // Store user data
@@ -108,32 +114,39 @@ class MainController extends AbstractController {
             UserSession::flash('notice', 'User role set!');
         }
 
-        return [];
+        return new HttpModel(['role' => (string)UserSession::get('role', '')]);
     }
+
+    /**
+     * Looks up a demo user and redirects after login.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return HttpModel|Response
+     *
+     * @throws \Throwable If the database or session operation fails.
+     */
 
     #[Route(path: '/login/{username}', name: 'login', extra: [
         'label' => 'Login',
         'title' => 'Login'
     ])]
-    public function loginTask(array $params): array|ModelInterface {
-        $v = new ViewModel(options: ['headers' => ['Location' => '/']]);
-        $v->setOptions(['terminate' => true]);
-        $v->template = 'Main/home';
+    public function loginTask(array $params): HttpModel|Response {
+        $v = new Response(body: '', status: 302, headers: ['Location' => '/']);
         if (UserSession::has('identity')) return $v;
 
+        if (!$this->config->get('db')) return new HttpModel(
+            ['username' => (string)$params['username'], 'message' => 'Configure a database to use demo login.'],
+            ['status' => 503],
+        );
+
         // Login creates a cookie for session remember me
+        UsersTable::$db = $this->serviceManager->get(Adapter::class);
         $ut = new UsersTable();
-        $query = $ut->queryBuilder()
-            ->select('users')
-            ->where('username', $params['username'])
-        ;
-        $u = $ut::$db->getDriver()
-            ->query((string)$query, PDO::FETCH_CLASS, User::class, [
-                null,
-                $ut
-            ])
-            ->fetch()
-        ;
+        $query = $ut::$db->getDriver()->prepare('SELECT * FROM users WHERE username = :username');
+        $query->execute(['username' => (string)$params['username']]);
+        $query->setFetchMode(PDO::FETCH_CLASS, User::class, [null, $ut]);
+        $u = $query->fetch();
 
         if ($u) {
             UserSession::set('uid', $u->id);
@@ -145,79 +158,93 @@ class MainController extends AbstractController {
             return $v;
         }
 
-        return $v;
+        return new HttpModel(['username' => (string)$params['username'], 'message' => 'No matching demo user was found.'], ['status' => 404]);
     }
+
+    /**
+     * Ends the current session.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return HttpModel
+     *
+     * @throws RuntimeException
+     */
 
     #[Route(path: '/logout', name: 'logout', extra: [
         'label' => 'Logout',
         'title' => 'Logout'
     ])]
-    public function logoutTask(array $params): array|ModelInterface {
+    public function logoutTask(array $params): HttpModel {
         // Logout clears everything (including persistent cookie)
         SessionManager::destroy();
 
-        return [];
+        return new HttpModel();
     }
+
+    /**
+     * Returns the macOS download without an HTML layout.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return Response
+     *
+     * @throws \Throwable If file preparation fails.
+     */
 
     #[Route(path: '/store/osx', name: 'download', extra: [
         'label' => 'Download',
         'title' => 'OSX version'
     ])]
-    public function downloadTask(array $params): array|ModelInterface {
-        $limit = 0;
-        if (($qs = $params['query-string']) && $limit = $qs['limit']) $limit = (int)$limit;
+    public function downloadTask(array $params): Response {
+        $limit = max(0, (int)($params['query-string']['limit'] ?? 0));
 
-        //        $response = Application::getInstance()->response;
-        //        $response->setFile('filesrv/some-file.dmg', true, $limit);
-        $this->response->setFile('filesrv/some-file.dmg', true, $limit);
-
-        Web::getInstance()->httpClient->send($this->response);
-
-        return [];
+        return $this->response->setFile('filesrv/some-file.dmg', true, $limit);
     }
+
+    /**
+     * Returns the QSP download without an HTML layout.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return Response
+     *
+     * @throws \Throwable If file preparation fails.
+     */
 
     #[Route(path: '/store/qsp', name: 'download-qsp', extra: [
         'label' => 'Download QSP',
         'title' => 'QSP'
     ])]
-    public function qspTask(array $params): array|ModelInterface {
-        $limit = 0;
-        if (($qs = $params['query-string']) && $limit = $qs['limit']) $limit = (int)$limit;
+    public function qspTask(array $params): Response {
+        $limit = max(0, (int)($params['query-string']['limit'] ?? 0));
 
-        $response = Web::getInstance()->response;
-        $response->setFile('filesrv/qsp.dmg', true, $limit);
-
-        Web::getInstance()->httpClient->send($response);
-
-        return [];
+        return $this->response->setFile('filesrv/qsp.dmg', true, $limit);
     }
+
+    /**
+     * Returns the upstream user-creation response unchanged.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return Response
+     *
+     * @throws \Throwable If the upstream request fails.
+     */
 
     #[Route(path: '/request/create', name: 'new', extra: [
         'label' => 'New User',
         'title' => 'Some One'
     ])]
-    public function newuserTask(array $params): array|ModelInterface {
+    public function newuserTask(array $params): Response {
         $body = '{"name":"Some One","email":"some@one.com","group":"users"}';
 
         $request = Request::fromUrl('http://blackbetty.local/api/user', []);
-        // $request = Request::fromUrl('https://www.cathedral.co.za/api/user', []);
         $request = $request->withMethod('POST');
         $request = $request->withoutHeader('host');
         $request = $request->withHeader('Content-Type', 'application/json');
         $request = $request->withBody(new Stream($body));
 
-        \Inane\Dumper\Dumper::$enabled = false;
-
-        $response = Web::getInstance()->httpClient->sendRequest($request);
-        Web::getInstance()->httpClient->send($response);
-
-        return [];
-    }
-
-    /**
-     * @return void
-     */
-    protected function initialise() {
-        parent::initialise(); // TODO: Change the autogenerated stub
+        return Web::getInstance()->httpClient->sendRequest($request);
     }
 }

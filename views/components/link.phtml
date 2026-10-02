@@ -1,0 +1,7 @@
+<?php
+declare(strict_types=1);
+/** @var string $url */
+/** @var string $label */
+/** @var bool $active */
+?>
+<li><a href="<?= htmlspecialchars((string)$url, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>"<?= $active ? ' aria-current="page"' : '' ?>><?= htmlspecialchars((string)$label, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></a></li>

@@ -30,8 +30,6 @@ use Inane\Config\ConfigAware\ConfigAwareAttribute;
 use Inane\Config\ConfigAware\ConfigAwareInterface;
 use Inane\Config\ConfigInterface;
 use Inane\Config\ConfigManager;
-use Inane\Db\Adapter\Adapter;
-use Inane\Db\Table\AbstractTable;
 use Inane\Dumper\Dumper;
 use Inane\File\File;
 use Inane\File\Path;
@@ -50,15 +48,15 @@ use Inane\Stdlib\Exception\UnexpectedValueException;
 use Inane\Stdlib\Options;
 use Inane\View\Exception\RuntimeException;
 use Inane\View\Model\HttpModel;
-use Inane\View\Model\ModelInterface;
+use Inane\View\Renderer\PhpRenderer;
 use Inane\View\ViewManager;
+use Knot\Session\UserSession;
 use ReflectionObject;
 
 use function count;
 use function getcwd;
 use function is_array;
 use function is_null;
-use function method_exists;
 use function preg_match;
 use function token_get_all;
 
@@ -93,10 +91,7 @@ final class Web {
 
     protected(set) ServiceManager $services;
 
-    /**
-     * @var ViewManager The view object
-     */
-    protected ViewManager $view;
+    protected SiteView $view;
     protected Path $base;
 
     protected ConfigManager $configManager;
@@ -123,11 +118,7 @@ final class Web {
     /**
      * @var \Inane\Http\Request The request object read from View
      */
-    protected(set) Request $request {
-        get => $this->view->request;
-        set {
-        }
-    }
+    protected(set) Request $request;
     /**
      * @var Response The response object read from View
      */
@@ -218,12 +209,12 @@ final class Web {
 
         $this->services = ServiceManager::createServiceManager($this->config->services);
         $this->bootstrapObject($this->services);
-        AbstractTable::$db = $this->services->get(Adapter::class);
 
         $this->configureSession();
         $this->configureRouter();
 
-        $this->view = new ViewManager($this->config->view->path);
+        $this->request = new Request();
+        $this->view = new SiteView(new ViewManager(new PhpRenderer($this->config->view->path)), $this->config->view->layout);
         $this->httpClient = new HttpClient();
     }
 
@@ -287,7 +278,6 @@ final class Web {
             }
         }
 
-        // dd($controllers);
         $this->router->addRoutes($controllers);
     }
 
@@ -333,46 +323,29 @@ final class Web {
      * @return void
      *
      * @throws \Inane\View\Exception\RuntimeException
+     * @throws \Throwable If controller execution or template rendering fails.
      */
     protected function rendering(): void {
-        // TODO: Check for REST controller and structure method calls based on command.
         $controller = new $this->routeMatch->class();
         $this->bootstrapObject($controller);
 
         $modelOrArray = $controller->{$this->routeMatch->method}($this->routeMatch->params);
-        $model = is_array($modelOrArray) ? new ViewModel($modelOrArray) : $modelOrArray;
+        if ($modelOrArray instanceof Response) {
+            $this->response = $modelOrArray;
 
-        if ($model instanceof ModelInterface) {
-            $model = new HttpModel($model->variables->toArray());
-
-            if (!$model->useLayout) {
-                // render model
-                // set response
-                // return
-            }
-            // render http view
-        } elseif ($model instanceof AppModelInterface) {
-            method_exists($model, 'setProperties') && $model->setProperties($this->config->site);
-
-            if (!$model->terminate) $model->setOptions([
-                'template' => $this->routeMatch->template,
-                'layout'   => $this->config->view->layout,
-            ]);
+            return;
         }
 
-        // method_exists($model, 'setRequest') && $model->setRequest($this->request);
+        $model = is_array($modelOrArray) ? new HttpModel($modelOrArray) : $modelOrArray;
+        if (!$model instanceof HttpModel) throw new RuntimeException('Web controllers must return an HTTP model, array or response.');
 
-        // if (empty($model->template)) {
-        // 	$model->setOptions(['layout' => $this->routeMatch->template]);
-        // }
-
-        // if ($model->useLayout) {
-        // 	if (empty($model->layout)) {
-        // 		$model->setOptions(['layout' => $this->config->view->layout]);
-        // 	}
-        // }
-
-        $this->view->render($model);
+        $this->response = $this->view->render(
+            model: $model,
+            route: $this->routeMatch,
+            router: $this->router,
+            notice: array_any(array_keys($model->headers), static fn(string $name): bool => strcasecmp($name, 'Location') === 0)
+                ? '' : (string)UserSession::getFlash('notice', ''),
+        );
     }
 
     /**
@@ -380,7 +353,7 @@ final class Web {
      *
      * @return never
      */
-    protected function responding(): void {
+    protected function responding(): never {
         $this->httpClient->send($this->response);
     }
 

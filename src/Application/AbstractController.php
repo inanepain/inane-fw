@@ -49,7 +49,7 @@ abstract class AbstractController implements ConfigAwareInterface {
     /**
      * Constructor for the abstract controller.
      *
-     * This method is responsible for initializing various components such as RouteMatch, Request,
+     * This method is responsible for initialising various components such as RouteMatch, Request,
      * Response, ServiceManager. It also calls an initialisation function to set up any custom
      * settings required by child classes that extend this AbstractController.
      */
@@ -70,5 +70,5 @@ abstract class AbstractController implements ConfigAwareInterface {
      *
      * @return void
      */
-    protected function initialise() {}
+    protected function initialise(): void {}
 }

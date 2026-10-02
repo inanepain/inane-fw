@@ -1,6 +1,9 @@
+<?php declare(strict_types=1); ?>
 <header class="site-header">
     <div class="container">
-        <h1><?= htmlspecialchars($title) ?></h1>
-        <?= $component('nav', ['items' => $navItems ?? []]) ?>
+        <h1><?= htmlspecialchars((string)($siteName ?? 'Inane Framework'), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></h1>
+        <nav aria-label="Main navigation">
+            <ul><?= $this->navigation ?></ul>
+        </nav>
     </div>
 </header>
