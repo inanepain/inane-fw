@@ -32,7 +32,7 @@ use Inane\{
 use Inane\Cli\{
     Cli,
     Pencil};
-use Knot\Application;
+use Knot\Application\Console;
 use Knot\Lotto\Lottery\Lotto;
 use Knot\Lotto\Lottery\Ticket;
 use RuntimeException;
@@ -75,7 +75,7 @@ class LottoCommands {
         if ($current) $display |= Lotto::ACTIVE;
         if ($expired) $display |= Lotto::EXPIRED;
 
-        $lotto = Lotto::fromArray(Application::app()->config->getConfig(Lotto::class) ?? []);
+        $lotto = Lotto::fromArray(Console::app()->config->getConfig(Lotto::class) ?? []);
         $lotto->display = $display;
 
         $this->pencil->line(Pencil\Colour::Blue->text('## Overview', Pencil\Style::Bold));

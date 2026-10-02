@@ -23,7 +23,7 @@
 
 declare(strict_types = 1);
 
-namespace Knot;
+namespace Knot\Application;
 
 use Exception;
 use Inane\App\ApplicationInterface;
@@ -39,7 +39,6 @@ use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
 use Inane\Dumper\Dumper;
 use Inane\File\Path;
-use Inane\Routing\Exception\InvalidRouteException;
 use Inane\Routing\RouteMatch;
 use Inane\Routing\Router;
 use Inane\ServiceManager\Exception\NotFoundException;
@@ -47,25 +46,16 @@ use Inane\ServiceManager\ServiceManager;
 use Inane\Session\SessionManager;
 use Inane\Stdlib\{
     Array\OptionsInterface,
-    Exception\BadMethodCallException,
     Exception\JsonException,
-    Exception\RuntimeException,
-    Exception\UnexpectedValueException,
-    Options,
-    Utility\ClassUtility};
+    Exception\RuntimeException};
 use ReflectionException;
 use ReflectionObject;
 
 use function getcwd;
-use function is_null;
-use function preg_match;
 
-use const GLOB_BRACE;
-use const GLOB_NOSORT;
 use const PHP_SAPI;
-use const PREG_OFFSET_CAPTURE;
 
-class Application implements ApplicationInterface {
+class Console implements ApplicationInterface {
     /**
      * Private constructor method for initialising the class with configuration.
      *
@@ -87,9 +77,9 @@ class Application implements ApplicationInterface {
     /**
      * The instance of the application
      *
-     * @var Application The instance of the application
+     * @var Console The instance of the application
      */
-    private static Application $instance;
+    private static Console $instance;
 
     /**
      * @var ConsoleRouter|Router   ConsoleRouter | Router
@@ -139,7 +129,7 @@ class Application implements ApplicationInterface {
     /**
      * Returns the singleton instance of the application.
      *
-     * @return Application The application instance
+     * @return Console The application instance
      *
      * @throws Exception If an error occurs while creating the application instance
      */
@@ -184,8 +174,11 @@ class Application implements ApplicationInterface {
      * and configures session and router.
      *
      * @return void
+     * @throws JsonException
      * @throws NotFoundException
+     * @throws ReflectionException
      * @throws RuntimeException
+     * @throws \Inane\Stdlib\Exception\Exception
      */
     protected function initialise(): void {
         Dumper::$enabled = $this?->config?->dumper?->enabled ?? false;
@@ -226,63 +219,13 @@ class Application implements ApplicationInterface {
     /**
      * Configures the router based on whether the application is running in console mode.
      *
-     * If running in console mode, it configures the console router; otherwise,
-     * it configures the HTTP router.
-     *
      * @return void
-     * @throws Exception
+     * @throws JsonException
+     * @throws ReflectionException
+     * @throws \Inane\Stdlib\Exception\Exception
      */
     protected function configureRouter(): void {
-        if ($this->isConsole) $this->configureRouterConsole();
-        else $this->configureRouterHTTP();
-    }
-
-    /**
-     * Configures the HTTP router with the defined options and controllers.
-     *
-     * The method initialises the router with predefined configurations such as
-     * query string handling, controller glob patterns, and default controllers.
-     * It also merges additional configurations from an external source, processes
-     * controller files, and adds the resulting routes to the router.
-     *
-     * @return void
-     *
-     * @throws Exception
-     */
-    protected function configureRouterHTTP(): void {
-        $routerConfig = new Options([
-            'splitQuerystring' => false,
-            'controller'       => [
-                'glob'        => 'src/*/*Controller.php',
-                'glob_ignore' => '/(Abstract)/',
-                'default'     => [],
-            ],
-        ]);
-        $routerConfig->merge($this->config->router);
-
-        $this->router = new Router(splitQuerystring: $routerConfig->splitQuerystring);
-        $controllers = new Options();
-
-        if ($controller = $routerConfig->controller) {
-            if ($glob = $controller->glob) {
-                foreach($this->base->getFiles($glob, GLOB_BRACE | GLOB_NOSORT) ?: [] as $file) {
-                    if ($ignore = $controller->glob_ignore) {
-                        preg_match($ignore, $file->getFilename(), $matches, PREG_OFFSET_CAPTURE);
-                        if (!empty($matches)) continue;
-                    }
-                    if ($ns = ClassUtility::getClassFromFile($file)) $controllers[] = $ns;
-                }
-            }
-
-            if ($default = $controller->default) {
-                $controllers->merge($default)
-                    ->unique()
-                ;
-            }
-        }
-
-        // dd($controllers);
-        $this->router->addRoutes($controllers);
+        $this->configureRouterConsole();
     }
 
     /**
@@ -299,31 +242,17 @@ class Application implements ApplicationInterface {
     protected function configureRouterConsole(): void {
         global $argv;
 
-        $routerConfig = $this->configManager->getConfig(ConsoleRouter::class)->modify([
-            'arguments' => $argv,
-            'commands'  => [
-                'path'        => $this->base
-            ],
-        ]);
+        $routerConfig = $this->configManager->getConfig(ConsoleRouter::class)
+            ->modify([
+                'arguments' => $argv,
+                'commands'  => [
+                    'path' => $this->base,
+                ],
+            ])
+        ;
 
         $this->router = new ConsoleRouter($argv, $routerConfig);
         $this->router->buildCommands();
-    }
-
-    /**
-     * Routes the request to the controller
-     *
-     * @return void
-     *
-     * @throws BadMethodCallException
-     * @throws InvalidRouteException
-     * @throws UnexpectedValueException
-     */
-    protected function routing(): void {
-        $this->routeMatch = $this->router->match($this->request);
-
-        if (is_null($this->routeMatch)) throw new InvalidRouteException('Request Error: Unmatched `file` or `route`!',
-            AppError::InvalidRoute->value);
     }
 
     /**

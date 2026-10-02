@@ -50,7 +50,7 @@ use Inane\Stdlib\{
     Exception\RuntimeException,
     Json,
     Options};
-use Knot\Application;
+use Knot\Application\Console;
 use Knot\Db\Entity\Formula;
 use Knot\Db\Table\FormulasTable;
 use Psr\SimpleCache\InvalidArgumentException;
@@ -141,7 +141,7 @@ class BrewCommands implements NotifyProgressInterface {
      * @throws Exception
      */
     public function __construct() {
-        $this->brew = Application::app()->serviceManager->get(Brew::class);
+        $this->brew = Console::app()->serviceManager->get(Brew::class);
 
         $this->desc = static::pencilFactory($this->config->ui->text->desc);
         $this->action = static::pencilFactory($this->config->ui->text->action);
@@ -358,7 +358,7 @@ class BrewCommands implements NotifyProgressInterface {
      * @throws \Exception
      */
     protected function parseBrewFeed(OptionsInterface $feeds): array {
-        $formulasTable = Application::app()->serviceManager->get(FormulasTable::class);
+        $formulasTable = Console::app()->serviceManager->get(FormulasTable::class);
 
         $bar = new Bar('Formula', $feeds->count());   // * Instantiates a Progress Notifier.
         $bar->display();                              // * Prints the progress bar to the screen with percent complete, elapsed time
@@ -428,7 +428,7 @@ class BrewCommands implements NotifyProgressInterface {
      */
     #[Command('brew:update', 'Update local homebrew formula database', ['hbu'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function updateLocalCommand(): int {
-        $formulasTable = Application::app()->serviceManager->get(FormulasTable::class);               // * Constructor for the AbstractTable class.
+        $formulasTable = Console::app()->serviceManager->get(FormulasTable::class);                   // * Constructor for the AbstractTable class.
         $formulas = $formulasTable->fetchAll();                                                       // FormulasTable
         Cli::line('Total formulas: ' . count($formulas));                                             // Outputs a line of text to the CLI.
 

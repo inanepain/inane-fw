@@ -103,7 +103,9 @@
         "ext-gmp": "*",
         "ext-posix": "*",
         "ext-gd": "*",
-        "ext-ctype": "*"
+        "ext-ctype": "*",
+        "ext-simplexml": "*",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

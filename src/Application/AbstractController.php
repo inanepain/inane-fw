@@ -8,7 +8,7 @@
  * $Id$
  * $Date$
  *
- * PHP version 8.5
+ * PHP version 8.4
  *
  * @author   Philip Michael Raab<philip@cathedral.co.za>
  * @package  playground\develop
@@ -22,7 +22,7 @@
 
 declare(strict_types = 1);
 
-namespace Knot\Mvc;
+namespace Knot\Application;
 
 use Inane\Config\ConfigAware\ConfigAwareInterface;
 use Inane\Config\ConfigAware\ConfigAwareTrait;
@@ -30,7 +30,6 @@ use Inane\Http\Request;
 use Inane\Http\Response;
 use Inane\Routing\RouteMatch;
 use Inane\ServiceManager\ServiceManager;
-use Knot\Application\Console;
 
 /**
  * AbstractController
@@ -48,19 +47,18 @@ abstract class AbstractController implements ConfigAwareInterface {
 //#endregion Properties
 
     /**
-     * Constructor method to initialise the class with the required application components.
+     * Constructor for the abstract controller.
      *
-     * @return void
-     *
-     * @throws \RuntimeException If the application instance could not be retrieved.
+     * This method is responsible for initializing various components such as RouteMatch, Request,
+     * Response, ServiceManager. It also calls an initialisation function to set up any custom
+     * settings required by child classes that extend this AbstractController.
      */
     public function __construct() {
-        $app = Console::app();
-
+        $app = Web::getInstance();
         $this->routeMatch = $app->routeMatch;
         $this->request = $app->request;
         $this->response = $app->response;
-        $this->serviceManager = $app->serviceManager;
+        $this->serviceManager = $app->services;
 
         $this->initialise();
     }

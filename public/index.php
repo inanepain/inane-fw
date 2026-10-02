@@ -25,7 +25,8 @@ declare(strict_types = 1);
 use Inane\Cli\Cli;
 use Inane\Dumper\Dumper;
 use Inane\Dumper\Type;
-use Knot\Application;
+use Inane\Stdlib\Options;
+use Knot\Application\Console;
 
 chdir(dirname(__DIR__));
 
@@ -112,7 +113,7 @@ if ($include !== null) {
     exit;
 }
 
-$returnCode = (static function(Application $app): bool|int {
+$returnCode = (static function(): bool|int {
     // FIX: boo
     // FIXME: boo
     // BUG: bug
@@ -126,11 +127,19 @@ $returnCode = (static function(Application $app): bool|int {
     Dumper::$showRunkit7SupportMessage = false;
     Dumper::$additionalTypes[] = Type::Todo;
     if (Cli::isCli()) {
-        return $app->run();
+        return Console::app()
+            ->run();
     }
 
-    return true;
-})(Application::app());
+    Dumper::todo('kick something!', 'A task');
+    Dumper::todo(new Options(['a']), 'Another task');
+
+    // Server existing files in web dir
+    $file = 'public' . $_SERVER['REQUEST_URI'];
+    if (file_exists($file) && !is_dir($file)) return false;
+
+    return \Knot\Application\Web::getInstance()->run();
+})();
 
 //echo "Return Code: $returnCode" . PHP_EOL;
 //echo "Error reporting: $error_reporting" . PHP_EOL;
