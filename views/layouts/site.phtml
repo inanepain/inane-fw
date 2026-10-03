@@ -1,15 +1,19 @@
 <?php
 declare(strict_types=1);
+/** @var \Inane\View\Model\HttpModel $this */
 /** @var string $title */
 /** @var string $siteName */
 /** @var string $notice */
+
+use Knot\Session\UserSession;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= htmlspecialchars((string)$title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?> — <?= htmlspecialchars((string)$siteName, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></title>
+    <title><?= $this->escape($title) ?> — <?= $this->escape($siteName) ?></title>
     <style>
         :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
         body { max-width: 70rem; margin: auto; padding: 1.5rem; line-height: 1.6; }
@@ -24,8 +28,15 @@ declare(strict_types=1);
 </head>
 <body>
     <?= $this->header ?>
-    <?php if ($notice !== ''): ?>
-        <p class="notice" role="status"><?= htmlspecialchars((string)$notice, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p>
+    <?php
+//    if (UserSession::hasFlash('notice')) {
+//        echo UserSession::getFlash('notice');
+//        echo $this->escape(UserSession::getFlash('notice'));
+//        dd('UserSession::getFlash');
+//    }
+    ?>
+    <?php if (UserSession::hasFlash('notice')): ?>
+        <p class="notice" role="status"><?= $this->escape(UserSession::getFlash('notice')) ?></p>
     <?php endif; ?>
     <main id="content">
         <?= $this->content ?>

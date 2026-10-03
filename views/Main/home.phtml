@@ -1,5 +1,8 @@
-<?php declare(strict_types=1); ?>
-<h2>Welcome<?= ($developer ?? '') !== '' ? ', ' . htmlspecialchars((string)$developer, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') : '' ?></h2>
+<?php
+declare(strict_types=1);
+/** @var \Inane\View\Model\HttpModel $this */
+?>
+<h2>Welcome<?= ($developer ?? '') !== '' ? ', ' . $this->escape($developer) : '' ?></h2>
 <p>This simple site renders each controller page inside a shared layout.</p>
 <p>The header contains nested navigation links, whilst the page and footer are separate view models.</p>
 <p>Choose a link above to view an item, try a session or download a file. Login and user creation are development demonstrations, not production authentication.</p>

@@ -1,7 +1,10 @@
-<?php declare(strict_types=1); ?>
+<?php
+declare(strict_types=1);
+/** @var \Inane\View\Model\HttpModel $this */
+?>
 <header class="site-header">
     <div class="container">
-        <h1><?= htmlspecialchars((string)($siteName ?? 'Inane Framework'), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></h1>
+        <h1><?= $this->escape($siteName) ?></h1>
         <nav aria-label="Main navigation">
             <ul><?= $this->navigation ?></ul>
         </nav>

@@ -1,4 +1,10 @@
-<?php declare(strict_types=1); ?>
+<?php
+declare(strict_types=1);
+/** @var \Inane\View\Model\HttpModel $this */
+/** @var string $groups */
+/** @var string $email */
+?>
 <h2>Session</h2>
-<p>Your session role is <strong><?= htmlspecialchars((string)($role ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></strong>.</p>
+<p>Your session role is <strong><?= $this->escape($groups) ?></strong>.</p>
+<p>Your session email is <strong><?= $this->escape($email) ?></strong>.</p>
 <p>The session notice is rendered by the shared layout.</p>
