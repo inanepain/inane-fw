@@ -21,6 +21,7 @@
         <option value="$PROJECT_DIR$/lib/inanepain/stdlib/tests" />
         <option value="$PROJECT_DIR$/lib/inanepain/log/tests" />
         <option value="$PROJECT_DIR$/source/lib/view/tests" />
+        <option value="$PROJECT_DIR$/tests" />
       </list>
     </option>
   </component>

@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace Knot\Db\Entity;
 
 use Inane\Db\Entity\AbstractEntity;
+use Inane\Stdlib\Json;
 use Knot\Db\Table\UsersTable;
 
 /**
@@ -40,11 +41,12 @@ class User extends AbstractEntity {
     protected array $data = [
         'id' => null,
         'iddepartment' => 1,
-        'online' => 0,
         'username' => '',
+        'password' => '',
         'name' => '',
         'email' => '',
-        'groups' => '',
+        'online' => 0,
+        'groups' => ['users'],
         'rank' => 5,
     ];
 
@@ -63,23 +65,15 @@ class User extends AbstractEntity {
      */
     public int $iddepartment {
         get => $this->data[__PROPERTY__];
-        set(int $value) {
-            $this->data[__PROPERTY__] = $value;
-        }
+        set => $this->data[__PROPERTY__] = $value;
     }
 
     /**
      * @var Department The department associated with the user.
      */
     public Department $department {
-        get {
-            $d = new Department();
-            $d->fetch($this->iddepartment);
-            return $d;
-        }
-        set(Department $value) {
-            $this->data[__PROPERTY__] = $value->id;
-        }
+        get => new ($this->dataTableClass)()->fetch($this->iddepartment);
+        set => $this->iddepartment = $value->id;
     }
 
     /**
@@ -87,9 +81,15 @@ class User extends AbstractEntity {
      */
     public string $username {
         get => $this->data[__PROPERTY__];
-        set(string $value) {
-            $this->data[__PROPERTY__] = $value;
-        }
+        set => $this->data[__PROPERTY__] = $value;
+    }
+
+    /**
+     * @var string The password of the user.
+     */
+    public string $password {
+        get => $this->data[__PROPERTY__];
+        set => $this->data[__PROPERTY__] = $value;
     }
 
     /**
@@ -107,9 +107,7 @@ class User extends AbstractEntity {
      */
     public string $name {
         get => $this->data[__PROPERTY__];
-        set(string $value) {
-            $this->data[__PROPERTY__] = $value;
-        }
+        set => $this->data[__PROPERTY__] = $value;
     }
 
     /**
@@ -117,19 +115,15 @@ class User extends AbstractEntity {
      */
     public string $email {
         get => $this->data[__PROPERTY__];
-        set(string $value) {
-            $this->data[__PROPERTY__] = $value;
-        }
+        set => $this->data[__PROPERTY__] = $value;
     }
 
     /**
-     * @var string The groups of the user.
+     * @var string|array The groups of the user.
      */
-    public string $groups {
-        get => $this->data[__PROPERTY__];
-        set(string $value) {
-            $this->data[__PROPERTY__] = $value;
-        }
+    public string|array $groups {
+        get => Json::decode($this->data[__PROPERTY__]);
+        set => $this->data[__PROPERTY__] = is_array($value) ? Json::encode($value) : $value;
     }
 
     /**
@@ -137,8 +131,6 @@ class User extends AbstractEntity {
      */
     public int $rank {
         get => $this->data[__PROPERTY__];
-        set(int $value) {
-            $this->data[__PROPERTY__] = $value;
-        }
+        set => $this->data[__PROPERTY__] = $value;
     }
 }

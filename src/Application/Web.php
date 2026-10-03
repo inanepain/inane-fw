@@ -53,11 +53,13 @@ use Inane\View\ViewManager;
 use Knot\Session\UserSession;
 use ReflectionObject;
 
+use function array_keys;
 use function count;
 use function getcwd;
 use function is_array;
 use function is_null;
 use function preg_match;
+use function strcasecmp;
 use function token_get_all;
 
 use const GLOB_BRACE;
@@ -365,13 +367,11 @@ final class Web {
      * @throws BadMethodCallException
      * @throws UnexpectedValueException
      * @throws RuntimeException
-     * @throws \ReflectionException|InvalidRouteException
+     * @throws \ReflectionException|InvalidRouteException|\Throwable
      */
-    public function run(): int {
+    public function run(): never {
         $this->routing();
         $this->rendering();
         $this->responding();
-
-        return 0;
     }
 }

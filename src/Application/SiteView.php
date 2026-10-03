@@ -10,6 +10,8 @@ use Inane\View\Model\HttpModel;
 use Inane\View\Model\IterativeModel;
 use Inane\View\ViewManager;
 
+use function array_is_list;
+
 /**
  * Composes controller pages into the site's nested layout.
  */
@@ -83,19 +85,22 @@ final readonly class SiteView {
         $links = [];
         foreach ([
             'home' => [],
-            'item' => ['item' => 'example'],
+            'item' => [['item' => 'example'],['item' => 'tiger'],['item' => 'panther']],
             'session' => [],
-            'login' => ['username' => 'demo'],
+            'login' => ['username' => 'philip'],
             'logout' => [],
             'download' => [],
             'download-qsp' => [],
             'new' => [],
         ] as $name => $params) {
-            $links[] = [
-                'url' => $router->url($name, $params),
-                'label' => $router->routeProperty($name, 'label', $params),
-                'active' => $route->route->getName() === $name,
-            ];
+            if (!array_is_list($params) || empty($params)) $params = [$params];
+            foreach ($params as $param) {
+                $links[] = [
+                    'url' => $router->url($name, $param),
+                    'label' => $router->routeProperty($name, 'label', $param),
+                    'active' => $route->route->getName() === $name,
+                ];
+            }
         }
 
         return $links;

@@ -46,8 +46,11 @@ return [
     'components' => [
         SessionManager::class => [
             'name'            => 'PHPSESSID',
+//            'name'            => 'inane-fw',
             'cookie_samesite' => 'Strict',
             // 'remember_me'     => true, // Persistent session (cookie_lifetime = 30 days)
+//             'remember_me'     => false, // Persistent session (cookie_lifetime = 30 days)
+//             'cookie_lifetime'     => 0, // Persistent session (cookie_lifetime = 30 days)
         ],
     ],
 ];

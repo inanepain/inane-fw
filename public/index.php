@@ -36,14 +36,14 @@ elseif (file_exists($dirtyLoader = '/Users/philip/Developer/php/playground/dirty
 
 require_once 'index-functions.php';
 
-//if (class_exists('Dirtyloader')) Dirtyloader::register([
-//    'loaders' => [
-//        'path',
-//    ],
-//    'path' => [
-//        'include',
-//    ],
-//]);
+if (class_exists('Dirtyloader')) Dirtyloader::register([
+    'loaders' => [
+        'path',
+    ],
+    'path' => [
+        'include',
+    ],
+]);
 
 #region DEBUG HTACCESS FLAGS
 // TODO: MAJOR WORK ON THIS DEBUG STUFF
@@ -135,7 +135,7 @@ $returnCode = (static function(): bool|int {
     $file = realpath(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
     if (PHP_SAPI === 'cli-server' && $file !== false && str_starts_with($file, $publicPath) && is_file($file)) return false;
 
-    return \Knot\Application\Web::getInstance()->run();
+    \Knot\Application\Web::getInstance()->run();
 })();
 
 //echo "Return Code: $returnCode" . PHP_EOL;

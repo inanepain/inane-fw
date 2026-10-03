@@ -24,7 +24,6 @@ declare(strict_types = 1);
 
 namespace Knot\Web;
 
-use Inane\Db\Adapter\Adapter;
 use Inane\Http\{
     Request,
     Response,
@@ -39,11 +38,31 @@ use Knot\Application\Web;
 use Knot\Db\Entity\User;
 use Knot\Db\Table\UsersTable;
 use Knot\Session\UserSession;
-use PDO;
 
+use function array_first;
+use function dirname;
+use function implode;
 use function is_file;
+use function max;
+use function preg_match;
+use function rawurlencode;
 
 class MainController extends AbstractController {
+    /**
+     * Initialises the necessary settings or configurations required for the method's operation.
+     *
+     * Override this method in child classes to initialise the controller with custom settings.
+     *
+     * @return void
+     */
+    protected function initialise(): void {
+//        UsersTable::$db = $this->serviceManager->get(Adapter::class);
+    }
+
+    protected function getIdentity(): ?User {
+        return UserSession::has('uid') ? $this->serviceManager->get(UsersTable::class)->fetch(UserSession::get('uid')) : null;
+    }
+
     /**
      * Shows the welcome page.
      *
@@ -57,13 +76,8 @@ class MainController extends AbstractController {
         'class' => 'text-red button button-grey'
     ])]
     public function home(): HttpModel {
-        $identity = null;
-        if (UserSession::has('uid')) {
-            $identity = UserSession::get('identity');
-        }
-
         return new HttpModel([
-            'developer' => $identity?->name ?: '',
+            'developer' => $this->getIdentity()?->name ?: '',
         ]);
     }
 
@@ -83,8 +97,8 @@ class MainController extends AbstractController {
     public function viewTask(array $params): HttpModel {
         $item = (string)$params['item'];
         $params['image'] = preg_match('/\A[a-zA-Z0-9_-]+\z/', $item) === 1
-            && is_file(dirname(__DIR__, 2) . '/public/img/' . $item . '.png')
-                ? '/img/' . rawurlencode($item) . '.png' : '';
+        && is_file(dirname(__DIR__, 2) . '/public/img/' . $item . '.png')
+            ? '/img/' . rawurlencode($item) . '.png' : '';
         $params['qrcode'] = new QRObject($item)->getImageBase64();
 
         return new HttpModel($params);
@@ -105,16 +119,12 @@ class MainController extends AbstractController {
         'title' => 'Session'
     ])]
     public function sessionTask(array $params): HttpModel {
-
-        if (!UserSession::has('role')) {
-            // Store user data
-            UserSession::set('role', 'admin');
-
+        if ($u = $this->getIdentity()) {
             // Flash message
-            UserSession::flash('notice', 'User role set!');
+            UserSession::flash('notice', 'User groups set!');
         }
 
-        return new HttpModel(['role' => (string)UserSession::get('role', '')]);
+        return new HttpModel(['groups' => implode(', ', $u?->groups ?? []), 'email' => $u?->email ?? '']);
     }
 
     /**
@@ -133,7 +143,7 @@ class MainController extends AbstractController {
     ])]
     public function loginTask(array $params): HttpModel|Response {
         $v = new Response(body: '', status: 302, headers: ['Location' => '/']);
-        if (UserSession::has('identity')) return $v;
+        if (UserSession::has('uid')) return $v;
 
         if (!$this->config->get('db')) return new HttpModel(
             ['username' => (string)$params['username'], 'message' => 'Configure a database to use demo login.'],
@@ -141,19 +151,12 @@ class MainController extends AbstractController {
         );
 
         // Login creates a cookie for session remember me
-        UsersTable::$db = $this->serviceManager->get(Adapter::class);
-        $ut = new UsersTable();
-        $query = $ut::$db->getDriver()->prepare('SELECT * FROM users WHERE username = :username');
-        $query->execute(['username' => (string)$params['username']]);
-        $query->setFetchMode(PDO::FETCH_CLASS, User::class, [null, $ut]);
-        $u = $query->fetch();
-
-        if ($u) {
+        if ($u = $this->serviceManager->get(UsersTable::class)->find(['username', $params['username']])) {
+            $u = array_first($u);
             UserSession::set('uid', $u->id);
-            UserSession::set('identity', $u);
             SessionManager::enableRememberMe();
 
-            UserSession::flash('notice', "Welcome {$u->name}!");
+            UserSession::flash('notice', "Welcome $u->name!");
 
             return $v;
         }
