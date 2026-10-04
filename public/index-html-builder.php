@@ -49,4 +49,13 @@ echo $htm->headStart()
 	->pEnd()
 	->divEnd()
 	->scriptStart()->contents($scriptOutput)->scriptEnd()
-	->bodyEnd();
+	->bodyEnd() . PHP_EOL . PHP_EOL;
+
+echo new HtmlBuilder()
+    ->h1Start(['style' => ['color:red', 'width' => '10%'], 'id' => 'h1'])->contents('Web Page Title')->h1End()
+    ->divStart(['id' => 'head', 'class' => 'bob', 'style' => ['color:red']])
+    ->pStart(['style' => 'color:red'])
+    ->contents('Some paragraph content here')
+    ->pEnd()
+    ->divEnd()
+;

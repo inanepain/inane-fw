@@ -1,19 +1,23 @@
 <?php
 
 /**
- * doc
+ * Action
  *
- * Description: doc
+ * Inane Library
  *
- * PHP version 8.1
- *
- * @version $Id$
+ * $Id$
  * $Date$
- * @license UNLICENSE doc
- * @license https://github.com/inanepain/stdlib/raw/develop/UNLICENSE UNLICENSE
  *
- * @author  Philip Michael Raab<peep@inane.co.za>
+ * PHP version 8.5
  *
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\view
+ * @category view
+ *
+ * @license  UNLICENSE
+ * @license  https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
  */
 
 declare(strict_types = 1);
@@ -21,8 +25,7 @@ declare(strict_types = 1);
 namespace Inane\View\Helper;
 
 use Inane\Stdlib\Enum\CoreEnumInterface;
-
-use function strcasecmp;
+use Inane\Stdlib\Enum\CoreEnumTrait;
 
 /**
  * Action
@@ -35,22 +38,5 @@ enum Action: string implements CoreEnumInterface {
     case Close = 'close';
     case None  = '';
 
-    /**
-     * Try get enum from name
-     *
-     * note: interface does not have $ignoreCase.
-     *  This is an extension and might not be wanted everywhere.
-     *
-     * @param string $name
-     * @param bool   $ignoreCase case insensitive option
-     *
-     * @return null|static
-     */
-    public static function tryFromName(string $name, bool $ignoreCase = false): ?static {
-        foreach(static::cases() as $case)
-            if (($ignoreCase && strcasecmp($case->name, $name) == 0) || $case->name === $name)
-                return $case;
-
-        return null;
-    }
+    use CoreEnumTrait;
 }
