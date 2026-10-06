@@ -75,6 +75,7 @@ use const T_NAMESPACE;
  *
  * @version 0.1.0
  */
+
 /**
  * The application class
  *
@@ -94,9 +95,11 @@ final class Web {
     protected(set) ServiceManager $services;
 
     protected SiteView $view;
+
     protected Path $base;
 
     protected ConfigManager $configManager;
+
     /**
      * The application configuration
      *
@@ -105,22 +108,26 @@ final class Web {
     public Config|OptionsInterface $config {
         get => $this->configManager->getConfig();
     }
+
     /**
      * The router object
      *
      * @var \Inane\Routing\Router The router object
      */
     protected(set) Router $router;
+
     /**
      * The matched route
      *
      * @var \Inane\Routing\RouteMatch The matched route
      */
     public protected(set) ?RouteMatch $routeMatch;
+
     /**
      * @var \Inane\Http\Request The request object read from View
      */
     protected(set) Request $request;
+
     /**
      * @var Response The response object read from View
      */
@@ -131,10 +138,12 @@ final class Web {
         get => $this->response ??= $this->request->getResponse();
         set => $this->response = $value;
     }
+
     /**
      * @var \Inane\Http\Client The HTTP client object
      */
     protected(set) HttpClient $httpClient;
+
     //#endregion Properties
 
     /**
@@ -175,7 +184,7 @@ final class Web {
         $class = '';
         $i = 0;
 
-        while ($i < count($tokens)) {
+        while($i < count($tokens)) {
             if ($tokens[$i][0] === T_NAMESPACE) {
                 $i += 2; // skip namespace keyword and whitespace
                 $namespace .= $tokens[$i][1];
@@ -211,6 +220,7 @@ final class Web {
 
         $this->services = ServiceManager::createServiceManager($this->config->services);
         $this->bootstrapObject($this->services);
+        \Inane\Db\Table\AbstractTable::$db = $this->services->get(\Inane\Db\Adapter\Adapter::class);
 
         $this->configureSession();
         $this->configureRouter();
@@ -236,7 +246,8 @@ final class Web {
             SessionManager::init([
                 'name'            => $this->config->appId,
                 'cookie_samesite' => 'Strict',
-                'remember_me'     => true,  // Enables persistence
+                'remember_me'     => true,
+                // Enables persistence
             ]);
         }
     }
@@ -264,7 +275,7 @@ final class Web {
 
         if ($controller = $routerConfig->controller) {
             if ($glob = $controller->glob) {
-                foreach ($this->base->getFiles($glob, GLOB_BRACE | GLOB_NOSORT) as $file) {
+                foreach($this->base->getFiles($glob, GLOB_BRACE | GLOB_NOSORT) as $file) {
                     if ($ignore = $controller->glob_ignore) {
                         preg_match($ignore, $file->getFilename(), $matches, PREG_OFFSET_CAPTURE);
                         if (!empty($matches)) continue;
@@ -287,8 +298,7 @@ final class Web {
         if ($object instanceof ConfigAwareInterface) $object->setConfig($this->config);
 
         $reflection = new ReflectionObject($object);
-
-        foreach ($reflection->getAttributes() as $classAttribute) {
+        foreach($reflection->getAttributes() as $classAttribute) {
             if ($classAttribute->getName() === ConfigAwareAttribute::class) {
                 $this->configManager->setConfigFor($object);
             }
@@ -342,8 +352,8 @@ final class Web {
         if (!$model instanceof HttpModel) throw new RuntimeException('Web controllers must return an HTTP model, array or response.');
 
         $this->response = $this->view->render(
-            model: $model,
-            route: $this->routeMatch,
+            model : $model,
+            route : $this->routeMatch,
             router: $this->router,
             notice: array_any(array_keys($model->headers), static fn(string $name): bool => strcasecmp($name, 'Location') === 0)
                 ? '' : (string)UserSession::getFlash('notice', ''),

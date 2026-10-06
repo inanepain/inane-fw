@@ -58,6 +58,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/polyfill/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/view/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/card-deck/src" isTestSource="true" packagePrefix="Inane\CardDeck\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/card-deck/tests" isTestSource="true" packagePrefix="Inane\CardDeck\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/app/src" isTestSource="true" packagePrefix="Inane\App\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/app/tests" isTestSource="true" packagePrefix="Inane\App\Tests\" />

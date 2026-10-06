@@ -39,12 +39,16 @@ use Inane\ServiceManager\ServiceManager;
 abstract class AbstractController implements ConfigAwareInterface {
     use ConfigAwareTrait;
 
-//#region Properties
+    //#region Properties
     protected RouteMatch $routeMatch;
+
     protected Request $request;
+
     protected Response $response;
+
     protected ServiceManager $serviceManager;
-//#endregion Properties
+
+    //#endregion Properties
 
     /**
      * Constructor for the abstract controller.

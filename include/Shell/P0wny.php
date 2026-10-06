@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Inane\Shell;
 
 use Exception;
+use Inane\Http\Client;
 use Inane\Http\Response;
 use Inane\Stdlib\Exception\BadMethodCallException;
 use Inane\Stdlib\Exception\UnexpectedValueException;
@@ -91,8 +92,8 @@ final class P0wny {
         'version'  => '0.1.0',
     ];
 
-    protected \Inane\Http\Client $httpClient {
-        get => $this->httpClient ??= new \Inane\Http\Client();
+    protected Client $httpClient {
+        get => $this->httpClient ??= new Client();
     }
 
     /**
@@ -155,7 +156,7 @@ final class P0wny {
      *
      * This method handles various commands such as changing directories,
      * downloading files, and executing general shell commands. It ensures that
-     * all output is captured and returned in a standardized format.
+     * all output is captured and returned in a standardised format.
      *
      * @return array<string, string> An associative array containing base64-encoded 'stdout' and 'cwd'.
      *
@@ -256,7 +257,7 @@ final class P0wny {
      *
      * This method changes the current working directory based on the input from `postString('cwd')`.
      * It then attempts to open the file at the path provided by `postString('path')` in write binary mode.
-     * If the file cannot be opened or written, it returns an error message. Otherwise, it writes the base64
+     * If the file can't be opened or written, it returns an error message. Otherwise, it writes the base64
      * decoded content of `postString('file')` to the file and closes the handle.
      *
      * @return array{stdout: string, cwd: string} An associative array with 'stdout' containing a base64 encoded status message,
