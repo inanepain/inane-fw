@@ -124,7 +124,7 @@ class MainController extends AbstractController {
             UserSession::flash('notice', 'User groups set!');
         }
 
-        return new HttpModel(['groups' => implode(', ', $u?->groups ?? []), 'email' => $u?->email ?? '']);
+        return new HttpModel(['admin' => $u?->isAdmin ?? false, 'groups' => implode(', ', $u?->groups ?? []), 'email' => $u?->email ?? '']);
     }
 
     /**
@@ -248,6 +248,6 @@ class MainController extends AbstractController {
         $request = $request->withHeader('Content-Type', 'application/json');
         $request = $request->withBody(new Stream($body));
 
-        return Web::getInstance()->httpClient->sendRequest($request);
+        return Web::instance()->httpClient->sendRequest($request);
     }
 }

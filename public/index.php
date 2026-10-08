@@ -135,7 +135,7 @@ $returnCode = (static function(): bool|int {
     $file = realpath(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
     if (PHP_SAPI === 'cli-server' && $file !== false && str_starts_with($file, $publicPath) && is_file($file)) return false;
 
-    \Knot\Application\Web::getInstance()->run();
+    \Knot\Application\Web::instance()->run();
 })();
 
 //echo "Return Code: $returnCode" . PHP_EOL;

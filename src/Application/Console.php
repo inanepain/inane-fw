@@ -1,9 +1,9 @@
 <?php
 
 /**
- * inane-fw
+ * Framework
  *
- * Inane Framework
+ * Inane Library
  *
  * $Id$
  * $Date$
@@ -11,14 +11,13 @@
  * PHP version 8.5
  *
  * @author   Philip Michael Raab <philip@cathedral.co.za>
- * @package  inanepain\PROJECT
- * @category PROJECT
+ * @package  inanepain\fw
+ * @category fw
  *
  * @license  UNLICENSE
  * @license  https://unlicense.org/UNLICENSE UNLICENSE
  *
  * _version_ $version
- *
  */
 
 declare(strict_types = 1);
@@ -33,7 +32,8 @@ use Inane\Config\{
     ConfigAware\ConfigAwareAttribute,
     ConfigAware\ConfigAwareInterface,
     ConfigInterface,
-    ConfigManager};
+    ConfigManager,
+    Exception\ConfigNotFoundException};
 use Inane\Console\Router\ConsoleRouter;
 use Inane\Db\Adapter\Adapter;
 use Inane\Db\Table\AbstractTable;
@@ -55,6 +55,10 @@ use function getcwd;
 
 use const PHP_SAPI;
 
+/**
+ * The `Console` class serves as the main application manager when running in a console environment.
+ * It's responsible for configuration, routing and the overall application lifecycle.
+ */
 class Console implements ApplicationInterface {
     /**
      * Private constructor method for initialising the class with configuration.
@@ -99,6 +103,9 @@ class Console implements ApplicationInterface {
      * @var Config|OptionsInterface The application configuration object.
      */
     public Config|OptionsInterface $config {
+        /**
+         * @throws ConfigNotFoundException
+         */
         get => $this->configManager->getConfig();
     }
 
@@ -171,7 +178,7 @@ class Console implements ApplicationInterface {
      * Initialises the application components
      *
      * Sets up the dumper configuration, base path, service manager,
-     * and configures session and router.
+     * and configures a session and router.
      *
      * @return void
      * @throws JsonException
@@ -198,7 +205,7 @@ class Console implements ApplicationInterface {
      * Configures the session settings for the application.
      *
      * This method is responsible for setting up session parameters,
-     * such as session lifetime, storage handlers, and other related
+     * such as session lifetime, storage handlers and other related
      * configurations required for proper session management.
      *
      * @return void
@@ -232,7 +239,7 @@ class Console implements ApplicationInterface {
      * Configures the console router with available commands.
      *
      * This method sets up command routing by discovering command classes using glob patterns,
-     * excluding abstract classes, and registering them with the console router.
+     * excluding abstract classes and registering them with the console router.
      *
      * @return void
      * @throws \Inane\Stdlib\Exception\Exception

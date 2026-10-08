@@ -151,6 +151,29 @@ Composer libraries.
 
 :leveloffset: +1
 
+= Web Application Events
+
+`Knot\Application\Web` dispatches lifecycle events in this order:
+
+. `RequestProcessingEvent` exposes the incoming request before routing.
+. `RoutingEvent` exposes the request and accepts a supplied `RouteMatch`.
+. `RenderingEvent` exposes the request and matched route and accepts a supplied `Response`.
+. `ResponseEvent` exposes the final response before it is sent.
+
+The built-in routing, rendering, and response handlers preserve the normal application pipeline. Custom listeners can replace the request, route match, or response before the built-in handler, or stop propagation to replace that stage. A stage must still produce its required result: routing needs a route match, rendering needs a response, and a custom response handler must mark the response handled. Missing results fail explicitly.
+
+`Web::addEventListener()` registers a callable. Its default priority is `100`; built-in stage handlers run at priority `-100`. Use priorities greater than `-100` to run before the built-in handler and priorities less than `-100` to run after it. `Web::addEventListenerObject()` registers public methods annotated with the event library's `#[Listener]` attribute; their attribute priorities are respected.
+
+Listener objects may be obtained from `Web::services` and registered with `addEventListenerObject()` during application setup.
+
+The response event's built-in handler sends the response and does not return. A replacement handler may mark the event handled and stop propagation after taking responsibility for sending or otherwise completing the response.
+
+:leveloffset!:
+
+<<<
+
+:leveloffset: +1
+
 = Configuration
 
 :leveloffset!:
@@ -481,10 +504,10 @@ Composer libraries.
 :author: Philip Michael Raab
 :email: <philip@cathedral.co.za>
 :description: PSR-14 implementation: event dispatcher.
-:keywords: inanepain, library, event, dispatcher, listener
+:keywords: inanepain, inane, library, psr-14, event, listener, provider, dispatcher
 :homepage: https://github.com/inanepain/event
 :revnumber: 0.1.0
-:revdate: 2022-03-14
+:revdate: 2022-07-26
 :copyright: Unlicense
 :experimental:
 :hide-uri-scheme:
@@ -873,8 +896,8 @@ Composer libraries.
 :keywords: inanepain, inane, library, stdlib, json, xml, array, exception, notice, config
 :copyright: Unlicense
 :homepage: https://gitgithub.com/inanepain/stdlib
-:revnumber: 0.9.0
-:revdate: 2026-05-26
+:revnumber: 0.10.0
+:revdate: 2026-09-07
 :experimental:
 :hide-uri-scheme:
 :icons: font

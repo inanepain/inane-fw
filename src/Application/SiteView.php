@@ -1,5 +1,26 @@
 <?php
-declare(strict_types=1);
+
+/**
+ * Framework
+ *
+ * Inane Library
+ *
+ * $Id$
+ * $Date$
+ *
+ * PHP version 8.5
+ *
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\fw
+ * @category fw
+ *
+ * @license  UNLICENSE
+ * @license  https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
+ */
+
+declare(strict_types = 1);
 
 namespace Knot\Application;
 
@@ -9,6 +30,9 @@ use Inane\Routing\Router;
 use Inane\View\Model\HttpModel;
 use Inane\View\Model\IterativeModel;
 use Inane\View\ViewManager;
+use Knot\Session\UserSession;
+use Throwable;
+use TypeError;
 
 use function array_is_list;
 
@@ -20,23 +44,23 @@ final readonly class SiteView {
      * Configures the renderer and layout template.
      *
      * @param ViewManager $manager Nested model renderer.
-     * @param string $layout Layout template.
+     * @param string      $layout  Layout template.
      *
-     * @throws \TypeError
+     * @throws TypeError
      */
     public function __construct(private ViewManager $manager, private string $layout) {}
 
     /**
      * Renders a page whilst retaining its HTTP options and children.
      *
-     * @param HttpModel $model Controller page model.
-     * @param RouteMatch $route Matched controller route.
-     * @param Router $router Router used to build navigation links.
-     * @param string $notice Flash notice.
+     * @param HttpModel  $model  Controller page model.
+     * @param RouteMatch $route  Matched controller route.
+     * @param Router     $router Router used to build navigation links.
+     * @param string     $notice Flash notice.
      *
      * @return Response
      *
-     * @throws \Throwable If URL generation or template rendering fails.
+     * @throws Throwable If URL generation or template rendering fails.
      */
     public function render(HttpModel $model, RouteMatch $route, Router $router, string $notice = ''): Response {
         $response = new Response(body: '', status: $model->status, headers: $model->headers);
@@ -51,8 +75,8 @@ final readonly class SiteView {
 
         $variables = [
             'siteName' => 'Inane Framework',
-            'title' => $route->routeProperty('title', $route->params) ?: $route->routeProperty('label', $route->params),
-            'notice' => $notice,
+            'title'    => $route->routeProperty('title', $route->params) ?: $route->routeProperty('label', $route->params),
+            'notice'   => $notice,
         ];
         $root = new HttpModel($variables, ['template' => $this->layout]);
         if ($page->useLayout) {
@@ -74,30 +98,39 @@ final readonly class SiteView {
     /**
      * Builds concrete links for the controller's routes.
      *
-     * @param Router $router Site router.
-     * @param RouteMatch $route Active route.
+     * @param Router     $router Site router.
+     * @param RouteMatch $route  Active route.
      *
      * @return list<array{url: string, label: string, active: bool}>
      *
-     * @throws \Throwable If a route cannot be resolved.
+     * @throws Throwable If a route cannot be resolved.
      */
     private function navigation(Router $router, RouteMatch $route): array {
         $links = [];
-        foreach ([
-            'home' => [],
-            'item' => [['item' => 'example'],['item' => 'tiger'],['item' => 'panther']],
-            'session' => [],
-            'login' => ['username' => 'philip'],
-            'logout' => [],
-            'download' => [],
+        $pages = [
+            'home'         => [],
+            'item'         => [
+                ['item' => 'example'],
+                ['item' => 'tiger'],
+                ['item' => 'panther'],
+            ],
+            'download'     => [],
             'download-qsp' => [],
-            'new' => [],
-        ] as $name => $params) {
-            if (!array_is_list($params) || empty($params)) $params = [$params];
-            foreach ($params as $param) {
+            'session'      => [],
+            'logout'       => [],
+            'new'          => [],
+            'login'        => ['username' => 'philip'],
+        ];
+
+        if (UserSession::has('uid')) unset($pages['login'], $pages['new']);
+        else unset($pages['logout']);
+
+        foreach($pages as $name => $params) {
+            if (empty($params) || !array_is_list($params)) $params = [$params];
+            foreach($params as $param) {
                 $links[] = [
-                    'url' => $router->url($name, $param),
-                    'label' => $router->routeProperty($name, 'label', $param),
+                    'url'    => $router->url($name, $param),
+                    'label'  => $router->routeProperty($name, 'label', $param),
                     'active' => $route->route->getName() === $name,
                 ];
             }

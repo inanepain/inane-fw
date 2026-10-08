@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * Framework
+ *
+ * Inane Library
+ *
+ * $Id$
+ * $Date$
+ *
+ * PHP version 8.5
+ *
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\fw
+ * @category fw
+ *
+ * @license  UNLICENSE
+ * @license  https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
+ */
+
 declare(strict_types=1);
 
 namespace Knot\Application\Event;
@@ -11,10 +31,15 @@ use Inane\Http\Response;
  * Response lifecycle event.
  */
 final class ResponseEvent extends StoppableEvent {
+    /**
+     * @var bool $handled Indicates whether the operation has been handled.
+     */
     private bool $handled = false;
 
     /**
-     * @param Response $response Response to send.
+     * Constructor method for initialising the class with a Response instance.
+     *
+     * @param Response $response The response instance to be used within the class.
      *
      * @return void
      */

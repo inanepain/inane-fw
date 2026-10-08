@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * Framework
+ *
+ * Inane Library
+ *
+ * $Id$
+ * $Date$
+ *
+ * PHP version 8.5
+ *
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\fw
+ * @category fw
+ *
+ * @license  UNLICENSE
+ * @license  https://unlicense.org/UNLICENSE UNLICENSE
+ *
+ * _version_ $version
+ */
+
 declare(strict_types=1);
 
 namespace Knot\Application\Event;
@@ -12,7 +32,9 @@ use Inane\Http\Request;
  */
 final class RequestProcessingEvent extends StoppableEvent {
     /**
-     * @param Request $request Request to process.
+     * Constructor method.
+     *
+     * @param Request $request The request instance.
      *
      * @return void
      */

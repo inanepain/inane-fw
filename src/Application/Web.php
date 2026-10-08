@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Web
+ * Framework
  *
  * Inane Library
  *
@@ -11,8 +11,8 @@
  * PHP version 8.5
  *
  * @author   Philip Michael Raab <philip@cathedral.co.za>
- * @package  inanepain\web
- * @category web
+ * @package  inanepain\fw
+ * @category fw
  *
  * @license  UNLICENSE
  * @license  https://unlicense.org/UNLICENSE UNLICENSE
@@ -24,12 +24,14 @@ declare(strict_types = 1);
 
 namespace Knot\Application;
 
-use Exception;
 use Inane\Config\Config;
 use Inane\Config\ConfigAware\ConfigAwareAttribute;
 use Inane\Config\ConfigAware\ConfigAwareInterface;
 use Inane\Config\ConfigInterface;
 use Inane\Config\ConfigManager;
+use Inane\Config\Exception\ConfigNotFoundException;
+use Inane\Db\Adapter\Adapter;
+use Inane\Db\Table\AbstractTable;
 use Inane\Dumper\Dumper;
 use Inane\Event\EventDispatcher;
 use Inane\Event\Provider\PrioritisedListenerProvider;
@@ -52,12 +54,15 @@ use Inane\View\Exception\RuntimeException;
 use Inane\View\Model\HttpModel;
 use Inane\View\Renderer\PhpRenderer;
 use Inane\View\ViewManager;
+use InvalidArgumentException;
 use Knot\Application\Event\RenderingEvent;
 use Knot\Application\Event\RequestProcessingEvent;
 use Knot\Application\Event\ResponseEvent;
 use Knot\Application\Event\RoutingEvent;
 use Knot\Session\UserSession;
+use ReflectionException;
 use ReflectionObject;
+use Throwable;
 
 use function array_keys;
 use function count;
@@ -85,7 +90,7 @@ use const T_NAMESPACE;
 /**
  * The application class
  *
- * This class is the main entry point of the application. It is responsible for setting up the application, routing the request to the controller, rendering the view and sending the response to the client.
+ * This class is the main entry point of the application. It's responsible for setting up the application, routing the request to the controller, rendering the view and sending the response to the client.
  *
  * @version 0.1.0
  */
@@ -98,39 +103,58 @@ final class Web {
      */
     private static Web $instance;
 
+    /**
+     * @var ServiceManager Application services.
+     */
     protected(set) ServiceManager $services;
 
+    /**
+     * @var SiteView Application view renderer.
+     */
     protected SiteView $view;
 
+    /**
+     * @var Path Base path for controller discovery.
+     */
     protected Path $base;
 
+    /**
+     * @var ConfigManager Application configuration manager.
+     */
     protected ConfigManager $configManager;
 
     /**
      * The application configuration
      *
-     * @var OptionsInterface|Options|Config The application configuration
+     * @var OptionsInterface|Config The application configuration
      */
     public Config|OptionsInterface $config {
+        /**
+         * Gets the application configuration.
+         *
+         * @return Config|OptionsInterface
+         *
+         * @throws ConfigNotFoundException If no configuration is available.
+         */
         get => $this->configManager->getConfig();
     }
 
     /**
      * The router object
      *
-     * @var \Inane\Routing\Router The router object
+     * @var Router The router object
      */
     protected(set) Router $router;
 
     /**
      * The matched route
      *
-     * @var \Inane\Routing\RouteMatch The matched route
+     * @var null|RouteMatch The matched route
      */
-    public protected(set) ?RouteMatch $routeMatch;
+    protected(set) ?RouteMatch $routeMatch;
 
     /**
-     * @var \Inane\Http\Request The request object read from View
+     * @var Request The request object read from View
      */
     protected(set) Request $request;
 
@@ -139,31 +163,54 @@ final class Web {
      */
     protected(set) Response $response {
         /**
+         * Gets or initialises the response from the current request.
+         *
          * @return Response
+         * @throws \Inane\Http\Exception\RuntimeException
          */
         get => $this->response ??= $this->request->getResponse();
+        /**
+         * Stores the application response.
+         *
+         * @param Response $value Response to store.
+         *
+         * @return void
+         */
         set => $this->response = $value;
     }
 
     /**
-     * @var \Inane\Http\Client The HTTP client object
+     * @var HttpClient The HTTP client object
      */
     protected(set) HttpClient $httpClient;
 
+    /**
+     * @var PrioritisedListenerProvider Ordered web lifecycle listeners.
+     */
     private PrioritisedListenerProvider $eventProvider;
 
+    /**
+     * @var EventDispatcher Web lifecycle event dispatcher.
+     */
     private EventDispatcher $eventDispatcher;
 
+    /**
+     * @var int Priority placing built-in handlers after default custom listeners.
+     */
     private const int CORE_EVENT_PRIORITY = -100;
 
     //#endregion Properties
 
     /**
-     * The constructor
+     * Web constructor
      *
      * The constructor is private to prevent creating multiple instances of the application.
      *
+     * @param ConfigInterface $config Application configuration.
+     *
      * @return void
+     *
+     * @throws Throwable If application initialisation fails.
      */
     private function __construct(ConfigInterface $config) {
         $this->configManager = ConfigManager::instance()
@@ -177,16 +224,28 @@ final class Web {
      * Gets the instance of the application
      *
      * @return Web
+     *
+     * @throws Throwable If configuration loading or application initialisation fails.
      */
-    public static function getInstance(): Web {
-        if (!isset(self::$instance)) self::$instance = new static(Config::fromConfigFile());
+    public static function instance(): self {
+        if (!isset(self::$instance)) self::$instance = new Web(Config::fromConfigFile());
 
         return self::$instance;
     }
 
+    /**
+     * Extracts the first-class name and its namespace from a PHP file.
+     *
+     * @param File $file Controller source file.
+     *
+     * @return string|null Class name, or null when no class is found.
+     *
+     * @throws \RuntimeException If the file is invalid.
+     * @throws Throwable If reading the source file fails.
+     */
     private function getClassFromFile(File $file): ?string {
         if (!$file->isValid()) {
-            throw new Exception("File not found: $file");
+            throw new \RuntimeException("File not found: $file");
         }
 
         $src = $file->read();
@@ -221,9 +280,11 @@ final class Web {
     /**
      * Sets up the application
      *
-     * Creates required objects and configuration them so that everything is ready to run.
+     * Creates and configures the objects required to run the application.
      *
      * @return void
+     *
+     * @throws Throwable If configuration or service initialisation fails.
      */
     protected function bootstrap(): void {
         $this->base = new Path(getcwd());
@@ -232,7 +293,7 @@ final class Web {
 
         $this->services = ServiceManager::createServiceManager($this->config->services);
         $this->bootstrapObject($this->services);
-        \Inane\Db\Table\AbstractTable::$db = $this->services->get(\Inane\Db\Adapter\Adapter::class);
+        AbstractTable::$db = $this->services->get(Adapter::class);
 
         $this->configureSession();
         $this->configureRouter();
@@ -249,9 +310,9 @@ final class Web {
      * Custom listeners run before the built-in stage handler by default.
      * Priorities below -100 run after the built-in handler.
      *
-     * @param class-string $event Event class name.
-     * @param callable $listener Listener callable.
-     * @param int $priority Listener priority.
+     * @param class-string $event    Event class name.
+     * @param callable     $listener Listener callable.
+     * @param int          $priority Listener priority.
      *
      * @return $this
      */
@@ -268,7 +329,7 @@ final class Web {
      *
      * @return $this
      *
-     * @throws \InvalidArgumentException When an attributed listener is invalid.
+     * @throws InvalidArgumentException When an attributed listener is invalid.
      */
     public function addEventListenerObject(object $listener): self {
         $this->eventProvider->addAttributedListener($listener);
@@ -276,6 +337,11 @@ final class Web {
         return $this;
     }
 
+    /**
+     * Initialises an event dispatching and registers built-in lifecycle handlers.
+     *
+     * @return void
+     */
     private function configureEvents(): void {
         $this->eventProvider = new PrioritisedListenerProvider();
         $this->eventDispatcher = new EventDispatcher($this->eventProvider);
@@ -290,10 +356,12 @@ final class Web {
      * Configures the session settings for the application.
      *
      * This method is responsible for setting up session parameters,
-     * such as session lifetime, storage handlers, and other related
+     * such as session lifetime, storage handlers and other related
      * configurations required for proper session management.
      *
      * @return void
+     *
+     * @throws Throwable If configuration lookup or session initialisation fails.
      */
     protected function configureSession(): void {
         if (!isset($_SESSION)) {
@@ -314,6 +382,8 @@ final class Web {
      * Creates the router using the configuration.
      *
      * @return void
+     *
+     * @throws Throwable If configuration lookup, controller discovery or route registration fails.
      */
     protected function configureRouter(): void {
         $routerConfig = new Options([
@@ -350,6 +420,15 @@ final class Web {
         $this->router->addRoutes($controllers);
     }
 
+    /**
+     * Applies configuration to configuration-aware objects.
+     *
+     * @param object $object Object to initialise.
+     *
+     * @return void
+     *
+     * @throws Throwable If configuration lookup or injection fails.
+     */
     protected function bootstrapObject(object $object): void {
         if ($object instanceof ConfigAwareInterface) $object->setConfig($this->config);
 
@@ -372,9 +451,7 @@ final class Web {
      *
      * @return void
      *
-     * @throws BadMethodCallException
      * @throws InvalidRouteException When there's no matching `file` or `route`
-     * @throws UnexpectedValueException
      */
     protected function routing(): void {
         $this->routeMatch = $this->router->match($this->request);
@@ -390,14 +467,15 @@ final class Web {
      *
      * @return void
      *
-     * @throws \Inane\View\Exception\RuntimeException
-     * @throws \Throwable If controller execution or template rendering fails.
+     * @throws RuntimeException
+     * @throws Throwable If controller execution or template rendering fails.
      */
     protected function rendering(): void {
         $controller = new $this->routeMatch->class();
         $this->bootstrapObject($controller);
 
         $modelOrArray = $controller->{$this->routeMatch->method}($this->routeMatch->params);
+        // Direct responses bypass model conversion and view rendering.
         if ($modelOrArray instanceof Response) {
             $this->response = $modelOrArray;
 
@@ -411,13 +489,14 @@ final class Web {
             model : $model,
             route : $this->routeMatch,
             router: $this->router,
+            // Preserve flash notices for the destination of a redirect.
             notice: array_any(array_keys($model->headers), static fn(string $name): bool => strcasecmp($name, 'Location') === 0)
                 ? '' : (string)UserSession::getFlash('notice', ''),
         );
     }
 
     /**
-     * Sends the response to client
+     * Sends the response to a client
      *
      * @return never
      */
@@ -425,6 +504,15 @@ final class Web {
         $this->httpClient->send($this->response);
     }
 
+    /**
+     * Uses a listener-supplied route to match or performs routing.
+     *
+     * @param RoutingEvent $event Current routing stage.
+     *
+     * @return void
+     *
+     * @throws InvalidRouteException If no route matches the request.
+     */
     private function handleRoutingEvent(RoutingEvent $event): void {
         $this->request = $event->request;
         if ($event->routeMatch !== null) {
@@ -437,6 +525,15 @@ final class Web {
         $event->routeMatch = $this->routeMatch;
     }
 
+    /**
+     * Uses a listener-supplied response or renders the matched controller.
+     *
+     * @param RenderingEvent $event Current rendering stage.
+     *
+     * @return void
+     *
+     * @throws Throwable If controller initialisation, execution or rendering fails.
+     */
     private function handleRenderingEvent(RenderingEvent $event): void {
         if ($event->response !== null) {
             $this->response = $event->response;
@@ -450,10 +547,20 @@ final class Web {
         $event->response = $this->response;
     }
 
+    /**
+     * Sends the response unless a listener has already handled it.
+     *
+     * @param ResponseEvent $event Current response stage.
+     *
+     * @return void
+     *
+     * @throws Throwable If sending the response fails.
+     */
     private function handleResponseEvent(ResponseEvent $event): void {
         if ($event->isHandled()) return;
 
         $this->response = $event->response;
+        // Sending terminates execution, so record handling before sending.
         $event->markHandled();
         $this->responding();
     }
@@ -466,7 +573,7 @@ final class Web {
      * @throws BadMethodCallException
      * @throws UnexpectedValueException
      * @throws RuntimeException
-     * @throws \ReflectionException|InvalidRouteException|\Throwable
+     * @throws ReflectionException|InvalidRouteException|Throwable
      */
     public function run(): void {
         $requestEvent = new RequestProcessingEvent($this->request);

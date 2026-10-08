@@ -1,10 +1,13 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
 /** @var \Inane\View\Model\HttpModel $this */
+/** @var bool $admin */
 /** @var string $groups */
 /** @var string $email */
 ?>
 <h2>Session</h2>
-<p>Your session role is <strong><?= $this->escape($groups) ?></strong>.</p>
-<p>Your session email is <strong><?= $this->escape($email) ?></strong>.</p>
+<p>Admin: <strong><?=$admin ? 'Yes' : 'No' ?></strong>.</p>
+<p>Your session roles are <strong><?=$this->escape($groups)?></strong>.</p>
+<p>Your session email is <strong><?=$this->escape($email)?></strong>.</p>
 <p>The session notice is rendered by the shared layout.</p>

@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Playground: develop
+ * Framework
  *
- * Rough environment for testing, developing and playing around with PHP odds and ends.
+ * Inane Library
  *
  * $Id$
  * $Date$
  *
- * PHP version 8.4
+ * PHP version 8.5
  *
- * @author   Philip Michael Raab<philip@cathedral.co.za>
- * @package  playground\develop
- * @category develop
+ * @author   Philip Michael Raab <philip@cathedral.co.za>
+ * @package  inanepain\fw
+ * @category fw
  *
  * @license  UNLICENSE
  * @license  https://unlicense.org/UNLICENSE UNLICENSE
@@ -30,6 +30,7 @@ use Inane\Http\Request;
 use Inane\Http\Response;
 use Inane\Routing\RouteMatch;
 use Inane\ServiceManager\ServiceManager;
+use Throwable;
 
 /**
  * AbstractController
@@ -56,9 +57,11 @@ abstract class AbstractController implements ConfigAwareInterface {
      * This method is responsible for initialising various components such as RouteMatch, Request,
      * Response, ServiceManager. It also calls an initialisation function to set up any custom
      * settings required by child classes that extend this AbstractController.
+     *
+     * @throws Throwable
      */
     public function __construct() {
-        $app = Web::getInstance();
+        $app = Web::instance();
         $this->routeMatch = $app->routeMatch;
         $this->request = $app->request;
         $this->response = $app->response;
