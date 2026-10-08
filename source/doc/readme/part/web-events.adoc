@@ -1,0 +1,16 @@
+= Web Application Events
+
+`Knot\Application\Web` dispatches lifecycle events in this order:
+
+. `RequestProcessingEvent` exposes the incoming request before routing.
+. `RoutingEvent` exposes the request and accepts a supplied `RouteMatch`.
+. `RenderingEvent` exposes the request and matched route and accepts a supplied `Response`.
+. `ResponseEvent` exposes the final response before it is sent.
+
+The built-in routing, rendering, and response handlers preserve the normal application pipeline. Custom listeners can replace the request, route match, or response before the built-in handler, or stop propagation to replace that stage. A stage must still produce its required result: routing needs a route match, rendering needs a response, and a custom response handler must mark the response handled. Missing results fail explicitly.
+
+`Web::addEventListener()` registers a callable. Its default priority is `100`; built-in stage handlers run at priority `-100`. Use priorities greater than `-100` to run before the built-in handler and priorities less than `-100` to run after it. `Web::addEventListenerObject()` registers public methods annotated with the event library's `#[Listener]` attribute; their attribute priorities are respected.
+
+Listener objects may be obtained from `Web::services` and registered with `addEventListenerObject()` during application setup.
+
+The response event's built-in handler sends the response and does not return. A replacement handler may mark the event handled and stop propagation after taking responsibility for sending or otherwise completing the response.

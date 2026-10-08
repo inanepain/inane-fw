@@ -31,6 +31,8 @@ use Inane\Config\ConfigAware\ConfigAwareInterface;
 use Inane\Config\ConfigInterface;
 use Inane\Config\ConfigManager;
 use Inane\Dumper\Dumper;
+use Inane\Event\EventDispatcher;
+use Inane\Event\Provider\PrioritisedListenerProvider;
 use Inane\File\File;
 use Inane\File\Path;
 use Inane\Http\Client as HttpClient;
@@ -50,6 +52,10 @@ use Inane\View\Exception\RuntimeException;
 use Inane\View\Model\HttpModel;
 use Inane\View\Renderer\PhpRenderer;
 use Inane\View\ViewManager;
+use Knot\Application\Event\RenderingEvent;
+use Knot\Application\Event\RequestProcessingEvent;
+use Knot\Application\Event\ResponseEvent;
+use Knot\Application\Event\RoutingEvent;
 use Knot\Session\UserSession;
 use ReflectionObject;
 
@@ -144,6 +150,12 @@ final class Web {
      */
     protected(set) HttpClient $httpClient;
 
+    private PrioritisedListenerProvider $eventProvider;
+
+    private EventDispatcher $eventDispatcher;
+
+    private const int CORE_EVENT_PRIORITY = -100;
+
     //#endregion Properties
 
     /**
@@ -228,6 +240,50 @@ final class Web {
         $this->request = new Request();
         $this->view = new SiteView(new ViewManager(new PhpRenderer($this->config->view->path)), $this->config->view->layout);
         $this->httpClient = new HttpClient();
+        $this->configureEvents();
+    }
+
+    /**
+     * Registers a listener for a web lifecycle event.
+     *
+     * Custom listeners run before the built-in stage handler by default.
+     * Priorities below -100 run after the built-in handler.
+     *
+     * @param class-string $event Event class name.
+     * @param callable $listener Listener callable.
+     * @param int $priority Listener priority.
+     *
+     * @return $this
+     */
+    public function addEventListener(string $event, callable $listener, int $priority = 100): self {
+        $this->eventProvider->addListener($event, $listener, $priority);
+
+        return $this;
+    }
+
+    /**
+     * Registers methods marked with the event listener attribute.
+     *
+     * @param object $listener Listener object.
+     *
+     * @return $this
+     *
+     * @throws \InvalidArgumentException When an attributed listener is invalid.
+     */
+    public function addEventListenerObject(object $listener): self {
+        $this->eventProvider->addAttributedListener($listener);
+
+        return $this;
+    }
+
+    private function configureEvents(): void {
+        $this->eventProvider = new PrioritisedListenerProvider();
+        $this->eventDispatcher = new EventDispatcher($this->eventProvider);
+        $this->eventProvider
+            ->addListener(RoutingEvent::class, $this->handleRoutingEvent(...), self::CORE_EVENT_PRIORITY)
+            ->addListener(RenderingEvent::class, $this->handleRenderingEvent(...), self::CORE_EVENT_PRIORITY)
+            ->addListener(ResponseEvent::class, $this->handleResponseEvent(...), self::CORE_EVENT_PRIORITY)
+        ;
     }
 
     /**
@@ -369,19 +425,73 @@ final class Web {
         $this->httpClient->send($this->response);
     }
 
+    private function handleRoutingEvent(RoutingEvent $event): void {
+        $this->request = $event->request;
+        if ($event->routeMatch !== null) {
+            $this->routeMatch = $event->routeMatch;
+
+            return;
+        }
+
+        $this->routing();
+        $event->routeMatch = $this->routeMatch;
+    }
+
+    private function handleRenderingEvent(RenderingEvent $event): void {
+        if ($event->response !== null) {
+            $this->response = $event->response;
+
+            return;
+        }
+
+        $this->request = $event->request;
+        $this->routeMatch = $event->routeMatch;
+        $this->rendering();
+        $event->response = $this->response;
+    }
+
+    private function handleResponseEvent(ResponseEvent $event): void {
+        if ($event->isHandled()) return;
+
+        $this->response = $event->response;
+        $event->markHandled();
+        $this->responding();
+    }
+
     /**
      * Runs the application
      *
-     * @return int
+     * @return void
      *
      * @throws BadMethodCallException
      * @throws UnexpectedValueException
      * @throws RuntimeException
      * @throws \ReflectionException|InvalidRouteException|\Throwable
      */
-    public function run(): never {
-        $this->routing();
-        $this->rendering();
-        $this->responding();
+    public function run(): void {
+        $requestEvent = new RequestProcessingEvent($this->request);
+        $this->eventDispatcher->dispatch($requestEvent);
+        $this->request = $requestEvent->request;
+
+        $routingEvent = new RoutingEvent($this->request);
+        $this->eventDispatcher->dispatch($routingEvent);
+        if ($routingEvent->routeMatch === null) {
+            $status = HttpStatus::NotFound;
+            throw new InvalidRouteException($status->message(), $status->value);
+        }
+        $this->routeMatch = $routingEvent->routeMatch;
+
+        $renderingEvent = new RenderingEvent($this->request, $this->routeMatch);
+        $this->eventDispatcher->dispatch($renderingEvent);
+        if ($renderingEvent->response === null) {
+            throw new RuntimeException('The rendering event did not produce an HTTP response.');
+        }
+        $this->response = $renderingEvent->response;
+
+        $responseEvent = new ResponseEvent($this->response);
+        $this->eventDispatcher->dispatch($responseEvent);
+        if (!$responseEvent->isHandled()) {
+            throw new RuntimeException('The response event did not handle the HTTP response.');
+        }
     }
 }
