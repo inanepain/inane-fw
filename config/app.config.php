@@ -29,7 +29,7 @@ return [
 		'allow_modifications' => false,
 	],
 	'view'   => [
-		'path'   => dirname(__DIR__) . '/views',
+		'path'   => 'views',
 		'layout' => 'layouts/site',
 	],
 	'router' => [
