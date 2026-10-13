@@ -90,7 +90,7 @@ class MainController extends AbstractController {
      *
      * @throws \Throwable If QR generation fails.
      */
-    #[Route(path: '/view/{item}', name: 'item', extra: [
+    #[Route(path: '/view/{item}', name: 'view', extra: [
         'label' => 'Item: {item}',
         'class' => 'text-purple'
     ])]

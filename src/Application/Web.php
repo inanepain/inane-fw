@@ -41,6 +41,7 @@ use Inane\Http\Client as HttpClient;
 use Inane\Http\HttpStatus;
 use Inane\Http\Request;
 use Inane\Http\Response;
+use Inane\Routing\AttributeRouteCollector;
 use Inane\Routing\Exception\InvalidRouteException;
 use Inane\Routing\RouteMatch;
 use Inane\Routing\Router;
@@ -49,7 +50,6 @@ use Inane\Session\SessionManager;
 use Inane\Stdlib\Array\OptionsInterface;
 use Inane\Stdlib\Exception\BadMethodCallException;
 use Inane\Stdlib\Exception\UnexpectedValueException;
-use Inane\Stdlib\Options;
 use Inane\View\Exception\RuntimeException;
 use Inane\View\Model\HttpModel;
 use Inane\View\Renderer\PhpRenderer;
@@ -69,13 +69,9 @@ use function count;
 use function getcwd;
 use function is_array;
 use function is_null;
-use function preg_match;
 use function strcasecmp;
 use function token_get_all;
 
-use const GLOB_BRACE;
-use const GLOB_NOSORT;
-use const PREG_OFFSET_CAPTURE;
 use const T_CLASS;
 use const T_NAMESPACE;
 
@@ -386,38 +382,7 @@ final class Web {
      * @throws Throwable If configuration lookup, controller discovery or route registration fails.
      */
     protected function configureRouter(): void {
-        $routerConfig = new Options([
-            'splitQuerystring' => false,
-            'controller'       => [
-                'glob'        => 'src/*/*Controller.php',
-                'glob_ignore' => '/(Abstract)/',
-                'default'     => [],
-            ],
-        ]);
-        $routerConfig->merge($this->config->router);
-
-        $this->router = new Router(splitQuerystring: $routerConfig->splitQuerystring);
-        $controllers = new Options();
-
-        if ($controller = $routerConfig->controller) {
-            if ($glob = $controller->glob) {
-                foreach($this->base->getFiles($glob, GLOB_BRACE | GLOB_NOSORT) as $file) {
-                    if ($ignore = $controller->glob_ignore) {
-                        preg_match($ignore, $file->getFilename(), $matches, PREG_OFFSET_CAPTURE);
-                        if (!empty($matches)) continue;
-                    }
-                    if ($ns = $this->getClassFromFile($file)) $controllers[] = $ns;
-                }
-            }
-
-            if ($default = $controller->default) {
-                $controllers->merge($default)
-                    ->unique()
-                ;
-            }
-        }
-
-        $this->router->addRoutes($controllers);
+        $this->router = new AttributeRouteCollector($this->config->router)->createRouter();
     }
 
     /**

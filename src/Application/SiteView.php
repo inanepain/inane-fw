@@ -109,7 +109,7 @@ final readonly class SiteView {
         $links = [];
         $pages = [
             'home'         => [],
-            'item'         => [
+            'view'         => [
                 ['item' => 'example'],
                 ['item' => 'tiger'],
                 ['item' => 'panther'],

@@ -82,7 +82,7 @@ final class SiteViewTest extends TestCase {
      */
     public function testResponseMetadata(): void {
         $router = new Router([MainController::class]);
-        $model = new HttpModel(options: ['status' => 404, 'headers' => ['X-Test' => 'retained']]);
+        $model = new HttpModel(variables: [''], options: ['status' => 404, 'headers' => ['X-Test' => 'retained']]);
         $response = $this->view()->render($model, $this->match($router, '/'), $router);
         self::assertSame(404, $response->getStatusCode());
         self::assertSame('retained', $response->getHeaderLine('X-Test'));

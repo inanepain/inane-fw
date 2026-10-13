@@ -96,6 +96,7 @@
       <extension name="ddtrace" enabled="false" />
       <extension name="decimal" enabled="false" />
       <extension name="dio" enabled="false" />
+      <extension name="ds_v2" enabled="false" />
       <extension name="elastic_apm" enabled="false" />
       <extension name="enchant" enabled="false" />
       <extension name="excimer" enabled="false" />

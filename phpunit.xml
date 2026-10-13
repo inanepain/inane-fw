@@ -34,12 +34,11 @@
             <directory suffix="Test.php">lib/inanepain/id-forge/tests</directory>
             <directory suffix="Test.php">lib/inanepain/log/tests</directory>
             <directory suffix="Test.php">lib/inanepain/quickrank/tests</directory>
+            <directory suffix="Test.php">lib/inanepain/routing/tests</directory>
             <directory suffix="Test.php">lib/inanepain/servicemanager/tests</directory>
             <directory suffix="Test.php">lib/inanepain/session/tests</directory>
             <directory suffix="Test.php">lib/inanepain/stdlib/tests</directory>
             <directory suffix="Test.php">lib/inanepain/view/tests</directory>
-            <directory suffix="Test.php">source/lib/view/tests</directory>
-            <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
 
@@ -60,11 +59,11 @@
             <directory suffix=".php">lib/inanepain/id-forge/src</directory>
             <directory suffix=".php">lib/inanepain/log/src</directory>
             <directory suffix=".php">lib/inanepain/quickrank/src</directory>
+            <directory suffix=".php">lib/inanepain/routing/src</directory>
             <directory suffix=".php">lib/inanepain/servicemanager/src</directory>
             <directory suffix=".php">lib/inanepain/session/src</directory>
             <directory suffix=".php">lib/inanepain/stdlib/src</directory>
             <directory suffix=".php">lib/inanepain/view/src</directory>
-            <directory suffix=".php">source/lib/view/src</directory>
         </include>
     </source>
 
