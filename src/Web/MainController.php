@@ -95,11 +95,13 @@ class MainController extends AbstractController {
         'class' => 'text-purple'
     ])]
     public function viewTask(array $params): HttpModel {
-        $item = (string)$params['item'];
+        ['item' => $item] = $params;
         $params['image'] = preg_match('/\A[a-zA-Z0-9_-]+\z/', $item) === 1
         && is_file(dirname(__DIR__, 2) . '/public/img/' . $item . '.png')
             ? '/img/' . rawurlencode($item) . '.png' : '';
-        $params['qrcode'] = new QRObject($item)->getImageBase64();
+
+        $uri = $this->request->getUri();
+        $params['qrCode'] = new QRObject($uri->getScheme() . '://' . $uri->getHost() . $params['image'])->getImageBase64();
 
         return new HttpModel($params);
     }
@@ -153,9 +155,8 @@ class MainController extends AbstractController {
         // Login creates a cookie for session remember me
         if ($u = $this->serviceManager->get(UsersTable::class)->find(['username', $params['username']])) {
             $u = array_first($u);
+            // SessionManager::enableRememberMe();
             UserSession::set('uid', $u->id);
-            SessionManager::enableRememberMe();
-
             UserSession::flash('notice', "Welcome $u->name!");
 
             return $v;

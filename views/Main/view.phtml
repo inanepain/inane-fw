@@ -1,8 +1,14 @@
 <?php
-/** @var \Inane\View\Model\HttpModel $this */
 
 declare(strict_types=1);
-/** @var string $item */
+
+/**
+ * @var \Inane\View\Model\HttpModel $this
+ * @var string $qrCode
+ * @var string $image
+ * @var string $item
+*/
+
 ?>
 <h2>Item: <?= $this->escape($item) ?></h2>
 <?php if (($image ?? '') !== ''): ?>
@@ -10,7 +16,7 @@ declare(strict_types=1);
 <?php else: ?>
     <p>No image is available for this item.</p>
 <?php endif; ?>
-<?php if (($qrcode ?? '') !== ''): ?>
+<?php if (($qrCode ?? '') !== ''): ?>
     <h3>Item QR code</h3>
-    <img width="200" src="<?= $this->escape($qrcode) ?>" alt="QR code for this item">
+    <img width="200" src="<?= $this->escape($qrCode) ?>" alt="QR code for this item">
 <?php endif; ?>
