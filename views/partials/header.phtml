@@ -1,13 +1,23 @@
 <?php
-declare(strict_types=1);
-/** @var \Inane\View\Model\HttpModel $this */
-/** @var string $siteName */
+
+declare(strict_types = 1);
+
+/**
+ * @var HttpModel $this
+ * @var string $siteName
+ * @var string $toggleIcon
+ * @var string $toggleUrl
+ * @var string $toggleTitle
+ */
+
+use Inane\View\Model\HttpModel;
+
 ?>
 <header class="site-header">
     <div class="container">
-        <h1><?= $this->escape($siteName) ?></h1>
+        <h1><a href="<?=$toggleUrl?>" title="<?=$this->escape($toggleTitle)?>" style="text-decoration: none;"><?=$toggleIcon?></a> <?=$this->escape($siteName)?></h1>
         <nav aria-label="Main navigation">
-            <ul><?= $this->navigation ?></ul>
+            <ul><?=$this->navigation?></ul>
         </nav>
     </div>
 </header>

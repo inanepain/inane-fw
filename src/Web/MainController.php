@@ -90,12 +90,18 @@ class MainController extends AbstractController {
      *
      * @throws \Throwable If QR generation fails.
      */
-    #[Route(path: '/view/{item}', name: 'view', extra: [
+    #[Route(path: '/view', name: 'view', extra: [
+        'label' => 'Items',
+        'class' => 'text-purple'
+    ])]
+    #[Route(path: '/view/{item}', name: 'view.item', extra: [
         'label' => 'Item: {item}',
         'class' => 'text-purple'
     ])]
     public function viewTask(array $params): HttpModel {
+        if (!($params['item'] ?? false)) $params['item'] = 'demo';
         ['item' => $item] = $params;
+
         $params['image'] = preg_match('/\A[a-zA-Z0-9_-]+\z/', $item) === 1
         && is_file(dirname(__DIR__, 2) . '/public/img/' . $item . '.png')
             ? '/img/' . rawurlencode($item) . '.png' : '';

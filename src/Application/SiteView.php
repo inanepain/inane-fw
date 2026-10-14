@@ -30,16 +30,27 @@ use Inane\Routing\Router;
 use Inane\View\Model\HttpModel;
 use Inane\View\Model\IterativeModel;
 use Inane\View\ViewManager;
+use InvalidArgumentException;
 use Knot\Session\UserSession;
+use RuntimeException;
 use Throwable;
 use TypeError;
-
-use function array_is_list;
 
 /**
  * Composes controller pages into the site's nested layout.
  */
-final readonly class SiteView {
+final class SiteView {
+    /**
+     * Checks and retrieves the session status, initializing it if not already set.
+     *
+     * @return bool True if the session has a valid user ID, false otherwise.
+     *
+     * @throws RuntimeException If the UserSession::has method encounters any errors.
+     */
+    protected bool $isSession {
+        get => $this->isSession ??= UserSession::has('uid');
+    }
+
     /**
      * Configures the renderer and layout template.
      *
@@ -78,6 +89,24 @@ final readonly class SiteView {
             'title'    => $route->routeProperty('title', $route->params) ?: $route->routeProperty('label', $route->params),
             'notice'   => $notice,
         ];
+
+        if ($response->getRequest()
+            ->isHTTPS()) {
+            $variables['toggleIcon'] = '🔐';
+            $variables['toggleTitle'] = 'Secure';
+            $variables['toggleUrl'] = $response->getRequest()
+                ->getUri()
+                ->withScheme('http')
+            ;
+        } else {
+            $variables['toggleIcon'] = '🔓';
+            $variables['toggleTitle'] = 'Unsecure';
+            $variables['toggleUrl'] = $response->getRequest()
+                ->getUri()
+                ->withScheme('https')
+            ;
+        }
+
         $root = new HttpModel($variables, ['template' => $this->layout]);
         if ($page->useLayout) {
             $header = new HttpModel(options: ['template' => 'partials/header']);
@@ -96,6 +125,40 @@ final readonly class SiteView {
     }
 
     /**
+     * Recursively renders a menu structure from the provided pages and constructs menu items.
+     *
+     * @param array   $pages     An array of pages, each containing route and session information.
+     * @param Router  $router    The router instance used for generating URLs and accessing route properties.
+     * @param array  &$menuItems Reference to the resulting array where computed menu items are added.
+     *
+     * @return array The completed array of menu items with URLs, labels, and active statuses.
+     *
+     * @throws InvalidArgumentException|\Inane\Routing\Exception\InvalidArgumentException If a specified route name in the pages array is invalid or cannot be resolved.
+     */
+    protected function renderMenu(array $pages, Router $router, array &$menuItems = []): array {
+        foreach($pages as $page) {
+            if ($page['session'] === null || $page['session'] === $this->isSession) {
+                if (!empty($children = $page['children'] ?? [])) {
+                    $this->renderMenu($children, $router, $menuItems);
+                } else {
+                    $routeItem = $router->getRoute($page['route']);
+                    if ($routeItem === null) {
+                        throw new InvalidArgumentException("Invalid route name: {$page['route']}");
+                    }
+
+                    $menuItems[] = [
+                        'url'    => $routeItem->getURL($page['params']),
+                        'label'  => $routeItem->property('label', $page['params']),
+                        'active' => $routeItem->active,
+                    ];
+                }
+            }
+        }
+
+        return $menuItems;
+    }
+
+    /**
      * Builds concrete links for the controller's routes.
      *
      * @param Router     $router Site router.
@@ -106,36 +169,72 @@ final readonly class SiteView {
      * @throws Throwable If a route cannot be resolved.
      */
     private function navigation(Router $router, RouteMatch $route): array {
-        $links = [];
-        $pages = [
-            'home'         => [],
-            'view'         => [
-                ['item' => 'example'],
-                ['item' => 'tiger'],
-                ['item' => 'panther'],
+        $site = [
+            [
+                'name'    => 'Home',
+                'route'   => 'home',
+                'params'  => [],
+                'session' => null,
             ],
-            'download'     => [],
-            'download-qsp' => [],
-            'session'      => [],
-            'logout'       => [],
-            'new'          => [],
-            'login'        => ['username' => 'philip'],
+            [
+                'name'    => 'Download',
+                'route'   => 'download',
+                'params'  => [],
+                'session' => true,
+            ],
+            [
+                'name'    => 'Download QSP',
+                'route'   => 'download-qsp',
+                'params'  => [],
+                'session' => true,
+            ],
+            [
+                'name'     => 'View',
+                'route'    => 'view',
+                'params'   => [],
+                'children' => [
+                    [
+                        'name'    => 'Example',
+                        'route'   => 'view.item',
+                        'params'  => ['item' => 'example'],
+                        'session' => true,
+                    ],
+                    [
+                        'name'    => 'Tiger',
+                        'route'   => 'view.item',
+                        'params'  => ['item' => 'tiger'],
+                        'session' => true,
+                    ],
+                    [
+                        'name'    => 'Panther',
+                        'route'   => 'view.item',
+                        'params'  => ['item' => 'panther'],
+                        'session' => true,
+                    ],
+                ],
+                'session'  => true,
+            ],
+            [
+                'name'    => 'Logout',
+                'route'   => 'logout',
+                'params'  => [],
+                'session' => true,
+            ],
+            [
+                'name'    => 'New User',
+                'route'   => 'new',
+                'params'  => [],
+                'session' => false,
+            ],
+            [
+                'name'    => 'Login',
+                'route'   => 'login',
+                'params'  => ['username' => 'philip'],
+                'session' => false,
+            ],
         ];
+        $links = [];
 
-        if (UserSession::has('uid')) unset($pages['login'], $pages['new']);
-        else unset($pages['logout']);
-
-        foreach($pages as $name => $params) {
-            if (empty($params) || !array_is_list($params)) $params = [$params];
-            foreach($params as $param) {
-                $links[] = [
-                    'url'    => $router->url($name, $param),
-                    'label'  => $router->routeProperty($name, 'label', $param),
-                    'active' => $route->route->getName() === $name,
-                ];
-            }
-        }
-
-        return $links;
+        return $this->renderMenu($site, $router, $links);
     }
 }
