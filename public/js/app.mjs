@@ -1,5 +1,10 @@
 import {Dumper} from './inane/dumper.mjs';
 
+/**
+ * Description placeholder
+ *
+ * @type {*}
+ */
 const dumper = Dumper.get('Develop');
 dumper.setLevel(2);
 
@@ -9,6 +14,11 @@ if (Backbone.Marionette == undefined) {
     Backbone.Marionette = Marionette;
 }
 
+/**
+ * Description placeholder
+ *
+ * @type {*}
+ */
 const DevelopObj = Marionette.MnObject.extend({
     channelName: 'develop',
     initialize(options, arg2) {
@@ -22,10 +32,20 @@ const DevelopObj = Marionette.MnObject.extend({
     },
 });
 
+/**
+ * Description placeholder
+ *
+ * @type {*}
+ */
 const developobj = new DevelopObj({
     logger: dumper.get('DevelopObj'),
 });
 
+/**
+ * Description placeholder
+ *
+ * @type {*}
+ */
 const MyApp = Marionette.Application.extend({
     region: '#content',
     channelName: 'develop',
@@ -48,6 +68,11 @@ const MyApp = Marionette.Application.extend({
     }
 });
 
+/**
+ * Description placeholder
+ *
+ * @type {*}
+ */
 const myApp = new MyApp({
     logger: dumper.get('App'),
 });

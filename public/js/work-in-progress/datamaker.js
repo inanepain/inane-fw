@@ -1,4 +1,18 @@
+/**
+ * Description placeholder
+ *
+ * @class DataMaker
+ * @typedef {DataMaker}
+ */
 class DataMaker {
+    /**
+     * Description placeholder
+     *
+     * @param {number} [words=5]
+     * @param {number} [max=10]
+     * @param {{}} [options={}]
+     * @returns {*}
+     */
     createJunk(words = 5, max = 10, options = {}) {
         options = I.margeOptions(options, {
             word: {
@@ -31,6 +45,11 @@ class DataMaker {
         return sentence.join(' ');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @returns {*}
+     */
     createEmail() {
         let email = [];
         email.push(this.createJunk(1, 0, { word: { min: 2, max: 2 }, punctuate: { caps: false, mark: false}}).concat('@'));
@@ -40,6 +59,11 @@ class DataMaker {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @type {DataMaker}
+ */
 let dataMaker = new DataMaker();
 
 // const ddd = {
