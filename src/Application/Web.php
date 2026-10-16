@@ -422,6 +422,9 @@ final class Web {
         $this->routeMatch = $this->router->match($this->request);
 
         if (is_null($this->routeMatch)) {
+            $this->router->url('home');
+            $response = $this->request->getResponse('Unmatched route', status: HttpStatus::NotFound, headers: ['Refresh' => ['5; url=' . $this->router->url('home')]]);
+            $this->httpClient->send($response);
             $status = HttpStatus::NotFound;
             throw new InvalidRouteException($status->message(), $status->value);
         }
