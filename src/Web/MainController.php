@@ -31,7 +31,7 @@ use Inane\Routing\Route;
 use Inane\Session\SessionManager;
 use Inane\Stdlib\Exception\RuntimeException;
 use Inane\Stdlib\Json;
-use Inane\View\Model\HttpModel;
+use Inane\View\Model\HtmlModel;
 use Inane\View\Model\JsonModel;
 use Knot\Application\AbstractController;
 use Knot\Db\Entity\User;
@@ -65,7 +65,7 @@ class MainController extends AbstractController {
     /**
      * Shows the welcome page.
      *
-     * @return HttpModel
+     * @return HtmlModel
      *
      * @throws RuntimeException
      */
@@ -74,8 +74,8 @@ class MainController extends AbstractController {
         'title' => 'Home Page',
         'class' => 'text-red button button-grey'
     ])]
-    public function home(): HttpModel {
-        return new HttpModel([
+    public function home(): HtmlModel {
+        return new HtmlModel([
             'developer' => $this->getIdentity()?->name ?: '',
         ]);
     }
@@ -85,7 +85,7 @@ class MainController extends AbstractController {
      *
      * @param array<string, mixed> $params Arbitrary matched route parameters.
      *
-     * @return HttpModel
+     * @return HtmlModel
      *
      * @throws \Throwable If QR generation fails.
      */
@@ -97,7 +97,7 @@ class MainController extends AbstractController {
         'label' => 'Item: {item}',
         'class' => 'text-purple'
     ])]
-    public function viewTask(array $params): HttpModel {
+    public function viewTask(array $params): HtmlModel {
         if (!($params['item'] ?? false)) $params['item'] = 'demo';
         ['item' => $item] = $params;
 
@@ -108,7 +108,7 @@ class MainController extends AbstractController {
         $uri = $this->request->getUri();
         $params['qrCode'] = new QRObject($uri->getScheme() . '://' . $uri->getHost() . $params['image'])->getImageBase64();
 
-        return new HttpModel($params);
+        return new HtmlModel($params);
     }
 
     /**
@@ -116,7 +116,7 @@ class MainController extends AbstractController {
      *
      * @param array<string, mixed> $params Arbitrary matched route parameters.
      *
-     * @return HttpModel
+     * @return HtmlModel
      *
      * @throws RuntimeException
      * @throws \ReflectionException
@@ -125,13 +125,13 @@ class MainController extends AbstractController {
         'label' => 'Session',
         'title' => 'Session'
     ])]
-    public function sessionTask(array $params): HttpModel {
+    public function sessionTask(array $params): HtmlModel {
         if ($u = $this->getIdentity()) {
             // Flash message
             UserSession::flash('notice', 'User groups set!');
         }
 
-        return new HttpModel(['admin' => $u?->isAdmin ?? false, 'groups' => implode(', ', $u?->groups ?? []), 'email' => $u?->email ?? '']);
+        return new HtmlModel(['admin' => $u?->isAdmin ?? false, 'groups' => implode(', ', $u?->groups ?? []), 'email' => $u?->email ?? '']);
     }
 
     /**
@@ -139,7 +139,7 @@ class MainController extends AbstractController {
      *
      * @param array<string, mixed> $params Arbitrary matched route parameters.
      *
-     * @return HttpModel|Response
+     * @return HtmlModel|Response
      *
      * @throws \Throwable If the database or session operation fails.
      */
@@ -148,11 +148,11 @@ class MainController extends AbstractController {
         'label' => 'Login',
         'title' => 'Login'
     ])]
-    public function loginTask(array $params): HttpModel|Response {
+    public function loginTask(array $params): HtmlModel|Response {
         $v = new Response(body: '', status: 302, headers: ['Location' => '/']);
         if (UserSession::has('uid')) return $v;
 
-        if (!$this->config->get('db')) return new HttpModel(
+        if (!$this->config->get('db')) return new HtmlModel(
             ['username' => (string)$params['username'], 'message' => 'Configure a database to use demo login.'],
             ['status' => 503],
         );
@@ -167,7 +167,7 @@ class MainController extends AbstractController {
             return $v;
         }
 
-        return new HttpModel(['username' => (string)$params['username'], 'message' => 'No matching demo user was found.'], ['status' => 404]);
+        return new HtmlModel(['username' => (string)$params['username'], 'message' => 'No matching demo user was found.'], ['status' => 404]);
     }
 
     /**
@@ -175,7 +175,7 @@ class MainController extends AbstractController {
      *
      * @param array<string, mixed> $params Arbitrary matched route parameters.
      *
-     * @return HttpModel
+     * @return HtmlModel
      *
      * @throws RuntimeException
      */
@@ -184,11 +184,11 @@ class MainController extends AbstractController {
         'label' => 'Logout',
         'title' => 'Logout'
     ])]
-    public function logoutTask(array $params): HttpModel {
+    public function logoutTask(array $params): HtmlModel {
         // Logout clears everything (including persistent cookie)
         SessionManager::destroy();
 
-        return new HttpModel();
+        return new HtmlModel();
     }
 
     /**

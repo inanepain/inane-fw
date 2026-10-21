@@ -51,8 +51,8 @@ use Inane\Stdlib\Array\OptionsInterface;
 use Inane\Stdlib\Exception\BadMethodCallException;
 use Inane\Stdlib\Exception\UnexpectedValueException;
 use Inane\View\Exception\RuntimeException;
-use Inane\View\Model\HttpModel;
-use Inane\View\Model\ModelInterface;
+use Inane\View\Model\HtmlModel;
+use Inane\View\Model\ViewModelInterface;
 use Inane\View\Renderer\PhpRenderer;
 use Inane\View\ViewManager;
 use InvalidArgumentException;
@@ -451,8 +451,8 @@ final class Web {
             return;
         }
 
-        $model = is_array($modelOrArray) ? new HttpModel($modelOrArray) : $modelOrArray;
-        if (!$model instanceof ModelInterface) throw new RuntimeException('Web controllers must return an HTTP model, array or response.');
+        $model = is_array($modelOrArray) ? new HtmlModel($modelOrArray) : $modelOrArray;
+        if (!$model instanceof ViewModelInterface) throw new RuntimeException('Web controllers must return a view model, array or response.');
 
         $this->response = $this->view->render(
             model : $model,

@@ -6,7 +6,7 @@ namespace Knot\Tests\Application;
 use Inane\Http\Request;
 use Inane\Routing\RouteMatch;
 use Inane\Routing\Router;
-use Inane\View\Model\HttpModel;
+use Inane\View\Model\HtmlModel;
 use Inane\View\Renderer\PhpRenderer;
 use Inane\View\ViewManager;
 use Knot\Application\SiteView;
@@ -25,7 +25,7 @@ final class SiteViewTest extends TestCase {
     public function testNestedHome(): void {
         $router = new Router([MainController::class]);
         $route = $this->match($router, '/');
-        $model = new HttpModel(['developer' => '<script>bad</script>']);
+        $model = new HtmlModel(['developer' => '<script>bad</script>']);
         $view = $this->view();
         $response = $view->render(model: $model, route: $route, router: $router, notice: '<b>Welcome</b>');
         $html = (string)$response->getBody();
@@ -55,7 +55,7 @@ final class SiteViewTest extends TestCase {
         $router = new Router([MainController::class]);
         foreach (['/view/example', '/session', '/logout'] as $path) {
             $route = $this->match($router, $path);
-            $response = $this->view()->render(new HttpModel($route->params), $route, $router);
+            $response = $this->view()->render(new HtmlModel($route->params), $route, $router);
             self::assertStringContainsString('<main', (string)$response->getBody());
             self::assertStringContainsString('<h2>', (string)$response->getBody());
         }
@@ -82,7 +82,7 @@ final class SiteViewTest extends TestCase {
      */
     public function testResponseMetadata(): void {
         $router = new Router([MainController::class]);
-        $model = new HttpModel(variables: [''], options: ['status' => 404, 'headers' => ['X-Test' => 'retained']]);
+        $model = new HtmlModel(variables: [''], options: ['status' => 404, 'headers' => ['X-Test' => 'retained']]);
         $response = $this->view()->render($model, $this->match($router, '/'), $router);
         self::assertSame(404, $response->getStatusCode());
         self::assertSame('retained', $response->getHeaderLine('X-Test'));
@@ -96,12 +96,11 @@ final class SiteViewTest extends TestCase {
      */
     public function testStandaloneModel(): void {
         $router = new Router([MainController::class]);
-        $model = new HttpModel(options: ['template' => 'partials/header', 'useLayout' => false, 'headers' => ['X-Test' => 'retained']]);
-        $model->addChild('navigation', new HttpModel(options: ['template' => 'partials/footer']));
+        $model = new HtmlModel(options: ['template' => 'Main/home', 'useLayout' => false, 'headers' => ['X-Test' => 'retained']]);
         $response = $this->view()->render($model, $this->match($router, '/'), $router);
 
-        self::assertStringContainsString('<header', (string)$response->getBody());
-        self::assertStringContainsString('<footer', (string)$response->getBody());
+        self::assertStringContainsString('<h2>Welcome', (string)$response->getBody());
+        self::assertStringNotContainsString('<footer', (string)$response->getBody());
         self::assertStringNotContainsString('<!DOCTYPE html>', (string)$response->getBody());
         self::assertSame('retained', $response->getHeaderLine('X-Test'));
     }
@@ -113,7 +112,7 @@ final class SiteViewTest extends TestCase {
      */
     public function testRedirect(): void {
         $router = new Router([MainController::class]);
-        $model = new HttpModel(options: ['template' => 'missing', 'headers' => ['Location' => '/'], 'useLayout' => false]);
+        $model = new HtmlModel(options: ['template' => 'missing', 'headers' => ['Location' => '/'], 'useLayout' => false]);
         $response = $this->view()->render($model, $this->match($router, '/login/demo'), $router);
 
         self::assertSame(302, $response->getStatusCode());

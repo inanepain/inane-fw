@@ -27,9 +27,10 @@ namespace Knot\Application;
 use Inane\Http\Response;
 use Inane\Routing\RouteMatch;
 use Inane\Routing\Router;
-use Inane\View\Model\HttpModel;
-use Inane\View\Model\IterativeModel;
-use Inane\View\Model\ModelInterface;
+use Inane\View\HtmlView;
+use Inane\View\IterativeView;
+use Inane\View\Model\HtmlModel;
+use Inane\View\Model\ViewModelInterface;
 use Inane\View\ViewManager;
 use InvalidArgumentException;
 use Knot\Session\UserSession;
@@ -67,7 +68,7 @@ final class SiteView {
     /**
      * Renders a page whilst retaining its HTTP options and children.
      *
-     * @param ModelInterface $model Controller response model.
+     * @param ViewModelInterface $model Controller response model.
      * @param RouteMatch $route  Matched controller route.
      * @param Router     $router Router used to build navigation links.
      * @param string     $notice Flash notice.
@@ -76,7 +77,7 @@ final class SiteView {
      *
      * @throws Throwable If URL generation or template rendering fails.
      */
-    public function render(ModelInterface $model, RouteMatch $route, Router $router, string $notice = ''): Response {
+    public function render(ViewModelInterface $model, RouteMatch $route, Router $router, string $notice = ''): Response {
         $response = new Response(body: '', status: $model->status, headers: $model->headers);
         if ($response->hasHeader('Location')) {
             if ($response->getStatusCode() === 200) $response->setStatus(302);
@@ -84,13 +85,14 @@ final class SiteView {
             return $response;
         }
 
-        if (!$model instanceof HttpModel) {
-            return $response->setBody($model->render());
+        if (!$model instanceof HtmlModel) {
+            $view = $this->manager->createView($model);
+            if (!$response->hasHeader('Content-Type')) $response->addHeader('Content-Type', $view->contentType());
+            return $response->setBody($view->render());
         }
 
         $page = clone $model;
         if ($page->useLayout) {
-            $page->rendererInstance = new $page->rendererClass($this->manager->renderer->getTemplateStack());
             if ($page->template === '') $page->setOption('template', $route->template);
 
             $variables = [
@@ -116,18 +118,25 @@ final class SiteView {
                 ;
             }
 
-            $root = new HttpModel($variables, ['template' => $this->layout]);
-            $header = new HttpModel(options: ['template' => 'partials/header']);
-            $header->addChild('navigation', new IterativeModel(items: $this->navigation($router, $route), options: ['template' => 'components/link']));
+            $root = $this->manager->createView(new HtmlModel($variables, ['template' => $this->layout]));
+            $header = $this->manager->createView(new HtmlModel(options: ['template' => 'partials/header']));
+            if (!$root instanceof HtmlView || !$header instanceof HtmlView) throw new RuntimeException('HTML models must resolve to HTML views.');
+            $header->addChild('navigation', new IterativeView(
+                $this->manager->renderer ?? throw new RuntimeException('HTML rendering requires a PHP renderer.'),
+                new HtmlModel(options: ['template' => 'components/link']),
+                $this->navigation($router, $route),
+            ));
             $root->addChild('header', $header);
-            $root->addChild('content', $page);
-            $root->addChild('footer', new HttpModel(options: ['template' => 'partials/footer']));
+            $root->addChild('content', $this->manager->createView($page));
+            $root->addChild('footer', $this->manager->createView(new HtmlModel(options: ['template' => 'partials/footer'])));
         } else {
-            $root = $page;
+            $root = $this->manager->createView($page);
         }
 
         if (!$response->hasHeader('Content-Type')) $response->addHeader('Content-Type', 'text/html; charset=UTF-8');
-        $response->setBody($root->render());
+        $view = $root instanceof HtmlView ? $root : throw new RuntimeException('HTML models must resolve to HTML views.');
+        if (!$response->hasHeader('Content-Type')) $response->addHeader('Content-Type', $view->contentType());
+        $response->setBody($view->render());
 
         return $response;
     }
