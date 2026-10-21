@@ -25,16 +25,15 @@ declare(strict_types = 1);
 namespace Knot\Web;
 
 use Inane\Http\{
-    Request,
-    Response,
-    Stream};
+    Response};
 use Inane\QR\QRObject;
 use Inane\Routing\Route;
 use Inane\Session\SessionManager;
 use Inane\Stdlib\Exception\RuntimeException;
+use Inane\Stdlib\Json;
 use Inane\View\Model\HttpModel;
+use Inane\View\Model\JsonModel;
 use Knot\Application\AbstractController;
-use Knot\Application\Web;
 use Knot\Db\Entity\User;
 use Knot\Db\Table\UsersTable;
 use Knot\Session\UserSession;
@@ -246,15 +245,10 @@ class MainController extends AbstractController {
         'label' => 'New User',
         'title' => 'Some One'
     ])]
-    public function newuserTask(array $params): Response {
+    public function newuserTask(array $params): JsonModel {
         $body = '{"name":"Some One","email":"some@one.com","group":"users"}';
-
-        $request = Request::fromUrl('http://blackbetty.local/api/user', []);
-        $request = $request->withMethod('POST');
-        $request = $request->withoutHeader('host');
-        $request = $request->withHeader('Content-Type', 'application/json');
-        $request = $request->withBody(new Stream($body));
-
-        return Web::instance()->httpClient->sendRequest($request);
+        $data = Json::decode($body);
+        $data['time'] = time();
+        return new JsonModel($data);
     }
 }

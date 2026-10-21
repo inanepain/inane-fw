@@ -29,6 +29,7 @@ use Inane\Routing\RouteMatch;
 use Inane\Routing\Router;
 use Inane\View\Model\HttpModel;
 use Inane\View\Model\IterativeModel;
+use Inane\View\Model\ModelInterface;
 use Inane\View\ViewManager;
 use InvalidArgumentException;
 use Knot\Session\UserSession;
@@ -59,12 +60,14 @@ final class SiteView {
      *
      * @throws TypeError
      */
-    public function __construct(private ViewManager $manager, private string $layout) {}
+    public function __construct(private ViewManager $manager, private string $layout) {
+
+    }
 
     /**
      * Renders a page whilst retaining its HTTP options and children.
      *
-     * @param HttpModel  $model  Controller page model.
+     * @param ModelInterface $model Controller response model.
      * @param RouteMatch $route  Matched controller route.
      * @param Router     $router Router used to build navigation links.
      * @param string     $notice Flash notice.
@@ -73,7 +76,7 @@ final class SiteView {
      *
      * @throws Throwable If URL generation or template rendering fails.
      */
-    public function render(HttpModel $model, RouteMatch $route, Router $router, string $notice = ''): Response {
+    public function render(ModelInterface $model, RouteMatch $route, Router $router, string $notice = ''): Response {
         $response = new Response(body: '', status: $model->status, headers: $model->headers);
         if ($response->hasHeader('Location')) {
             if ($response->getStatusCode() === 200) $response->setStatus(302);
@@ -81,34 +84,39 @@ final class SiteView {
             return $response;
         }
 
-        $page = clone $model;
-        if ($page->template === '') $page->setOption('template', $route->template);
-
-        $variables = [
-            'siteName' => 'Inane Framework',
-            'title'    => $route->routeProperty('title', $route->params) ?: $route->routeProperty('label', $route->params),
-            'notice'   => $notice,
-        ];
-
-        if ($response->getRequest()
-            ->isHTTPS()) {
-            $variables['toggleIcon'] = '🔐';
-            $variables['toggleTitle'] = 'Secure';
-            $variables['toggleUrl'] = $response->getRequest()
-                ->getUri()
-                ->withScheme('http')
-            ;
-        } else {
-            $variables['toggleIcon'] = '🔓';
-            $variables['toggleTitle'] = 'Unsecure';
-            $variables['toggleUrl'] = $response->getRequest()
-                ->getUri()
-                ->withScheme('https')
-            ;
+        if (!$model instanceof HttpModel) {
+            return $response->setBody($model->render());
         }
 
-        $root = new HttpModel($variables, ['template' => $this->layout]);
+        $page = clone $model;
         if ($page->useLayout) {
+            $page->rendererInstance = new $page->rendererClass($this->manager->renderer->getTemplateStack());
+            if ($page->template === '') $page->setOption('template', $route->template);
+
+            $variables = [
+                'siteName' => 'Inane Framework',
+                'title'    => $route->routeProperty('title', $route->params) ?: $route->routeProperty('label', $route->params),
+                'notice'   => $notice,
+            ];
+
+            if ($response->getRequest()
+                ->isHTTPS()) {
+                $variables['toggleIcon'] = '🔐';
+                $variables['toggleTitle'] = 'Secure';
+                $variables['toggleUrl'] = $response->getRequest()
+                    ->getUri()
+                    ->withScheme('http')
+                ;
+            } else {
+                $variables['toggleIcon'] = '🔓';
+                $variables['toggleTitle'] = 'Unsecure';
+                $variables['toggleUrl'] = $response->getRequest()
+                    ->getUri()
+                    ->withScheme('https')
+                ;
+            }
+
+            $root = new HttpModel($variables, ['template' => $this->layout]);
             $header = new HttpModel(options: ['template' => 'partials/header']);
             $header->addChild('navigation', new IterativeModel(items: $this->navigation($router, $route), options: ['template' => 'components/link']));
             $root->addChild('header', $header);
@@ -119,7 +127,7 @@ final class SiteView {
         }
 
         if (!$response->hasHeader('Content-Type')) $response->addHeader('Content-Type', 'text/html; charset=UTF-8');
-        $response->setBody($this->manager->render($root));
+        $response->setBody($root->render());
 
         return $response;
     }
@@ -149,7 +157,7 @@ final class SiteView {
                     $menuItems[] = [
                         'url'    => $routeItem->getURL($page['params']),
                         'label'  => $routeItem->property('label', $page['params']),
-                        'active' => $routeItem->active,
+                        'active' => $routeItem->active && $routeItem->hasParams() && Web::instance()->routeMatch->params === $page['params'],
                     ];
                 }
             }

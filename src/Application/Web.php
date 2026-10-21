@@ -52,6 +52,7 @@ use Inane\Stdlib\Exception\BadMethodCallException;
 use Inane\Stdlib\Exception\UnexpectedValueException;
 use Inane\View\Exception\RuntimeException;
 use Inane\View\Model\HttpModel;
+use Inane\View\Model\ModelInterface;
 use Inane\View\Renderer\PhpRenderer;
 use Inane\View\ViewManager;
 use InvalidArgumentException;
@@ -451,7 +452,7 @@ final class Web {
         }
 
         $model = is_array($modelOrArray) ? new HttpModel($modelOrArray) : $modelOrArray;
-        if (!$model instanceof HttpModel) throw new RuntimeException('Web controllers must return an HTTP model, array or response.');
+        if (!$model instanceof ModelInterface) throw new RuntimeException('Web controllers must return an HTTP model, array or response.');
 
         $this->response = $this->view->render(
             model : $model,
