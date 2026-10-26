@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+autoload colours
+colours
+
+PAGER=
+for d in lib/inanepain/*; do
+    rn=$(basename $d)
+    msg "${Blue}==== $d ===="
+    gt issue list --repo inanepain/$rn --json
+    msg "\t\t\t${Yellow}==============================\n"
+done
