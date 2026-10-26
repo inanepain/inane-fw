@@ -490,14 +490,14 @@ class BrewCommands implements NotifyProgressInterface {
      */
     #[Command('brew:sync', 'Sync installed status for packages', ['hbs'])]   // Constructor method for initialising a console command with a name, description, and aliases.
     public function syncInstalledCommand(): int {
-        Cli::line('Brew formulas installed: updating...');   // Outputs a line of text to the CLI.
+        Cli::line('Brew formulas installed: updating…');   // Outputs a line of text to the CLI.
 
         $cmd = 'brew list --formulae -1';
         exec($cmd, $output);                    // Execute an external program
         $formulasTable = new FormulasTable();   // * Constructor for the AbstractTable class.
 
         // Set all formulas to uninstalled.
-        $query = $formulasTable->queryBuilder()->update(['installed' => false]);
+        $query = $formulasTable->queryBuilder()->update(['installed' => false])->where('installed', '=', true);
         $formulasTable::$db->getDriver()->prepare($query->toSql())->execute($query->getBindings());
 
         $counter = new Options([
