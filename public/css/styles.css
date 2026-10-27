@@ -28,7 +28,7 @@ a[aria-current] {
 
 main {
     min-height: 45vh;
-    padding-block: 1.5rem;
+    padding-block:0rem 1.5rem;
 }
 
 .notice {
@@ -44,4 +44,6 @@ img {
 footer {
     border-top: 1px solid;
     padding-top: 1rem;
+    bottom: 30px;
+    position: static;
 }

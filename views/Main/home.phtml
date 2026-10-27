@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Inane\View\HtmlView;
 
 ?>
-<quick-header textalign='left' colour='purple' left='0' underline linecolour='blueviolet' linewidth='90%' linealign='right' size="36">Welcome<?= ($developer ?? '') !== '' ? ', ' . $this->escape($developer) : '' ?></quick-header>
+<quick-header textalign='left' colour='purple' left='0' top='0' underline linecolour='blueviolet' linewidth='90%' linealign='right' size="36">Welcome<?= ($developer ?? '') !== '' ? ', ' . $this->escape($developer) : '' ?></quick-header>
 
 <p>This simple site renders each controller page inside a shared layout.</p>
 <p>The header contains nested navigation links, whilst the page and footer are separate view models.</p>
