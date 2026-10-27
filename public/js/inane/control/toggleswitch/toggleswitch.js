@@ -167,7 +167,7 @@
      *
      * @attribute size - font size
      *
-     * PS: label wins over img if both set
+     * PS: label wins over img if both are set
      *
      * @extends {HTMLElement}
      * @version 0.2.0
@@ -235,8 +235,8 @@
         /**
          * colour<br/>
          *
-         * colour may specify both unchecked and checked colours by using a comma `,`
-         * in this case it chkcolour is not used
+         * colour may specify both unchecked and checked colours by using a comma `, `
+         * in this case it chkcolour isn't used
          *
          * @property
          * @readonly

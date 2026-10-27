@@ -135,6 +135,72 @@ class MainController extends AbstractController {
     }
 
     /**
+     * Returns the macOS download without an HTML layout.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return Response
+     *
+     * @throws \Throwable If file preparation fails.
+     */
+    #[Route(path: '/store/osx', name: 'download', extra: [
+        'label' => 'Download',
+        'title' => 'OSX version'
+    ])]
+    public function downloadTask(array $params): Response {
+        $limit = max(0, (int)($params['query-string']['limit'] ?? 0));
+
+        return $this->response->setFile('filesrv/some-file.dmg', true, $limit);
+    }
+
+    /**
+     * Returns the QSP download without an HTML layout.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return Response
+     *
+     * @throws \Throwable If file preparation fails.
+     */
+    #[Route(path: '/store/qsp', name: 'download-qsp', extra: [
+        'label' => 'Download QSP',
+        'title' => 'QSP'
+    ])]
+    public function qspTask(array $params): Response {
+        $limit = max(0, (int)($params['query-string']['limit'] ?? 0));
+
+        return $this->response->setFile('filesrv/qsp.dmg', true, $limit);
+    }
+
+    #[Route(path: '/widgets', name: 'widgets', extra: [
+        'label' => 'Widgets',
+        'title' => 'Widgets'
+    ])]
+    public function widgetsTask(array $params): HtmlModel {
+        return new HtmlModel();
+    }
+
+    /**
+     * Returns the upstream user-creation response unchanged.
+     *
+     * @param array<string, mixed> $params Arbitrary matched route parameters.
+     *
+     * @return Response
+     *
+     * @throws \Throwable If the upstream request fails.
+     */
+    #[Route(path: '/request/create', name: 'new', extra: [
+        'label' => 'New User',
+        'title' => 'Some One'
+    ])]
+    public function newuserTask(array $params): JsonModel {
+        $body = '{"name":"Some One","email":"some@one.com","group":"users"}';
+        $data = Json::decode($body);
+        $data['time'] = time();
+        return new JsonModel($data);
+    }
+
+    /**
      * Looks up a demo user and redirects after login.
      *
      * @param array<string, mixed> $params Arbitrary matched route parameters.
@@ -143,7 +209,6 @@ class MainController extends AbstractController {
      *
      * @throws \Throwable If the database or session operation fails.
      */
-
     #[Route(path: '/login/{username}', name: 'login', extra: [
         'label' => 'Login',
         'title' => 'Login'
@@ -179,7 +244,6 @@ class MainController extends AbstractController {
      *
      * @throws RuntimeException
      */
-
     #[Route(path: '/logout', name: 'logout', extra: [
         'label' => 'Logout',
         'title' => 'Logout'
@@ -189,66 +253,5 @@ class MainController extends AbstractController {
         SessionManager::destroy();
 
         return new HtmlModel();
-    }
-
-    /**
-     * Returns the macOS download without an HTML layout.
-     *
-     * @param array<string, mixed> $params Arbitrary matched route parameters.
-     *
-     * @return Response
-     *
-     * @throws \Throwable If file preparation fails.
-     */
-
-    #[Route(path: '/store/osx', name: 'download', extra: [
-        'label' => 'Download',
-        'title' => 'OSX version'
-    ])]
-    public function downloadTask(array $params): Response {
-        $limit = max(0, (int)($params['query-string']['limit'] ?? 0));
-
-        return $this->response->setFile('filesrv/some-file.dmg', true, $limit);
-    }
-
-    /**
-     * Returns the QSP download without an HTML layout.
-     *
-     * @param array<string, mixed> $params Arbitrary matched route parameters.
-     *
-     * @return Response
-     *
-     * @throws \Throwable If file preparation fails.
-     */
-
-    #[Route(path: '/store/qsp', name: 'download-qsp', extra: [
-        'label' => 'Download QSP',
-        'title' => 'QSP'
-    ])]
-    public function qspTask(array $params): Response {
-        $limit = max(0, (int)($params['query-string']['limit'] ?? 0));
-
-        return $this->response->setFile('filesrv/qsp.dmg', true, $limit);
-    }
-
-    /**
-     * Returns the upstream user-creation response unchanged.
-     *
-     * @param array<string, mixed> $params Arbitrary matched route parameters.
-     *
-     * @return Response
-     *
-     * @throws \Throwable If the upstream request fails.
-     */
-
-    #[Route(path: '/request/create', name: 'new', extra: [
-        'label' => 'New User',
-        'title' => 'Some One'
-    ])]
-    public function newuserTask(array $params): JsonModel {
-        $body = '{"name":"Some One","email":"some@one.com","group":"users"}';
-        $data = Json::decode($body);
-        $data['time'] = time();
-        return new JsonModel($data);
     }
 }

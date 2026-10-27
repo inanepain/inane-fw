@@ -9,3 +9,6 @@ source/image/inane-fw/Icon
 phpdoc/
 *.sublime-project
 *.sublime-workspace
+*.min.js.gz
+*.min.mjs.gz
+*.min.css.gz

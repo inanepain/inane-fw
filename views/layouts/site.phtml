@@ -1,10 +1,13 @@
 <?php
-declare(strict_types=1);
-/** @var \Inane\View\Model\HttpModel $this */
+
+declare(strict_types = 1);
+/** @var HtmlView $this */
 /** @var string $title */
 /** @var string $siteName */
+
 /** @var string $notice */
 
+use Inane\View\HtmlView;
 use Knot\Session\UserSession;
 
 ?>
@@ -13,34 +16,43 @@ use Knot\Session\UserSession;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $this->escape($title) ?> — <?= $this->escape($siteName) ?></title>
-    <style>
-        :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
-        body { max-width: 70rem; margin: auto; padding: 1.5rem; line-height: 1.6; }
-        nav ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding: 0; list-style: none; }
-        a { color: light-dark(#174ea6, #9cc3ff); }
-        a[aria-current] { font-weight: bold; }
-        main { min-height: 45vh; padding-block: 1.5rem; }
-        .notice { border-inline-start: .25rem solid; padding: .75rem; }
-        img { max-width: 100%; height: auto; }
-        footer { border-top: 1px solid; padding-top: 1rem; }
-    </style>
+    <title><?=$this->escape($title)?> — <?=$this->escape($siteName)?></title>
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+
+    <script src='/js/inane/extend/object.js' type='text/javascript'></script>
+
+    <script src='/lib/underscore/1.13.8/underscore-umd-min.js' type='text/javascript'></script>
+    <script src='/lib/backbone/1.6.0/backbone-min.js' type='text/javascript'></script>
+
+    <link rel="stylesheet" href="/lib/bootstrap/6.0.0-alpha.1/css/bootstrap.min.css" type="text/css">
+    <script src="/lib/bootstrap/6.0.0-alpha.1/js/bootstrap.bundle.min.js" type="module"></script>
+
+    <script src='/js/inane/inane.js' type='text/javascript'></script>
+    <script src='/js/inane/dumper.mjs' type='module'></script>
+    <script src='/js/inane/control/textset/inane-textset.js' type='text/javascript'></script>
+    <script src='/js/inane/control/quickheader/quickheader.js' type='module'></script>
+    <script src='/js/inane/control/toggleswitch/toggleswitch.js' type='module'></script>
+
+    <link rel='stylesheet' href='/js/inane/control/popupinfo/popupinfo.css' type='text/css'>
+    <script src='/js/inane/control/popupinfo/popupinfo.js' type='module'></script>
+
+    <script src='/js/inane/control/gravatar/inane-gravatar.js' type='module'></script>
 </head>
 <body>
-    <?= $this->header ?>
-    <?php
+<?=$this->header?>
+<?php
 //    if (UserSession::hasFlash('notice')) {
 //        echo UserSession::getFlash('notice');
 //        echo $this->escape(UserSession::getFlash('notice'));
 //        dd('UserSession::getFlash');
 //    }
-    ?>
-    <?php if (UserSession::hasFlash('notice')): ?>
-        <p class="notice" role="status"><?= $this->escape(UserSession::getFlash('notice')) ?></p>
-    <?php endif; ?>
-    <main id="content">
-        <?= $this->content ?>
-    </main>
-    <?= $this->footer ?>
+?>
+<?php if (UserSession::hasFlash('notice')): ?>
+    <p class="notice" role="status"><?=$this->escape(UserSession::getFlash('notice'))?></p>
+<?php endif; ?>
+<main id="content" class="container">
+    <?=$this->content?>
+</main>
+<?=$this->footer?>
 </body>
 </html>

@@ -1,8 +1,11 @@
 <?php
 declare(strict_types=1);
-/** @var \Inane\View\Model\HttpModel $this */
+/** @var HtmlView $this */
 /** @var string $username */
 /** @var string $message */
+
+use Inane\View\HtmlView;
+
 ?>
 <h2>Demo login</h2>
 <p>User: <?=$this->escape($username) ?></p>

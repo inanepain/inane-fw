@@ -78,7 +78,7 @@
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.5" />
-  <component name="PhpRuntimeConfiguration">
+  <component name="PhpRuntimeConfiguration" document_root_path="public">
     <extensions>
       <extension name="Ev" enabled="false" />
       <extension name="FFI" enabled="true" />

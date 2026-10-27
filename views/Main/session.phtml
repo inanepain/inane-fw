@@ -1,10 +1,13 @@
 <?php
 
 declare(strict_types = 1);
-/** @var \Inane\View\Model\HttpModel $this */
+/** @var HtmlView $this */
 /** @var bool $admin */
 /** @var string $groups */
 /** @var string $email */
+
+use Inane\View\HtmlView;
+
 ?>
 <h2>Session</h2>
 <p>Admin: <strong><?=$admin ? 'Yes' : 'No' ?></strong>.</p>

@@ -3,20 +3,20 @@
 declare(strict_types = 1);
 
 /**
- * @var HttpModel $this
- * @var string $siteName
- * @var string $toggleIcon
- * @var string $toggleUrl
- * @var string $toggleTitle
+ * @var HtmlView $this
+ * @var string   $siteName
+ * @var string   $toggleIcon
+ * @var string   $toggleUrl
+ * @var string   $toggleTitle
  */
 
-use Inane\View\Model\HttpModel;
+use Inane\View\HtmlView;
 
 ?>
 <header class="site-header">
     <div class="container">
         <h1><a href="<?=$toggleUrl?>" title="<?=$this->escape($toggleTitle)?>" style="text-decoration: none;"><?=$toggleIcon?></a> <?=$this->escape($siteName)?></h1>
-        <nav aria-label="Main navigation">
+        <nav aria-label="Main navigation" class="navbar">
             <ul><?=$this->navigation?></ul>
         </nav>
     </div>

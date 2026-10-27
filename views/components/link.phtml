@@ -1,8 +1,13 @@
 <?php
-declare(strict_types=1);
-/** @var \Inane\View\Model\HttpModel $this */
+
+declare(strict_types = 1);
+/** @var HtmlView $this */
 /** @var string $url */
 /** @var string $label */
+
 /** @var bool $active */
+
+use Inane\View\HtmlView;
+
 ?>
-<li><a href="<?= $this->escape($url) ?>"<?= $active ? ' aria-current="page"' : '' ?>><?= $this->escape($label) ?></a></li>
+<li><a class="nav-link" href="<?=$this->escape($url)?>"<?=$active ? ' aria-current="page"' : ''?>><?=$this->escape($label)?></a></li>

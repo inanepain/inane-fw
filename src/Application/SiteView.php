@@ -194,6 +194,11 @@ final class SiteView {
                 'session' => null,
             ],
             [
+                'name'    => 'Widgets',
+                'route'   => 'widgets',
+                'params'  => [],
+                'session' => true,
+            ],[
                 'name'    => 'Download',
                 'route'   => 'download',
                 'params'  => [],

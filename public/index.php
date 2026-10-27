@@ -112,7 +112,7 @@ if ($include !== null) {
     exit;
 }
 
-$returnCode = (static function(): bool|int {
+$response = (static function(): bool|int {
     // FIX: boo
     // FIXME: boo
     // BUG: bug
@@ -130,13 +130,12 @@ $returnCode = (static function(): bool|int {
             ->run();
     }
 
-    // Server existing files in web dir
-    $publicPath = realpath(__DIR__) . DIRECTORY_SEPARATOR;
-    $file = realpath(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-    if (PHP_SAPI === 'cli-server' && $file !== false && str_starts_with($file, $publicPath) && is_file($file)) return false;
+    // Server existing files in a web dir
+    $file = realpath(__DIR__) . $_SERVER['REQUEST_URI'];
+    if (is_file($file)) return false;
 
     \Knot\Application\Web::instance()->run();
+    return 0;
 })();
 
-//echo "Return Code: $returnCode" . PHP_EOL;
-//echo "Error reporting: $error_reporting" . PHP_EOL;
+if ($response === false) return false;

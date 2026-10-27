@@ -1,1 +1,47 @@
+:root {
+    color-scheme: light dark;
+    font-family: system-ui, sans-serif;
+}
 
+body {
+    max-width: 70rem;
+    margin: auto;
+    padding: 1.5rem;
+    line-height: 1.6;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: light-dark(#174ea6, #9cc3ff);
+}
+
+a[aria-current] {
+    font-weight: bold;
+}
+
+main {
+    min-height: 45vh;
+    padding-block: 1.5rem;
+}
+
+.notice {
+    border-inline-start: .25rem solid;
+    padding: .75rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    border-top: 1px solid;
+    padding-top: 1rem;
+}

@@ -87,7 +87,7 @@ RewriteRule ^(.*)$ %{ENV:BASE}/index.php [L]
 
     # Enable cross domain access control
 	# Header add Access-Control-Allow-Origin "*"
-    Header set Access-Control-Allow-Origin "*, https://yts.mx"
+#    Header set Access-Control-Allow-Origin "*, https://yts.mx"
     # Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
     # Header set Access-Control-Allow-Methods "GET,PUT,POST,DELETE"
     # Header add Access-Control-Allow-Methods "GET,PUT,POST,DELETE,OPTIONS"
