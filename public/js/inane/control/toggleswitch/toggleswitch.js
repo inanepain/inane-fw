@@ -251,8 +251,7 @@
         /**
          * chkColour<br/>
          *
-         * if colour uses a comma `,` to set unchecked and checked colours
-         * chkColour is not used
+         * if colour uses a comma `, ` to set unchecked and checked colours, chkColour isn't used
          *
          * @property
          * @readonly
@@ -270,8 +269,7 @@
         /**
          * background<br/>
          *
-         * background may specify both unchecked and checked colours by using a comma `,`
-         * in this case it chkbackground is not used
+         * background may specify both unchecked and checked colours by using a comma `, ` in this case it chkbackground isn't used.
          *
          * @property
          * @readonly
@@ -286,8 +284,7 @@
         /**
          * chkBackground<br/>
          *
-         * if background uses a comma `,` to set unchecked and checked colours
-         * chkBackground is not used
+         * if background uses a comma `, ` to set unchecked and checked colours, chkBackground isn't used.
          *
          * @property
          * @readonly

@@ -9,7 +9,7 @@ declare(strict_types = 1);
 use Inane\View\HtmlView;
 
 ?>
-<h2>Session</h2>
+<quick-header textalign='left' colour='purple' left='0' underline linecolour='blueviolet' linewidth='90%' linealign='right' size='36'>Session</quick-header>
 <p>Admin: <strong><?=$admin ? 'Yes' : 'No' ?></strong>.</p>
 <p>Your session roles are <strong><?=$this->escape($groups)?></strong>.</p>
 <p>Your session email is <strong><?=$this->escape($email)?></strong>.</p>
