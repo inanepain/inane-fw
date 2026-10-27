@@ -51,5 +51,9 @@ use Knot\Session\UserSession;
     <?=$this->content?>
 </main>
 <?=$this->footer?>
+<script type="module">
+    const logger = Dumper.get('InaneFW', {level: 'DEBUG'});
+    logger.debug('Hello World');
+</script>
 </body>
 </html>
