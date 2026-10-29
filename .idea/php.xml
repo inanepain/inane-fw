@@ -75,6 +75,95 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/version" />
       <path value="$PROJECT_DIR$/vendor/staabm/side-effects-detector" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/composer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/inanepain/stdlib" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/git-state" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/file-filter" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/lib/inanepain/db/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/git-state" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/file-filter" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/lib/inanepain/stdlib/vendor/composer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/git-state" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/composer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/file-filter" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/fig/event-dispatcher-util" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/lib/inanepain/event/vendor/nikic/php-parser" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.5" />
@@ -175,6 +264,7 @@
   </component>
   <component name="PhpUnit">
     <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/lib/inanepain/db/phpunit.xml" custom_loader_path="$PROJECT_DIR$/lib/inanepain/db/vendor/autoload.php" use_configuration_file="true" />
       <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" phpunit_phar_path="" use_configuration_file="true" />
     </phpunit_settings>
   </component>

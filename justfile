@@ -7,7 +7,9 @@
 set shell := ["zsh", "-cu"]
 set positional-arguments
 set dotenv-load
+set default-list := true
 
+#region base
 # list recipes
 [default]
 _default:
@@ -26,6 +28,7 @@ _start task='':
 _done task='':
     @echo "{{GREEN}}done{{NORMAL}} {{task}}"
 
+#endregion base
 #region git
 # git push submodules
 [group: 'git']

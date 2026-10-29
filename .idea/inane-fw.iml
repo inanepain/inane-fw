@@ -32,26 +32,33 @@
       <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/source/lib/view/tests" isTestSource="true" packagePrefix="Test\View\Helper\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/auth/tests" isTestSource="true" packagePrefix="Inane\Auth\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/db/src" isTestSource="true" packagePrefix="Inane\Db\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/config/tests" isTestSource="true" packagePrefix="Inane\Config\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/crypt/tests" isTestSource="true" packagePrefix="Inane\Crypt\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/datetime/tests" isTestSource="true" packagePrefix="Inane\Datetime\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/id-forge/tests" isTestSource="true" packagePrefix="Inane\IdForge\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/dumper/tests" isTestSource="true" packagePrefix="Inane\Dumper\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/servicemanager/tests" isTestSource="true" packagePrefix="Inane\ServiceManager\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/source/lib/console/src" isTestSource="true" packagePrefix="Inane\Console\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cli/tests" isTestSource="true" packagePrefix="Inane\Cli\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/public/js" isTestSource="false" />
@@ -67,20 +74,25 @@
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/cache/tests" isTestSource="true" packagePrefix="Inane\Cache\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/include" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/event/tests" isTestSource="true" packagePrefix="Inane\Event\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/session/tests" isTestSource="true" packagePrefix="Inane\Session\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/log/tests" isTestSource="true" packagePrefix="Inane\Log\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/console/tests" isTestSource="true" packagePrefix="Inane\Console\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/quickrank/tests" isTestSource="true" packagePrefix="Inane\QR\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/file/tests" isTestSource="true" packagePrefix="Inane\File\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/tests" isTestSource="true" packagePrefix="Inane\Stdlib\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/lib/inanepain/db/tests" isTestSource="true" packagePrefix="Inane\Db\Tests\" />
@@ -141,6 +153,95 @@
       <excludeFolder url="file://$MODULE_DIR$/inane-fw.sublime-project" />
       <excludeFolder url="file://$MODULE_DIR$/lib/phpdoc" />
       <excludeFolder url="file://$MODULE_DIR$/inane-fw.sublime-workspace" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/inanepain/stdlib" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/phar-io/manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/phpunit/php-code-coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/phpunit/php-file-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/phpunit/php-invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/phpunit/php-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/cli-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/comparator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/file-filter" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/git-state" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/global-state" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/lines-of-code" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/object-enumerator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/object-reflector" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/recursion-context" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/type" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/staabm/side-effects-detector" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/db/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/fig/event-dispatcher-util" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/phar-io/manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/phpunit/php-code-coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/phpunit/php-file-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/phpunit/php-invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/phpunit/php-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/cli-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/comparator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/file-filter" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/git-state" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/global-state" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/lines-of-code" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/object-enumerator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/object-reflector" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/recursion-context" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/type" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/staabm/side-effects-detector" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/event/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/phar-io/manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-code-coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-file-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/phpunit/php-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/cli-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/comparator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/file-filter" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/git-state" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/global-state" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/lines-of-code" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/object-enumerator" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/object-reflector" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/recursion-context" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/type" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/staabm/side-effects-detector" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/inanepain/stdlib/vendor/theseer/tokenizer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
